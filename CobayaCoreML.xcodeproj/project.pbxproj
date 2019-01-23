@@ -1,0 +1,487 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		08D1753E21E5F57300ABF40A /* BuahCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D1753D21E5F57300ABF40A /* BuahCell.swift */; };
+		08D7773721E876B60025CC0C /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D7773121E876B50025CC0C /* ImageViewController.swift */; };
+		08D7773821E876B60025CC0C /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D7773221E876B60025CC0C /* TutorialPageViewController.swift */; };
+		08D7773921E876B60025CC0C /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D7773321E876B60025CC0C /* PopUpViewController.swift */; };
+		08D7773A21E876B60025CC0C /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D7773421E876B60025CC0C /* TutorialViewController.swift */; };
+		08D7773D21EF2C640025CC0C /* AppleBagusAppleJelek.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 08D7773C21EF2C640025CC0C /* AppleBagusAppleJelek.mlmodel */; };
+		6B2D6CE921F708C000FFE806 /* NilaiSementara.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2D6CE821F708C000FFE806 /* NilaiSementara.swift */; };
+		6B3D55D221E34EF700E91E85 /* Warna.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6B3D55D121E34EF700E91E85 /* Warna.mlmodel */; };
+		6BDEA49B21F5AD11007909B8 /* Jeruk100.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6BDEA49A21F5AD11007909B8 /* Jeruk100.mlmodel */; };
+		6BDEA49D21F5AD7E007909B8 /* Resnet50.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6BDEA49C21F5AD7E007909B8 /* Resnet50.mlmodel */; };
+		991A6017213FCEC100FEAE4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991A6016213FCEC100FEAE4B /* AppDelegate.swift */; };
+		991A6019213FCEC100FEAE4B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991A6018213FCEC100FEAE4B /* ViewController.swift */; };
+		991A601C213FCEC100FEAE4B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 991A601A213FCEC100FEAE4B /* Main.storyboard */; };
+		991A601F213FCEC100FEAE4B /* CobayaCoreML.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 991A601D213FCEC100FEAE4B /* CobayaCoreML.xcdatamodeld */; };
+		991A6021213FCEC300FEAE4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 991A6020213FCEC300FEAE4B /* Assets.xcassets */; };
+		991A6024213FCEC300FEAE4B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 991A6022213FCEC300FEAE4B /* LaunchScreen.storyboard */; };
+		B58FDEA14CFB0BC5F148C750 /* Pods_CobayaCoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0383F4B03D809BD50F19F3D5 /* Pods_CobayaCoreML.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0383F4B03D809BD50F19F3D5 /* Pods_CobayaCoreML.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CobayaCoreML.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		08D1753D21E5F57300ABF40A /* BuahCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuahCell.swift; sourceTree = "<group>"; };
+		08D7773121E876B50025CC0C /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		08D7773221E876B60025CC0C /* TutorialPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageViewController.swift; sourceTree = "<group>"; };
+		08D7773321E876B60025CC0C /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
+		08D7773421E876B60025CC0C /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		08D7773C21EF2C640025CC0C /* AppleBagusAppleJelek.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = AppleBagusAppleJelek.mlmodel; sourceTree = "<group>"; };
+		6B2D6CE821F708C000FFE806 /* NilaiSementara.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NilaiSementara.swift; sourceTree = "<group>"; };
+		6B3D55D121E34EF700E91E85 /* Warna.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Warna.mlmodel; sourceTree = "<group>"; };
+		6BDEA49A21F5AD11007909B8 /* Jeruk100.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Jeruk100.mlmodel; sourceTree = "<group>"; };
+		6BDEA49C21F5AD7E007909B8 /* Resnet50.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Resnet50.mlmodel; sourceTree = "<group>"; };
+		90CB01208168A185E1BC3B64 /* Pods-CobayaCoreML.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CobayaCoreML.release.xcconfig"; path = "Pods/Target Support Files/Pods-CobayaCoreML/Pods-CobayaCoreML.release.xcconfig"; sourceTree = "<group>"; };
+		991A6013213FCEC100FEAE4B /* CobayaCoreML.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CobayaCoreML.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		991A6016213FCEC100FEAE4B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		991A6018213FCEC100FEAE4B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		991A601B213FCEC100FEAE4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		991A601E213FCEC100FEAE4B /* CobayaCoreML.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CobayaCoreML.xcdatamodel; sourceTree = "<group>"; };
+		991A6020213FCEC300FEAE4B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		991A6023213FCEC300FEAE4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		991A6025213FCEC300FEAE4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9DC25B9C9EDF411828422139 /* Pods-CobayaCoreML.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CobayaCoreML.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CobayaCoreML/Pods-CobayaCoreML.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		991A6010213FCEC100FEAE4B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B58FDEA14CFB0BC5F148C750 /* Pods_CobayaCoreML.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08D7773E21F1B4F50025CC0C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6BDEA49A21F5AD11007909B8 /* Jeruk100.mlmodel */,
+				08D7773C21EF2C640025CC0C /* AppleBagusAppleJelek.mlmodel */,
+				6BDEA49C21F5AD7E007909B8 /* Resnet50.mlmodel */,
+				6B3D55D121E34EF700E91E85 /* Warna.mlmodel */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		08D7773F21F1B5040025CC0C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				991A601A213FCEC100FEAE4B /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		08D7774121F1B5180025CC0C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				991A6018213FCEC100FEAE4B /* ViewController.swift */,
+				08D7773321E876B60025CC0C /* PopUpViewController.swift */,
+				08D7773121E876B50025CC0C /* ImageViewController.swift */,
+				08D7773221E876B60025CC0C /* TutorialPageViewController.swift */,
+				08D7773421E876B60025CC0C /* TutorialViewController.swift */,
+				08D1753D21E5F57300ABF40A /* BuahCell.swift */,
+				991A6016213FCEC100FEAE4B /* AppDelegate.swift */,
+				6B2D6CE821F708C000FFE806 /* NilaiSementara.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		75E56375F50D4D516340BDE8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9DC25B9C9EDF411828422139 /* Pods-CobayaCoreML.debug.xcconfig */,
+				90CB01208168A185E1BC3B64 /* Pods-CobayaCoreML.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		991A600A213FCEC100FEAE4B = {
+			isa = PBXGroup;
+			children = (
+				991A6015213FCEC100FEAE4B /* CobayaCoreML */,
+				991A6014213FCEC100FEAE4B /* Products */,
+				75E56375F50D4D516340BDE8 /* Pods */,
+				C2B2B14F5A3732FA04CBF1B3 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		991A6014213FCEC100FEAE4B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				991A6013213FCEC100FEAE4B /* CobayaCoreML.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		991A6015213FCEC100FEAE4B /* CobayaCoreML */ = {
+			isa = PBXGroup;
+			children = (
+				08D7773E21F1B4F50025CC0C /* Model */,
+				08D7773F21F1B5040025CC0C /* View */,
+				08D7774121F1B5180025CC0C /* Controller */,
+				991A6020213FCEC300FEAE4B /* Assets.xcassets */,
+				991A6022213FCEC300FEAE4B /* LaunchScreen.storyboard */,
+				991A6025213FCEC300FEAE4B /* Info.plist */,
+				991A601D213FCEC100FEAE4B /* CobayaCoreML.xcdatamodeld */,
+			);
+			path = CobayaCoreML;
+			sourceTree = "<group>";
+		};
+		C2B2B14F5A3732FA04CBF1B3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0383F4B03D809BD50F19F3D5 /* Pods_CobayaCoreML.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		991A6012213FCEC100FEAE4B /* CobayaCoreML */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 991A6028213FCEC300FEAE4B /* Build configuration list for PBXNativeTarget "CobayaCoreML" */;
+			buildPhases = (
+				AAA2D9B195FEA5B8E1A0C64A /* [CP] Check Pods Manifest.lock */,
+				991A600F213FCEC100FEAE4B /* Sources */,
+				991A6010213FCEC100FEAE4B /* Frameworks */,
+				991A6011213FCEC100FEAE4B /* Resources */,
+				DA4FE3914CA40AACEA12231A /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CobayaCoreML;
+			productName = CobayaCoreML;
+			productReference = 991A6013213FCEC100FEAE4B /* CobayaCoreML.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		991A600B213FCEC100FEAE4B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "Sania Monica";
+				TargetAttributes = {
+					991A6012213FCEC100FEAE4B = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 991A600E213FCEC100FEAE4B /* Build configuration list for PBXProject "CobayaCoreML" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 991A600A213FCEC100FEAE4B;
+			productRefGroup = 991A6014213FCEC100FEAE4B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				991A6012213FCEC100FEAE4B /* CobayaCoreML */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		991A6011213FCEC100FEAE4B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				991A6024213FCEC300FEAE4B /* LaunchScreen.storyboard in Resources */,
+				991A6021213FCEC300FEAE4B /* Assets.xcassets in Resources */,
+				991A601C213FCEC100FEAE4B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AAA2D9B195FEA5B8E1A0C64A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CobayaCoreML-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DA4FE3914CA40AACEA12231A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CobayaCoreML/Pods-CobayaCoreML-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CountdownView/CountdownView.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CountdownView.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CobayaCoreML/Pods-CobayaCoreML-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		991A600F213FCEC100FEAE4B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				991A6019213FCEC100FEAE4B /* ViewController.swift in Sources */,
+				6B3D55D221E34EF700E91E85 /* Warna.mlmodel in Sources */,
+				08D7773A21E876B60025CC0C /* TutorialViewController.swift in Sources */,
+				6BDEA49B21F5AD11007909B8 /* Jeruk100.mlmodel in Sources */,
+				991A601F213FCEC100FEAE4B /* CobayaCoreML.xcdatamodeld in Sources */,
+				08D7773721E876B60025CC0C /* ImageViewController.swift in Sources */,
+				991A6017213FCEC100FEAE4B /* AppDelegate.swift in Sources */,
+				6B2D6CE921F708C000FFE806 /* NilaiSementara.swift in Sources */,
+				08D7773821E876B60025CC0C /* TutorialPageViewController.swift in Sources */,
+				08D7773921E876B60025CC0C /* PopUpViewController.swift in Sources */,
+				08D1753E21E5F57300ABF40A /* BuahCell.swift in Sources */,
+				6BDEA49D21F5AD7E007909B8 /* Resnet50.mlmodel in Sources */,
+				08D7773D21EF2C640025CC0C /* AppleBagusAppleJelek.mlmodel in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		991A601A213FCEC100FEAE4B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				991A601B213FCEC100FEAE4B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		991A6022213FCEC300FEAE4B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				991A6023213FCEC300FEAE4B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		991A6026213FCEC300FEAE4B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		991A6027213FCEC300FEAE4B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		991A6029213FCEC300FEAE4B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9DC25B9C9EDF411828422139 /* Pods-CobayaCoreML.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 48LV8FDMZ8;
+				INFOPLIST_FILE = CobayaCoreML/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = edu.binus.CobayaCoreML.Keenan;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		991A602A213FCEC300FEAE4B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 90CB01208168A185E1BC3B64 /* Pods-CobayaCoreML.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 48LV8FDMZ8;
+				INFOPLIST_FILE = CobayaCoreML/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = edu.binus.CobayaCoreML.Keenan;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		991A600E213FCEC100FEAE4B /* Build configuration list for PBXProject "CobayaCoreML" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				991A6026213FCEC300FEAE4B /* Debug */,
+				991A6027213FCEC300FEAE4B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		991A6028213FCEC300FEAE4B /* Build configuration list for PBXNativeTarget "CobayaCoreML" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				991A6029213FCEC300FEAE4B /* Debug */,
+				991A602A213FCEC300FEAE4B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		991A601D213FCEC100FEAE4B /* CobayaCoreML.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				991A601E213FCEC100FEAE4B /* CobayaCoreML.xcdatamodel */,
+			);
+			currentVersion = 991A601E213FCEC100FEAE4B /* CobayaCoreML.xcdatamodel */;
+			path = CobayaCoreML.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 991A600B213FCEC100FEAE4B /* Project object */;
+}
