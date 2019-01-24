@@ -16,75 +16,77 @@ class PopUpViewController: UIViewController {
     let orange = UIColor(rgb: 0xE5711C)
     let merah = UIColor(rgb: 0xD42024)
     let viewAnimationDelegate = AnimationHelper()
-    @IBOutlet weak var tulisanHasil: UILabel!
+    @IBOutlet weak var qualityLabel: UILabel!
     @IBOutlet weak var nilaiOutlet2: UILabel!
-    @IBOutlet weak var nilaiOutlet: UILabel!
-    @IBOutlet weak var ijoIjoAtas: UIImageView!
-    @IBOutlet weak var backViewAtas: UIView!
-    @IBOutlet weak var backView: UIView!
-    @IBOutlet weak var imageBackground: UIImageView!
+    @IBOutlet weak var showMoreOutlet: UIButton!
+    @IBOutlet weak var showLessOutlet: UIButton!
+    @IBOutlet weak var topGreenView: UIView!
+    @IBOutlet weak var warnaAtas: UIImageView!
+    @IBOutlet weak var bottomWhiteView: UIView!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var colorLabel: UILabel!
+    @IBOutlet weak var textureLabel: UILabel!
     
     //MARK: - Outlet and Action
     @IBAction func showLessButton(_ sender: Any) {
-        backViewAtas.isHidden = true
-        backView.isHidden = false
+        topGreenView.frame = CGRect(x: view.frame.width - view.frame.width + 16, y: view.frame.height / 2 - 100, width: 343, height: 168)
+        showMoreOutlet.isHidden = false
+        showLessOutlet.isHidden = true
+        bottomWhiteView.isHidden = true
     }
     @IBAction func showMoreDetailButton(_ sender: Any) {
     //ketika pencet showmore, tunjukin view controller satu lagi
-    backViewAtas.isHidden = false
-    backView.isHidden = true
+        topGreenView.frame = CGRect(x: view.frame.width - view.frame.width + 16, y: 68, width: 343, height: 168)
+        bottomWhiteView.isHidden = false
+        showLessOutlet.isHidden = false
+        showMoreOutlet.isHidden = true
     }
     
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        hasilScan()
-        backViewAtas.isHidden = true
-        backView.layer.cornerRadius = 50
-        imageBackground.layer.cornerRadius = 50
-        imageBackground.layer.masksToBounds = true
-        
-        
-        backViewAtas.layer.cornerRadius = 50
-        backViewAtas.backgroundColor = UIColor.black.withAlphaComponent(0.0)
-        ijoIjoAtas.layer.cornerRadius = 50
-        ijoIjoAtas.layer.masksToBounds = true
-        
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-        viewAnimationDelegate.showAnimate()
-        // Do any additional setup after loading the view.
+        hasilScan()
+        topGreenView.frame = CGRect(x: view.frame.width - view.frame.width + 16, y: view.frame.height / 2 - 100, width: 343, height: 168)
+        bottomWhiteView.frame = CGRect(x: view.frame.width - view.frame.width + 16, y: 224, width: 338, height: 467)
+        topGreenView.layer.cornerRadius = 10
+        topGreenView.layer.masksToBounds = true
+        bottomWhiteView.isHidden = true
+        showMoreOutlet.isHidden = false
+        
     }
-
     //MARK: - Function
     func hasilScan() {
         let nilaiTotal = String(format: "%.1f", NilaiSementara.nilaiSementara)
-        self.nilaiOutlet.text = "\(nilaiTotal) / 10.0"
-        self.nilaiOutlet2.text = "\(nilaiTotal) / 10.0"
+        self.nilaiOutlet2.text = "\(nilaiTotal) / "
         
         if NilaiSementara.nilaiSementara >= 9 && NilaiSementara.nilaiSementara <= 10{
-            imageBackground.backgroundColor = hijau
-            ijoIjoAtas.backgroundColor = hijau
-            tulisanHasil.text = "Great Eye!"
+            warnaAtas.backgroundColor = hijau
+            qualityLabel.text = "Great Eye!"
         }else if NilaiSementara.nilaiSementara >= 8 && NilaiSementara.nilaiSementara <= 8.9 {
-            imageBackground.backgroundColor = hijauTua
-            ijoIjoAtas.backgroundColor = hijauTua
-            tulisanHasil.text = "Sweet"
+            warnaAtas.backgroundColor = hijauTua
+            qualityLabel.text = "Sweet"
         }else if NilaiSementara.nilaiSementara >= 7 && NilaiSementara.nilaiSementara <= 7.9 {
-            imageBackground.backgroundColor = orangeKuning
-            ijoIjoAtas.backgroundColor = orangeKuning
-            tulisanHasil.text = "Okay."
+            warnaAtas.backgroundColor = orangeKuning
+            qualityLabel.text = "Okay."
         }else if NilaiSementara.nilaiSementara >= 5 && NilaiSementara.nilaiSementara <= 5.9 {
-            imageBackground.backgroundColor = orange
-            ijoIjoAtas.backgroundColor = orange
-            tulisanHasil.text = "Almost There..."
+            warnaAtas.backgroundColor = orange
+            qualityLabel.text = "Almost There..."
         }else {
-                imageBackground.backgroundColor = merah
-                ijoIjoAtas.backgroundColor = merah
-                tulisanHasil.text = "Meh."
+            warnaAtas.backgroundColor = merah
+            qualityLabel.text = "Meh."
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        viewAnimationDelegate.removeAnimate()
+        UIView.animate(withDuration: 0.25, animations: {
+            self.view.transform = CGAffineTransform(translationX: 1.3, y: 1.3)
+            self.view.alpha = 0.0;
+        }) { (finished : Bool) in
+            if (finished){
+                self.view.removeFromSuperview()
+            }
+        }
     }
 }
+

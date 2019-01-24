@@ -60,6 +60,7 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
         helperDelegate.addLoading()
         taroView()
   }
+    
 
     func taroView(){
         view.addSubview(fruitTypeCollectionView)
