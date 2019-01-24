@@ -11,15 +11,9 @@ import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     var window: UIWindow?
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
         window = UIWindow(frame: UIScreen.main.bounds)
-        
-        
         //check if Onboarding has completed, if completed, intialviewcontroller is the mainApp
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         var initialViewController = storyBoard.instantiateViewController(withIdentifier: "OnBoarding")
@@ -27,8 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if userDefaults.bool(forKey: "OnBoardingComplete") {
             initialViewController = storyBoard.instantiateViewController(withIdentifier: "MainApp")
         }
-        
-        
         window?.rootViewController = initialViewController
         window?.makeKeyAndVisible()
         // Override point for customization after application launch.
@@ -60,7 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // MARK: - Core Data stack
-
     lazy var persistentContainer: NSPersistentContainer = {
         /*
          The persistent container for the application. This implementation

@@ -13,10 +13,7 @@ import CountdownView
 
 class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDelegate,UIGestureRecognizerDelegate {
 
-// MARK: IBOutlet
-    @IBOutlet weak var silhouetteImage: UIImageView!
     var loadingLabel : UILabel = UILabel()
-    let shapeLayer = CAShapeLayer()
     var jumlahBuah = ["","apel","jeruk","tomato",""]
     var timer = Timer()
     var isFirstFrame : Bool = true
@@ -24,64 +21,53 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
     var totalNilai : Float = 0
     var isChecking : Bool = false
     var checkBuah = false
-    
     var nilaiCounter = 0
     var buahCounter = 0
-    
     var filterCounter = 1
     var hasShownResult = false
     let generator = UINotificationFeedbackGenerator()
+    let helperDelegate = AnimationHelper()
+
+    // MARK: IBOutlet
+    @IBOutlet weak var silhouetteImage: UIImageView!
+    @IBOutlet weak var fruitTypeCollectionView: UICollectionView!
+    @IBOutlet weak var startButton: UIButton!
     
-// MARK: Life Cycle
+    // MARK: Life Cycle
+    //biar awal awal udah bisa pilih yang kiri, indexnya awalnya langsung diubah ke 5
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let indexPath = IndexPath(item: 1, section: 0)
+        self.fruitTypeCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+        silhouetteImage.image = UIImage(named: "apelSil2")
+        self.fruitTypeCollectionView.decelerationRate = UIScrollViewDecelerationRateFast
+    }
     override func viewDidLoad() {
+        super.viewDidLoad()
+
         fruitTypeCollectionView.backgroundColor = UIColor.black.withAlphaComponent(0.0)
         silhouetteImage.image = UIImage(named: "\(jumlahBuah)Sil2")
         fruitTypeCollectionView.delegate = self
         fruitTypeCollectionView.dataSource = self
-        super.viewDidLoad()
 
+        // Possible to refactor
         CameraControl()
         timerInterval()
-        checkingResult()
         scanningLabel()
-        addLoading()
+        
+        // OK
+        checkingResult()
+        helperDelegate.addLoading()
         taroView()
   }
 
     func taroView(){
-       
         view.addSubview(fruitTypeCollectionView)
         view.addSubview(startButton)
         view.addSubview(silhouetteImage)
-        view.layer.addSublayer(shapeLayer)
+        view.layer.addSublayer(helperDelegate.shapeLayer)
     }
-    
-    //add loading bar yang merah merah muter
-    func addLoading(){
-        let center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2-20)
-        let circularPath = UIBezierPath(arcCenter: center, radius: 35, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
         
-        shapeLayer.path = circularPath.cgPath
-        shapeLayer.strokeColor = UIColor.red.cgColor
-        shapeLayer.lineWidth = 5
-        shapeLayer.fillColor = UIColor.clear.cgColor
-        shapeLayer.lineCap = kCALineCapRound
-        shapeLayer.strokeEnd = 0
-    }
-    
-    //animasiin loading barnya
-    fileprivate func animateCircle() {
-        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        
-        basicAnimation.toValue = 1
-        basicAnimation.duration = 5
-        
-        basicAnimation.fillMode = kCAFillModeForwards
-        basicAnimation.isRemovedOnCompletion = true
-        
-        shapeLayer.add(basicAnimation, forKey: "urSoBasic")
-    }
-    
     //taro label scanning yang titik titiknya gerak tiap detiknya
     func scanningLabel(){
         loadingLabel.isHidden = true
@@ -103,8 +89,6 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
 //        view.addSubview(loadingLabel)
     }
     
-    @IBOutlet weak var startButton: UIButton!
-    
     func hideOutlet(){
         startButton.isHidden = true
         fruitTypeCollectionView.isHidden = true
@@ -117,9 +101,9 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
         silhouetteImage.isHidden = false
     }
     
-// MARK: Button Start
+    // MARK: Button Start
     @IBAction func buttonStart(_ sender: UIButton) {
-        hapticMedium()
+        helperDelegate.hapticMedium()
         //reset semua counter untuk scan menjadi 0
         NilaiSementara.nilaiSementara = 0
         self.nilaiSementara = 5
@@ -129,24 +113,20 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
         let animation1 = CountdownView.Animation.fadeIn
         hideOutlet()
         CountdownView.show(countdownFrom: 2.5  , spin: true, animation: animation1, autoHide: true, completion:  {
-            self.loadingLabel.isHidden = false
-            self.animateCircle()
-            self.shapeLayer.frame = CGRect(x: self.view.frame.width/2-187.5, y: self.view.frame.height/2-50, width: 100, height: 100)
-            
-            self.generator.notificationOccurred(.success)
-            
-            //function setelah countdown selesai, buat bool jadi true untuk menunjukan scan dan result
-            self.isChecking = true
-            self.hasShownResult = true
+            DispatchQueue.main.async {
+                self.loadingLabel.isHidden = false
+                self.helperDelegate.animateCircle()
+                self.helperDelegate.shapeLayer.frame = CGRect(x: self.view.frame.width/2-187.5, y: self.view.frame.height/2-50, width: 100, height: 100)
+                
+                self.generator.notificationOccurred(.success)
+                
+                //function setelah countdown selesai, buat bool jadi true untuk menunjukan scan dan result
+                self.isChecking = true
+                self.hasShownResult = true
+            }
             })
       }
     
-    func hapticMedium(){
-        let generatorButton = UIImpactFeedbackGenerator(style: .medium)
-        generatorButton.prepare()
-        generatorButton.impactOccurred()
-    }
-
     // MARK: Camera Control
     func CameraControl(){
         let captureSession = AVCaptureSession()
@@ -273,23 +253,12 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
             }
         }
     }
-    
-    @IBOutlet weak var fruitTypeCollectionView: UICollectionView!
-    
-    //biar awal awal udah bisa pilih yang kiri, indexnya awalnya langsung diubah ke 5
-    override func viewWillAppear(_ animated: Bool) {
-       let indexPath = IndexPath(item: 1, section: 0)
-        self.fruitTypeCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-        silhouetteImage.image = UIImage(named: "apelSil2")
-        self.fruitTypeCollectionView.decelerationRate = UIScrollViewDecelerationRateFast
-    }
 }
 
-extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate, UIScrollViewDelegate {
+extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return jumlahBuah.count
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = fruitTypeCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? BuahCell
@@ -297,9 +266,22 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate, 
 
         return cell!
     }
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        if (indexPath.row == 0 || indexPath.row == 4){
+            return false
+        }
+        return true
+    }
+    //kalau dipilih langsung ketengah
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        fruitTypeCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        silhouetteImage.image = UIImage(named: "\(jumlahBuah[indexPath.row])Sil2")
+    }
+}
 
+extension ViewController: UIScrollViewDelegate {
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-
+        
         var savedIndex = fruitTypeCollectionView.indexPathsForVisibleItems
         let translation = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
         if translation.x > 0{
@@ -326,20 +308,6 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate, 
                 self.collectionView(self.fruitTypeCollectionView, didSelectItemAt: savedIndex[1])
             }
         }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        if (indexPath.row == 0 || indexPath.row == 4){
-            return false
-        }
-        return true
-    }
-    
-    
-    //kalau dipilih langsung ketengah
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        fruitTypeCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        silhouetteImage.image = UIImage(named: "\(jumlahBuah[indexPath.row])Sil2")
     }
 }
 

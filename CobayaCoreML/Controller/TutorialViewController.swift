@@ -9,36 +9,27 @@
 import UIKit
 
 class TutorialViewController: UIViewController {
-
     @IBOutlet weak var pageControll: UIPageControl!
     @IBOutlet weak var containerView: UIView!
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let tutorialPageViewController = segue.destination as? TutorialPageViewController {
-            tutorialPageViewController.tutorialDelegate = self
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     @IBAction func skipButton(_ sender: Any) {
         let userDefaults = UserDefaults.standard
-        
         //change the status in userdefault into OnBoardingComplete
         userDefaults.set(true, forKey: "OnBoardingComplete")        
         userDefaults.synchronize()
         
         performSegue(withIdentifier: "OnboardingToMain", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let tutorialPageViewController = segue.destination as? TutorialPageViewController {
+            tutorialPageViewController.tutorialDelegate = self
+        }
     }
 }
 
@@ -50,5 +41,4 @@ extension TutorialViewController: TutorialPageViewControllerDelegate {
                                     didUpdatePageIndex index: Int) {
         pageControll.currentPage = index
     }
-    
 }
