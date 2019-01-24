@@ -15,7 +15,12 @@ class PopUpViewController: UIViewController {
     let orangeKuning = UIColor(rgb: 0xF0A616)
     let orange = UIColor(rgb: 0xE5711C)
     let merah = UIColor(rgb: 0xD42024)
+<<<<<<< HEAD
+    
+    //MARK: - Outlet
+=======
     let viewAnimationDelegate = AnimationHelper()
+>>>>>>> 313c88a5ef6d043add3c94c91d741de9f6639fe4
     @IBOutlet weak var tulisanHasil: UILabel!
     @IBOutlet weak var nilaiOutlet2: UILabel!
     @IBOutlet weak var nilaiOutlet: UILabel!
@@ -24,7 +29,11 @@ class PopUpViewController: UIViewController {
     @IBOutlet weak var backView: UIView!
     @IBOutlet weak var imageBackground: UIImageView!
     
+<<<<<<< HEAD
+    //MARK: - Button Action
+=======
     //MARK: - Outlet and Action
+>>>>>>> 313c88a5ef6d043add3c94c91d741de9f6639fe4
     @IBAction func showLessButton(_ sender: Any) {
         backViewAtas.isHidden = true
         backView.isHidden = false

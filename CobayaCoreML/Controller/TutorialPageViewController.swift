@@ -8,9 +8,14 @@
 
 import UIKit
 
-class TutorialPageViewController: UIPageViewController {
+protocol TutorialPageViewControllerDelegate: class {
+    func tutorialPageViewController(tutorialPageViewController: TutorialPageViewController,didUpdatePageCount count: Int)
+    func tutorialPageViewController(tutorialPageViewController: TutorialPageViewController,didUpdatePageIndex index: Int)
+}
 
-    weak var tutorialDelegate: TutorialPageViewControllerDelegate?
+class TutorialPageViewController: UIPageViewController {
+    weak var tutorialDelegate: TutorialPageViewControllerDelegate! = nil
+    
     let images = ["1","2","3","4"]
     lazy var vc : [ImageViewController] = {
         return [getItemController(0),getItemController(1),getItemController(2),getItemController(3)]
@@ -29,11 +34,6 @@ class TutorialPageViewController: UIPageViewController {
         }
          tutorialDelegate?.tutorialPageViewController(tutorialPageViewController: self, didUpdatePageCount: images.count)
         //buat page di pageview sesuai dengan jumlah image
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     func getItemController (_ itemIndex: Int) -> ImageViewController? {
@@ -78,7 +78,3 @@ extension TutorialPageViewController: UIPageViewControllerDataSource,UIPageViewC
     }
 }
 
-protocol TutorialPageViewControllerDelegate: class {
-    func tutorialPageViewController(tutorialPageViewController: TutorialPageViewController,didUpdatePageCount count: Int)
-    func tutorialPageViewController(tutorialPageViewController: TutorialPageViewController,didUpdatePageIndex index: Int)
-}

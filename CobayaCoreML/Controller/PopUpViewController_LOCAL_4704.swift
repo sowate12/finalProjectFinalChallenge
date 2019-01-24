@@ -10,12 +10,14 @@ import UIKit
 
 class PopUpViewController: UIViewController {
     //MARK: - Variabel
+    
     let hijau = UIColor(rgb: 0x3D8238)
     let hijauTua = UIColor(rgb: 0x718821)
     let orangeKuning = UIColor(rgb: 0xF0A616)
     let orange = UIColor(rgb: 0xE5711C)
     let merah = UIColor(rgb: 0xD42024)
-    let viewAnimationDelegate = AnimationHelper()
+    
+    //MARK: - Outlet
     @IBOutlet weak var tulisanHasil: UILabel!
     @IBOutlet weak var nilaiOutlet2: UILabel!
     @IBOutlet weak var nilaiOutlet: UILabel!
@@ -24,7 +26,7 @@ class PopUpViewController: UIViewController {
     @IBOutlet weak var backView: UIView!
     @IBOutlet weak var imageBackground: UIImageView!
     
-    //MARK: - Outlet and Action
+    //MARK: - Button Action
     @IBAction func showLessButton(_ sender: Any) {
         backViewAtas.isHidden = true
         backView.isHidden = false
@@ -51,7 +53,7 @@ class PopUpViewController: UIViewController {
         ijoIjoAtas.layer.masksToBounds = true
         
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-        viewAnimationDelegate.showAnimate()
+        self.showAnimate()
         // Do any additional setup after loading the view.
     }
 
@@ -84,7 +86,48 @@ class PopUpViewController: UIViewController {
         }
     }
     
+    func showAnimate()
+    {
+        self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        self.view.alpha = 0.0;
+        UIView.animate(withDuration: 0.25) {
+            self.view.alpha = 1.0;
+            self.view.transform = CGAffineTransform(translationX: 1.0, y: 1.0)
+        }
+    }
+
+    
+    func removeAnimate()
+    {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.view.transform = CGAffineTransform(translationX: 1.3, y: 1.3)
+            self.view.alpha = 0.0;
+        }) { (finished : Bool) in
+            if (finished){
+                self.view.removeFromSuperview()
+            }
+        }
+    }
+    
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        viewAnimationDelegate.removeAnimate()
+        removeAnimate()
+    }
+}
+//MARK: - Extension
+extension UIColor {
+    convenience init(red: Int, green: Int, blue: Int) {
+        assert(red >= 0 && red <= 255, "Invalid red component")
+        assert(green >= 0 && green <= 255, "Invalid green component")
+        assert(blue >= 0 && blue <= 255, "Invalid blue component")
+        
+        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+    }
+    
+    convenience init(rgb: Int) {
+        self.init(
+            red: (rgb >> 16) & 0xFF,
+            green: (rgb >> 8) & 0xFF,
+            blue: rgb & 0xFF
+        )
     }
 }

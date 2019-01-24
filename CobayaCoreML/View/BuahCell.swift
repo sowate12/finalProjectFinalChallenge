@@ -9,9 +9,7 @@
 import UIKit
 
 class BuahCell: UICollectionViewCell {
-    
     @IBOutlet weak var imageBuah: UIImageView!
-    
     override var isSelected: Bool{
         didSet{
             if self.isSelected

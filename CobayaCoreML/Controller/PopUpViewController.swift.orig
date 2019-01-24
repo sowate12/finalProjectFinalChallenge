@@ -10,6 +10,7 @@ import UIKit
 
 class PopUpViewController: UIViewController {
     //MARK: - Variabel
+    
     let hijau = UIColor(rgb: 0x3D8238)
     let hijauTua = UIColor(rgb: 0x718821)
     let orangeKuning = UIColor(rgb: 0xF0A616)
