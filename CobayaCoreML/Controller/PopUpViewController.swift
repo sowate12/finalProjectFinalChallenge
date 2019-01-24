@@ -17,11 +17,7 @@ class PopUpViewController: UIViewController {
     let orange = UIColor(rgb: 0xE5711C)
     let merah = UIColor(rgb: 0xD42024)
     
-    //MARK: - Outlet and Action
-    @IBAction func showLessButton(_ sender: Any) {
-        backViewAtas.isHidden = true
-        backView.isHidden = false
-    }
+    //MARK: - Outlet
     @IBOutlet weak var tulisanHasil: UILabel!
     @IBOutlet weak var nilaiOutlet2: UILabel!
     @IBOutlet weak var nilaiOutlet: UILabel!
@@ -30,6 +26,11 @@ class PopUpViewController: UIViewController {
     @IBOutlet weak var backView: UIView!
     @IBOutlet weak var imageBackground: UIImageView!
     
+    //MARK: - Button Action
+    @IBAction func showLessButton(_ sender: Any) {
+        backViewAtas.isHidden = true
+        backView.isHidden = false
+    }
     @IBAction func showMoreDetailButton(_ sender: Any) {
     //ketika pencet showmore, tunjukin view controller satu lagi
     backViewAtas.isHidden = false
