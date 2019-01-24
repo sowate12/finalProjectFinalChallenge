@@ -34,12 +34,12 @@ class AnimationHelper: UIViewController {
     
     //add loading bar yang merah merah muter
     func addLoading(){
-        let center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2-20)
-        let circularPath = UIBezierPath(arcCenter: center, radius: 35, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
+        let center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2 + 276)
+        let circularPath = UIBezierPath(arcCenter: center, radius: 50, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
         
         shapeLayer.path = circularPath.cgPath
         shapeLayer.strokeColor = UIColor.red.cgColor
-        shapeLayer.lineWidth = 5
+        shapeLayer.lineWidth = 10
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.lineCap = kCALineCapRound
         shapeLayer.strokeEnd = 0

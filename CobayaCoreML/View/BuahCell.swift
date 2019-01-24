@@ -15,12 +15,12 @@ class BuahCell: UICollectionViewCell {
             if self.isSelected
             {
                 self.transform = CGAffineTransform(scaleX: 1.45, y: 1.45)
-//                self.imageBuah.isHidden = false
+                self.imageBuah.isHidden = true
             }
             else
             {
                 self.transform = CGAffineTransform.identity
-//                self.imageBuah.isHidden = true
+                self.imageBuah.isHidden = false
             }
         }
     }

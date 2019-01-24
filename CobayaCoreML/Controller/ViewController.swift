@@ -27,6 +27,9 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
     var hasShownResult = false
     let generator = UINotificationFeedbackGenerator()
     let helperDelegate = AnimationHelper()
+    var dummyImage : UIImageView = UIImageView()
+    var namaBuah : UILabel = UILabel()
+    var namaNamaBuah = ["","Fuji Apple","Orange", "Tomato", ""]
 
     // MARK: IBOutlet
     @IBOutlet weak var silhouetteImage: UIImageView!
@@ -41,6 +44,7 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
         self.fruitTypeCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         silhouetteImage.image = UIImage(named: "apelSil2")
         self.fruitTypeCollectionView.decelerationRate = UIScrollViewDecelerationRateFast
+        animateSilhouette()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,14 +63,37 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
         checkingResult()
         helperDelegate.addLoading()
         taroView()
+        
   }
     
 
     func taroView(){
+        setupDummyImage()
+        pasangNamaBuah()
         view.addSubview(fruitTypeCollectionView)
         view.addSubview(startButton)
         view.addSubview(silhouetteImage)
         view.layer.addSublayer(helperDelegate.shapeLayer)
+        view.addSubview(dummyImage)
+        view.addSubview(namaBuah)
+    }
+    
+    func pasangNamaBuah(){
+        let x = view.frame.width / 2
+        let y = view.frame.height / 2 + 125
+        namaBuah.frame = CGRect(x: x - 50, y: y, width: 100, height: 125)
+        namaBuah.textAlignment = .center
+        namaBuah.layer.masksToBounds = true
+        namaBuah.textColor = .white
+        namaBuah.text = "\(namaNamaBuah[1])"
+    }
+    
+    func setupDummyImage(){
+        let x = view.frame.width / 2
+        let y = view.frame.height / 2 + 276
+        dummyImage.frame = CGRect(x: x - 62.5, y: y - 62.5, width: 125, height: 125)
+        dummyImage.layer.masksToBounds = true
+        dummyImage.image = UIImage(named: "\(jumlahBuah[1])Scan")
     }
         
     //taro label scanning yang titik titiknya gerak tiap detiknya
@@ -113,7 +140,7 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
         self.checkBuah = false
         let animation1 = CountdownView.Animation.fadeIn
         hideOutlet()
-        CountdownView.show(countdownFrom: 2.5  , spin: true, animation: animation1, autoHide: true, completion:  {
+        CountdownView.show(countdownFrom: 0.5  , spin: true, animation: animation1, autoHide: true, completion:  {
             DispatchQueue.main.async {
                 self.loadingLabel.isHidden = false
                 self.helperDelegate.animateCircle()
@@ -127,6 +154,14 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
             }
             })
       }
+    
+    func animateSilhouette(){
+        UIView.animate(withDuration: 1.0, delay: 0, options: [.repeat, .autoreverse], animations: {
+            self.silhouetteImage.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+            self.silhouetteImage.alpha = 0.3
+
+        }, completion: nil)
+    }
     
     // MARK: Camera Control
     func CameraControl(){
@@ -277,12 +312,15 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         fruitTypeCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         silhouetteImage.image = UIImage(named: "\(jumlahBuah[indexPath.row])Sil2")
+        dummyImage.image = UIImage(named: "\(jumlahBuah[indexPath.row])Scan")
+        namaBuah.text = "\(namaNamaBuah[indexPath.row])"
     }
 }
 
 extension ViewController: UIScrollViewDelegate {
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        
+        dummyImage.isHidden = false
+        namaBuah.isHidden = false
         var savedIndex = fruitTypeCollectionView.indexPathsForVisibleItems
         let translation = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
         if translation.x > 0{
@@ -309,6 +347,13 @@ extension ViewController: UIScrollViewDelegate {
                 self.collectionView(self.fruitTypeCollectionView, didSelectItemAt: savedIndex[1])
             }
         }
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        let savedIndex = fruitTypeCollectionView.indexPathsForSelectedItems
+        fruitTypeCollectionView.deselectItem(at: savedIndex![0], animated: true)
+        dummyImage.isHidden = true
+        namaBuah.isHidden = true
     }
 }
 
