@@ -59,6 +59,7 @@ class ViewController: UIViewController {
         taroView()
         
   }
+    
 
     func taroView(){
         setupDummyImage()
