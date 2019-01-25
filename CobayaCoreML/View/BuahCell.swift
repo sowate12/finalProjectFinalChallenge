@@ -9,16 +9,28 @@
 import UIKit
 
 class BuahCell: UICollectionViewCell {
+    @IBOutlet weak var imageBuahSelected: UIImageView!
     @IBOutlet weak var imageBuah: UIImageView!
+    var ditengah : Bool = false
     override var isSelected: Bool{
         didSet{
             if self.isSelected
             {
-                self.transform = CGAffineTransform(scaleX: 1.45, y: 1.45)
-                self.imageBuah.isHidden = true
+                imageBuah.isHidden = true
+                imageBuahSelected.isHidden = false
+                if ditengah == false {
+                    self.transform = CGAffineTransform(scaleX: 75/55, y: 75/55)
+                    ditengah = true
+                } else if ditengah == true {
+                    NilaiSementara.cellDiTengah = true
+                }
             }
-            else
-            {
+            else{
+                imageBuahSelected.alpha = 1.0
+                imageBuah.isHidden = false
+                imageBuahSelected.isHidden = true
+                ditengah = false
+                NilaiSementara.cellDiTengah = false
                 self.transform = CGAffineTransform.identity
                 self.imageBuah.isHidden = false
             }

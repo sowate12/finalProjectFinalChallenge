@@ -11,10 +11,10 @@ import AVKit
 import Vision
 import CountdownView
 
-class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDelegate,UIGestureRecognizerDelegate {
+class ViewController: UIViewController {
 
     var loadingLabel : UILabel = UILabel()
-    var jumlahBuah = ["","apel","jeruk","tomato",""]
+    var jumlahBuah = ["","","apel","jeruk","tomato","",""]
     var timer = Timer()
     var isFirstFrame : Bool = true
     var nilaiSementara : Float = 5
@@ -29,7 +29,8 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
     let helperDelegate = AnimationHelper()
     var dummyImage : UIImageView = UIImageView()
     var namaBuah : UILabel = UILabel()
-    var namaNamaBuah = ["","Fuji Apple","Orange", "Tomato", ""]
+    var scanningText : UILabel = UILabel()
+    var namaNamaBuah = ["","","Fuji Apple","Orange", "Tomato","", ""]
 
     // MARK: IBOutlet
     @IBOutlet weak var silhouetteImage: UIImageView!
@@ -37,12 +38,11 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
     @IBOutlet weak var startButton: UIButton!
     
     // MARK: Life Cycle
-    //biar awal awal udah bisa pilih yang kiri, indexnya awalnya langsung diubah ke 5
+    //biar awal awal udah bisa pilih yang kiri, indexnya awalnya langsung diubah ke 2
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let indexPath = IndexPath(item: 1, section: 0)
+        let indexPath = IndexPath(item: 2, section: 0)
         self.fruitTypeCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-        silhouetteImage.image = UIImage(named: "apelSil2")
         self.fruitTypeCollectionView.decelerationRate = UIScrollViewDecelerationRateFast
         animateSilhouette()
     }
@@ -50,15 +50,9 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
         super.viewDidLoad()
 
         fruitTypeCollectionView.backgroundColor = UIColor.black.withAlphaComponent(0.0)
-        silhouetteImage.image = UIImage(named: "\(jumlahBuah)Sil2")
         fruitTypeCollectionView.delegate = self
         fruitTypeCollectionView.dataSource = self
 
-        // Possible to refactor
-        CameraControl()
-        timerInterval()
-        scanningLabel()
-        
         // OK
         checkingResult()
         helperDelegate.addLoading()
@@ -69,30 +63,48 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
     func taroView(){
         setupDummyImage()
         pasangNamaBuah()
-        view.addSubview(fruitTypeCollectionView)
+        CameraControl()
+        scanningLabel()
+        setScanningText()
         view.addSubview(startButton)
+        view.addSubview(fruitTypeCollectionView)
         view.addSubview(silhouetteImage)
-        view.layer.addSublayer(helperDelegate.shapeLayer)
         view.addSubview(dummyImage)
         view.addSubview(namaBuah)
+        view.addSubview(loadingLabel)
+        view.addSubview(scanningText)
+        view.layer.addSublayer(helperDelegate.shapeLayer)
+        dummyImage.isHidden = true
+    }
+    
+    func setScanningText(){
+        let x = view.frame.width / 2
+        let y = view.frame.height / 2
+        scanningText.frame = CGRect(x: x - 75, y: y - 125, width: 150, height: 125)
+        scanningText.font = UIFont.boldSystemFont(ofSize: 20)
+        scanningText.textAlignment = .center
+        scanningText.layer.masksToBounds = true
+        scanningText.textColor = .white
+        scanningText.text = "Ready to scan"
     }
     
     func pasangNamaBuah(){
         let x = view.frame.width / 2
-        let y = view.frame.height / 2 + 125
+        let y = view.frame.height / 2 + 145
         namaBuah.frame = CGRect(x: x - 50, y: y, width: 100, height: 125)
         namaBuah.textAlignment = .center
         namaBuah.layer.masksToBounds = true
         namaBuah.textColor = .white
-        namaBuah.text = "\(namaNamaBuah[1])"
+        namaBuah.text = "\(namaNamaBuah[2])"
     }
     
     func setupDummyImage(){
         let x = view.frame.width / 2
         let y = view.frame.height / 2 + 276
-        dummyImage.frame = CGRect(x: x - 62.5, y: y - 62.5, width: 125, height: 125)
+        startButton.frame = CGRect(x: x - 49.5, y: y - 49.5, width: 96, height: 96)
+        dummyImage.frame = CGRect(x: x - 49.5, y: y - 49.5, width: 96, height: 96)
         dummyImage.layer.masksToBounds = true
-        dummyImage.image = UIImage(named: "\(jumlahBuah[1])Scan")
+        dummyImage.image = UIImage(named: "\(jumlahBuah[2])Scan")
     }
         
     //taro label scanning yang titik titiknya gerak tiap detiknya
@@ -100,7 +112,7 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
         loadingLabel.isHidden = true
         loadingLabel.text = "Scanning ."
         
-        timer = Timer.scheduledTimer(withTimeInterval: 0.8, repeats: true) { (timer) in
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
             var string: String {
                 switch self.loadingLabel.text {
                 case "Scanning .":       return "Scanning .."
@@ -112,24 +124,40 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
             self.loadingLabel.text = string
         }
         loadingLabel.textColor = .white
-        loadingLabel.frame = CGRect(x: view.frame.width / 2 - 100, y: view.frame.width - 200, width: 100, height: 100)
-//        view.addSubview(loadingLabel)
+        loadingLabel.frame = CGRect(x: view.frame.width / 2 - 50, y: view.frame.width / 2 + 100, width: 100, height: 100)
+        loadingLabel.textAlignment = .center
     }
     
     func hideOutlet(){
         startButton.isHidden = true
         fruitTypeCollectionView.isHidden = true
-//        silhouetteImage.isHidden = true
+        scanningText.isHidden = true
     }
     
     func showOutlet(){
         startButton.isHidden = false
         fruitTypeCollectionView.isHidden = false
         silhouetteImage.isHidden = false
+        scanningText.isHidden = false
     }
     
     // MARK: Button Start
     @IBAction func buttonStart(_ sender: UIButton) {
+//         startScanning()
+      }
+    
+    func animateSilhouette(){
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 1.0, delay: 0, options: [.repeat, .autoreverse], animations: {
+                self.scanningText.alpha = 0.5
+                self.silhouetteImage.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+                self.silhouetteImage.alpha = 0.3
+            }, completion: nil)
+        }
+    }
+    
+    func startScanning(){
+        dummyImage.isHidden = false
         helperDelegate.hapticMedium()
         //reset semua counter untuk scan menjadi 0
         NilaiSementara.nilaiSementara = 0
@@ -143,7 +171,6 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
             DispatchQueue.main.async {
                 self.loadingLabel.isHidden = false
                 self.helperDelegate.animateCircle()
-                self.helperDelegate.shapeLayer.frame = CGRect(x: self.view.frame.width/2-187.5, y: self.view.frame.height/2-50, width: 100, height: 100)
                 
                 self.generator.notificationOccurred(.success)
                 
@@ -151,42 +178,7 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
                 self.isChecking = true
                 self.hasShownResult = true
             }
-            })
-      }
-    
-    func animateSilhouette(){
-        UIView.animate(withDuration: 1.0, delay: 0, options: [.repeat, .autoreverse], animations: {
-            self.silhouetteImage.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-            self.silhouetteImage.alpha = 0.3
-
-        }, completion: nil)
-    }
-    
-    // MARK: Camera Control
-    func CameraControl(){
-        let captureSession = AVCaptureSession()
-        
-        guard let captureDevice = AVCaptureDevice.default(for: .video) else { return }
-        guard let input = try? AVCaptureDeviceInput(device: captureDevice) else { return }
-        captureSession.addInput(input)
-        captureSession.startRunning()
-        //add input dan memulai capture di AV foundationnya
-        
-        let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        
-        view.layer.addSublayer(previewLayer)
-        previewLayer.frame = self.view.layer.bounds
-        previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-        //membuat layar avfoundationnya fullscreen
-        
-        let dataOutput = AVCaptureVideoDataOutput()
-        dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
-        captureSession.addOutput(dataOutput)
-        //assign data output dari capture sessionnya
-    }
-    
-    func timerInterval(){
-        self.timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(handleTimerTick), userInfo: nil, repeats: true)
+        })
     }
     
     func checkingResult(){
@@ -194,18 +186,18 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
     }
     
     @objc func showResult(){
-        
+        isFirstFrame = true
         if !hasShownResult {return}
         NilaiSementara.nilaiSementara = self.nilaiSementara
-        print(NilaiSementara.nilaiSementara)
         //tunjukin result setelah beberapa boolean menjadi true, dan scan masing masing objek x kali
         
         if nilaiCounter == 5 {
-            
+            loadingLabel.isHidden = true
             hasShownResult = false
             self.isChecking = false
             //membuat boolean false untuk scan ulang nanti
             
+            dummyImage.isHidden = true
             showOutlet()
             let popUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PopUpView") as! PopUpViewController
             self.addChildViewController(popUpVC)
@@ -215,10 +207,6 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
             //memunculkan viewcontroller lain
             popUpVC.didMove(toParentViewController: self)
         }
-    }
-    
-    @objc func handleTimerTick() {
-        isFirstFrame = true
     }
 
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
@@ -237,15 +225,17 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
         let requestResnet = VNCoreMLRequest(model: model){ (finishReq2, err) in
             guard let resultsResnet = finishReq2.results as? [VNClassificationObservation] else {return}
             guard let firstObservationResnet = resultsResnet.first else {return}
-            print(firstObservationResnet.identifier, firstObservationResnet.confidence)
             
             if ((firstObservationResnet.identifier == "orange") || (firstObservationResnet.identifier == "pomegranate") || (firstObservationResnet.identifier == "Granny Smith") || (firstObservationResnet.identifier == "bell pepper")) && self.buahCounter < 3{
                 self.buahCounter += 1
+                print(firstObservationResnet.identifier, firstObservationResnet.confidence)
                 print(self.buahCounter)
             } else if self.buahCounter >= 3 {
                 self.checkBuah = true
+                print(NilaiSementara.nilaiSementara)
+            } else {
+                print(firstObservationResnet.identifier, firstObservationResnet.confidence)
             }
-            
         }
         try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([requestResnet])
         
@@ -295,64 +285,99 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
         return jumlahBuah.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = fruitTypeCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? BuahCell
+        if (indexPath.row == 0 || indexPath.row == 5 || indexPath.row == 1 || indexPath.row == 6){
+            cell?.isUserInteractionEnabled = false
+        }
         cell?.imageBuah.image = UIImage(named: "\(jumlahBuah[indexPath.row])Inactive")
-
+        cell?.imageBuahSelected.image = UIImage(named: "\(jumlahBuah[indexPath.row])Selected")
         return cell!
     }
-    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        if (indexPath.row == 0 || indexPath.row == 4){
-            return false
-        }
-        return true
-    }
+    
     //kalau dipilih langsung ketengah
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = fruitTypeCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? BuahCell
         fruitTypeCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         silhouetteImage.image = UIImage(named: "\(jumlahBuah[indexPath.row])Sil2")
         dummyImage.image = UIImage(named: "\(jumlahBuah[indexPath.row])Scan")
         namaBuah.text = "\(namaNamaBuah[indexPath.row])"
+        if cell?.ditengah == true && NilaiSementara.cellDiTengah == true {
+            startScanning()
+            cell?.ditengah = false
+            NilaiSementara.cellDiTengah = false
+        }
     }
 }
 
 extension ViewController: UIScrollViewDelegate {
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        dummyImage.isHidden = false
+        helperDelegate.hapticMedium()
+        scanningText.isHidden = false
         namaBuah.isHidden = false
         var savedIndex = fruitTypeCollectionView.indexPathsForVisibleItems
         let translation = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
+        savedIndex.sort()
         if translation.x > 0{
-            // move right
-            print("kanan")
-            if(savedIndex.count == 4){
-                fruitTypeCollectionView.selectItem(at: savedIndex[1], animated: true, scrollPosition: .centeredHorizontally)
-                self.collectionView(self.fruitTypeCollectionView, didSelectItemAt: savedIndex[1])
-            }
-            else if(savedIndex.count == 3){
-                fruitTypeCollectionView.selectItem(at: savedIndex[1], animated: true, scrollPosition: .centeredHorizontally)
-                self.collectionView(self.fruitTypeCollectionView, didSelectItemAt: savedIndex[1])
+            if(savedIndex.count == 6){
+                fruitTypeCollectionView.selectItem(at: savedIndex[2], animated: true, scrollPosition: .centeredHorizontally)
+                self.collectionView(self.fruitTypeCollectionView, didSelectItemAt: savedIndex[2])
+                print("kanan 6")
+            }else if(savedIndex.count <= 5){
+                fruitTypeCollectionView.selectItem(at: savedIndex[2], animated: true, scrollPosition: .centeredHorizontally)
+                self.collectionView(self.fruitTypeCollectionView, didSelectItemAt: savedIndex[2])
+                print("kanan 5")
+            }else{
+                print("index gajelas")
             }
         }
         else  {
-            // move left
-            print("kiri")
-            if(savedIndex.count == 4){
+            if(savedIndex.count == 6){
+                fruitTypeCollectionView.selectItem(at: savedIndex[3], animated: true, scrollPosition: .centeredHorizontally)
+                self.collectionView(self.fruitTypeCollectionView, didSelectItemAt: savedIndex[3])
+                print("kiri 6")
+            }
+            else if(savedIndex.count <= 5){
                 fruitTypeCollectionView.selectItem(at: savedIndex[2], animated: true, scrollPosition: .centeredHorizontally)
                 self.collectionView(self.fruitTypeCollectionView, didSelectItemAt: savedIndex[2])
-            }
-            else if(savedIndex.count == 3){
-                fruitTypeCollectionView.selectItem(at: savedIndex[1], animated: true, scrollPosition: .centeredHorizontally)
-                self.collectionView(self.fruitTypeCollectionView, didSelectItemAt: savedIndex[1])
+                print("aneh nih")
+            } else{
+                print("index gajelas")
             }
         }
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        let savedIndex = fruitTypeCollectionView.indexPathsForSelectedItems
-        fruitTypeCollectionView.deselectItem(at: savedIndex![0], animated: true)
-        dummyImage.isHidden = true
+        scanningText.isHidden = true
+        helperDelegate.hapticMedium()
+        if let savedIndex = fruitTypeCollectionView.indexPathsForSelectedItems {
+            fruitTypeCollectionView.deselectItem(at: savedIndex[0], animated: true)
+        }
         namaBuah.isHidden = true
+    }
+}
+
+extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
+    // MARK: Camera Control
+    func CameraControl(){
+        let captureSession = AVCaptureSession()
+        
+        guard let captureDevice = AVCaptureDevice.default(for: .video) else { return }
+        guard let input = try? AVCaptureDeviceInput(device: captureDevice) else { return }
+        captureSession.addInput(input)
+        captureSession.startRunning()
+        //add input dan memulai capture di AV foundationnya
+        
+        let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        
+        view.layer.addSublayer(previewLayer)
+        previewLayer.frame = self.view.layer.bounds
+        previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+        //membuat layar avfoundationnya fullscreen
+        
+        let dataOutput = AVCaptureVideoDataOutput()
+        dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
+        captureSession.addOutput(dataOutput)
+        //assign data output dari capture sessionnya
     }
 }
 
@@ -417,11 +442,6 @@ extension ViewController: UIScrollViewDelegate {
 //
 //    }
 //}
-
-
-
-
-
 //func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 //    return jumlahBuah.count
 //    //objek dalam collection view

@@ -10,4 +10,5 @@ import Foundation
 
 struct NilaiSementara {
     static var nilaiSementara: Float = 0
+    static var cellDiTengah : Bool = false
 }
