@@ -31,6 +31,7 @@ class ViewController: UIViewController {
     var namaBuah : UILabel = UILabel()
     var scanningText : UILabel = UILabel()
     var namaNamaBuah = ["","","Fuji Apple","Orange", "Tomato","", ""]
+    var imageViewTransform = CGAffineTransform.identity
 
     // MARK: IBOutlet
     @IBOutlet weak var silhouetteImage: UIImageView!
@@ -46,20 +47,24 @@ class ViewController: UIViewController {
         self.fruitTypeCollectionView.decelerationRate = UIScrollViewDecelerationRateFast
         animateSilhouette()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        fruitTypeCollectionView.backgroundColor = UIColor.black.withAlphaComponent(0.0)
         fruitTypeCollectionView.delegate = self
         fruitTypeCollectionView.dataSource = self
 
-        // OK
         checkingResult()
         helperDelegate.addLoading()
         taroView()
         
-  }
+        NotificationCenter.default.addObserver(self, selector: #selector(self.didEnterBackground), name: .UIApplicationDidEnterBackground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.willEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
+    }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        animateSilhouette()
+    }
 
     func taroView(){
         setupDummyImage()
@@ -67,8 +72,8 @@ class ViewController: UIViewController {
         CameraControl()
         scanningLabel()
         setScanningText()
-        view.addSubview(startButton)
         view.addSubview(fruitTypeCollectionView)
+        view.addSubview(startButton)
         view.addSubview(silhouetteImage)
         view.addSubview(dummyImage)
         view.addSubview(namaBuah)
@@ -76,6 +81,8 @@ class ViewController: UIViewController {
         view.addSubview(scanningText)
         view.layer.addSublayer(helperDelegate.shapeLayer)
         dummyImage.isHidden = true
+        startButton.isUserInteractionEnabled = false
+        fruitTypeCollectionView.backgroundColor = UIColor.black.withAlphaComponent(0.0)
     }
     
     func setScanningText(){
@@ -142,6 +149,21 @@ class ViewController: UIViewController {
         scanningText.isHidden = false
     }
     
+    deinit{
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func didEnterBackground(){
+        imageViewTransform = silhouetteImage.layer.presentation()?.affineTransform() ?? .identity
+    }
+    
+    @objc func willEnterForeground(){
+        silhouetteImage.transform = imageViewTransform
+        silhouetteImage.alpha = 1.0
+        scanningText.alpha = 1.0
+        animateSilhouette()
+    }
+    
     // MARK: Button Start
     @IBAction func buttonStart(_ sender: UIButton) {
 //         startScanning()
@@ -149,7 +171,7 @@ class ViewController: UIViewController {
     
     func animateSilhouette(){
         DispatchQueue.main.async {
-            UIView.animate(withDuration: 1.0, delay: 0, options: [.repeat, .autoreverse], animations: {
+            UIView.animate(withDuration: 1.0, delay: 0, options: [.repeat, .autoreverse, .beginFromCurrentState], animations: {
                 self.scanningText.alpha = 0.5
                 self.silhouetteImage.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
                 self.silhouetteImage.alpha = 0.3
@@ -200,6 +222,7 @@ class ViewController: UIViewController {
             
             dummyImage.isHidden = true
             showOutlet()
+            helperDelegate.hapticMedium()
             let popUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PopUpView") as! PopUpViewController
             self.addChildViewController(popUpVC)
             popUpVC.view.frame = self.view.frame
@@ -220,8 +243,6 @@ class ViewController: UIViewController {
         guard let model = try? VNCoreMLModel(for: Resnet50().model) else { return }
         guard let modelJeruk = try? VNCoreMLModel(for: Jeruk100().model) else {return}
         guard let modelApel = try? VNCoreMLModel(for: AppleBagusAppleJelek().model) else {return}
-
-        //assign modelnya
         
         let requestResnet = VNCoreMLRequest(model: model){ (finishReq2, err) in
             guard let resultsResnet = finishReq2.results as? [VNClassificationObservation] else {return}
@@ -312,7 +333,6 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
 
 extension ViewController: UIScrollViewDelegate {
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        helperDelegate.hapticMedium()
         scanningText.isHidden = false
         namaBuah.isHidden = false
         var savedIndex = fruitTypeCollectionView.indexPathsForVisibleItems
@@ -345,6 +365,7 @@ extension ViewController: UIScrollViewDelegate {
                 print("index gajelas")
             }
         }
+        helperDelegate.hapticMedium()
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
