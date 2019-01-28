@@ -63,13 +63,13 @@ class PopUpViewController: UIViewController {
         if NilaiSementara.nilaiSementara >= 9 && NilaiSementara.nilaiSementara <= 10{
             warnaAtas.backgroundColor = hijau
             qualityLabel.text = "Great Eye!"
-        }else if NilaiSementara.nilaiSementara >= 8 && NilaiSementara.nilaiSementara <= 8.9 {
+        }else if NilaiSementara.nilaiSementara >= 8 && NilaiSementara.nilaiSementara < 9 {
             warnaAtas.backgroundColor = hijauTua
             qualityLabel.text = "Sweet"
-        }else if NilaiSementara.nilaiSementara >= 7 && NilaiSementara.nilaiSementara <= 7.9 {
+        }else if NilaiSementara.nilaiSementara >= 7 && NilaiSementara.nilaiSementara < 8 {
             warnaAtas.backgroundColor = orangeKuning
             qualityLabel.text = "Okay."
-        }else if NilaiSementara.nilaiSementara >= 5 && NilaiSementara.nilaiSementara <= 5.9 {
+        }else if NilaiSementara.nilaiSementara >= 5 && NilaiSementara.nilaiSementara < 7 {
             warnaAtas.backgroundColor = orange
             qualityLabel.text = "Almost There..."
         }else {
