@@ -29,14 +29,29 @@ class PopUpViewController: UIViewController {
     
     //MARK: - Outlet and Action
     @IBAction func showLessButton(_ sender: Any) {
+        viewAnimationDelegate.hapticMedium()
         topGreenView.frame = CGRect(x: view.frame.width - view.frame.width + 16, y: view.frame.height / 2 - 100, width: 343, height: 168)
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+            self.topGreenView.layoutIfNeeded()
+            self.bottomWhiteView.layoutIfNeeded()
+            self.topGreenView.center.y -= self.topGreenView.frame.height/2
+            self.bottomWhiteView.center.y -= self.bottomWhiteView.frame.height/4-40
+         }, completion: nil)
         showMoreOutlet.isHidden = false
         showLessOutlet.isHidden = true
         bottomWhiteView.isHidden = true
     }
     @IBAction func showMoreDetailButton(_ sender: Any) {
     //ketika pencet showmore, tunjukin view controller satu lagi
+      
+        viewAnimationDelegate.hapticMedium()
         topGreenView.frame = CGRect(x: view.frame.width - view.frame.width + 16, y: 68, width: 343, height: 168)
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+            self.topGreenView.layoutIfNeeded()
+            self.bottomWhiteView.layoutIfNeeded()
+            self.topGreenView.center.y += self.topGreenView.frame.height/2
+            self.bottomWhiteView.center.y += self.bottomWhiteView.frame.height/4-40
+        }, completion: nil)
         bottomWhiteView.isHidden = false
         showLessOutlet.isHidden = false
         showMoreOutlet.isHidden = true
@@ -63,18 +78,29 @@ class PopUpViewController: UIViewController {
         if NilaiSementara.nilaiSementara >= 9 && NilaiSementara.nilaiSementara <= 10{
             warnaAtas.backgroundColor = hijau
             qualityLabel.text = "Great Eye!"
-        }else if NilaiSementara.nilaiSementara >= 8 && NilaiSementara.nilaiSementara <= 8.9 {
+            colorLabel.text = ""
+            textureLabel.text = ""
+            
+        }else if NilaiSementara.nilaiSementara >= 8 && NilaiSementara.nilaiSementara < 9 {
             warnaAtas.backgroundColor = hijauTua
             qualityLabel.text = "Sweet"
-        }else if NilaiSementara.nilaiSementara >= 7 && NilaiSementara.nilaiSementara <= 7.9 {
+            colorLabel.text = ""
+            textureLabel.text = ""
+        }else if NilaiSementara.nilaiSementara >= 7 && NilaiSementara.nilaiSementara < 8 {
             warnaAtas.backgroundColor = orangeKuning
             qualityLabel.text = "Okay."
-        }else if NilaiSementara.nilaiSementara >= 5 && NilaiSementara.nilaiSementara <= 5.9 {
+            colorLabel.text = ""
+            textureLabel.text = ""
+        }else if NilaiSementara.nilaiSementara >= 5 && NilaiSementara.nilaiSementara < 7 {
             warnaAtas.backgroundColor = orange
             qualityLabel.text = "Almost There..."
+            colorLabel.text = ""
+            textureLabel.text = ""
         }else {
             warnaAtas.backgroundColor = merah
             qualityLabel.text = "Meh."
+            colorLabel.text = ""
+            textureLabel.text = ""
         }
     }
     
