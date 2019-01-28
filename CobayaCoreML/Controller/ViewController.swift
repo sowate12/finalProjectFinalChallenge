@@ -13,6 +13,7 @@ import CountdownView
 
 class ViewController: UIViewController {
 
+    // MARK: Variables
     var loadingLabel : UILabel = UILabel()
     var jumlahBuah = ["","","apel","jeruk","tomato","",""]
     var timer = Timer()
@@ -39,15 +40,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     
     // MARK: Life Cycle
-    //biar awal awal udah bisa pilih yang kiri, indexnya awalnya langsung diubah ke 2
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        let indexPath = IndexPath(item: 2, section: 0)
-        self.fruitTypeCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-        self.fruitTypeCollectionView.decelerationRate = UIScrollViewDecelerationRateFast
-        animateSilhouette()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         fruitTypeCollectionView.delegate = self
@@ -55,7 +47,7 @@ class ViewController: UIViewController {
 
         checkingResult()
         helperDelegate.addLoading()
-        taroView()
+        setupView()
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.didEnterBackground), name: .UIApplicationDidEnterBackground, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.willEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
@@ -63,15 +55,20 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        let indexPath = IndexPath(item: 2, section: 0)
+        self.fruitTypeCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+        self.fruitTypeCollectionView.decelerationRate = UIScrollViewDecelerationRateFast
         animateSilhouette()
     }
 
-    func taroView(){
+    // MARK: Setup the View
+    func setupView(){
         setupDummyImage()
         pasangNamaBuah()
         CameraControl()
         scanningLabel()
         setScanningText()
+        setupCollectionView()
         view.addSubview(fruitTypeCollectionView)
         view.addSubview(startButton)
         view.addSubview(silhouetteImage)
@@ -80,8 +77,11 @@ class ViewController: UIViewController {
         view.addSubview(loadingLabel)
         view.addSubview(scanningText)
         view.layer.addSublayer(helperDelegate.shapeLayer)
-        dummyImage.isHidden = true
-        startButton.isUserInteractionEnabled = false
+    }
+    
+    func setupCollectionView(){
+        fruitTypeCollectionView.center = CGPoint(x: view.frame.width / 2 - 0.5, y: view.frame.height - 100 )
+        silhouetteImage.center = CGPoint(x: view.frame.width / 2, y: view.frame.height / 2 - 30)
         fruitTypeCollectionView.backgroundColor = UIColor.black.withAlphaComponent(0.0)
     }
     
@@ -98,8 +98,8 @@ class ViewController: UIViewController {
     
     func pasangNamaBuah(){
         let x = view.frame.width / 2
-        let y = view.frame.height / 2 + 145
-        namaBuah.frame = CGRect(x: x - 50, y: y, width: 100, height: 125)
+        let y = view.frame.height
+        namaBuah.frame = CGRect(x: x - 50, y: y - 225, width: 100, height: 125)
         namaBuah.textAlignment = .center
         namaBuah.layer.masksToBounds = true
         namaBuah.textColor = .white
@@ -108,14 +108,15 @@ class ViewController: UIViewController {
     
     func setupDummyImage(){
         let x = view.frame.width / 2
-        let y = view.frame.height / 2 + 276
-        startButton.frame = CGRect(x: x - 49.5, y: y - 49.5, width: 96, height: 96)
-        dummyImage.frame = CGRect(x: x - 49.5, y: y - 49.5, width: 96, height: 96)
+        let y = view.frame.height
+        startButton.isUserInteractionEnabled = false
+        startButton.frame = CGRect(x: x - 49.5, y: y - 144 , width: 96, height: 96)
+        dummyImage.frame = CGRect(x: x - 49.5, y: y - 144, width: 96, height: 96)
         dummyImage.layer.masksToBounds = true
         dummyImage.image = UIImage(named: "\(jumlahBuah[2])Scan")
+        dummyImage.isHidden = true
     }
-        
-    //taro label scanning yang titik titiknya gerak tiap detiknya
+
     func scanningLabel(){
         loadingLabel.isHidden = true
         loadingLabel.text = "Scanning ."
@@ -164,11 +165,6 @@ class ViewController: UIViewController {
         animateSilhouette()
     }
     
-    // MARK: Button Start
-    @IBAction func buttonStart(_ sender: UIButton) {
-//         startScanning()
-      }
-    
     func animateSilhouette(){
         DispatchQueue.main.async {
             UIView.animate(withDuration: 1.0, delay: 0, options: [.repeat, .autoreverse, .beginFromCurrentState], animations: {
@@ -182,7 +178,6 @@ class ViewController: UIViewController {
     func startScanning(){
         dummyImage.isHidden = false
         helperDelegate.hapticMedium()
-        //reset semua counter untuk scan menjadi 0
         NilaiSementara.nilaiSementara = 0
         self.nilaiSementara = 5
         self.nilaiCounter = 0
@@ -193,13 +188,10 @@ class ViewController: UIViewController {
         CountdownView.show(countdownFrom: 0.5  , spin: true, animation: animation1, autoHide: true, completion:  {
             DispatchQueue.main.async {
                 self.loadingLabel.isHidden = false
-                self.helperDelegate.animateCircle()
-                
-                self.generator.notificationOccurred(.success)
-                
-                //function setelah countdown selesai, buat bool jadi true untuk menunjukan scan dan result
                 self.isChecking = true
                 self.hasShownResult = true
+                self.helperDelegate.animateCircle()
+                self.generator.notificationOccurred(.success)
             }
         })
     }
@@ -212,7 +204,6 @@ class ViewController: UIViewController {
         isFirstFrame = true
         if !hasShownResult {return}
         NilaiSementara.nilaiSementara = self.nilaiSementara
-        //tunjukin result setelah beberapa boolean menjadi true, dan scan masing masing objek x kali
         
         if nilaiCounter == 5 {
             loadingLabel.isHidden = true
@@ -232,80 +223,14 @@ class ViewController: UIViewController {
             popUpVC.didMove(toParentViewController: self)
         }
     }
-
-    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        //coding yang dilakukan saat avfoundation memunculkan output
-        if !self.isFirstFrame {return}
-        self.isFirstFrame = false
-        if !self.isChecking {return}
-        
-        guard let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
-        guard let model = try? VNCoreMLModel(for: Resnet50().model) else { return }
-        guard let modelJeruk = try? VNCoreMLModel(for: Jeruk100().model) else {return}
-        guard let modelApel = try? VNCoreMLModel(for: AppleBagusAppleJelek().model) else {return}
-        
-        let requestResnet = VNCoreMLRequest(model: model){ (finishReq2, err) in
-            guard let resultsResnet = finishReq2.results as? [VNClassificationObservation] else {return}
-            guard let firstObservationResnet = resultsResnet.first else {return}
-            
-            if ((firstObservationResnet.identifier == "orange") || (firstObservationResnet.identifier == "pomegranate") || (firstObservationResnet.identifier == "Granny Smith") || (firstObservationResnet.identifier == "bell pepper")) && self.buahCounter < 3{
-                self.buahCounter += 1
-                print(firstObservationResnet.identifier, firstObservationResnet.confidence)
-                print(self.buahCounter)
-            } else if self.buahCounter >= 3 {
-                self.checkBuah = true
-                print(NilaiSementara.nilaiSementara)
-            } else {
-                print(firstObservationResnet.identifier, firstObservationResnet.confidence)
-            }
-        }
-        try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([requestResnet])
-        
-        if !self.checkBuah{return }
-        // MARK: modelnya
-        DispatchQueue.main.async {
-            if self.silhouetteImage.image == UIImage(named: "jerukSil2"){
-                let request = VNCoreMLRequest(model: modelJeruk)
-                {(finishedReq, err) in
-                    
-                    guard let results = finishedReq.results as? [VNClassificationObservation] else {return}
-                    guard let firstObservation = results.first else { return}
-                    print(firstObservation.identifier,firstObservation.confidence)
-                    
-                    //setelah membuat property resultnya, lakukan scanning
-                    if (firstObservation.identifier == "Jeruk Bagus"){
-                        self.nilaiSementara += firstObservation.confidence
-                    }else if (firstObservation.identifier == "Jeruk Jelek") {
-                        self.nilaiSementara -= firstObservation.confidence
-                    }
-                    self.nilaiCounter += 1
-                    //lakukan scanningnya, tambah counter, scanning dilakukan tiap detik
-                }
-                try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
-                
-            }else if self.silhouetteImage.image == UIImage(named: "apelSil2"){
-                let requestApel = VNCoreMLRequest(model: modelApel){(finishedReq3, err) in
-                    guard let resultApel = finishedReq3.results as? [VNClassificationObservation] else {return}
-                    guard let firstObservationApel = resultApel.first else {return}
-                    print(firstObservationApel.identifier, firstObservationApel.confidence)
-                    
-                    if (firstObservationApel.identifier == "Warna Bagus") {
-                        self.nilaiSementara += firstObservationApel.confidence
-                    }else if (firstObservationApel.identifier == "Warna Jelek"){
-                        self.nilaiSementara -= firstObservationApel.confidence
-                    }
-                    self.nilaiCounter += 1
-                }
-                try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([requestApel])
-            }
-        }
-    }
 }
 
+// MARK: Collection View
 extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return jumlahBuah.count
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = fruitTypeCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? BuahCell
         if (indexPath.row == 0 || indexPath.row == 5 || indexPath.row == 1 || indexPath.row == 6){
@@ -315,8 +240,7 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
         cell?.imageBuahSelected.image = UIImage(named: "\(jumlahBuah[indexPath.row])Selected")
         return cell!
     }
-    
-    //kalau dipilih langsung ketengah
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = fruitTypeCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? BuahCell
         fruitTypeCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
@@ -331,6 +255,7 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
     }
 }
 
+// MARK: Scroll View
 extension ViewController: UIScrollViewDelegate {
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         scanningText.isHidden = false
@@ -378,28 +303,97 @@ extension ViewController: UIScrollViewDelegate {
     }
 }
 
+// MARK: AVFoundation
 extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     // MARK: Camera Control
     func CameraControl(){
         let captureSession = AVCaptureSession()
         
+        /// add input dan memulai capture di AV foundationnya
         guard let captureDevice = AVCaptureDevice.default(for: .video) else { return }
         guard let input = try? AVCaptureDeviceInput(device: captureDevice) else { return }
         captureSession.addInput(input)
         captureSession.startRunning()
-        //add input dan memulai capture di AV foundationnya
         
+        ///membuat layar avfoundationnya fullscreen
         let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        
         view.layer.addSublayer(previewLayer)
         previewLayer.frame = self.view.layer.bounds
         previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-        //membuat layar avfoundationnya fullscreen
         
+        //assign data output dari capture sessionnya
         let dataOutput = AVCaptureVideoDataOutput()
         dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
         captureSession.addOutput(dataOutput)
-        //assign data output dari capture sessionnya
+    }
+    
+    // MARK: Camera Output
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        //coding yang dilakukan saat avfoundation memunculkan output
+        if !self.isFirstFrame {return}
+        self.isFirstFrame = false
+        if !self.isChecking {return}
+        
+        guard let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
+        guard let model = try? VNCoreMLModel(for: Resnet50().model) else { return }
+        guard let modelJeruk = try? VNCoreMLModel(for: Jeruk100().model) else {return}
+        guard let modelApel = try? VNCoreMLModel(for: AppleBagusAppleJelek().model) else {return}
+        
+        let requestResnet = VNCoreMLRequest(model: model){ (finishReq2, err) in
+            guard let resultsResnet = finishReq2.results as? [VNClassificationObservation] else {return}
+            guard let firstObservationResnet = resultsResnet.first else {return}
+            
+            if ((firstObservationResnet.identifier == "orange") || (firstObservationResnet.identifier == "pomegranate") || (firstObservationResnet.identifier == "Granny Smith") || (firstObservationResnet.identifier == "bell pepper")) && self.buahCounter < 3{
+                self.buahCounter += 1
+                print(firstObservationResnet.identifier, firstObservationResnet.confidence)
+                print(self.buahCounter)
+            } else if self.buahCounter >= 3 {
+                self.checkBuah = true
+                print(NilaiSementara.nilaiSementara)
+            } else {
+                print(firstObservationResnet.identifier, firstObservationResnet.confidence)
+            }
+        }
+        try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([requestResnet])
+        
+        if !self.checkBuah{return }
+        // MARK: modelnya
+        DispatchQueue.main.async {
+            if self.silhouetteImage.image == UIImage(named: "jerukSil2"){
+                let request = VNCoreMLRequest(model: modelJeruk)
+                {(finishedReq, err) in
+                    
+                    guard let results = finishedReq.results as? [VNClassificationObservation] else {return}
+                    guard let firstObservation = results.first else { return}
+                    print(firstObservation.identifier,firstObservation.confidence)
+                    
+                    //setelah membuat property resultnya, lakukan scanning
+                    if (firstObservation.identifier == "Jeruk Bagus"){
+                        self.nilaiSementara += firstObservation.confidence
+                    }else if (firstObservation.identifier == "Jeruk Jelek") {
+                        self.nilaiSementara -= firstObservation.confidence
+                    }
+                    self.nilaiCounter += 1
+                    /// lakukan scanningnya, tambah counter, scanning dilakukan tiap detik
+                }
+                try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
+                
+            }else if self.silhouetteImage.image == UIImage(named: "apelSil2"){
+                let requestApel = VNCoreMLRequest(model: modelApel){(finishedReq3, err) in
+                    guard let resultApel = finishedReq3.results as? [VNClassificationObservation] else {return}
+                    guard let firstObservationApel = resultApel.first else {return}
+                    print(firstObservationApel.identifier, firstObservationApel.confidence)
+                    
+                    if (firstObservationApel.identifier == "Warna Bagus") {
+                        self.nilaiSementara += firstObservationApel.confidence
+                    }else if (firstObservationApel.identifier == "Warna Jelek"){
+                        self.nilaiSementara -= firstObservationApel.confidence
+                    }
+                    self.nilaiCounter += 1
+                }
+                try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([requestApel])
+            }
+        }
     }
 }
 
