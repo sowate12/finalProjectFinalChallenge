@@ -132,21 +132,22 @@ class ViewController: UIViewController {
     /// Setup the text that appears when scanning
     func checking(){
         checkingLabel.isHidden = true
-        checkingLabel.text = "Checking Fruit ."
+        checkingLabel.text = "Checking \r\n if it is a Fruit ."
         
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
             var string: String {
                 switch self.checkingLabel.text {
-                case "Checking Fruit .":       return "Checking Fruit .."
-                case "Checking Fruit ..":      return "Checking Fruit ..."
-                case "Checking Fruit ...":     return "Checking Fruit ."
-                default:                      return "Checking Fruit"
+                case "Checking \r\n if it is a Fruit .":       return "Checking \r\n if it is a Fruit .."
+                case "Checking \r\n if it is a Fruit ..":      return "Checking \r\n if it is a Fruit ..."
+                case "Checking \r\n if it is a Fruit ...":     return "Checking \r\n if it is a Fruit ."
+                default:                      return "Checking \r\n if it is a Fruit"
                 }
             }
             self.checkingLabel.text = string
         }
         checkingLabel.textColor = .white
         checkingLabel.frame = CGRect(x: view.frame.width / 2 - 65, y: view.frame.height / 2 - 125, width: 130, height: 100)
+        checkingLabel.numberOfLines = 2
         checkingLabel.textAlignment = .center
     }
     
@@ -166,6 +167,7 @@ class ViewController: UIViewController {
             self.scanningLabel.text = string
         }
         scanningLabel.textColor = .white
+        scanningLabel.numberOfLines = 2
         scanningLabel.frame = CGRect(x: view.frame.width / 2 - 65, y: view.frame.height / 2 - 125, width: 130, height: 100)
         scanningLabel.textAlignment = .center
     }
