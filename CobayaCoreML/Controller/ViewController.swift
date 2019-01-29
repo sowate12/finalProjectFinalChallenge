@@ -12,8 +12,9 @@ import Vision
 import CountdownView
 
 class ViewController: UIViewController {
-
-    var loadingLabel : UILabel = UILabel()
+    
+    var checkingLabel : UILabel = UILabel()
+    var scanningLabel : UILabel = UILabel()
     var jumlahBuah = ["","","apel","jeruk","tomato","",""]
     var timer = Timer()
     var isFirstFrame : Bool = true
@@ -46,18 +47,19 @@ class ViewController: UIViewController {
         self.fruitTypeCollectionView.decelerationRate = UIScrollViewDecelerationRateFast
         animateSilhouette()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         fruitTypeCollectionView.backgroundColor = UIColor.black.withAlphaComponent(0.0)
         fruitTypeCollectionView.delegate = self
         fruitTypeCollectionView.dataSource = self
-
+        
         // OK
         checkingResult()
         helperDelegate.addLoading()
         taroView()
-        
+       
   }
     
 
@@ -65,14 +67,17 @@ class ViewController: UIViewController {
         setupDummyImage()
         pasangNamaBuah()
         CameraControl()
-        scanningLabel()
+        checking()
+        scanning()
+        gantiKeScan()
         setScanningText()
         view.addSubview(startButton)
         view.addSubview(fruitTypeCollectionView)
         view.addSubview(silhouetteImage)
         view.addSubview(dummyImage)
         view.addSubview(namaBuah)
-        view.addSubview(loadingLabel)
+        view.addSubview(checkingLabel)
+        view.addSubview(scanningLabel)
         view.addSubview(scanningText)
         view.layer.addSublayer(helperDelegate.shapeLayer)
         dummyImage.isHidden = true
@@ -107,27 +112,61 @@ class ViewController: UIViewController {
         dummyImage.layer.masksToBounds = true
         dummyImage.image = UIImage(named: "\(jumlahBuah[2])Scan")
     }
-        
-    //taro label scanning yang titik titiknya gerak tiap detiknya
-    func scanningLabel(){
-        loadingLabel.isHidden = true
-        loadingLabel.text = "Scanning ."
+    
+    //label checking fruit
+    func checking(){
+        checkingLabel.isHidden = true
+        checkingLabel.text = "Checking Fruit ."
         
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
             var string: String {
-                switch self.loadingLabel.text {
-                case "Scanning .":       return "Scanning .."
-                case "Scanning ..":      return "Scanning ..."
-                case "Scanning ...":     return "Scanning ."
-                default:                return "Scanning"
+                switch self.checkingLabel.text {
+                case "Checking Fruit .":       return "Checking Fruit .."
+                case "Checking Fruit ..":      return "Checking Fruit ..."
+                case "Checking Fruit ...":     return "Checking Fruit ."
+                default:                      return "Checking Fruit"
                 }
             }
-            self.loadingLabel.text = string
+            self.checkingLabel.text = string
         }
-        loadingLabel.textColor = .white
-        loadingLabel.frame = CGRect(x: view.frame.width / 2 - 50, y: view.frame.width / 2 + 100, width: 100, height: 100)
-        loadingLabel.textAlignment = .center
+        checkingLabel.textColor = .white
+        checkingLabel.frame = CGRect(x: view.frame.width / 2 - 62.5, y: view.frame.height / 2 - 125, width: 130, height: 100)
+        checkingLabel.textAlignment = .center
     }
+    //label scanning fruit
+    func scanning(){
+        scanningLabel.isHidden = true
+        scanningLabel.text = "Scanning Fruit ."
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
+            var string: String {
+                switch self.scanningLabel.text {
+                case "Scanning Fruit .":       return "Scanning Fruit .."
+                case "Scanning Fruit ..":      return "Scanning Fruit ..."
+                case "Scanning Fruit ...":     return "Scanning Fruit ."
+                default:                      return "Scanning Fruit"
+                }
+            }
+            self.scanningLabel.text = string
+        }
+        scanningLabel.textColor = .white
+        scanningLabel.frame = CGRect(x: view.frame.width / 2 - 62.5, y: view.frame.height / 2 - 125, width: 130, height: 100)
+        scanningLabel.textAlignment = .center
+    }
+    
+    func gantiKeScan(){
+        if checkBuah == true{
+        scanningLabel.isHidden = false
+        checkingLabel.isHidden = true
+        }else{
+            scanningLabel.isHidden = true
+        }
+        
+        if scanningText.isHidden == false{
+            scanningLabel.isHidden = true
+        }
+    }
+    
     
     func hideOutlet(){
         startButton.isHidden = true
@@ -170,8 +209,9 @@ class ViewController: UIViewController {
         hideOutlet()
         CountdownView.show(countdownFrom: 0.5  , spin: true, animation: animation1, autoHide: true, completion:  {
             DispatchQueue.main.async {
-                self.loadingLabel.isHidden = false
-                self.helperDelegate.animateCircle()
+                
+                    self.checkingLabel.isHidden = false
+                    self.helperDelegate.animateCircle()
                 
                 self.generator.notificationOccurred(.success)
                 
@@ -188,12 +228,16 @@ class ViewController: UIViewController {
     
     @objc func showResult(){
         isFirstFrame = true
+        gantiKeScan()
+        
         if !hasShownResult {return}
         NilaiSementara.nilaiSementara = self.nilaiSementara
         //tunjukin result setelah beberapa boolean menjadi true, dan scan masing masing objek x kali
         
         if nilaiCounter == 5 {
-            loadingLabel.isHidden = true
+            checkingLabel.isHidden = true
+            scanningLabel.isHidden = true
+
             hasShownResult = false
             self.isChecking = false
             //membuat boolean false untuk scan ulang nanti
@@ -240,7 +284,7 @@ class ViewController: UIViewController {
         }
         try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([requestResnet])
         
-        if !self.checkBuah{return }
+        if !self.checkBuah{ return }
         // MARK: modelnya
         DispatchQueue.main.async {
             if self.silhouetteImage.image == UIImage(named: "jerukSil2"){
