@@ -15,6 +15,8 @@ class ViewController: UIViewController {
 
     // MARK: Variables
     var loadingLabel : UILabel = UILabel()
+    var checkingLabel : UILabel = UILabel()
+    var scanningLabel : UILabel = UILabel()
     var jumlahBuah = ["","","apel","jeruk","tomato","",""]
     var timer = Timer()
     var isFirstFrame : Bool = true
@@ -44,14 +46,14 @@ class ViewController: UIViewController {
         fruitTypeCollectionView.delegate = self
         fruitTypeCollectionView.dataSource = self
 
+        NotificationCenter.default.addObserver(self, selector: #selector(self.didEnterBackground), name: .UIApplicationDidEnterBackground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.willEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
+        
         checkingResult()
         helperDelegate.addLoading()
         setupView()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(self.didEnterBackground), name: .UIApplicationDidEnterBackground, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.willEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let indexPath = IndexPath(item: 2, section: 0)
@@ -65,7 +67,9 @@ class ViewController: UIViewController {
         setupDummyImage()
         pasangNamaBuah()
         CameraControl()
-        scanningLabel()
+        checking()
+        scanning()
+        gantiKeScan()
         setScanningText()
         setupCollectionView()
         view.addSubview(fruitTypeCollectionView)
@@ -73,7 +77,8 @@ class ViewController: UIViewController {
         view.addSubview(silhouetteImage)
         view.addSubview(dummyImage)
         view.addSubview(namaBuah)
-        view.addSubview(loadingLabel)
+        view.addSubview(checkingLabel)
+        view.addSubview(scanningLabel)
         view.addSubview(scanningText)
         view.layer.addSublayer(helperDelegate.shapeLayer)
         view.addSubview(cancelButton)
@@ -123,42 +128,75 @@ class ViewController: UIViewController {
         dummyImage.image = UIImage(named: "\(jumlahBuah[2])Scan")
         dummyImage.isHidden = true
     }
-
+    
     /// Setup the text that appears when scanning
-    func scanningLabel(){
-        loadingLabel.isHidden = true
-        loadingLabel.text = "Scanning ."
+    func checking(){
+        checkingLabel.isHidden = true
+        checkingLabel.text = "Checking Fruit ."
         
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
             var string: String {
-                switch self.loadingLabel.text {
-                case "Scanning .":       return "Scanning .."
-                case "Scanning ..":      return "Scanning ..."
-                case "Scanning ...":     return "Scanning ."
-                default:                return "Scanning"
+                switch self.checkingLabel.text {
+                case "Checking Fruit .":       return "Checking Fruit .."
+                case "Checking Fruit ..":      return "Checking Fruit ..."
+                case "Checking Fruit ...":     return "Checking Fruit ."
+                default:                      return "Checking Fruit"
                 }
             }
-            self.loadingLabel.text = string
+            self.checkingLabel.text = string
         }
-        loadingLabel.textColor = .white
-        loadingLabel.frame = CGRect(x: view.frame.width / 2 - 50, y: view.frame.width / 2 + 100, width: 100, height: 100)
-        loadingLabel.textAlignment = .center
+        checkingLabel.textColor = .white
+        checkingLabel.frame = CGRect(x: view.frame.width / 2 - 65, y: view.frame.height / 2 - 125, width: 130, height: 100)
+        checkingLabel.textAlignment = .center
     }
     
-    /// View when scanning
+    func scanning(){
+        scanningLabel.isHidden = true
+        scanningLabel.text = "Scanning Fruit ."
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
+            var string: String {
+                switch self.scanningLabel.text {
+                case "Scanning Fruit .":       return "Scanning Fruit .."
+                case "Scanning Fruit ..":      return "Scanning Fruit ..."
+                case "Scanning Fruit ...":     return "Scanning Fruit ."
+                default:                      return "Scanning Fruit"
+                }
+            }
+            self.scanningLabel.text = string
+        }
+        scanningLabel.textColor = .white
+        scanningLabel.frame = CGRect(x: view.frame.width / 2 - 65, y: view.frame.height / 2 - 125, width: 130, height: 100)
+        scanningLabel.textAlignment = .center
+    }
+    
+    func gantiKeScan(){
+        if checkBuah == true{
+        scanningLabel.isHidden = false
+        checkingLabel.isHidden = true
+        }else{
+            scanningLabel.isHidden = true
+        }
+        
+        if scanningText.isHidden == false{
+            scanningLabel.isHidden = true
+        }
+    }
+    
     func hideOutlet(){
         startButton.isHidden = true
         fruitTypeCollectionView.isHidden = true
         scanningText.isHidden = true
         dummyImage.isHidden = false
-        loadingLabel.isHidden = false
         cancelButton.isHidden = false
+        
     }
     
     /// View when not scanning
     func showOutlet(){
+        checkingLabel.isHidden = true
+        scanningLabel.isHidden = true
         dummyImage.isHidden = true
-        loadingLabel.isHidden = true
         cancelButton.isHidden = true
         scanningText.isHidden = false
         fruitTypeCollectionView.isHidden = false
@@ -212,6 +250,7 @@ class ViewController: UIViewController {
     /// Startup the scan
     func startScanning(){
         DispatchQueue.main.async {
+            self.checkingLabel.isHidden = false
             self.resetVariables()
             self.hideOutlet()
             self.isChecking = true
@@ -227,6 +266,8 @@ class ViewController: UIViewController {
     /// Show the result if has not shown result
     @objc func showResult(){
         isFirstFrame = true
+        gantiKeScan()
+        
         if !hasShownResult {return}
         NilaiSementara.nilaiSementara = self.nilaiSementara
         
