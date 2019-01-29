@@ -8,10 +8,13 @@
 
 import UIKit
 
+/// Some animations to add to the view controller
 class AnimationHelper: UIViewController {
+    
     let shapeLayer = CAShapeLayer()
-    func showAnimate()
-    {
+    
+    /// Animation when the ViewController appears
+    func showAnimate(){
         self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
         self.view.alpha = 0.0;
         UIView.animate(withDuration: 0.25) {
@@ -20,8 +23,8 @@ class AnimationHelper: UIViewController {
         }
     }
     
-    func removeAnimate()
-    {
+    /// Animation when the ViewController disappears
+    func removeAnimate(){
         UIView.animate(withDuration: 0.25, animations: {
             self.view.transform = CGAffineTransform(translationX: 1.3, y: 1.3)
             self.view.alpha = 0.0;
@@ -32,10 +35,10 @@ class AnimationHelper: UIViewController {
         }
     }
     
-    //add loading bar yang merah merah muter
+    /// The red circle that appears when scanning and it's attributes
     func addLoading(){
-        let center = CGPoint(x: self.view.frame.width/2 - 2, y: self.view.frame.height/2 + 275)
-        let circularPath = UIBezierPath(arcCenter: center, radius: 39.5, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
+        let center = CGPoint(x: self.view.frame.width/2 - 2, y: self.view.frame.height - 95.5)
+        let circularPath = UIBezierPath(arcCenter: center, radius: 39, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
         
         shapeLayer.path = circularPath.cgPath
         shapeLayer.strokeColor = UIColor.red.cgColor
@@ -45,13 +48,12 @@ class AnimationHelper: UIViewController {
         shapeLayer.strokeEnd = 0
     }
     
-    //animasiin loading barnya
+    /// How the red circle behaves
     func animateCircle() {
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
         
         basicAnimation.toValue = 1
         basicAnimation.duration = 5
-        
         basicAnimation.fillMode = kCAFillModeForwards
         basicAnimation.isRemovedOnCompletion = true
         
@@ -60,6 +62,8 @@ class AnimationHelper: UIViewController {
 }
 
 extension AnimationHelper {
+    
+    /// The haptic that occurs when the user does something
     func hapticMedium(){
         let generatorButton = UIImpactFeedbackGenerator(style: .medium)
         generatorButton.prepare()
