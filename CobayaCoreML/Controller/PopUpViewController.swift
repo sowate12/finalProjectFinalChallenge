@@ -26,7 +26,16 @@ class PopUpViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var colorLabel: UILabel!
     @IBOutlet weak var textureLabel: UILabel!
-    
+    @IBAction func closePopUpButton(_ sender: Any) {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.view.transform = CGAffineTransform(translationX: 1.3, y: 1.3)
+            self.view.alpha = 0.0;
+        }) { (finished : Bool) in
+            if (finished){
+                self.view.removeFromSuperview()
+            }
+        }
+    }
     //MARK: - Outlet and Action
     @IBAction func showLessButton(_ sender: Any) {
         viewAnimationDelegate.hapticMedium()
@@ -35,7 +44,7 @@ class PopUpViewController: UIViewController {
             self.topGreenView.layoutIfNeeded()
             self.bottomWhiteView.layoutIfNeeded()
             self.topGreenView.center.y -= self.topGreenView.frame.height/2
-            self.bottomWhiteView.center.y -= self.bottomWhiteView.frame.height/4-40
+            self.bottomWhiteView.center.y -= self.bottomWhiteView.frame.height/4-60
          }, completion: nil)
         showMoreOutlet.isHidden = false
         showLessOutlet.isHidden = true
@@ -50,7 +59,7 @@ class PopUpViewController: UIViewController {
             self.topGreenView.layoutIfNeeded()
             self.bottomWhiteView.layoutIfNeeded()
             self.topGreenView.center.y += self.topGreenView.frame.height/2
-            self.bottomWhiteView.center.y += self.bottomWhiteView.frame.height/4-40
+            self.bottomWhiteView.center.y += self.bottomWhiteView.frame.height/4-60
         }, completion: nil)
         bottomWhiteView.isHidden = false
         showLessOutlet.isHidden = false
