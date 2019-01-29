@@ -19,12 +19,10 @@ class ViewController: UIViewController {
     var timer = Timer()
     var isFirstFrame : Bool = true
     var nilaiSementara : Float = 5
-    var totalNilai : Float = 0
     var isChecking : Bool = false
     var checkBuah = false
     var nilaiCounter = 0
     var buahCounter = 0
-    var filterCounter = 1
     var hasShownResult = false
     let generator = UINotificationFeedbackGenerator()
     let helperDelegate = AnimationHelper()
@@ -36,6 +34,7 @@ class ViewController: UIViewController {
 
     // MARK: IBOutlet
     @IBOutlet weak var silhouetteImage: UIImageView!
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var fruitTypeCollectionView: UICollectionView!
     @IBOutlet weak var startButton: UIButton!
     
@@ -77,14 +76,17 @@ class ViewController: UIViewController {
         view.addSubview(loadingLabel)
         view.addSubview(scanningText)
         view.layer.addSublayer(helperDelegate.shapeLayer)
+        view.addSubview(cancelButton)
     }
     
+    /// Setup the CollectionView
     func setupCollectionView(){
         fruitTypeCollectionView.center = CGPoint(x: view.frame.width / 2 - 0.5, y: view.frame.height - 100 )
         silhouetteImage.center = CGPoint(x: view.frame.width / 2, y: view.frame.height / 2 - 30)
         fruitTypeCollectionView.backgroundColor = UIColor.black.withAlphaComponent(0.0)
     }
     
+    /// Setup the Label in the middle of the silhouette
     func setScanningText(){
         let x = view.frame.width / 2
         let y = view.frame.height / 2
@@ -96,6 +98,7 @@ class ViewController: UIViewController {
         scanningText.text = "Ready to scan"
     }
     
+    /// Setup the Label containing fruit names
     func pasangNamaBuah(){
         let x = view.frame.width / 2
         let y = view.frame.height
@@ -106,17 +109,22 @@ class ViewController: UIViewController {
         namaBuah.text = "\(namaNamaBuah[2])"
     }
     
+    /// Setup the Cancel button, dummy image, and white circle in the middle
     func setupDummyImage(){
         let x = view.frame.width / 2
         let y = view.frame.height
         startButton.isUserInteractionEnabled = false
         startButton.frame = CGRect(x: x - 49.5, y: y - 144 , width: 96, height: 96)
         dummyImage.frame = CGRect(x: x - 49.5, y: y - 144, width: 96, height: 96)
+        cancelButton.frame = CGRect(x: 28, y: 53, width: 30, height: 30)
+        cancelButton.isHidden = true
+        cancelButton.layer.masksToBounds = true
         dummyImage.layer.masksToBounds = true
         dummyImage.image = UIImage(named: "\(jumlahBuah[2])Scan")
         dummyImage.isHidden = true
     }
 
+    /// Setup the text that appears when scanning
     func scanningLabel(){
         loadingLabel.isHidden = true
         loadingLabel.text = "Scanning ."
@@ -137,17 +145,24 @@ class ViewController: UIViewController {
         loadingLabel.textAlignment = .center
     }
     
+    /// View when scanning
     func hideOutlet(){
         startButton.isHidden = true
         fruitTypeCollectionView.isHidden = true
         scanningText.isHidden = true
+        dummyImage.isHidden = false
+        loadingLabel.isHidden = false
+        cancelButton.isHidden = false
     }
     
+    /// View when not scanning
     func showOutlet(){
-        startButton.isHidden = false
-        fruitTypeCollectionView.isHidden = false
-        silhouetteImage.isHidden = false
+        dummyImage.isHidden = true
+        loadingLabel.isHidden = true
+        cancelButton.isHidden = true
         scanningText.isHidden = false
+        fruitTypeCollectionView.isHidden = false
+        startButton.isHidden = false
     }
     
     deinit{
@@ -165,6 +180,25 @@ class ViewController: UIViewController {
         animateSilhouette()
     }
     
+    /// Reset the variables to default
+    func resetVariables(){
+        NilaiSementara.nilaiSementara = 0
+        nilaiSementara  = 5
+        nilaiCounter = 0
+        buahCounter = 0
+        isChecking = false
+        checkBuah = false
+        hasShownResult = false
+        isFirstFrame = true
+    }
+    
+    @IBAction func cancelButtonAction(_ sender: Any) {
+        helperDelegate.hapticMedium()
+        resetVariables()
+        showOutlet()
+    }
+    
+    /// Animating the silhouette
     func animateSilhouette(){
         DispatchQueue.main.async {
             UIView.animate(withDuration: 1.0, delay: 0, options: [.repeat, .autoreverse, .beginFromCurrentState], animations: {
@@ -175,51 +209,37 @@ class ViewController: UIViewController {
         }
     }
     
+    /// Startup the scan
     func startScanning(){
-        dummyImage.isHidden = false
-        helperDelegate.hapticMedium()
-        NilaiSementara.nilaiSementara = 0
-        self.nilaiSementara = 5
-        self.nilaiCounter = 0
-        self.buahCounter = 0
-        self.checkBuah = false
-        let animation1 = CountdownView.Animation.fadeIn
-        hideOutlet()
-        CountdownView.show(countdownFrom: 0.5  , spin: true, animation: animation1, autoHide: true, completion:  {
-            DispatchQueue.main.async {
-                self.loadingLabel.isHidden = false
-                self.isChecking = true
-                self.hasShownResult = true
-                self.helperDelegate.animateCircle()
-                self.generator.notificationOccurred(.success)
-            }
-        })
+        DispatchQueue.main.async {
+            self.resetVariables()
+            self.hideOutlet()
+            self.isChecking = true
+            self.hasShownResult = true
+            self.generator.notificationOccurred(.success)
+        }
     }
     
     func checkingResult(){
         self.timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(showResult), userInfo: nil, repeats: true)
     }
     
+    /// Show the result if has not shown result
     @objc func showResult(){
         isFirstFrame = true
         if !hasShownResult {return}
         NilaiSementara.nilaiSementara = self.nilaiSementara
         
         if nilaiCounter == 5 {
-            loadingLabel.isHidden = true
             hasShownResult = false
             self.isChecking = false
-            //membuat boolean false untuk scan ulang nanti
-            
-            dummyImage.isHidden = true
+
             showOutlet()
             helperDelegate.hapticMedium()
             let popUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PopUpView") as! PopUpViewController
             self.addChildViewController(popUpVC)
             popUpVC.view.frame = self.view.frame
             self.view.addSubview(popUpVC.view)
-            
-            //memunculkan viewcontroller lain
             popUpVC.didMove(toParentViewController: self)
         }
     }
