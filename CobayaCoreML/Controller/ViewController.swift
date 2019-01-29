@@ -167,6 +167,24 @@ class ViewController: UIViewController {
         }
     }
     
+//    func gakAdaBuah(){
+//        let alert = UIAlertController(title: "There's no fruit detected", message: "W", preferredStyle: UIAlertControllerStyle.alert)
+//        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+//        self.present(alert, animated: true, completion: nil)
+//        
+//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+//            switch action.style{
+//            case .default:
+//                print("default")
+//                
+//            case .cancel:
+//                print("cancel")
+//                
+//            case .destructive:
+//                print("destructive")
+//            }
+//    }))
+//    }
     
     func hideOutlet(){
         startButton.isHidden = true
