@@ -14,25 +14,25 @@ import CountdownView
 class ViewController: UIViewController {
 
     // MARK: Variables
-    var loadingLabel : UILabel = UILabel()
-    var checkingLabel : UILabel = UILabel()
-    var scanningLabel : UILabel = UILabel()
-    var jumlahBuah = ["","","apel","jeruk","tomato","",""]
-    var timer = Timer()
-    var isFirstFrame : Bool = true
-    var nilaiSementara : Float = 5
-    var isChecking : Bool = false
-    var checkBuah = false
     var nilaiCounter = 0
     var buahCounter = 0
+    var nilaiSementara : Float = 5
+    var namaNamaBuah = ["","","Fuji Apple","Orange", "Tomato","", ""]
+    var jumlahBuah = ["","","apel","jeruk","tomato","",""]
     var hasShownResult = false
+    var isFirstFrame : Bool = true
+    var isChecking : Bool = false
+    var checkBuah = false
+    var timer = Timer()
     let generator = UINotificationFeedbackGenerator()
-    let helperDelegate = AnimationHelper()
     var dummyImage : UIImageView = UIImageView()
     var namaBuah : UILabel = UILabel()
     var scanningText : UILabel = UILabel()
-    var namaNamaBuah = ["","","Fuji Apple","Orange", "Tomato","", ""]
+    var loadingLabel : UILabel = UILabel()
+    var checkingLabel : UILabel = UILabel()
+    var scanningLabel : UILabel = UILabel()
     var imageViewTransform = CGAffineTransform.identity
+    let helperDelegate = AnimationHelper()
 
     // MARK: IBOutlet
     @IBOutlet weak var silhouetteImage: UIImageView!
@@ -459,112 +459,3 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         }
     }
 }
-
-//
-//required init?(coder aDecoder: NSCoder) {
-//    super.init(coder: aDecoder)
-//
-//    let gesture = UIGestureRecognizer()
-//    gesture.delegate = self // Set Gesture delegate so that shouldRecognizeSimultaneouslyWithGestureRecognizer can be set to true on initialzing the UICollectionView
-//}
-//
-//func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-//    return true
-//}
-//
-
-//
-//@objc func rightSwiped()
-//{
-//    if filterCounter != 0 {
-//        filterCounter -= 1
-//    }
-//    print("right swiped ")
-//}
-//
-//@objc func leftSwiped()
-//{
-//    if filterCounter != 2 {
-//        filterCounter += 1
-//    }
-//    print("left swiped ")
-//}
-//
-//func taroGesture(){
-//    //------------right  swipe gestures in collectionView--------------//
-//    let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(ViewController.rightSwiped))
-//    swipeRight.direction = UISwipeGestureRecognizerDirection.right
-//
-//    //-----------left swipe gestures in collectionView--------------//
-//    let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(ViewController.leftSwiped))
-//    swipeLeft.direction = UISwipeGestureRecognizerDirection.left
-//}
-//    @IBOutlet weak var pilihBuah: UICollectionView!
-//extension ViewController : UIScrollViewDelegate
-//{
-//    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>)
-//    {
-//        let layout = self.pilihBuah.collectionViewLayout as! UICollectionViewFlowLayout
-//
-//        let cellWidthIncludingSpacing = layout.itemSize.width + layout.minimumLineSpacing
-//
-//        var offset = targetContentOffset.pointee
-//        let index = (offset.x + scrollView.contentInset.left) / cellWidthIncludingSpacing
-//        print(index)
-//        let roundedIndex = round(index)
-//
-//        offset = CGPoint(x: roundedIndex * cellWidthIncludingSpacing - scrollView.contentInset.left, y: -scrollView.contentInset.top)
-//        targetContentOffset.pointee = offset
-//
-//        let indexPet = self.pilihBuah.indexPathForItem(at: offset)
-//        self.pilihBuah.selectItem(at: indexPet, animated: true, scrollPosition: UICollectionViewScrollPosition.centeredHorizontally)
-//
-//    }
-//}
-//func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//    return jumlahBuah.count
-//    //objek dalam collection view
-//}
-//
-//func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//    let cell = pilihBuah.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? BuahCell
-//    cell?.imageBuah.image = UIImage(named: "\(jumlahBuah[indexPath.row])")
-//    cell?.contentView.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
-//    cell?.contentView.layer.cornerRadius = 38
-//    cell?.contentView.layer.masksToBounds = true
-//    //assign image ke dalam cell di collection view dan ubah ubah ukurannya
-//    return cell!
-//} kasksaksaks
-//
-//func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-//    return true
-//}
-//
-//func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//
-//}
-//            self.viewScore.isHidden = false
-//            self.dismissButton.isHidden = false
-//            self.isChecking = false
-//            self.dismissButton.frame = CGRect(x: 30, y: 70, width: 50, height: 50)
-//            self.dismissButton.backgroundColor = .white
-//            self.dismissButton.layer.cornerRadius = 10
-//            self.dismissButton.layer.masksToBounds = true
-//            self.view.addSubview(self.dismissButton)
-//
-//            let dismissButtonRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissButtonDidTap))
-//            self.dismissButton.addGestureRecognizer(dismissButtonRecognizer)
-//
-//            let previewLayer = self.viewScore
-//            let x = self.view.frame.width / 2 - 75
-//            let y = self.view.frame.height - 500
-//            previewLayer?.frame = CGRect(x: x, y: y, width: 150, height: 150)
-//            previewLayer?.backgroundColor = .white
-//            previewLayer?.layer.cornerRadius = 10
-//            previewLayer?.layer.masksToBounds = true
-//            self.view.addSubview(previewLayer!)
-//
-//            self.scoreLabel.text = String(format: "%.2f", self.nilaiSementara*10/self.timerTick)
-//
-//            self.nilaiSementara = 0
-//a aa a aa aa

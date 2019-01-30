@@ -9,6 +9,7 @@
 import UIKit
 
 class PopUpViewController: UIViewController {
+    
     //MARK: - Variabel
     let hijau = UIColor(rgb: 0x3D8238)
     let hijauTua = UIColor(rgb: 0x718821)
@@ -16,6 +17,8 @@ class PopUpViewController: UIViewController {
     let orange = UIColor(rgb: 0xE5711C)
     let merah = UIColor(rgb: 0xD42024)
     let viewAnimationDelegate = AnimationHelper()
+    
+    //MARK: - Outlet
     @IBOutlet weak var qualityLabel: UILabel!
     @IBOutlet weak var nilaiOutlet2: UILabel!
     @IBOutlet weak var showMoreOutlet: UIButton!
@@ -26,6 +29,7 @@ class PopUpViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var colorLabel: UILabel!
     @IBOutlet weak var textureLabel: UILabel!
+    
     @IBAction func closePopUpButton(_ sender: Any) {
         UIView.animate(withDuration: 0.25, animations: {
             self.view.transform = CGAffineTransform(translationX: 1.3, y: 1.3)
@@ -36,10 +40,10 @@ class PopUpViewController: UIViewController {
             }
         }
     }
-    //MARK: - Outlet and Action
+
     @IBAction func showLessButton(_ sender: Any) {
         viewAnimationDelegate.hapticMedium()
-        topGreenView.frame = CGRect(x: view.frame.width - view.frame.width + 16, y: view.frame.height / 2 - 100, width: 343, height: 168)
+        topGreenView.frame = CGRect(x: 16, y: view.frame.height / 2 - 100, width: 343, height: 168)
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
             self.topGreenView.layoutIfNeeded()
             self.bottomWhiteView.layoutIfNeeded()
@@ -50,9 +54,8 @@ class PopUpViewController: UIViewController {
         showLessOutlet.isHidden = true
         bottomWhiteView.isHidden = true
     }
+    
     @IBAction func showMoreDetailButton(_ sender: Any) {
-    //ketika pencet showmore, tunjukin view controller satu lagi
-      
         viewAnimationDelegate.hapticMedium()
         topGreenView.frame = CGRect(x: view.frame.width - view.frame.width + 16, y: 68, width: 343, height: 168)
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
@@ -65,7 +68,6 @@ class PopUpViewController: UIViewController {
         showLessOutlet.isHidden = false
         showMoreOutlet.isHidden = true
     }
-    //klklk
     
     //MARK: - Life Cycle
     override func viewDidLoad() {
@@ -80,6 +82,7 @@ class PopUpViewController: UIViewController {
         showMoreOutlet.isHidden = false
         
     }
+     
     //MARK: - Function
     func hasilScan() {
         let nilaiTotal = String(format: "%.1f", NilaiSementara.nilaiSementara)
