@@ -67,11 +67,20 @@
                                 <rect key="frame" x="26" y="205" width="323" height="316"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CSM-nt-NlY">
+                                <rect key="frame" x="26" y="25" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="closeWhite"/>
+                                <connections>
+                                    <action selector="cancelButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e9i-PC-WD8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="CSM-nt-NlY" id="48R-mV-UG7"/>
                         <outlet property="fruitTypeCollectionView" destination="0ze-pf-8qW" id="7Fv-Rf-1YA"/>
                         <outlet property="silhouetteImage" destination="Hv5-Wp-uPg" id="v8W-1L-YyB"/>
                         <outlet property="startButton" destination="6Qy-cD-faz" id="VbI-9n-W8T"/>
@@ -321,6 +330,7 @@
         <image name="apelSil2" width="500" height="497"/>
         <image name="arrowDown" width="500" height="217"/>
         <image name="arrowUp" width="500" height="239"/>
+        <image name="closeWhite" width="500" height="500"/>
         <image name="closeWhiteButton" width="500" height="500"/>
         <image name="lingkaran luar" width="500" height="500"/>
     </resources>
