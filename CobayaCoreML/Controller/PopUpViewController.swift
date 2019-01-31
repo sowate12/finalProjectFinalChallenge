@@ -30,6 +30,15 @@ class PopUpViewController: UIViewController {
     @IBOutlet weak var colorLabel: UILabel!
     @IBOutlet weak var textureLabel: UILabel!
     
+    //MARK: - Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+        
+        hasilScan()
+        setupView()
+    }
+    
     @IBAction func closePopUpButton(_ sender: Any) {
         UIView.animate(withDuration: 0.25, animations: {
             self.view.transform = CGAffineTransform(translationX: 1.3, y: 1.3)
@@ -69,18 +78,13 @@ class PopUpViewController: UIViewController {
         showMoreOutlet.isHidden = true
     }
     
-    //MARK: - Life Cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-        hasilScan()
+    func setupView(){
         topGreenView.frame = CGRect(x: view.frame.width - view.frame.width + 16, y: view.frame.height / 2 - 100, width: 343, height: 168)
         bottomWhiteView.frame = CGRect(x: view.frame.width - view.frame.width + 16, y: 224, width: 338, height: 467)
         topGreenView.layer.cornerRadius = 10
         topGreenView.layer.masksToBounds = true
         bottomWhiteView.isHidden = true
         showMoreOutlet.isHidden = false
-        
     }
      
     //MARK: - Function

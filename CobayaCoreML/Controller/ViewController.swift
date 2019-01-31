@@ -9,7 +9,6 @@
 import UIKit
 import AVKit
 import Vision
-import CountdownView
 
 class ViewController: UIViewController {
 
@@ -33,7 +32,7 @@ class ViewController: UIViewController {
     var scanningLabel : UILabel = UILabel()
     var imageViewTransform = CGAffineTransform.identity
     let helperDelegate = AnimationHelper()
-
+    
     // MARK: IBOutlet
     @IBOutlet weak var silhouetteImage: UIImageView!
     @IBOutlet weak var cancelButton: UIButton!
@@ -43,6 +42,7 @@ class ViewController: UIViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
         fruitTypeCollectionView.delegate = self
         fruitTypeCollectionView.dataSource = self
 
@@ -279,12 +279,18 @@ class ViewController: UIViewController {
 
             showOutlet()
             helperDelegate.hapticMedium()
-            let popUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PopUpView") as! PopUpViewController
-            self.addChildViewController(popUpVC)
-            popUpVC.view.frame = self.view.frame
-            self.view.addSubview(popUpVC.view)
-            popUpVC.didMove(toParentViewController: self)
+            moveController()
         }
+    }
+    
+    /// Move view controller
+    func moveController(){
+        let popUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PopUpView") as! PopUpViewController
+        self.addChildViewController(popUpVC)
+        popUpVC.view.frame = self.view.frame
+        self.view.addSubview(popUpVC.view)
+        popUpVC.didMove(toParentViewController: self)
+        
     }
 }
 
@@ -391,6 +397,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     }
     
     // MARK: Camera Output
+    
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         //coding yang dilakukan saat avfoundation memunculkan output
         if !self.isFirstFrame {return}
