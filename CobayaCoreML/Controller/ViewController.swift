@@ -26,6 +26,7 @@ class ViewController: UIViewController {
     let generator = UINotificationFeedbackGenerator()
     var dummyImage : UIImageView = UIImageView()
     var namaBuah : UILabel = UILabel()
+    var checkBuahCounter = 0
     var scanningText : UILabel = UILabel()
     var loadingLabel : UILabel = UILabel()
     var checkingLabel : UILabel = UILabel()
@@ -185,7 +186,18 @@ class ViewController: UIViewController {
         if scanningText.isHidden == false{
             scanningLabel.isHidden = true
         }
+        
+        if checkBuahCounter == 4{
+            checkingAlert()
+        }
     }
+    
+    func checkingAlert(){
+        let alert = UIAlertController(title: "There's No Fruit Detected", message: "Rescan Fruit", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     
     func hideOutlet(){
         startButton.isHidden = true
@@ -428,6 +440,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                 print(NilaiSementara.nilaiSementara)
             } else {
                 print(firstObservationResnet.identifier, firstObservationResnet.confidence)
+                self.checkBuahCounter += 1
             }
         }
         try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([requestResnet])
