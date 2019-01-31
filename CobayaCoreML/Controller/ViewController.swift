@@ -9,6 +9,7 @@
 import UIKit
 import AVKit
 import Vision
+import AVFoundation
 
 class ViewController: UIViewController {
 

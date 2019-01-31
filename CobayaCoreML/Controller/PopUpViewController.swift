@@ -34,6 +34,8 @@ class PopUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+        topGreenView.isUserInteractionEnabled = false
+        bottomWhiteView.isUserInteractionEnabled = false
         
         hasilScan()
         setupView()
@@ -122,9 +124,6 @@ class PopUpViewController: UIViewController {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        var touch: UITouch = touches.first!
-        
-        if touch.view != self.view{
         UIView.animate(withDuration: 0.25, animations: {
             self.view.transform = CGAffineTransform(translationX: 1.3, y: 1.3)
             self.view.alpha = 0.0;
@@ -132,8 +131,6 @@ class PopUpViewController: UIViewController {
             if (finished){
                 self.view.removeFromSuperview()
             }
-            }
-            
         }
     }
 }
