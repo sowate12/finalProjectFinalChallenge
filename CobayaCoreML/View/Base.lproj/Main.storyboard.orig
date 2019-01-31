@@ -64,12 +64,12 @@
                                 <rect key="frame" x="26" y="205" width="323" height="316"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CSM-nt-NlY">
-                                <rect key="frame" x="26" y="25" width="30" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qfH-IG-WSy">
+                                <rect key="frame" x="26" y="23" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="closeWhite"/>
                                 <connections>
-                                    <action selector="cancelButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e9i-PC-WD8"/>
+                                    <action selector="cancelButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cVp-VK-HYL"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -77,11 +77,10 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="cancelButton" destination="CSM-nt-NlY" id="48R-mV-UG7"/>
+                        <outlet property="cancelButton" destination="qfH-IG-WSy" id="gOH-MB-ZpL"/>
                         <outlet property="fruitTypeCollectionView" destination="0ze-pf-8qW" id="7Fv-Rf-1YA"/>
                         <outlet property="silhouetteImage" destination="Hv5-Wp-uPg" id="v8W-1L-YyB"/>
                         <outlet property="startButton" destination="6Qy-cD-faz" id="VbI-9n-W8T"/>
-                        <segue destination="S0h-iO-nwO" kind="show" identifier="moveController" id="z6w-7A-vV5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -301,7 +300,7 @@
                                 <color key="currentPageIndicatorTintColor" red="0.21480711820000001" green="0.30230099500000002" blue="0.33502671630000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </pageControl>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AC9-z7-cQL">
-                                <rect key="frame" x="125" y="731" width="124" height="47"/>
+                                <rect key="frame" x="128" y="412" width="124" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Skip"/>
                                 <connections>
@@ -326,10 +325,13 @@
     <resources>
         <image name="Group 2" width="16" height="16"/>
         <image name="apelSil2" width="500" height="497"/>
+<<<<<<< HEAD
         <image name="arrowDown" width="500" height="217"/>
         <image name="arrowUp" width="500" height="239"/>
-        <image name="closeWhite" width="500" height="500"/>
         <image name="closeWhiteButton" width="500" height="500"/>
+=======
+        <image name="closeWhite" width="500" height="500"/>
+>>>>>>> 12df0ff505c0776875cc192e46f711e4a693a930
         <image name="lingkaran luar" width="500" height="500"/>
     </resources>
 </document>

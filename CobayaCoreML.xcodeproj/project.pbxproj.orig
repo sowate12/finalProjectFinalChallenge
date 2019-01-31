@@ -439,7 +439,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 48LV8FDMZ8;
+<<<<<<< HEAD
+				DEVELOPMENT_TEAM = 6QYD6FW9B4;
+=======
+				DEVELOPMENT_TEAM = 38FBS5765W;
+>>>>>>> 9dd6a7d7ac5e4f896478ab6d6318df321770bed6
 				INFOPLIST_FILE = CobayaCoreML/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -458,7 +462,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6QYD6FW9B4;
+				DEVELOPMENT_TEAM = 38FBS5765W;
 				INFOPLIST_FILE = CobayaCoreML/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
