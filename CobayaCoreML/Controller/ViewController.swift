@@ -27,6 +27,7 @@ class ViewController: UIViewController {
     let generator = UINotificationFeedbackGenerator()
     var dummyImage : UIImageView = UIImageView()
     var namaBuah : UILabel = UILabel()
+    var checkBuahCounter = 0
     var scanningText : UILabel = UILabel()
     var loadingLabel : UILabel = UILabel()
     var checkingLabel : UILabel = UILabel()
@@ -39,6 +40,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var fruitTypeCollectionView: UICollectionView!
     @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var tutorialButton: UIButton!
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -83,6 +85,7 @@ class ViewController: UIViewController {
         view.addSubview(scanningText)
         view.layer.addSublayer(helperDelegate.shapeLayer)
         view.addSubview(cancelButton)
+        view.addSubview(tutorialButton)
     }
     
     /// Setup the CollectionView
@@ -184,7 +187,18 @@ class ViewController: UIViewController {
         if scanningText.isHidden == false{
             scanningLabel.isHidden = true
         }
+        
+        if checkBuahCounter == 4{
+            checkingAlert()
+        }
     }
+    
+    func checkingAlert(){
+        let alert = UIAlertController(title: "There's No Fruit Detected", message: "Rescan Fruit", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     
     func hideOutlet(){
         startButton.isHidden = true
@@ -239,6 +253,9 @@ class ViewController: UIViewController {
         showOutlet()
     }
     
+    @IBAction func tutorialButtonAction(_ sender: Any) {
+        performSegue(withIdentifier: "tutorial", sender: self)
+    }
     /// Animating the silhouette
     func animateSilhouette(){
         DispatchQueue.main.async {
@@ -424,6 +441,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                 print(NilaiSementara.nilaiSementara)
             } else {
                 print(firstObservationResnet.identifier, firstObservationResnet.confidence)
+                self.checkBuahCounter += 1
             }
         }
         try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([requestResnet])
