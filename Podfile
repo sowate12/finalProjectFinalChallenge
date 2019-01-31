@@ -6,6 +6,5 @@ target 'CobayaCoreML' do
   use_frameworks!
 
   # Pods for CobayaCoreML
-pod 'BubbleTransition', '~> 3.0.0'
 
 end
