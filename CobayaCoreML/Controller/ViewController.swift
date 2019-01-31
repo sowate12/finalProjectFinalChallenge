@@ -38,6 +38,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var fruitTypeCollectionView: UICollectionView!
     @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var tutorialButton: UIButton!
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -82,6 +83,7 @@ class ViewController: UIViewController {
         view.addSubview(scanningText)
         view.layer.addSublayer(helperDelegate.shapeLayer)
         view.addSubview(cancelButton)
+        view.addSubview(tutorialButton)
     }
     
     /// Setup the CollectionView
@@ -238,6 +240,9 @@ class ViewController: UIViewController {
         showOutlet()
     }
     
+    @IBAction func tutorialButtonAction(_ sender: Any) {
+        performSegue(withIdentifier: "tutorial", sender: self)
+    }
     /// Animating the silhouette
     func animateSilhouette(){
         DispatchQueue.main.async {

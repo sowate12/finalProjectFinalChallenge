@@ -23,6 +23,7 @@
 		991A601F213FCEC100FEAE4B /* CobayaCoreML.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 991A601D213FCEC100FEAE4B /* CobayaCoreML.xcdatamodeld */; };
 		991A6021213FCEC300FEAE4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 991A6020213FCEC300FEAE4B /* Assets.xcassets */; };
 		991A6024213FCEC300FEAE4B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 991A6022213FCEC300FEAE4B /* LaunchScreen.storyboard */; };
+		B070E4FC2202E26900D8C016 /* TipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B070E4FB2202E26900D8C016 /* TipsViewController.swift */; };
 		B58FDEA14CFB0BC5F148C750 /* Pods_CobayaCoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0383F4B03D809BD50F19F3D5 /* Pods_CobayaCoreML.framework */; };
 		E6FCE89521F9A9200019908D /* ColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FCE89421F9A9200019908D /* ColorHelper.swift */; };
 		E6FCE89721F9A9690019908D /* AnimationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FCE89621F9A9690019908D /* AnimationHelper.swift */; };
@@ -50,6 +51,7 @@
 		991A6023213FCEC300FEAE4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		991A6025213FCEC300FEAE4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9DC25B9C9EDF411828422139 /* Pods-CobayaCoreML.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CobayaCoreML.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CobayaCoreML/Pods-CobayaCoreML.debug.xcconfig"; sourceTree = "<group>"; };
+		B070E4FB2202E26900D8C016 /* TipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsViewController.swift; sourceTree = "<group>"; };
 		E6FCE89421F9A9200019908D /* ColorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHelper.swift; sourceTree = "<group>"; };
 		E6FCE89621F9A9690019908D /* AnimationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -92,6 +94,7 @@
 				08D7773121E876B50025CC0C /* ImageViewController.swift */,
 				08D7773221E876B60025CC0C /* TutorialPageViewController.swift */,
 				08D7773421E876B60025CC0C /* TutorialViewController.swift */,
+				B070E4FB2202E26900D8C016 /* TipsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 			files = (
 				991A6019213FCEC100FEAE4B /* ViewController.swift in Sources */,
 				6B3D55D221E34EF700E91E85 /* Warna.mlmodel in Sources */,
+				B070E4FC2202E26900D8C016 /* TipsViewController.swift in Sources */,
 				E6FCE89721F9A9690019908D /* AnimationHelper.swift in Sources */,
 				08D7773A21E876B60025CC0C /* TutorialViewController.swift in Sources */,
 				6BDEA49B21F5AD11007909B8 /* Jeruk100.mlmodel in Sources */,
@@ -420,7 +424,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6QYD6FW9B4;
+				DEVELOPMENT_TEAM = 56ZF7DLJQY;
 				INFOPLIST_FILE = CobayaCoreML/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -439,7 +443,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6QYD6FW9B4;
+				DEVELOPMENT_TEAM = 56ZF7DLJQY;
 				INFOPLIST_FILE = CobayaCoreML/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
