@@ -122,6 +122,9 @@ class PopUpViewController: UIViewController {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        var touch: UITouch = touches.first!
+        
+        if touch.view != self.view{
         UIView.animate(withDuration: 0.25, animations: {
             self.view.transform = CGAffineTransform(translationX: 1.3, y: 1.3)
             self.view.alpha = 0.0;
@@ -129,6 +132,8 @@ class PopUpViewController: UIViewController {
             if (finished){
                 self.view.removeFromSuperview()
             }
+            }
+            
         }
     }
 }

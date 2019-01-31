@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "97DAE1C3563FA10739DBD532AA11FAB7"
+               BlueprintIdentifier = "6AF3CB8DCD1C3D835256885C0AB1C5C3"
                BuildableName = "Pods_CobayaCoreML.framework"
                BlueprintName = "Pods-CobayaCoreML"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "97DAE1C3563FA10739DBD532AA11FAB7"
+            BlueprintIdentifier = "6AF3CB8DCD1C3D835256885C0AB1C5C3"
             BuildableName = "Pods_CobayaCoreML.framework"
             BlueprintName = "Pods-CobayaCoreML"
             ReferencedContainer = "container:Pods.xcodeproj">
