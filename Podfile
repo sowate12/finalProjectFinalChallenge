@@ -6,6 +6,6 @@ target 'CobayaCoreML' do
   use_frameworks!
 
   # Pods for CobayaCoreML
-pod "CountdownView"
+pod 'BubbleTransition', '~> 3.0.0'
 
 end

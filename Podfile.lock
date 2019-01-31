@@ -1,16 +1,16 @@
 PODS:
-  - CountdownView (0.1.2)
+  - BubbleTransition (3.0.2)
 
 DEPENDENCIES:
-  - CountdownView
+  - BubbleTransition (~> 3.0.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - CountdownView
+    - BubbleTransition
 
 SPEC CHECKSUMS:
-  CountdownView: 0f0f5cb346ca5d99342703c834d89598ca1893bd
+  BubbleTransition: 6bdf7d8af460b5c3696beb0adbf4bcb17176ee11
 
-PODFILE CHECKSUM: 2f26330c30f1e2f9859b79422241e6b5cc8185ed
+PODFILE CHECKSUM: 310adab8247cbcb40a777f7871e55c937c15b6e0
 
 COCOAPODS: 1.5.3
