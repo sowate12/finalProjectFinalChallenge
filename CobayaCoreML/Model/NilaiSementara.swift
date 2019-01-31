@@ -11,4 +11,5 @@ import Foundation
 struct NilaiSementara {
     static var nilaiSementara: Float = 0
     static var cellDiTengah : Bool = false
+    static var nilaiTekstur : Float = 5
 }
