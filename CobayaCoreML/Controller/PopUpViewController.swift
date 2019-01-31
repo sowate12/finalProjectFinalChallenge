@@ -58,7 +58,9 @@ class PopUpViewController: UIViewController {
     //MARK: - Function
     func hasilScan() {
         let nilaiTotal = String(format: "%.1f", NilaiSementara.nilaiSementara)
+        let nilaiTekstur = String(format: "%.1f", NilaiSementara.nilaiTekstur)
         self.nilaiOutlet2.text = "\(nilaiTotal) / "
+        self.textureLabel.text = "\(nilaiTekstur)"
         
         if NilaiSementara.nilaiSementara >= 9 && NilaiSementara.nilaiSementara <= 10{
             warnaAtas.backgroundColor = hijau

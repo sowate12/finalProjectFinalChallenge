@@ -31,6 +31,8 @@ class ViewController: UIViewController {
     var namaBuah : UILabel = UILabel()
     var scanningText : UILabel = UILabel()
     var namaNamaBuah = ["","","Fuji Apple","Orange", "Tomato","", ""]
+    var nilaiTekstur : Float = 5
+    var teksturCounter = 0
 
     // MARK: IBOutlet
     @IBOutlet weak var silhouetteImage: UIImageView!
@@ -162,6 +164,8 @@ class ViewController: UIViewController {
         helperDelegate.hapticMedium()
         //reset semua counter untuk scan menjadi 0
         NilaiSementara.nilaiSementara = 0
+        self.nilaiTekstur = 0
+        NilaiSementara.nilaiTekstur = 0
         self.nilaiSementara = 5
         self.nilaiCounter = 0
         self.buahCounter = 0
@@ -219,7 +223,7 @@ class ViewController: UIViewController {
         guard let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
         guard let model = try? VNCoreMLModel(for: Resnet50().model) else { return }
         guard let modelJeruk = try? VNCoreMLModel(for: Jeruk100().model) else {return}
-        guard let modelApel = try? VNCoreMLModel(for: AppleBagusAppleJelek().model) else {return}
+        guard let modelApel = try? VNCoreMLModel(for: Apel().model) else {return}
 
         //assign modelnya
         
@@ -236,6 +240,12 @@ class ViewController: UIViewController {
                 print(NilaiSementara.nilaiSementara)
             } else {
                 print(firstObservationResnet.identifier, firstObservationResnet.confidence)
+            }
+            
+            if self.buahCounter >= 3 && ((firstObservationResnet.identifier == "orange") || (firstObservationResnet.identifier == "pomegranate") || (firstObservationResnet.identifier == "Granny Smith") || (firstObservationResnet.identifier == "bell pepper")){
+                NilaiSementara.nilaiTekstur += firstObservationResnet.confidence
+            } else {
+                NilaiSementara.nilaiTekstur -= firstObservationResnet.confidence
             }
         }
         try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([requestResnet])
@@ -268,9 +278,9 @@ class ViewController: UIViewController {
                     guard let firstObservationApel = resultApel.first else {return}
                     print(firstObservationApel.identifier, firstObservationApel.confidence)
                     
-                    if (firstObservationApel.identifier == "Warna Bagus") {
+                    if (firstObservationApel.identifier == "Apel Bagus") {
                         self.nilaiSementara += firstObservationApel.confidence
-                    }else if (firstObservationApel.identifier == "Warna Jelek"){
+                    }else if (firstObservationApel.identifier == "Apel Jelek"){
                         self.nilaiSementara -= firstObservationApel.confidence
                     }
                     self.nilaiCounter += 1
