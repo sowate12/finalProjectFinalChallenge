@@ -114,7 +114,7 @@ class ViewController: UIViewController {
         namaBuah.text = "\(namaNamaBuah[2])"
     }
     
-    /// Setup the Cancel button, dummy image, and white circle in the middle
+    /// Setup the Cancel button, dummy image, and white circle in the middle s
     func setupDummyImage(){
         let x = view.frame.width / 2
         let y = view.frame.height
