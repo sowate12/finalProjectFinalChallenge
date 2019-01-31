@@ -3,25 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		065294A6607AC39EBF67A4C14041E753 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
-		07687A26A0366858E4784EFAA15DB22A /* Pods-CobayaCoreML-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 259678FDBBAB589A60C8EAE5ECE64471 /* Pods-CobayaCoreML-dummy.m */; };
-		5CD2C5A41477A97D2A0FC1F0A12D9DA4 /* Pods-CobayaCoreML-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A3580874ADF20FF25D890572D816FC0E /* Pods-CobayaCoreML-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F75E8C07DB6D40D98BD901D373BFFE93 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
+		1F1C10866DDE5C11ED8D051F639E3E7F /* Pods-CobayaCoreML-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 259678FDBBAB589A60C8EAE5ECE64471 /* Pods-CobayaCoreML-dummy.m */; };
+		5A582DB92B754319C0EA09312087A593 /* Pods-CobayaCoreML-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A3580874ADF20FF25D890572D816FC0E /* Pods-CobayaCoreML-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A69A490E89FCC75892DF3D3C867E5788 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		E0DADC8F03DE266DA8CE49A2D7182245 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 38830187D9E171E7B43047ED06A08ADC;
-			remoteInfo = BubbleTransition;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		259678FDBBAB589A60C8EAE5ECE64471 /* Pods-CobayaCoreML-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CobayaCoreML-dummy.m"; sourceTree = "<group>"; };
@@ -32,34 +21,33 @@
 		5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		82C10B8405B699BAEB11119344950FD0 /* Pods-CobayaCoreML.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CobayaCoreML.release.xcconfig"; sourceTree = "<group>"; };
 		8753B1F5257AD80B58F3A213ACF91462 /* Pods-CobayaCoreML.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CobayaCoreML.debug.xcconfig"; sourceTree = "<group>"; };
-		928393A3FBF1583918D641EA8492FC3D /* Pods_CobayaCoreML.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CobayaCoreML.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		904BE1107639E5384928FF7DF2841617 /* Pods_CobayaCoreML.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_CobayaCoreML.framework; path = "Pods-CobayaCoreML.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A3580874ADF20FF25D890572D816FC0E /* Pods-CobayaCoreML-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CobayaCoreML-umbrella.h"; sourceTree = "<group>"; };
-		CB117E89F59BDC8B1B574EEA89483ECF /* BubbleTransition.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BubbleTransition.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC49FFF74001525BA5E53EAD12D3271C /* Pods-CobayaCoreML.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-CobayaCoreML.modulemap"; sourceTree = "<group>"; };
 		FDAC9353ACB7CB8300CAC7C0E88EDC87 /* Pods-CobayaCoreML-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CobayaCoreML-acknowledgements.markdown"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		25A7583D6B2F7A80DC68A5274161066A /* Frameworks */ = {
+		F88497D56769E9D1E976D691705F4EF7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F75E8C07DB6D40D98BD901D373BFFE93 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D756DA14932342915B06B5A24C295CE3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				065294A6607AC39EBF67A4C14041E753 /* Foundation.framework in Frameworks */,
+				A69A490E89FCC75892DF3D3C867E5788 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1FA9094429A79CB38A0AA65E95DC348E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				904BE1107639E5384928FF7DF2841617 /* Pods_CobayaCoreML.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		5E0D919E635D23B70123790B8308F8EF /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -81,17 +69,9 @@
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				B8C17D57F982D97B0CFF768B9B68279E /* Pods */,
-				CAC13642CA619805B3856F9AA3692937 /* Products */,
+				1FA9094429A79CB38A0AA65E95DC348E /* Products */,
 				69C41720E03E52F4D8CBF10F30A19EA0 /* Targets Support Files */,
 			);
-			sourceTree = "<group>";
-		};
-		B8C17D57F982D97B0CFF768B9B68279E /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -100,15 +80,6 @@
 				5E0D919E635D23B70123790B8308F8EF /* iOS */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		CAC13642CA619805B3856F9AA3692937 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				CB117E89F59BDC8B1B574EEA89483ECF /* BubbleTransition.framework */,
-				928393A3FBF1583918D641EA8492FC3D /* Pods_CobayaCoreML.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		D70F662404BBCA9E0DF3BB4B09E22A21 /* Pods-CobayaCoreML */ = {
@@ -132,57 +103,32 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		04333389C8450AA486FA870E0F4C6D90 /* Headers */ = {
+		94E85738E5037ECB46708666643FF7A4 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FB34507DB06496526FD8E7AC015E8FD0 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5CD2C5A41477A97D2A0FC1F0A12D9DA4 /* Pods-CobayaCoreML-umbrella.h in Headers */,
+				5A582DB92B754319C0EA09312087A593 /* Pods-CobayaCoreML-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		38830187D9E171E7B43047ED06A08ADC /* BubbleTransition */ = {
+		6AF3CB8DCD1C3D835256885C0AB1C5C3 /* Pods-CobayaCoreML */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 80A1B16222697C3079DBB028B38F7DBE /* Build configuration list for PBXNativeTarget "BubbleTransition" */;
+			buildConfigurationList = 6D716D3D025A6D71C4E678B0C4EF6C9B /* Build configuration list for PBXNativeTarget "Pods-CobayaCoreML" */;
 			buildPhases = (
-				DC1D173450EDD70117FFCBCB61B9624E /* Sources */,
-				D756DA14932342915B06B5A24C295CE3 /* Frameworks */,
-				04333389C8450AA486FA870E0F4C6D90 /* Headers */,
+				66D63C8F50C9DFA114DB03E832F729A0 /* Sources */,
+				F88497D56769E9D1E976D691705F4EF7 /* Frameworks */,
+				94E85738E5037ECB46708666643FF7A4 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-			);
-			name = BubbleTransition;
-			productName = BubbleTransition;
-			productReference = CB117E89F59BDC8B1B574EEA89483ECF /* BubbleTransition.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		97DAE1C3563FA10739DBD532AA11FAB7 /* Pods-CobayaCoreML */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 070BC089E5D5F2F28622B2A1057ECDA1 /* Build configuration list for PBXNativeTarget "Pods-CobayaCoreML" */;
-			buildPhases = (
-				4B2BB66C870E70532DF58FCB31E748E3 /* Sources */,
-				25A7583D6B2F7A80DC68A5274161066A /* Frameworks */,
-				FB34507DB06496526FD8E7AC015E8FD0 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				04B5B549016FE5954D7C2D5ACD5E9221 /* PBXTargetDependency */,
 			);
 			name = "Pods-CobayaCoreML";
 			productName = "Pods-CobayaCoreML";
-			productReference = 928393A3FBF1583918D641EA8492FC3D /* Pods_CobayaCoreML.framework */;
+			productReference = 904BE1107639E5384928FF7DF2841617 /* Pods_CobayaCoreML.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -202,42 +148,25 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = CAC13642CA619805B3856F9AA3692937 /* Products */;
+			productRefGroup = 1FA9094429A79CB38A0AA65E95DC348E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				38830187D9E171E7B43047ED06A08ADC /* BubbleTransition */,
-				97DAE1C3563FA10739DBD532AA11FAB7 /* Pods-CobayaCoreML */,
+				6AF3CB8DCD1C3D835256885C0AB1C5C3 /* Pods-CobayaCoreML */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		4B2BB66C870E70532DF58FCB31E748E3 /* Sources */ = {
+		66D63C8F50C9DFA114DB03E832F729A0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07687A26A0366858E4784EFAA15DB22A /* Pods-CobayaCoreML-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DC1D173450EDD70117FFCBCB61B9624E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				1F1C10866DDE5C11ED8D051F639E3E7F /* Pods-CobayaCoreML-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		04B5B549016FE5954D7C2D5ACD5E9221 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BubbleTransition;
-			target = 38830187D9E171E7B43047ED06A08ADC /* BubbleTransition */;
-			targetProxy = E0DADC8F03DE266DA8CE49A2D7182245 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		5DC0083F57E9AB706B46C5B5D73B38D8 /* Debug */ = {
@@ -303,74 +232,7 @@
 			};
 			name = Debug;
 		};
-		5DE9C09CABC87284BD73605CFE56B93D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/BubbleTransition/BubbleTransition-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/BubbleTransition/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/BubbleTransition/BubbleTransition.modulemap";
-				PRODUCT_MODULE_NAME = BubbleTransition;
-				PRODUCT_NAME = BubbleTransition;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		800B29ED8468641FA791FADB8CAE065B /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 82C10B8405B699BAEB11119344950FD0 /* Pods-CobayaCoreML.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-CobayaCoreML/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-CobayaCoreML/Pods-CobayaCoreML.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		A0331AA9B4F7E08AA8A13202AAC87E34 /* Debug */ = {
+		8FEBA3D8CFFE2C71E6D8149FB9709109 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8753B1F5257AD80B58F3A213ACF91462 /* Pods-CobayaCoreML.debug.xcconfig */;
 			buildSettings = {
@@ -388,7 +250,11 @@
 				INFOPLIST_FILE = "Target Support Files/Pods-CobayaCoreML/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-CobayaCoreML/Pods-CobayaCoreML.modulemap";
 				OTHER_LDFLAGS = "";
@@ -398,13 +264,50 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
+		};
+		914C1ACE12B868DF4994EC954AAD4993 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 82C10B8405B699BAEB11119344950FD0 /* Pods-CobayaCoreML.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-CobayaCoreML/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-CobayaCoreML/Pods-CobayaCoreML.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
 		};
 		AEEA80476F98EB645C4DD53EB2BB6D88 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -464,50 +367,9 @@
 			};
 			name = Release;
 		};
-		F2A4ADC5C4778418315129A4CD4A6DCF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/BubbleTransition/BubbleTransition-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/BubbleTransition/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/BubbleTransition/BubbleTransition.modulemap";
-				PRODUCT_MODULE_NAME = BubbleTransition;
-				PRODUCT_NAME = BubbleTransition;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		070BC089E5D5F2F28622B2A1057ECDA1 /* Build configuration list for PBXNativeTarget "Pods-CobayaCoreML" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A0331AA9B4F7E08AA8A13202AAC87E34 /* Debug */,
-				800B29ED8468641FA791FADB8CAE065B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -517,11 +379,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		80A1B16222697C3079DBB028B38F7DBE /* Build configuration list for PBXNativeTarget "BubbleTransition" */ = {
+		6D716D3D025A6D71C4E678B0C4EF6C9B /* Build configuration list for PBXNativeTarget "Pods-CobayaCoreML" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5DE9C09CABC87284BD73605CFE56B93D /* Debug */,
-				F2A4ADC5C4778418315129A4CD4A6DCF /* Release */,
+				8FEBA3D8CFFE2C71E6D8149FB9709109 /* Debug */,
+				914C1ACE12B868DF4994EC954AAD4993 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
