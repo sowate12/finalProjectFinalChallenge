@@ -115,7 +115,7 @@ class ViewController: UIViewController {
         namaBuah.text = "\(namaNamaBuah[2])"
     }
     
-    /// Setup the Cancel button, dummy image, and white circle in the middle
+    /// Setup the Cancel button, dummy image, and white circle in the middle s
     func setupDummyImage(){
         let x = view.frame.width / 2
         let y = view.frame.height
@@ -407,8 +407,9 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         
         guard let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
         guard let model = try? VNCoreMLModel(for: Resnet50().model) else { return }
-        guard let modelJeruk = try? VNCoreMLModel(for: Jeruk100().model) else {return}
-        guard let modelApel = try? VNCoreMLModel(for: AppleBagusAppleJelek().model) else {return}
+        guard let modelJeruk = try? VNCoreMLModel(for: Jeruk().model) else {return}
+        guard let modelApel = try? VNCoreMLModel(for: Apel().model) else {return}
+        guard let modelTomat = try? VNCoreMLModel(for: Tomat().model) else {return}
         
         let requestResnet = VNCoreMLRequest(model: model){ (finishReq2, err) in
             guard let resultsResnet = finishReq2.results as? [VNClassificationObservation] else {return}
@@ -455,14 +456,28 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                     guard let firstObservationApel = resultApel.first else {return}
                     print(firstObservationApel.identifier, firstObservationApel.confidence)
                     
-                    if (firstObservationApel.identifier == "Warna Bagus") {
+                    if (firstObservationApel.identifier == "Apel Bagus") {
                         self.nilaiSementara += firstObservationApel.confidence
-                    }else if (firstObservationApel.identifier == "Warna Jelek"){
+                    }else if (firstObservationApel.identifier == "Apel Jelek"){
                         self.nilaiSementara -= firstObservationApel.confidence
                     }
                     self.nilaiCounter += 1
                 }
                 try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([requestApel])
+            }else if self.silhouetteImage.image == UIImage(named: "tomatoSil2"){
+                let requestTomat = VNCoreMLRequest(model: modelTomat){(finishedReq3, err) in
+                    guard let resultTomat = finishedReq3.results as? [VNClassificationObservation] else {return}
+                    guard let firstObservationTomat = resultTomat.first else {return}
+                    print(firstObservationTomat.identifier, firstObservationTomat.confidence)
+                    
+                    if (firstObservationTomat.identifier == "Tomat Bagus") {
+                        self.nilaiSementara += firstObservationTomat.confidence
+                    }else if (firstObservationTomat.identifier == "Tomat Jelek"){
+                        self.nilaiSementara -= firstObservationTomat.confidence
+                    }
+                    self.nilaiCounter += 1
+                }
+                try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([requestTomat])
             }
         }
     }
