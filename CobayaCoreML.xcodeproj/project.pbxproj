@@ -40,7 +40,6 @@
 		6B3D55D121E34EF700E91E85 /* Warna.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Warna.mlmodel; sourceTree = "<group>"; };
 		6BDEA49A21F5AD11007909B8 /* Jeruk100.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Jeruk100.mlmodel; sourceTree = "<group>"; };
 		6BDEA49C21F5AD7E007909B8 /* Resnet50.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Resnet50.mlmodel; sourceTree = "<group>"; };
-		90CB01208168A185E1BC3B64 /* Pods-CobayaCoreML.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CobayaCoreML.release.xcconfig"; path = "Pods/Target Support Files/Pods-CobayaCoreML/Pods-CobayaCoreML.release.xcconfig"; sourceTree = "<group>"; };
 		991A6013213FCEC100FEAE4B /* CobayaCoreML.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CobayaCoreML.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		991A6016213FCEC100FEAE4B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		991A6018213FCEC100FEAE4B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,7 +48,6 @@
 		991A6020213FCEC300FEAE4B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		991A6023213FCEC300FEAE4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		991A6025213FCEC300FEAE4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9DC25B9C9EDF411828422139 /* Pods-CobayaCoreML.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CobayaCoreML.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CobayaCoreML/Pods-CobayaCoreML.debug.xcconfig"; sourceTree = "<group>"; };
 		E6FCE89421F9A9200019908D /* ColorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHelper.swift; sourceTree = "<group>"; };
 		E6FCE89621F9A9690019908D /* AnimationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,21 +94,11 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		75E56375F50D4D516340BDE8 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				9DC25B9C9EDF411828422139 /* Pods-CobayaCoreML.debug.xcconfig */,
-				90CB01208168A185E1BC3B64 /* Pods-CobayaCoreML.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		991A600A213FCEC100FEAE4B = {
 			isa = PBXGroup;
 			children = (
 				991A6015213FCEC100FEAE4B /* CobayaCoreML */,
 				991A6014213FCEC100FEAE4B /* Products */,
-				75E56375F50D4D516340BDE8 /* Pods */,
 				C2B2B14F5A3732FA04CBF1B3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -416,7 +404,6 @@
 		};
 		991A6029213FCEC300FEAE4B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9DC25B9C9EDF411828422139 /* Pods-CobayaCoreML.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -435,7 +422,6 @@
 		};
 		991A602A213FCEC300FEAE4B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 90CB01208168A185E1BC3B64 /* Pods-CobayaCoreML.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
