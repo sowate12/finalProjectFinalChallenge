@@ -434,7 +434,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         guard let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
         guard let model = try? VNCoreMLModel(for: Resnet50().model) else { return }
         guard let modelJeruk = try? VNCoreMLModel(for: Jeruk().model) else {return}
-        guard let modelApel = try? VNCoreMLModel(for: ApelBaru().model) else {return}
+        guard let modelApel = try? VNCoreMLModel(for: Apel1().model) else {return}
         guard let modelTomat = try? VNCoreMLModel(for: Tomat().model) else {return}
         
         let requestResnet = VNCoreMLRequest(model: model){ (finishReq2, err) in
