@@ -34,14 +34,13 @@ class PopUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-        topGreenView.isUserInteractionEnabled = false
-        bottomWhiteView.isUserInteractionEnabled = false
         
         hasilScan()
         setupView()
     }
     
     @IBAction func closePopUpButton(_ sender: Any) {
+        screenShotMethod()
         UIView.animate(withDuration: 0.25, animations: {
             self.view.transform = CGAffineTransform(translationX: 1.3, y: 1.3)
             self.view.alpha = 0.0;
@@ -124,6 +123,7 @@ class PopUpViewController: UIViewController {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        screenShotMethod()
         UIView.animate(withDuration: 0.25, animations: {
             self.view.transform = CGAffineTransform(translationX: 1.3, y: 1.3)
             self.view.alpha = 0.0;
@@ -132,6 +132,17 @@ class PopUpViewController: UIViewController {
                 self.view.removeFromSuperview()
             }
         }
+    }
+    
+    func screenShotMethod() {
+        //Create the UIImage
+        guard let layer = UIApplication.shared.keyWindow?.layer else { return }
+        UIGraphicsBeginImageContextWithOptions(layer.frame.size, true, 0)
+        view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        guard let image = UIGraphicsGetImageFromCurrentImageContext() else {return}
+        UIGraphicsEndImageContext()
+        
+        NilaiSementara.gambarSS = image
     }
 }
 

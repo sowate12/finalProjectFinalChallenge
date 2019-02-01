@@ -10,6 +10,7 @@ import UIKit
 import AVKit
 import Vision
 import AVFoundation
+import NVActivityIndicatorView
 
 class ViewController: UIViewController {
 
@@ -36,11 +37,13 @@ class ViewController: UIViewController {
     let helperDelegate = AnimationHelper()
     
     // MARK: IBOutlet
+    @IBOutlet weak var buttonReview: UIButton!
     @IBOutlet weak var silhouetteImage: UIImageView!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var fruitTypeCollectionView: UICollectionView!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var tutorialButton: UIButton!
+    @IBOutlet weak var scanningIcon: NVActivityIndicatorView!
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -54,11 +57,13 @@ class ViewController: UIViewController {
         
         checkingResult()
         helperDelegate.addLoading()
+        
         setupView()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        setupButton()
         let indexPath = IndexPath(item: 2, section: 0)
         self.fruitTypeCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         self.fruitTypeCollectionView.decelerationRate = UIScrollViewDecelerationRateFast
@@ -75,6 +80,7 @@ class ViewController: UIViewController {
         gantiKeScan()
         setScanningText()
         setupCollectionView()
+        setupIcon()
         view.addSubview(fruitTypeCollectionView)
         view.addSubview(startButton)
         view.addSubview(silhouetteImage)
@@ -83,9 +89,11 @@ class ViewController: UIViewController {
         view.addSubview(checkingLabel)
         view.addSubview(scanningLabel)
         view.addSubview(scanningText)
+        view.addSubview(scanningIcon)
         view.layer.addSublayer(helperDelegate.shapeLayer)
         view.addSubview(cancelButton)
         view.addSubview(tutorialButton)
+        view.addSubview(buttonReview)
     }
     
     /// Setup the CollectionView
@@ -118,6 +126,19 @@ class ViewController: UIViewController {
         namaBuah.text = "\(namaNamaBuah[2])"
     }
     
+    func setupButton(){
+        let y = view.frame.height
+        buttonReview.frame = CGRect(x: 50, y: y - 300 , width: 96, height: 96)
+        buttonReview.setImage(#imageLiteral(resourceName: "bg polos kotak hijau"), for: .normal)
+        buttonReview.backgroundColor?.withAlphaComponent(0.0)
+    }
+    
+    func setupIcon(){
+        let x = view.frame.width / 2
+        let y = view.frame.height
+        scanningIcon.frame = CGRect(x: x - 25, y: y / 2 - 25 , width: 50 , height: 50)
+    }
+    
     /// Setup the Cancel button, dummy image, and white circle in the middle s
     func setupDummyImage(){
         let x = view.frame.width / 2
@@ -136,15 +157,16 @@ class ViewController: UIViewController {
     /// Setup the text that appears when scanning
     func checking(){
         checkingLabel.isHidden = true
-        checkingLabel.text = "Checking \r\n if it is a Fruit ."
+        checkingLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        checkingLabel.text = "Detecting Fruit ."
         
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
             var string: String {
                 switch self.checkingLabel.text {
-                case "Checking \r\n if it is a Fruit .":       return "Checking \r\n if it is a Fruit .."
-                case "Checking \r\n if it is a Fruit ..":      return "Checking \r\n if it is a Fruit ..."
-                case "Checking \r\n if it is a Fruit ...":     return "Checking \r\n if it is a Fruit ."
-                default:                      return "Checking \r\n if it is a Fruit"
+                case "Detecting Fruit .":       return "Detecting Fruit .."
+                case "Detecting Fruit ..":      return "Detecting Fruit ..."
+                case "Detecting Fruit ...":     return "Detecting Fruit ."
+                default:                      return "Detecting Fruit"
                 }
             }
             self.checkingLabel.text = string
@@ -157,6 +179,7 @@ class ViewController: UIViewController {
     
     func scanning(){
         scanningLabel.isHidden = true
+        scanningLabel.font = UIFont.boldSystemFont(ofSize: 20)
         scanningLabel.text = "Scanning Fruit ."
         
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
@@ -183,13 +206,12 @@ class ViewController: UIViewController {
         }else{
             scanningLabel.isHidden = true
         }
-        
         if scanningText.isHidden == false{
             scanningLabel.isHidden = true
         }
-        
-        if checkBuahCounter == 4{
+        if checkBuahCounter == 10{
             checkingAlert()
+            checkBuahCounter = 0
         }
     }
     
@@ -199,18 +221,17 @@ class ViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    
     func hideOutlet(){
         startButton.isHidden = true
         fruitTypeCollectionView.isHidden = true
         scanningText.isHidden = true
         dummyImage.isHidden = false
         cancelButton.isHidden = false
-        
     }
     
     /// View when not scanning
     func showOutlet(){
+        scanningIcon.stopAnimating()
         checkingLabel.isHidden = true
         scanningLabel.isHidden = true
         dummyImage.isHidden = true
@@ -253,9 +274,14 @@ class ViewController: UIViewController {
         showOutlet()
     }
     
+    @IBAction func buttonBackToReview(_ sender: Any) {
+        moveController()
+    }
+    
     @IBAction func tutorialButtonAction(_ sender: Any) {
         performSegue(withIdentifier: "tutorial", sender: self)
     }
+    
     /// Animating the silhouette
     func animateSilhouette(){
         DispatchQueue.main.async {
@@ -285,6 +311,7 @@ class ViewController: UIViewController {
     
     /// Show the result if has not shown result
     @objc func showResult(){
+        setupButton()
         isFirstFrame = true
         gantiKeScan()
         
@@ -335,6 +362,7 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
         dummyImage.image = UIImage(named: "\(jumlahBuah[indexPath.row])Scan")
         namaBuah.text = "\(namaNamaBuah[indexPath.row])"
         if cell?.ditengah == true && NilaiSementara.cellDiTengah == true {
+            scanningIcon.startAnimating()
             startScanning()
             cell?.ditengah = false
             NilaiSementara.cellDiTengah = false
@@ -500,3 +528,4 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         }
     }
 }
+

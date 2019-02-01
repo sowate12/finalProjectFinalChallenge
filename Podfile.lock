@@ -1,3 +1,18 @@
-PODFILE CHECKSUM: 1f0649e2d83e6c57817f5e3479e6fd7c2940fbd5
+PODS:
+  - NVActivityIndicatorView (4.6.1):
+    - NVActivityIndicatorView/Presenter (= 4.6.1)
+  - NVActivityIndicatorView/Presenter (4.6.1)
+
+DEPENDENCIES:
+  - NVActivityIndicatorView
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - NVActivityIndicatorView
+
+SPEC CHECKSUMS:
+  NVActivityIndicatorView: 4ca19fccc84595a78957336a086d00a49be6ce61
+
+PODFILE CHECKSUM: 22aa6375efdd6d13fe94079c5c9ea4a6a385caec
 
 COCOAPODS: 1.5.3
