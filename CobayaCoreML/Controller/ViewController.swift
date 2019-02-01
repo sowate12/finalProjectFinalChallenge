@@ -275,6 +275,8 @@ class ViewController: UIViewController {
             self.isChecking = true
             self.hasShownResult = true
             self.generator.notificationOccurred(.success)
+            
+            
         }
     }
     
@@ -411,6 +413,14 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         let dataOutput = AVCaptureVideoDataOutput()
         dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
         captureSession.addOutput(dataOutput)
+        
+        
+        ///enable auto focus
+        if(captureDevice.isFocusModeSupported(.continuousAutoFocus)) {
+            try! captureDevice.lockForConfiguration()
+            captureDevice.focusMode = .continuousAutoFocus
+            captureDevice.unlockForConfiguration()
+        }
     }
     
     // MARK: Camera Output
