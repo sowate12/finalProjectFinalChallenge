@@ -647,7 +647,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <connections>
                                     <action selector="buttonLayer9:" destination="sjp-pV-Ueb" eventType="touchUpInside" id="pgS-96-Emh"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="HTr-wd-UfK"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="Wgp-d4-4q3"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zsC-SG-IZ7" userLabel="Button Layer 8">
@@ -711,7 +711,7 @@
                                 </constraints>
                                 <connections>
                                     <action selector="skipButton:" destination="sjp-pV-Ueb" eventType="touchUpInside" id="FA4-fI-jTz"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="imA-OV-mlN"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="skip" id="iac-zg-NIh"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -937,6 +937,6 @@
         <image name="tutorial button" width="500" height="441"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="imA-OV-mlN"/>
+        <segue reference="iac-zg-NIh"/>
     </inferredMetricsTieBreakers>
 </document>
