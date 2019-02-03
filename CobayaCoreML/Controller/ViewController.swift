@@ -114,7 +114,7 @@ class ViewController: UIViewController {
         namaBuah.text = "\(namaNamaBuah[2])"
     }
     
-    /// Setup the Cancel button, dummy image, and white circle in the middle
+    /// Setup the Cancel button, dummy image, and white circle in the middle s
     func setupDummyImage(){
         let x = view.frame.width / 2
         let y = view.frame.height
@@ -285,7 +285,7 @@ class ViewController: UIViewController {
     
     /// Move view controller
     func moveController(){
-        let popUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PopUpView") as! PopUpViewController
+        let popUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ResultView") as! ResultViewController
         self.addChildViewController(popUpVC)
         popUpVC.view.frame = self.view.frame
         self.view.addSubview(popUpVC.view)
