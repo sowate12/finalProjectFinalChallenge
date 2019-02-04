@@ -464,18 +464,9 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         let dataOutput = AVCaptureVideoDataOutput()
         dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
         captureSession.addOutput(dataOutput)
-        
-        
-        ///enable auto focus
-        if(captureDevice.isFocusModeSupported(.continuousAutoFocus)) {
-            try! captureDevice.lockForConfiguration()
-            captureDevice.focusMode = .continuousAutoFocus
-            captureDevice.unlockForConfiguration()
-        }
     }
     
     // MARK: Camera Output
-    
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         //coding yang dilakukan saat avfoundation memunculkan output
         if !self.isFirstFrame {return}

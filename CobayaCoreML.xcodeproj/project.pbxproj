@@ -200,7 +200,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0940;
-				ORGANIZATIONNAME = "Sania Monica";
+				ORGANIZATIONNAME = "Keenan Warouw";
 				TargetAttributes = {
 					991A6012213FCEC100FEAE4B = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -444,7 +444,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6QYD6FW9B4;
-
 				INFOPLIST_FILE = CobayaCoreML/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
