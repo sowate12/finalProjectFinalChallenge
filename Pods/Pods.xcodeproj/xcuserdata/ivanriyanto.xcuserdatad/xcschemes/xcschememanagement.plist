@@ -4,16 +4,15 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>CobayaCoreML.xcscheme</key>
+		<key>Pods-CobayaCoreML.xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>CobayaCoreML.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
-		</dict>
 	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict/>
 </dict>
 </plist>

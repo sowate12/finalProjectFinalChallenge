@@ -101,7 +101,7 @@ class ResultViewController: UIViewController {
         textView.textAlignment = .center
         textView.textColor = UIColor.white
         textView.backgroundColor = UIColor.clear
-        textView.font = UIFont.systemFont(ofSize: 30)
+        textView.font = UIFont.systemFont(ofSize: 20)
         return textView
     }()
     
@@ -218,7 +218,7 @@ class ResultViewController: UIViewController {
         textView.textAlignment = .left
         textView.textColor = UIColor.black
         textView.backgroundColor = UIColor.clear
-        textView.font = UIFont.systemFont(ofSize: 30)
+        textView.font = UIFont.systemFont(ofSize: 20)
         return textView
     }()
     
@@ -229,7 +229,7 @@ class ResultViewController: UIViewController {
         textView.textAlignment = .left
         textView.textColor = UIColor.black
         textView.backgroundColor = UIColor.clear
-        textView.font = UIFont.systemFont(ofSize: 30)
+        textView.font = UIFont.systemFont(ofSize: 20)
         return textView
     }()
     

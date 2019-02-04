@@ -26,6 +26,7 @@ class ViewController: UIViewController {
     let generator = UINotificationFeedbackGenerator()
     var dummyImage : UIImageView = UIImageView()
     var namaBuah : UILabel = UILabel()
+    var checkBuahCounter = 0
     var scanningText : UILabel = UILabel()
     var loadingLabel : UILabel = UILabel()
     var checkingLabel : UILabel = UILabel()
@@ -38,6 +39,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var fruitTypeCollectionView: UICollectionView!
     @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var tutorialButton: UIButton!
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -82,6 +84,7 @@ class ViewController: UIViewController {
         view.addSubview(scanningText)
         view.layer.addSublayer(helperDelegate.shapeLayer)
         view.addSubview(cancelButton)
+        //view.addSubview(tutorialButton)
     }
     
     /// Setup the CollectionView
@@ -183,7 +186,18 @@ class ViewController: UIViewController {
         if scanningText.isHidden == false{
             scanningLabel.isHidden = true
         }
+        
+        if checkBuahCounter == 4{
+            checkingAlert()
+        }
     }
+    
+    func checkingAlert(){
+        let alert = UIAlertController(title: "There's No Fruit Detected", message: "Rescan Fruit", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     
     func hideOutlet(){
         startButton.isHidden = true
@@ -238,6 +252,9 @@ class ViewController: UIViewController {
         showOutlet()
     }
     
+    @IBAction func tutorialButtonAction(_ sender: Any) {
+        performSegue(withIdentifier: "tutorial", sender: self)
+    }
     /// Animating the silhouette
     func animateSilhouette(){
         DispatchQueue.main.async {
@@ -258,6 +275,8 @@ class ViewController: UIViewController {
             self.isChecking = true
             self.hasShownResult = true
             self.generator.notificationOccurred(.success)
+            
+            
         }
     }
     
@@ -394,6 +413,14 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         let dataOutput = AVCaptureVideoDataOutput()
         dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
         captureSession.addOutput(dataOutput)
+        
+        
+        ///enable auto focus
+        if(captureDevice.isFocusModeSupported(.continuousAutoFocus)) {
+            try! captureDevice.lockForConfiguration()
+            captureDevice.focusMode = .continuousAutoFocus
+            captureDevice.unlockForConfiguration()
+        }
     }
     
     // MARK: Camera Output
@@ -406,8 +433,9 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         
         guard let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
         guard let model = try? VNCoreMLModel(for: Resnet50().model) else { return }
-        guard let modelJeruk = try? VNCoreMLModel(for: Jeruk100().model) else {return}
-        guard let modelApel = try? VNCoreMLModel(for: AppleBagusAppleJelek().model) else {return}
+        guard let modelJeruk = try? VNCoreMLModel(for: Jeruk().model) else {return}
+        guard let modelApel = try? VNCoreMLModel(for: Apel1().model) else {return}
+        guard let modelTomat = try? VNCoreMLModel(for: Tomat().model) else {return}
         
         let requestResnet = VNCoreMLRequest(model: model){ (finishReq2, err) in
             guard let resultsResnet = finishReq2.results as? [VNClassificationObservation] else {return}
@@ -422,6 +450,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                 print(NilaiSementara.nilaiSementara)
             } else {
                 print(firstObservationResnet.identifier, firstObservationResnet.confidence)
+                self.checkBuahCounter += 1
             }
         }
         try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([requestResnet])
@@ -454,14 +483,28 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                     guard let firstObservationApel = resultApel.first else {return}
                     print(firstObservationApel.identifier, firstObservationApel.confidence)
                     
-                    if (firstObservationApel.identifier == "Warna Bagus") {
+                    if (firstObservationApel.identifier == "Apel Bagus") {
                         self.nilaiSementara += firstObservationApel.confidence
-                    }else if (firstObservationApel.identifier == "Warna Jelek"){
+                    }else if (firstObservationApel.identifier == "Apel Jelek"){
                         self.nilaiSementara -= firstObservationApel.confidence
                     }
                     self.nilaiCounter += 1
                 }
                 try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([requestApel])
+            }else if self.silhouetteImage.image == UIImage(named: "tomatoSil2"){
+                let requestTomat = VNCoreMLRequest(model: modelTomat){(finishedReq3, err) in
+                    guard let resultTomat = finishedReq3.results as? [VNClassificationObservation] else {return}
+                    guard let firstObservationTomat = resultTomat.first else {return}
+                    print(firstObservationTomat.identifier, firstObservationTomat.confidence)
+                    
+                    if (firstObservationTomat.identifier == "Tomat Bagus") {
+                        self.nilaiSementara += firstObservationTomat.confidence
+                    }else if (firstObservationTomat.identifier == "Tomat Jelek"){
+                        self.nilaiSementara -= firstObservationTomat.confidence
+                    }
+                    self.nilaiCounter += 1
+                }
+                try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([requestTomat])
             }
         }
     }
