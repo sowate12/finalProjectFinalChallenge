@@ -30,6 +30,7 @@ class ResultViewController: UIViewController {
         let imageView = UIImageView()
         //This code enable autolayout
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.masksToBounds = true
         imageView.backgroundColor = UIColor.green
         return imageView
     }()
@@ -49,7 +50,7 @@ class ResultViewController: UIViewController {
         textView.textAlignment = .center
         textView.textColor = UIColor.white
         textView.backgroundColor = UIColor.clear
-        textView.font = UIFont.systemFont(ofSize: 30)
+        textView.font = UIFont(name: "Biko", size: 30)
         return textView
     }()
     
@@ -68,7 +69,7 @@ class ResultViewController: UIViewController {
         textView.textAlignment = .right
         textView.textColor = UIColor.white
         textView.backgroundColor = UIColor.clear
-        textView.font = UIFont.systemFont(ofSize: 70)
+        textView.font = UIFont(name: "Biko-Bold", size: 90)
         return textView
     }()
     
@@ -79,7 +80,7 @@ class ResultViewController: UIViewController {
         textView.textAlignment = .center
         textView.textColor = UIColor.white
         textView.backgroundColor = UIColor.clear
-        textView.font = UIFont.systemFont(ofSize: 70)
+        textView.font = UIFont(name: "Biko-Light", size: 90)
         return textView
     }()
     
@@ -90,7 +91,7 @@ class ResultViewController: UIViewController {
         textView.textAlignment = .center
         textView.textColor = UIColor.white
         textView.backgroundColor = UIColor.clear
-        textView.font = UIFont.systemFont(ofSize: 40)
+        textView.font = UIFont(name: "Biko-Bold", size: 50)
         return textView
     }()
     
@@ -101,7 +102,7 @@ class ResultViewController: UIViewController {
         textView.textAlignment = .center
         textView.textColor = UIColor.white
         textView.backgroundColor = UIColor.clear
-        textView.font = UIFont.systemFont(ofSize: 20)
+        textView.font = UIFont(name: "Biko", size: 30)
         return textView
     }()
     
@@ -247,11 +248,10 @@ class ResultViewController: UIViewController {
         setupLayout()
         bottomWhiteView.isHidden = true
         
-        
-        
     }
     
     func setupView(){
+        view.addSubview(bottomWhiteView)
         view.addSubview(topGreenView)
         view.addSubview(viewGabungan)
         viewGabungan.addSubview(yourResultIsText)
@@ -259,7 +259,6 @@ class ResultViewController: UIViewController {
         viewGabungan.addSubview(garisLabel)
         viewGabungan.addSubview(sepuluhLabel)
         viewGabungan.addSubview(qualityLabel)
-        view.addSubview(bottomWhiteView)
         bottomWhiteView.addSubview(colorLabel)
         bottomWhiteView.addSubview(descriptionLabel)
         bottomWhiteView.addSubview(tipsLabel)
@@ -267,33 +266,15 @@ class ResultViewController: UIViewController {
         view.addSubview(closeButton)
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch: UITouch = touches.first!
-        
-        if touch.view != self.view{
-            UIView.animate(withDuration: 0.25, animations: {
-                self.view.transform = CGAffineTransform(translationX: 1.3, y: 1.3)
-                self.view.alpha = 0.0;
-            }) { (finished : Bool) in
-                if (finished){
-                    self.view.removeFromSuperview()
-                }
-            }
-            
-        }
-    }
-    
     
     //LessDetail
     func setupLayout(){
-        
         //Kotak Hijau
         
         topGreenView.centerXAnchor.constraint(equalTo : view.centerXAnchor).isActive = true
         topGreenView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         topGreenView.widthAnchor.constraint(equalToConstant: 343).isActive = true
         topGreenView.heightAnchor.constraint(equalToConstant: 343).isActive = true
-        
         
         //Close Button
         closeButton.topAnchor.constraint(equalTo: topGreenView.topAnchor, constant : 25).isActive = true
@@ -305,7 +286,8 @@ class ResultViewController: UIViewController {
         bottomWhiteView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         bottomWhiteView.widthAnchor.constraint(equalToConstant: 343).isActive = true
         bottomWhiteView.heightAnchor.constraint(equalToConstant: 400).isActive = true
-        bottomWhiteView.topAnchor.constraint(equalTo: topGreenView.bottomAnchor).isActive = true
+        bottomWhiteView.topAnchor.constraint(equalTo: topGreenView.bottomAnchor, constant : -20).isActive = true
+        bottomWhiteView.layer.cornerRadius = 20
         
         //ViewUnderYourResultIsText
         viewGabungan.topAnchor.constraint(equalTo: topGreenView.topAnchor, constant: 50).isActive = true
@@ -326,26 +308,26 @@ class ResultViewController: UIViewController {
         showMoreOrLessButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -130).isActive = true
         
         //NilaiOutlet2
-        nilaiOutlet2.topAnchor.constraint(equalTo: yourResultIsText.topAnchor, constant: 40).isActive = true
+        nilaiOutlet2.topAnchor.constraint(equalTo: yourResultIsText.topAnchor, constant: 55).isActive = true
         nilaiOutlet2.heightAnchor.constraint(equalToConstant: 100).isActive = true
         nilaiOutlet2.widthAnchor.constraint(equalToConstant: 150).isActive = true
         nilaiOutlet2.rightAnchor.constraint(equalTo:garisLabel.rightAnchor, constant: -30).isActive = true
         
         
         //GarisLabel
-        garisLabel.topAnchor.constraint(equalTo: yourResultIsText.topAnchor, constant: 37).isActive = true
+        garisLabel.topAnchor.constraint(equalTo: yourResultIsText.topAnchor, constant: 57).isActive = true
         garisLabel.heightAnchor.constraint(equalToConstant: 100).isActive = true
         garisLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
         garisLabel.rightAnchor.constraint(equalTo: sepuluhLabel.rightAnchor, constant: -40).isActive = true
         
         //SepuluhLabel
-        sepuluhLabel.topAnchor.constraint(equalTo: yourResultIsText.topAnchor, constant: 67).isActive = true
+        sepuluhLabel.topAnchor.constraint(equalTo: yourResultIsText.topAnchor, constant: 87).isActive = true
         sepuluhLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         sepuluhLabel.widthAnchor.constraint(equalToConstant: 70).isActive = true
         sepuluhLabel.rightAnchor.constraint(equalTo: viewGabungan.rightAnchor, constant: -50).isActive = true
         
         //QualityLabel
-        qualityLabel.topAnchor.constraint(equalTo: viewGabungan.topAnchor, constant: 135).isActive = true
+        qualityLabel.topAnchor.constraint(equalTo: viewGabungan.topAnchor, constant: 155).isActive = true
         qualityLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
         qualityLabel.leftAnchor.constraint(equalTo: viewGabungan.leftAnchor).isActive = true
         qualityLabel.rightAnchor.constraint(equalTo: viewGabungan.rightAnchor).isActive = true
@@ -380,6 +362,7 @@ class ResultViewController: UIViewController {
             qualityLabel.text = "Great Eye!"
             colorLabel.text = "Excellent!"
             descriptionLabel.text = colorDescription[4]
+            tipsLabel.text = tips.randomElement()
             
             
         }else if NilaiSementara.nilaiSementara >= 8 && NilaiSementara.nilaiSementara < 9 {
@@ -387,25 +370,48 @@ class ResultViewController: UIViewController {
             qualityLabel.text = "Sweet"
             colorLabel.text = "Good!"
             descriptionLabel.text = colorDescription[3]
+            tipsLabel.text = tips.randomElement()
             
         }else if NilaiSementara.nilaiSementara >= 7 && NilaiSementara.nilaiSementara < 8 {
             topGreenView.backgroundColor = orangeKuning
             qualityLabel.text = "Okay."
             colorLabel.text = "Average"
             descriptionLabel.text = colorDescription[2]
+            tipsLabel.text = tips.randomElement()
             
         }else if NilaiSementara.nilaiSementara >= 5 && NilaiSementara.nilaiSementara < 7 {
             topGreenView.backgroundColor = orange
             qualityLabel.text = "Almost There..."
             colorLabel.text = "Not Good"
             descriptionLabel.text = colorDescription[1]
+            tipsLabel.text = tips.randomElement()
             
         }else {
             topGreenView.backgroundColor = merah
             qualityLabel.text = "Meh."
             colorLabel.text = "Poor"
             descriptionLabel.text = colorDescription[0]
+            tipsLabel.text = tips.randomElement()
             
+        }
+    }
+    
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        screenShotMethod()
+        let touch: UITouch? = touches.first
+        
+        if touch?.view != topGreenView && touch?.view != bottomWhiteView && touch?.view != viewGabungan && touch?.view != nilaiOutlet2{
+            UIView.animate(withDuration: 0.25, animations: {
+                self.view.transform = CGAffineTransform(translationX: 1.3, y: 1.3)
+                self.view.alpha = 0.0;
+            }) { (finished : Bool) in
+                if (finished){
+                    self.view.removeFromSuperview()
+                }
+            }
+        } else {
+            print("anjing")
         }
     }
     
