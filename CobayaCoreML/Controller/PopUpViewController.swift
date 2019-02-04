@@ -17,6 +17,16 @@ class PopUpViewController: UIViewController {
     let orange = UIColor(rgb: 0xE5711C)
     let merah = UIColor(rgb: 0xD42024)
     let viewAnimationDelegate = AnimationHelper()
+    var tips : [String] = ["Check the texture of the fruit again, make sure that it's firm ",
+                           "Don't forget to check the smell too.",
+                           "A sweet smell from the fruit indicates it has sweet flavour",
+                           "If the fruit is starting to tender, it means it's starting to over ripe. Better eat that fast!","If the fruit smells good, time for you to grab the fruit!"]
+    var colorDescription : [String] = ["It doesn't looks that fresh and the texture isn't quite                  good",
+                                       "It doesn't looks that fresh and the texture isn't quite good ",
+                                       "It looks a bit fresh and the texture is quite good",
+                                       "It looks quite fresh and the texture is nice",
+                                       "It looks deliciously fresh and its dazzlingly clean"]
+    
     
     //MARK: - Outlet
     @IBOutlet weak var qualityLabel: UILabel!
@@ -28,7 +38,6 @@ class PopUpViewController: UIViewController {
     @IBOutlet weak var bottomWhiteView: UIView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var colorLabel: UILabel!
-    @IBOutlet weak var textureLabel: UILabel!
     
     //MARK: - Life Cycle
     override func viewDidLoad() {
@@ -55,7 +64,7 @@ class PopUpViewController: UIViewController {
 
     @IBAction func showLessButton(_ sender: Any) {
         viewAnimationDelegate.hapticMedium()
-        topGreenView.frame = CGRect(x: 16, y: view.frame.height / 2 - 100, width: 343, height: 168)
+        topGreenView.frame = CGRect(x: 16, y: view.frame.height / 2 - 100, width: 343, height: 343)
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
             self.topGreenView.layoutIfNeeded()
             self.bottomWhiteView.layoutIfNeeded()
@@ -69,7 +78,7 @@ class PopUpViewController: UIViewController {
     
     @IBAction func showMoreDetailButton(_ sender: Any) {
         viewAnimationDelegate.hapticMedium()
-        topGreenView.frame = CGRect(x: view.frame.width - view.frame.width + 16, y: 68, width: 343, height: 168)
+        topGreenView.frame = CGRect(x: view.frame.width - view.frame.width + 16, y: 68, width: 343, height: 343)
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
             self.topGreenView.layoutIfNeeded()
             self.bottomWhiteView.layoutIfNeeded()
@@ -82,45 +91,53 @@ class PopUpViewController: UIViewController {
     }
     
     func setupView(){
-        topGreenView.frame = CGRect(x: view.frame.width - view.frame.width + 16, y: view.frame.height / 2 - 100, width: 343, height: 168)
-        bottomWhiteView.frame = CGRect(x: view.frame.width - view.frame.width + 16, y: 224, width: 338, height: 467)
+       // topGreenView.frame = CGRect(x: view.frame.width - view.frame.width + 16, y: view.frame.height / 2 - 80, width: 343, height: 343)
+       // bottomWhiteView.frame = CGRect(x: view.frame.width - view.frame.width + 16, y: 224, width: 338, height: 467)
+       // warnaAtas.frame = CGRect(x: view.frame.width - view.frame.width + 16, y: view.frame.height / 2 - 80, width: 343, height: 343)
         topGreenView.layer.cornerRadius = 10
         topGreenView.layer.masksToBounds = true
         bottomWhiteView.isHidden = true
         showMoreOutlet.isHidden = false
     }
-     
+    
+    
+    
     //MARK: - Function
     func hasilScan() {
         let nilaiTotal = String(format: "%.1f", NilaiSementara.nilaiSementara)
-        self.nilaiOutlet2.text = "\(nilaiTotal) / "
+        self.nilaiOutlet2.text = "\(nilaiTotal)"
         
         if NilaiSementara.nilaiSementara >= 9 && NilaiSementara.nilaiSementara <= 10{
             warnaAtas.backgroundColor = hijau
             qualityLabel.text = "Great Eye!"
-            colorLabel.text = ""
-            textureLabel.text = ""
+            colorLabel.text = "Excellent!"
+            descriptionLabel.text = colorDescription[0]
+            
             
         }else if NilaiSementara.nilaiSementara >= 8 && NilaiSementara.nilaiSementara < 9 {
             warnaAtas.backgroundColor = hijauTua
             qualityLabel.text = "Sweet"
-            colorLabel.text = ""
-            textureLabel.text = ""
+            colorLabel.text = "Good!"
+            descriptionLabel.text = colorDescription[1]
+        
         }else if NilaiSementara.nilaiSementara >= 7 && NilaiSementara.nilaiSementara < 8 {
             warnaAtas.backgroundColor = orangeKuning
             qualityLabel.text = "Okay."
-            colorLabel.text = ""
-            textureLabel.text = ""
+            colorLabel.text = "Average"
+            descriptionLabel.text = colorDescription[2]
+       
         }else if NilaiSementara.nilaiSementara >= 5 && NilaiSementara.nilaiSementara < 7 {
             warnaAtas.backgroundColor = orange
             qualityLabel.text = "Almost There..."
-            colorLabel.text = ""
-            textureLabel.text = ""
+            colorLabel.text = "Not Good"
+            descriptionLabel.text = colorDescription[3]
+            
         }else {
             warnaAtas.backgroundColor = merah
             qualityLabel.text = "Meh."
-            colorLabel.text = ""
-            textureLabel.text = ""
+            colorLabel.text = "Poor"
+            descriptionLabel.text = colorDescription[4]
+
         }
     }
     

@@ -98,9 +98,13 @@ class ViewController: UIViewController {
         view.addSubview(scanningIcon)
         view.layer.addSublayer(helperDelegate.shapeLayer)
         view.addSubview(cancelButton)
+<<<<<<< HEAD
+        //view.addSubview(tutorialButton)
+=======
         view.addSubview(tutorialButton)
         view.addSubview(buttonReview)
         view.addSubview(activityIndicator)
+>>>>>>> 38abf2110100f6c830a68e8666501c893b76baf0
     }
     
     /// Setup the CollectionView
@@ -464,9 +468,18 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         let dataOutput = AVCaptureVideoDataOutput()
         dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
         captureSession.addOutput(dataOutput)
+        
+        
+        ///enable auto focus
+        if(captureDevice.isFocusModeSupported(.continuousAutoFocus)) {
+            try! captureDevice.lockForConfiguration()
+            captureDevice.focusMode = .continuousAutoFocus
+            captureDevice.unlockForConfiguration()
+        }
     }
     
     // MARK: Camera Output
+    
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         //coding yang dilakukan saat avfoundation memunculkan output
         if !self.isFirstFrame {return}
