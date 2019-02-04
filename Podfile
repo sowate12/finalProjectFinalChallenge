@@ -6,5 +6,6 @@ target 'CobayaCoreML' do
   use_frameworks!
 
   # Pods for CobayaCoreML
+pod 'NVActivityIndicatorView'
 
 end

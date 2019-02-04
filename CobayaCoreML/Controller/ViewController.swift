@@ -9,6 +9,8 @@
 import UIKit
 import AVKit
 import Vision
+import AVFoundation
+import NVActivityIndicatorView
 
 class ViewController: UIViewController {
 
@@ -22,10 +24,12 @@ class ViewController: UIViewController {
     var isFirstFrame : Bool = true
     var isChecking : Bool = false
     var checkBuah = false
+    var hasSpinned = false
     var timer = Timer()
     let generator = UINotificationFeedbackGenerator()
     var dummyImage : UIImageView = UIImageView()
     var namaBuah : UILabel = UILabel()
+    var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView()
     var checkBuahCounter = 0
     var scanningText : UILabel = UILabel()
     var loadingLabel : UILabel = UILabel()
@@ -35,15 +39,21 @@ class ViewController: UIViewController {
     let helperDelegate = AnimationHelper()
     
     // MARK: IBOutlet
+    @IBOutlet weak var buttonReview: UIButton!
     @IBOutlet weak var silhouetteImage: UIImageView!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var fruitTypeCollectionView: UICollectionView!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var tutorialButton: UIButton!
+    @IBOutlet weak var scanningIcon: NVActivityIndicatorView!
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(true, forKey: "OnBoardingComplete")
+        userDefaults.synchronize()
 
         fruitTypeCollectionView.delegate = self
         fruitTypeCollectionView.dataSource = self
@@ -54,10 +64,12 @@ class ViewController: UIViewController {
         checkingResult()
         helperDelegate.addLoading()
         setupView()
+        
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        setupButton()
         let indexPath = IndexPath(item: 2, section: 0)
         self.fruitTypeCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         self.fruitTypeCollectionView.decelerationRate = UIScrollViewDecelerationRateFast
@@ -74,6 +86,7 @@ class ViewController: UIViewController {
         gantiKeScan()
         setScanningText()
         setupCollectionView()
+        setupIcon()
         view.addSubview(fruitTypeCollectionView)
         view.addSubview(startButton)
         view.addSubview(silhouetteImage)
@@ -82,9 +95,12 @@ class ViewController: UIViewController {
         view.addSubview(checkingLabel)
         view.addSubview(scanningLabel)
         view.addSubview(scanningText)
+        view.addSubview(scanningIcon)
         view.layer.addSublayer(helperDelegate.shapeLayer)
         view.addSubview(cancelButton)
-        //view.addSubview(tutorialButton)
+        view.addSubview(tutorialButton)
+        view.addSubview(buttonReview)
+        view.addSubview(activityIndicator)
     }
     
     /// Setup the CollectionView
@@ -117,6 +133,24 @@ class ViewController: UIViewController {
         namaBuah.text = "\(namaNamaBuah[2])"
     }
     
+    func setupButton(){
+        let y = view.frame.height
+        buttonReview.frame = CGRect(x: 50, y: y - 300 , width: 96, height: 96)
+        buttonReview.setImage(NilaiSementara.gambarSS, for: .normal)
+        buttonReview.layer.cornerRadius = 20
+        buttonReview.layer.masksToBounds = true
+        tutorialButton.frame = CGRect(x: view.frame.width - 59, y: 53, width: 25 , height: 25)
+    }
+    
+    func setupIcon(){
+        let x = view.frame.width / 2
+        let y = view.frame.height
+        scanningIcon.frame = CGRect(x: x - 25, y: y / 2 - 25 , width: 50 , height: 50)
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.white
+    }
+    
     /// Setup the Cancel button, dummy image, and white circle in the middle s
     func setupDummyImage(){
         let x = view.frame.width / 2
@@ -135,15 +169,16 @@ class ViewController: UIViewController {
     /// Setup the text that appears when scanning
     func checking(){
         checkingLabel.isHidden = true
-        checkingLabel.text = "Checking \r\n if it is a Fruit ."
+        checkingLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        checkingLabel.text = "Detecting Fruit ."
         
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
             var string: String {
                 switch self.checkingLabel.text {
-                case "Checking \r\n if it is a Fruit .":       return "Checking \r\n if it is a Fruit .."
-                case "Checking \r\n if it is a Fruit ..":      return "Checking \r\n if it is a Fruit ..."
-                case "Checking \r\n if it is a Fruit ...":     return "Checking \r\n if it is a Fruit ."
-                default:                      return "Checking \r\n if it is a Fruit"
+                case "Detecting Fruit .":       return "Detecting Fruit .."
+                case "Detecting Fruit ..":      return "Detecting Fruit ..."
+                case "Detecting Fruit ...":     return "Detecting Fruit ."
+                default:                      return "Detecting Fruit"
                 }
             }
             self.checkingLabel.text = string
@@ -156,6 +191,7 @@ class ViewController: UIViewController {
     
     func scanning(){
         scanningLabel.isHidden = true
+        scanningLabel.font = UIFont.boldSystemFont(ofSize: 20)
         scanningLabel.text = "Scanning Fruit ."
         
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
@@ -177,18 +213,21 @@ class ViewController: UIViewController {
     
     func gantiKeScan(){
         if checkBuah == true{
-        scanningLabel.isHidden = false
-        checkingLabel.isHidden = true
+            scanningLabel.isHidden = false
+            checkingLabel.isHidden = true
+            if hasSpinned == false{
+                helperDelegate.animateCircle()
+                hasSpinned = true
+            }
         }else{
             scanningLabel.isHidden = true
         }
-        
         if scanningText.isHidden == false{
             scanningLabel.isHidden = true
         }
-        
-        if checkBuahCounter == 4{
+        if checkBuahCounter == 10{
             checkingAlert()
+            checkBuahCounter = 0
         }
     }
     
@@ -198,18 +237,18 @@ class ViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    
     func hideOutlet(){
         startButton.isHidden = true
         fruitTypeCollectionView.isHidden = true
         scanningText.isHidden = true
         dummyImage.isHidden = false
         cancelButton.isHidden = false
-        
     }
     
     /// View when not scanning
     func showOutlet(){
+//        scanningIcon.stopAnimating()
+        activityIndicator.stopAnimating()
         checkingLabel.isHidden = true
         scanningLabel.isHidden = true
         dummyImage.isHidden = true
@@ -236,6 +275,7 @@ class ViewController: UIViewController {
     
     /// Reset the variables to default
     func resetVariables(){
+        hasSpinned = false
         NilaiSementara.nilaiSementara = 0
         nilaiSementara  = 5
         nilaiCounter = 0
@@ -252,9 +292,14 @@ class ViewController: UIViewController {
         showOutlet()
     }
     
+    @IBAction func buttonBackToReview(_ sender: Any) {
+        moveController()
+    }
+    
     @IBAction func tutorialButtonAction(_ sender: Any) {
         performSegue(withIdentifier: "tutorial", sender: self)
     }
+    
     /// Animating the silhouette
     func animateSilhouette(){
         DispatchQueue.main.async {
@@ -275,8 +320,6 @@ class ViewController: UIViewController {
             self.isChecking = true
             self.hasShownResult = true
             self.generator.notificationOccurred(.success)
-            
-            
         }
     }
     
@@ -286,6 +329,7 @@ class ViewController: UIViewController {
     
     /// Show the result if has not shown result
     @objc func showResult(){
+        setupButton()
         isFirstFrame = true
         gantiKeScan()
         
@@ -304,7 +348,7 @@ class ViewController: UIViewController {
     
     /// Move view controller
     func moveController(){
-        let popUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ResultView") as! ResultViewController
+        let popUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PopUpView") as! PopUpViewController
         self.addChildViewController(popUpVC)
         popUpVC.view.frame = self.view.frame
         self.view.addSubview(popUpVC.view)
@@ -335,7 +379,14 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
         silhouetteImage.image = UIImage(named: "\(jumlahBuah[indexPath.row])Sil2")
         dummyImage.image = UIImage(named: "\(jumlahBuah[indexPath.row])Scan")
         namaBuah.text = "\(namaNamaBuah[indexPath.row])"
+        
+        cell?.layer.borderColor = UIColor.black.cgColor
+        cell?.layer.borderWidth = 1
+        cell?.layer.cornerRadius = 8
+        cell?.clipsToBounds = true
         if cell?.ditengah == true && NilaiSementara.cellDiTengah == true {
+//            scanningIcon.startAnimating()
+            activityIndicator.startAnimating()
             startScanning()
             cell?.ditengah = false
             NilaiSementara.cellDiTengah = false
@@ -440,17 +491,18 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         let requestResnet = VNCoreMLRequest(model: model){ (finishReq2, err) in
             guard let resultsResnet = finishReq2.results as? [VNClassificationObservation] else {return}
             guard let firstObservationResnet = resultsResnet.first else {return}
-            
-            if ((firstObservationResnet.identifier == "orange") || (firstObservationResnet.identifier == "pomegranate") || (firstObservationResnet.identifier == "Granny Smith") || (firstObservationResnet.identifier == "bell pepper")) && self.buahCounter < 3{
-                self.buahCounter += 1
-                print(firstObservationResnet.identifier, firstObservationResnet.confidence)
-                print(self.buahCounter)
-            } else if self.buahCounter >= 3 {
-                self.checkBuah = true
-                print(NilaiSementara.nilaiSementara)
-            } else {
-                print(firstObservationResnet.identifier, firstObservationResnet.confidence)
-                self.checkBuahCounter += 1
+            DispatchQueue.main.async {
+                if (((firstObservationResnet.identifier == "orange") && (self.silhouetteImage.image == UIImage(named: "jerukSil2"))) || ((self.silhouetteImage.image == UIImage(named: "apelSil2")) && (firstObservationResnet.identifier == "pomegranate") || (firstObservationResnet.identifier == "Granny Smith") || (firstObservationResnet.identifier == "bell pepper"))) && self.buahCounter < 3{
+                    self.buahCounter += 1
+                    print(firstObservationResnet.identifier, firstObservationResnet.confidence)
+                    print(self.buahCounter)
+                } else if self.buahCounter >= 3 {
+                    self.checkBuah = true
+                    print(NilaiSementara.nilaiSementara)
+                } else {
+                    print(firstObservationResnet.identifier, firstObservationResnet.confidence)
+                    self.checkBuahCounter += 1
+                }
             }
         }
         try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([requestResnet])
@@ -509,3 +561,4 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         }
     }
 }
+

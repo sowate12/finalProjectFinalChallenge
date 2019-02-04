@@ -10,29 +10,17 @@ import UIKit
 
 class TipsViewController: UIViewController {
 
-            
-            
             @IBOutlet weak var buttonLayer9Outlet: UIButton!
-            
             @IBOutlet weak var buttonLayer8Outlet: UIButton!
-            
             @IBOutlet weak var buttonLayer7Outlet: UIButton!
-            
             @IBOutlet weak var buttonLayer6Outlet: UIButton!
-            
             @IBOutlet weak var buttonLayer5Outlet: UIButton!
-            
             @IBOutlet weak var buttonLayer4Outlet: UIButton!
-            
             @IBOutlet weak var buttonLayer3Outlet: UIButton!
-            
             @IBOutlet weak var buttonLayer2Outlet: UIButton!
-            
             @IBOutlet weak var buttonLayer1Outlet: UIButton!
-            
             @IBOutlet weak var buttonSkipOutlet: UIButton!
-            
-            
+    
             //halaman 1
             @IBOutlet weak var quickBrief: UIImageView!
             @IBOutlet weak var skip: UIImageView!
@@ -103,8 +91,6 @@ class TipsViewController: UIViewController {
             }
             
             @IBAction func buttonLayer9(_ sender: Any) {
-                
-                
                 buttonLayer9Outlet.isEnabled = false
             }
             
@@ -128,7 +114,6 @@ class TipsViewController: UIViewController {
                 
                 happyFruiting.isHidden = false
                 tapToContinue.isHidden = false
-                
                 buttonLayer8Outlet.isEnabled = false
                 
             }
@@ -159,7 +144,6 @@ class TipsViewController: UIViewController {
                 arrowUp.isHidden = false
                 youCanExpand.isHidden = false
                 greatEye2.isHidden = false
-                
                 buttonLayer7Outlet.isEnabled = false
             }
             
@@ -176,7 +160,6 @@ class TipsViewController: UIViewController {
                 greatEye.isHidden = false
                 arrowDown.isHidden = false
                 aResultPopUp.isHidden = false
-                
                 buttonLayer6Outlet.isEnabled = false
             }
             
@@ -186,7 +169,6 @@ class TipsViewController: UIViewController {
                 
                 pressThisButtonForQuickBrief.isHidden = false
                 tutorialButtonAtas.isHidden = false
-                
                 buttonLayer5Outlet.isEnabled = false
             }
             
@@ -196,7 +178,6 @@ class TipsViewController: UIViewController {
                 
                 silang.isHidden = false
                 ifYouSeeThisButton.isHidden = false
-                
                 buttonLayer4Outlet.isEnabled = false
             }
             
@@ -206,7 +187,6 @@ class TipsViewController: UIViewController {
                 swipeToChooseTheFruit.isHidden = true
                 
                 pressTheButtonToStartScanning.isHidden = false
-                
                 buttonLayer3Outlet.isEnabled = false
             }
             
@@ -218,8 +198,6 @@ class TipsViewController: UIViewController {
                 tomatAtas.isHidden = false
                 jerukAtas.isHidden = false
                 swipeToChooseTheFruit.isHidden = false
-                
-                
                 buttonLayer2Outlet.isEnabled = false
             }
             
@@ -230,10 +208,7 @@ class TipsViewController: UIViewController {
                 buttonSkipOutlet.isHidden = true
                 
                 buttonLayer1Outlet.isEnabled = false
-                
                 siluet2.isHidden = false
                 thisIsSuggestedAreaForScanning.isHidden = false
             }
-    
-            
-        }
+    }

@@ -46,9 +46,12 @@ class PopUpViewController: UIViewController {
         
         hasilScan()
         setupView()
+        showMoreOutlet.imageEdgeInsets = UIEdgeInsets(top: -10, left: -10, bottom: -10, right: -10)
+        showLessOutlet.contentEdgeInsets = UIEdgeInsets(top: -10, left: -10, bottom: -10, right: -10)
     }
     
     @IBAction func closePopUpButton(_ sender: Any) {
+        screenShotMethod()
         UIView.animate(withDuration: 0.25, animations: {
             self.view.transform = CGAffineTransform(translationX: 1.3, y: 1.3)
             self.view.alpha = 0.0;
@@ -139,19 +142,31 @@ class PopUpViewController: UIViewController {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        var touch: UITouch = touches.first!
-        
-        if touch.view != self.view{
-        UIView.animate(withDuration: 0.25, animations: {
-            self.view.transform = CGAffineTransform(translationX: 1.3, y: 1.3)
-            self.view.alpha = 0.0;
-        }) { (finished : Bool) in
-            if (finished){
-                self.view.removeFromSuperview()
+        screenShotMethod()
+        let touch: UITouch? = touches.first
+
+        if touch?.view != topGreenView && touch?.view != bottomWhiteView{
+            UIView.animate(withDuration: 0.25, animations: {
+                self.view.transform = CGAffineTransform(translationX: 1.3, y: 1.3)
+                self.view.alpha = 0.0;
+            }) { (finished : Bool) in
+                if (finished){
+                    self.view.removeFromSuperview()
+                }
             }
-            }
-            
         }
+    }
+    
+    func screenShotMethod() {
+        //Create the UIImage
+        guard let layer = UIApplication.shared.keyWindow?.layer else { return }
+//        let layerView = topGreenView.layer
+        UIGraphicsBeginImageContextWithOptions(layer.frame.size, true, 0)
+        view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        guard let image = UIGraphicsGetImageFromCurrentImageContext() else {return}
+        UIGraphicsEndImageContext()
+        
+        NilaiSementara.gambarSS = image
     }
 }
 
