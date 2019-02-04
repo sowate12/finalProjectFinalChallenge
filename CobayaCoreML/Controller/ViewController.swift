@@ -348,7 +348,7 @@ class ViewController: UIViewController {
     
     /// Move view controller
     func moveController(){
-        let popUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PopUpView") as! PopUpViewController
+        let popUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ResultView") as! ResultViewController
         self.addChildViewController(popUpVC)
         popUpVC.view.frame = self.view.frame
         self.view.addSubview(popUpVC.view)

@@ -107,6 +107,7 @@ class ResultViewController: UIViewController {
     
     let showMoreOrLessButton: UIButton = {
         let button = UIButton()
+
         var image = UIImage(named: "arrowDown") as UIImage?
         button.setImage(image, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -156,8 +157,9 @@ class ResultViewController: UIViewController {
 //                self.topGreenView.center.y += self.topGreenView.frame.height
 //                self.bottomWhiteView.center.y += self.bottomWhiteView.frame.height
             }, completion: nil)
-//            let image = UIImage(named: "arrowDown") as UIImage?
-//            showMoreOrLessButton.setImage(image, for: .normal)
+//           let image = UIImage(named: "arrowDown") as UIImage?
+//           showMoreOrLessButton.setImage(image, for: .normal)
+            showMoreOrLessButton.imageView?.image = UIImage(named: "arrowDown")
             let xTopGreenView = topGreenView.frame.origin.x
             let yTopGreenView = topGreenView.frame.origin.y
             topGreenView.frame.origin = CGPoint(x: xTopGreenView, y: yTopGreenView+150)
