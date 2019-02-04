@@ -24,10 +24,12 @@ class ViewController: UIViewController {
     var isFirstFrame : Bool = true
     var isChecking : Bool = false
     var checkBuah = false
+    var hasSpinned = false
     var timer = Timer()
     let generator = UINotificationFeedbackGenerator()
     var dummyImage : UIImageView = UIImageView()
     var namaBuah : UILabel = UILabel()
+    var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView()
     var checkBuahCounter = 0
     var scanningText : UILabel = UILabel()
     var loadingLabel : UILabel = UILabel()
@@ -48,6 +50,10 @@ class ViewController: UIViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(true, forKey: "OnBoardingComplete")
+        userDefaults.synchronize()
 
         fruitTypeCollectionView.delegate = self
         fruitTypeCollectionView.dataSource = self
@@ -57,8 +63,8 @@ class ViewController: UIViewController {
         
         checkingResult()
         helperDelegate.addLoading()
-        
         setupView()
+        
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -94,6 +100,7 @@ class ViewController: UIViewController {
         view.addSubview(cancelButton)
         view.addSubview(tutorialButton)
         view.addSubview(buttonReview)
+        view.addSubview(activityIndicator)
     }
     
     /// Setup the CollectionView
@@ -129,14 +136,19 @@ class ViewController: UIViewController {
     func setupButton(){
         let y = view.frame.height
         buttonReview.frame = CGRect(x: 50, y: y - 300 , width: 96, height: 96)
-        buttonReview.setImage(#imageLiteral(resourceName: "bg polos kotak hijau"), for: .normal)
-        buttonReview.backgroundColor?.withAlphaComponent(0.0)
+        buttonReview.setImage(NilaiSementara.gambarSS, for: .normal)
+        buttonReview.layer.cornerRadius = 20
+        buttonReview.layer.masksToBounds = true
+        tutorialButton.frame = CGRect(x: view.frame.width - 59, y: 53, width: 25 , height: 25)
     }
     
     func setupIcon(){
         let x = view.frame.width / 2
         let y = view.frame.height
         scanningIcon.frame = CGRect(x: x - 25, y: y / 2 - 25 , width: 50 , height: 50)
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.white
     }
     
     /// Setup the Cancel button, dummy image, and white circle in the middle s
@@ -201,8 +213,12 @@ class ViewController: UIViewController {
     
     func gantiKeScan(){
         if checkBuah == true{
-        scanningLabel.isHidden = false
-        checkingLabel.isHidden = true
+            scanningLabel.isHidden = false
+            checkingLabel.isHidden = true
+            if hasSpinned == false{
+                helperDelegate.animateCircle()
+                hasSpinned = true
+            }
         }else{
             scanningLabel.isHidden = true
         }
@@ -231,7 +247,8 @@ class ViewController: UIViewController {
     
     /// View when not scanning
     func showOutlet(){
-        scanningIcon.stopAnimating()
+//        scanningIcon.stopAnimating()
+        activityIndicator.stopAnimating()
         checkingLabel.isHidden = true
         scanningLabel.isHidden = true
         dummyImage.isHidden = true
@@ -258,6 +275,7 @@ class ViewController: UIViewController {
     
     /// Reset the variables to default
     func resetVariables(){
+        hasSpinned = false
         NilaiSementara.nilaiSementara = 0
         nilaiSementara  = 5
         nilaiCounter = 0
@@ -302,8 +320,6 @@ class ViewController: UIViewController {
             self.isChecking = true
             self.hasShownResult = true
             self.generator.notificationOccurred(.success)
-            
-            
         }
     }
     
@@ -363,8 +379,14 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
         silhouetteImage.image = UIImage(named: "\(jumlahBuah[indexPath.row])Sil2")
         dummyImage.image = UIImage(named: "\(jumlahBuah[indexPath.row])Scan")
         namaBuah.text = "\(namaNamaBuah[indexPath.row])"
+        
+        cell?.layer.borderColor = UIColor.black.cgColor
+        cell?.layer.borderWidth = 1
+        cell?.layer.cornerRadius = 8
+        cell?.clipsToBounds = true
         if cell?.ditengah == true && NilaiSementara.cellDiTengah == true {
-            scanningIcon.startAnimating()
+//            scanningIcon.startAnimating()
+            activityIndicator.startAnimating()
             startScanning()
             cell?.ditengah = false
             NilaiSementara.cellDiTengah = false
@@ -469,17 +491,18 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         let requestResnet = VNCoreMLRequest(model: model){ (finishReq2, err) in
             guard let resultsResnet = finishReq2.results as? [VNClassificationObservation] else {return}
             guard let firstObservationResnet = resultsResnet.first else {return}
-            
-            if ((firstObservationResnet.identifier == "orange") || (firstObservationResnet.identifier == "pomegranate") || (firstObservationResnet.identifier == "Granny Smith") || (firstObservationResnet.identifier == "bell pepper")) && self.buahCounter < 3{
-                self.buahCounter += 1
-                print(firstObservationResnet.identifier, firstObservationResnet.confidence)
-                print(self.buahCounter)
-            } else if self.buahCounter >= 3 {
-                self.checkBuah = true
-                print(NilaiSementara.nilaiSementara)
-            } else {
-                print(firstObservationResnet.identifier, firstObservationResnet.confidence)
-                self.checkBuahCounter += 1
+            DispatchQueue.main.async {
+                if (((firstObservationResnet.identifier == "orange") && (self.silhouetteImage.image == UIImage(named: "jerukSil2"))) || ((self.silhouetteImage.image == UIImage(named: "apelSil2")) && (firstObservationResnet.identifier == "pomegranate") || (firstObservationResnet.identifier == "Granny Smith") || (firstObservationResnet.identifier == "bell pepper"))) && self.buahCounter < 3{
+                    self.buahCounter += 1
+                    print(firstObservationResnet.identifier, firstObservationResnet.confidence)
+                    print(self.buahCounter)
+                } else if self.buahCounter >= 3 {
+                    self.checkBuah = true
+                    print(NilaiSementara.nilaiSementara)
+                } else {
+                    print(firstObservationResnet.identifier, firstObservationResnet.confidence)
+                    self.checkBuahCounter += 1
+                }
             }
         }
         try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([requestResnet])
