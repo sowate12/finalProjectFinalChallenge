@@ -451,11 +451,13 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         /// add input dan memulai capture di AV foundationnya
         guard let captureDevice = AVCaptureDevice.default(for: .video) else { return }
         guard let input = try? AVCaptureDeviceInput(device: captureDevice) else { return }
-        captureSession.addInput(input)
-        captureSession.startRunning()
         
         ///membuat layar avfoundationnya fullscreen
         let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        captureSession.sessionPreset = .hd4K3840x2160
+        captureSession.addInput(input)
+        captureSession.startRunning()
+
         view.layer.addSublayer(previewLayer)
         previewLayer.frame = self.view.layer.bounds
         previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
@@ -539,8 +541,11 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                         self.nilaiSementara += firstObservationApel.confidence
                     }else if (firstObservationApel.identifier == "Apel Jelek"){
                         self.nilaiSementara -= firstObservationApel.confidence
+                    }else if (firstObservationApel.identifier == "Random Photo"){
+                        self.nilaiSementara -= firstObservationApel.confidence
                     }
                     self.nilaiCounter += 1
+                        
                 }
                 try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([requestApel])
             }else if self.silhouetteImage.image == UIImage(named: "tomatoSil2"){

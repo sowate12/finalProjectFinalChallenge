@@ -11,11 +11,11 @@ import UIKit
 class ResultViewController: UIViewController {
 
     var moreDetailedIsTrue : Bool = false
-    let hijau = UIColor(rgb: 0x3D8238)
-    let hijauTua = UIColor(rgb: 0x718821)
-    let orangeKuning = UIColor(rgb: 0xF0A616)
-    let orange = UIColor(rgb: 0xE5711C)
-    let merah = UIColor(rgb: 0xD42024)
+    let hijau = UIColor(displayP3Red: 61/255, green: 130/255, blue: 56/255, alpha: 1)
+    let hijauTua = UIColor(displayP3Red: 113/255, green: 136/255, blue: 33/255, alpha: 1)
+    let orangeKuning = UIColor(displayP3Red: 240/255, green: 166/255, blue: 22/255, alpha: 1)
+    let orange = UIColor(displayP3Red: 229/255, green: 113/255, blue: 28/255, alpha: 1)
+    let merah = UIColor(displayP3Red: 212/255, green: 32/255, blue: 36/255, alpha: 1)
     var tips : [String] = ["Check the texture of the fruit again, make sure that it's firm ",
                            "Don't forget to check the smell too.",
                            "A sweet smell from the fruit indicates it has sweet flavour",

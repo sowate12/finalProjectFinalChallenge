@@ -104,7 +104,7 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4AW-QH-a2g" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
                                 <rect key="frame" x="67" y="299" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="ballPulseSync"/>
                                 </userDefinedRuntimeAttributes>
@@ -954,6 +954,7 @@
         <image name="tutorial button" width="500" height="441"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="G5N-gs-A8B"/>
         <segue reference="iac-zg-NIh"/>
     </inferredMetricsTieBreakers>
 </document>
