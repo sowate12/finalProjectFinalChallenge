@@ -11,11 +11,11 @@ import UIKit
 class PopUpViewController: UIViewController {
     
     //MARK: - Variabel
-    let hijau = UIColor(rgb: 0x3D8238)
-    let hijauTua = UIColor(rgb: 0x718821)
-    let orangeKuning = UIColor(rgb: 0xF0A616)
-    let orange = UIColor(rgb: 0xE5711C)
-    let merah = UIColor(rgb: 0xD42024)
+    let hijau = UIColor(displayP3Red: 61, green: 130, blue: 56, alpha: 1)
+    let hijauTua = UIColor(displayP3Red: 113, green: 136, blue: 33, alpha: 1)
+    let orangeKuning = UIColor(displayP3Red: 240, green: 166, blue: 22, alpha: 1)
+    let orange = UIColor(displayP3Red: 229, green: 113, blue: 28, alpha: 1)
+    let merah = UIColor(displayP3Red: 212, green: 32, blue: 36, alpha: 1)
     let viewAnimationDelegate = AnimationHelper()
     
     //MARK: - Outlet
@@ -34,7 +34,6 @@ class PopUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-        
         hasilScan()
         setupView()
         showMoreOutlet.imageEdgeInsets = UIEdgeInsets(top: -10, left: -10, bottom: -10, right: -10)

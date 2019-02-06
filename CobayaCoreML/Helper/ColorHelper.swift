@@ -16,6 +16,8 @@ extension UIColor {
         assert(blue >= 0 && blue <= 255, "Invalid blue component")
         
         self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+        let brightRed = UIColor(displayP3Red: 1.0, green: 0, blue: 0.0, alpha: 1.0)
+        brightRed.setFill()
     }
     
     convenience init(rgb: Int) {
@@ -25,4 +27,5 @@ extension UIColor {
             blue: rgb & 0xFF
         )
     }
+    
 }

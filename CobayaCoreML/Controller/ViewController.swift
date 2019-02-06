@@ -541,8 +541,11 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                         self.nilaiSementara += firstObservationApel.confidence
                     }else if (firstObservationApel.identifier == "Apel Jelek"){
                         self.nilaiSementara -= firstObservationApel.confidence
+                    }else if (firstObservationApel.identifier == "Random Photo"){
+                        self.nilaiSementara -= firstObservationApel.confidence
                     }
                     self.nilaiCounter += 1
+                        
                 }
                 try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([requestApel])
             }else if self.silhouetteImage.image == UIImage(named: "tomatoSil2"){
