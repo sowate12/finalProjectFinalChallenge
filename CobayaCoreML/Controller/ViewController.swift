@@ -140,7 +140,8 @@ class ViewController: UIViewController {
         reviewLabel.text = "Fuji Apple"
         reviewNumber.textAlignment = .center
         reviewNumber.layer.masksToBounds = true
-        reviewNumber.text = "10"
+        reviewNumber.frame = CGRect(x: 28, y: 16, width: 20, height: 36)
+        reviewNumber.font = UIFont(name: "Biko-Bold", size: 13)
     }
     
     /// Setup the Label in the middle of the silhouette
@@ -302,6 +303,11 @@ class ViewController: UIViewController {
         scanningText.isHidden = true
         dummyImage.isHidden = false
         cancelButton.isHidden = false
+        viewReview.isHidden = true
+        buttonReview.isHidden = true
+        reviewNumber.isHidden = true
+        reviewLabel.isHidden = true
+        tutorialButton.isHidden = true
     }
     
     /// View when not scanning
@@ -315,6 +321,11 @@ class ViewController: UIViewController {
         scanningText.isHidden = false
         fruitTypeCollectionView.isHidden = false
         startButton.isHidden = false
+        viewReview.isHidden = false
+        buttonReview.isHidden = false
+        reviewNumber.isHidden = false
+        reviewLabel.isHidden = false
+        tutorialButton.isHidden = false
     }
     
     deinit{
