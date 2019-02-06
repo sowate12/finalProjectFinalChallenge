@@ -411,7 +411,7 @@ class ResultViewController: UIViewController {
             tipsLabel.text = tips.randomElement()
             
         }else {
-            topGreenView.backgroundColor = hijauTua
+            topGreenView.backgroundColor = merah
             qualityLabel.text = "Meh."
             colorLabel.text = "Poor"
             descriptionLabel.text = colorDescription[0]

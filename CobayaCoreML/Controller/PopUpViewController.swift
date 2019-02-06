@@ -11,11 +11,11 @@ import UIKit
 class PopUpViewController: UIViewController {
     
     //MARK: - Variabel
-    let hijau = UIColor(displayP3Red: 61, green: 130, blue: 56, alpha: 1)
-    let hijauTua = UIColor(displayP3Red: 113, green: 136, blue: 33, alpha: 1)
-    let orangeKuning = UIColor(displayP3Red: 240, green: 166, blue: 22, alpha: 1)
-    let orange = UIColor(displayP3Red: 229, green: 113, blue: 28, alpha: 1)
-    let merah = UIColor(displayP3Red: 212, green: 32, blue: 36, alpha: 1)
+    let hijau = UIColor(displayP3Red: 61/255, green: 130/255, blue: 56/255, alpha: 1)
+    let hijauTua = UIColor(displayP3Red: 113/255, green: 136/255, blue: 33/255, alpha: 1)
+    let orangeKuning = UIColor(displayP3Red: 240/255, green: 166/255, blue: 22/255, alpha: 1)
+    let orange = UIColor(displayP3Red: 229/255, green: 113/255, blue: 28/255, alpha: 1)
+    let merah = UIColor(displayP3Red: 212/255, green: 32/255, blue: 36/255, alpha: 1)
     let viewAnimationDelegate = AnimationHelper()
     var tips : [String] = ["Check the texture of the fruit again, make sure that it's firm ",
                            "Don't forget to check the smell too.",
