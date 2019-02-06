@@ -26,11 +26,17 @@ class ResultViewController: UIViewController {
                                        "It looks a bit fresh and the texture is quite good",
                                        "It looks quite fresh and the texture is nice",
                                        "It looks deliciously fresh and its dazzlingly clean"]
-    let topGreenView: UIImageView = {
-        let imageView = UIImageView()
+    
+    
+    
+    
+    let topGreenView: UIView = {
+        let imageView = UIView()
         //This code enable autolayout
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.masksToBounds = true
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 10
+        imageView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         imageView.backgroundColor = UIColor.green
         return imageView
     }()
@@ -113,20 +119,33 @@ class ResultViewController: UIViewController {
         button.setImage(image, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor.clear
-        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        button.addTarget(self, action: #selector(buttonShowMore), for: .touchUpInside)
         return button
     }()
     
-    @objc func buttonAction(){
+    let showMoreOrLessButton2: UIButton = {
+        let button = UIButton()
+        
+        var image = UIImage(named: "arrowUP") as UIImage?
+        button.setImage(image, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = UIColor.clear
+        button.addTarget(self, action: #selector(buttonShowLess), for: .touchUpInside)
+        return button
+    }()
+    
+    
+    
+    @objc func buttonShowMore(){
         if (moreDetailedIsTrue == false) {
             //setupLayout2()
             
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
-                self.topGreenView.layoutIfNeeded()
-                self.bottomWhiteView.layoutIfNeeded()
-//                self.topGreenView.center.y -= self.topGreenView.frame.height
-//                self.bottomWhiteView.center.y -= self.bottomWhiteView.frame.height
-            }, completion: nil)
+//            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+//                self.topGreenView.layoutIfNeeded()
+//                self.bottomWhiteView.layoutIfNeeded()
+////                self.topGreenView.center.y -= self.topGreenView.frame.height
+////                self.bottomWhiteView.center.y -= self.bottomWhiteView.frame.height
+//            }, completion: nil)
             
             let xTopGreenView = topGreenView.frame.origin.x
             let yTopGreenView = topGreenView.frame.origin.y
@@ -136,30 +155,28 @@ class ResultViewController: UIViewController {
             let y = viewGabungan.frame.origin.y
             viewGabungan.frame.origin = CGPoint(x: x, y: y - 200)
             bottomWhiteView.isHidden = false
+            showMoreOrLessButton2.isHidden = false
             let xBottomWhiteView = bottomWhiteView.frame.origin.x
             let yBottomWhiteView = bottomWhiteView.frame.origin.y
             bottomWhiteView.frame.origin = CGPoint(x: xBottomWhiteView, y: yBottomWhiteView - 290)
-//            let image = UIImage(named: "arrowUp") as UIImage?
-//            showMoreOrLessButton.setImage(image, for: .normal)
-            let xButton = showMoreOrLessButton.frame.origin.x
-            let yButton = showMoreOrLessButton.frame.origin.y
-            showMoreOrLessButton.frame.origin = CGPoint(x: xButton, y: yButton + 120)
             let xCloseButton = closeButton.frame.origin.x
             let yCloseButton = closeButton.frame.origin.y
             closeButton.frame.origin = CGPoint(x: xCloseButton, y: yCloseButton - 150)
             moreDetailedIsTrue = true
             
         }
-        else if (moreDetailedIsTrue == true){
+        
+    }
+    
+    @objc func buttonShowLess(){
+        if (moreDetailedIsTrue == true){
             //setupLayout()
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
-                self.topGreenView.layoutIfNeeded()
-                self.bottomWhiteView.layoutIfNeeded()
-//                self.topGreenView.center.y += self.topGreenView.frame.height
-//                self.bottomWhiteView.center.y += self.bottomWhiteView.frame.height
-            }, completion: nil)
-//           let image = UIImage(named: "arrowDown") as UIImage?
-//           showMoreOrLessButton.setImage(image, for: .normal)
+//            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+//                self.topGreenView.layoutIfNeeded()
+//                self.bottomWhiteView.layoutIfNeeded()
+//                //                self.topGreenView.center.y += self.topGreenView.frame.height
+//                //                self.bottomWhiteView.center.y += self.bottomWhiteView.frame.height
+//            }, completion: nil)
             showMoreOrLessButton.imageView?.image = UIImage(named: "arrowDown")
             let xTopGreenView = topGreenView.frame.origin.x
             let yTopGreenView = topGreenView.frame.origin.y
@@ -171,13 +188,11 @@ class ResultViewController: UIViewController {
             let xBottomWhiteView = bottomWhiteView.frame.origin.x
             let yBottomWhiteView = bottomWhiteView.frame.origin.y
             bottomWhiteView.frame.origin = CGPoint(x: xBottomWhiteView, y: yBottomWhiteView + 290)
-            let xButton = showMoreOrLessButton.frame.origin.x
-            let yButton = showMoreOrLessButton.frame.origin.y
-            showMoreOrLessButton.frame.origin = CGPoint(x: xButton, y: yButton - 120)
             let xCloseButton = closeButton.frame.origin.x
             let yCloseButton = closeButton.frame.origin.y
             closeButton.frame.origin = CGPoint(x: xCloseButton, y: yCloseButton + 150)
             bottomWhiteView.isHidden = true
+            showMoreOrLessButton2.isHidden = true
             moreDetailedIsTrue = false
         }
     }
@@ -247,6 +262,7 @@ class ResultViewController: UIViewController {
         
         setupLayout()
         bottomWhiteView.isHidden = true
+        //showMoreOrLessButton2.isHidden = false
         
     }
     
@@ -263,6 +279,7 @@ class ResultViewController: UIViewController {
         bottomWhiteView.addSubview(descriptionLabel)
         bottomWhiteView.addSubview(tipsLabel)
         view.addSubview(showMoreOrLessButton)
+        view.addSubview(showMoreOrLessButton2)
         view.addSubview(closeButton)
     }
     
@@ -275,6 +292,7 @@ class ResultViewController: UIViewController {
         topGreenView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         topGreenView.widthAnchor.constraint(equalToConstant: 343).isActive = true
         topGreenView.heightAnchor.constraint(equalToConstant: 343).isActive = true
+        
         
         //Close Button
         closeButton.topAnchor.constraint(equalTo: topGreenView.topAnchor, constant : 25).isActive = true
@@ -306,6 +324,12 @@ class ResultViewController: UIViewController {
         showMoreOrLessButton.heightAnchor.constraint(equalToConstant: 30 ).isActive = true
         showMoreOrLessButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 130).isActive = true
         showMoreOrLessButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -130).isActive = true
+        
+        //ShowMoreOrLessButton2
+        showMoreOrLessButton2.topAnchor.constraint(equalTo: view.topAnchor, constant: 650).isActive = true
+        showMoreOrLessButton2.heightAnchor.constraint(equalToConstant: 30 ).isActive = true
+        showMoreOrLessButton2.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 130).isActive = true
+        showMoreOrLessButton2.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -130).isActive = true
         
         //NilaiOutlet2
         nilaiOutlet2.topAnchor.constraint(equalTo: yourResultIsText.topAnchor, constant: 55).isActive = true
