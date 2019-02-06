@@ -15,6 +15,7 @@ extension UIColor {
         assert(green >= 0 && green <= 255, "Invalid green component")
         assert(blue >= 0 && blue <= 255, "Invalid blue component")
         
+//        self.init(displayP3Red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
         self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
         let brightRed = UIColor(displayP3Red: 1.0, green: 0, blue: 0.0, alpha: 1.0)
         brightRed.setFill()

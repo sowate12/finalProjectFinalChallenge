@@ -26,8 +26,6 @@ class PopUpViewController: UIViewController {
                                        "It looks a bit fresh and the texture is quite good",
                                        "It looks quite fresh and the texture is nice",
                                        "It looks deliciously fresh and its dazzlingly clean"]
-    
-    
     //MARK: - Outlet
     @IBOutlet weak var qualityLabel: UILabel!
     @IBOutlet weak var nilaiOutlet2: UILabel!
@@ -132,7 +130,7 @@ class PopUpViewController: UIViewController {
             descriptionLabel.text = colorDescription[3]
             
         }else {
-            warnaAtas.backgroundColor = merah
+            warnaAtas.backgroundColor = .green
             qualityLabel.text = "Meh."
             colorLabel.text = "Poor"
             descriptionLabel.text = colorDescription[4]
