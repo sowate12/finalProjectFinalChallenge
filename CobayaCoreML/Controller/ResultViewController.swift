@@ -9,7 +9,7 @@
 import UIKit
 
 class ResultViewController: UIViewController {
-
+    
     var moreDetailedIsTrue : Bool = false
     let hijau = UIColor(rgb: 0x3D8238)
     let hijauTua = UIColor(rgb: 0x718821)
@@ -22,10 +22,10 @@ class ResultViewController: UIViewController {
                            "If the fruit is starting to tender, it means it's starting to over ripe. Better eat that fast!","If the fruit smells good, time for you to grab the fruit!"]
     var colorDescription : [String] =
         ["It doesn't looks that fresh and the texture isn't quite good",
-                                       "It doesn't looks that fresh and the texture isn't quite good ",
-                                       "It looks a bit fresh and the texture is quite good",
-                                       "It looks quite fresh and the texture is nice",
-                                       "It looks deliciously fresh and its dazzlingly clean"]
+         "It doesn't looks that fresh and the texture isn't quite good ",
+         "It looks a bit fresh and the texture is quite good",
+         "It looks quite fresh and the texture is nice",
+         "It looks deliciously fresh and its dazzlingly clean"]
     let topGreenView: UIImageView = {
         let imageView = UIImageView()
         //This code enable autolayout
@@ -107,10 +107,8 @@ class ResultViewController: UIViewController {
     
     let showMoreOrLessButton: UIButton = {
         let button = UIButton()
-
-        var image = UIImage(named: "arrowDown") as UIImage?
-        button.setImage(image, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.setBackgroundImage(#imageLiteral(resourceName: "arrow down"), for: .normal)
         button.backgroundColor = UIColor.clear
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         return button
@@ -119,12 +117,11 @@ class ResultViewController: UIViewController {
     @objc func buttonAction(){
         if (moreDetailedIsTrue == false) {
             //setupLayout2()
-            
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
                 self.topGreenView.layoutIfNeeded()
                 self.bottomWhiteView.layoutIfNeeded()
-//                self.topGreenView.center.y -= self.topGreenView.frame.height
-//                self.bottomWhiteView.center.y -= self.bottomWhiteView.frame.height
+                //                self.topGreenView.center.y -= self.topGreenView.frame.height
+                //                self.bottomWhiteView.center.y -= self.bottomWhiteView.frame.height
             }, completion: nil)
             
             let xTopGreenView = topGreenView.frame.origin.x
@@ -138,8 +135,8 @@ class ResultViewController: UIViewController {
             let xBottomWhiteView = bottomWhiteView.frame.origin.x
             let yBottomWhiteView = bottomWhiteView.frame.origin.y
             bottomWhiteView.frame.origin = CGPoint(x: xBottomWhiteView, y: yBottomWhiteView - 290)
-//            let image = UIImage(named: "arrowUp") as UIImage?
-//            showMoreOrLessButton.setImage(image, for: .normal)
+            //            let image = UIImage(named: "arrowUp") as UIImage?
+            //            showMoreOrLessButton.setImage(image, for: .normal)
             let xButton = showMoreOrLessButton.frame.origin.x
             let yButton = showMoreOrLessButton.frame.origin.y
             showMoreOrLessButton.frame.origin = CGPoint(x: xButton, y: yButton + 120)
@@ -154,12 +151,11 @@ class ResultViewController: UIViewController {
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
                 self.topGreenView.layoutIfNeeded()
                 self.bottomWhiteView.layoutIfNeeded()
-//                self.topGreenView.center.y += self.topGreenView.frame.height
-//                self.bottomWhiteView.center.y += self.bottomWhiteView.frame.height
+                //                self.topGreenView.center.y += self.topGreenView.frame.height
+                //                self.bottomWhiteView.center.y += self.bottomWhiteView.frame.height
             }, completion: nil)
-//           let image = UIImage(named: "arrowDown") as UIImage?
-//           showMoreOrLessButton.setImage(image, for: .normal)
-            showMoreOrLessButton.imageView?.image = UIImage(named: "arrowDown")
+            //           let image = UIImage(named: "arrowDown") as UIImage?
+            //           showMoreOrLessButton.setImage(image, for: .normal)
             let xTopGreenView = topGreenView.frame.origin.x
             let yTopGreenView = topGreenView.frame.origin.y
             topGreenView.frame.origin = CGPoint(x: xTopGreenView, y: yTopGreenView+150)
@@ -246,9 +242,6 @@ class ResultViewController: UIViewController {
         
         setupLayout()
         bottomWhiteView.isHidden = true
-        
-        
-        
     }
     
     func setupView(){
@@ -288,7 +281,6 @@ class ResultViewController: UIViewController {
     func setupLayout(){
         
         //Kotak Hijau
-        
         topGreenView.centerXAnchor.constraint(equalTo : view.centerXAnchor).isActive = true
         topGreenView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         topGreenView.widthAnchor.constraint(equalToConstant: 343).isActive = true
@@ -405,8 +397,7 @@ class ResultViewController: UIViewController {
             qualityLabel.text = "Meh."
             colorLabel.text = "Poor"
             descriptionLabel.text = colorDescription[0]
-            
         }
     }
-    
 }
+

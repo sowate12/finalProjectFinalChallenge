@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     var nilaiSementara : Float = 5
     var namaNamaBuah = ["","","Fuji Apple","Orange", "Tomato","", ""]
     var jumlahBuah = ["","","apel","jeruk","tomato","",""]
+    var results = ["result1", "result2", "result3", "result4", "result5"]
     var hasShownResult = false
     var isFirstFrame : Bool = true
     var isChecking : Bool = false
@@ -37,6 +38,11 @@ class ViewController: UIViewController {
     var scanningLabel : UILabel = UILabel()
     var imageViewTransform = CGAffineTransform.identity
     let helperDelegate = AnimationHelper()
+    let hijau = UIColor(rgb: 0x3D8238)
+    let hijauTua = UIColor(rgb: 0x718821)
+    let orangeKuning = UIColor(rgb: 0xF0A616)
+    let orange = UIColor(rgb: 0xE5711C)
+    let merah = UIColor(rgb: 0xD42024)
     
     // MARK: IBOutlet
     @IBOutlet weak var buttonReview: UIButton!
@@ -46,6 +52,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var tutorialButton: UIButton!
     @IBOutlet weak var scanningIcon: NVActivityIndicatorView!
+    @IBOutlet weak var reviewNumber: UILabel!
+    @IBOutlet weak var reviewLabel: UILabel!
+    @IBOutlet weak var viewReview: UIView!
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -69,7 +78,6 @@ class ViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setupButton()
         let indexPath = IndexPath(item: 2, section: 0)
         self.fruitTypeCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         self.fruitTypeCollectionView.decelerationRate = UIScrollViewDecelerationRateFast
@@ -87,6 +95,9 @@ class ViewController: UIViewController {
         setScanningText()
         setupCollectionView()
         setupIcon()
+        setupViewReview()
+        setupColor()
+        setupButton()
         view.addSubview(fruitTypeCollectionView)
         view.addSubview(startButton)
         view.addSubview(silhouetteImage)
@@ -99,8 +110,11 @@ class ViewController: UIViewController {
         view.layer.addSublayer(helperDelegate.shapeLayer)
         view.addSubview(cancelButton)
         view.addSubview(tutorialButton)
-        view.addSubview(buttonReview)
         view.addSubview(activityIndicator)
+        view.addSubview(viewReview)
+//        view.addSubview(buttonReview)
+//        view.addSubview(reviewNumber)
+//        view.addSubview(reviewLabel)
     }
     
     /// Setup the CollectionView
@@ -108,6 +122,25 @@ class ViewController: UIViewController {
         fruitTypeCollectionView.center = CGPoint(x: view.frame.width / 2 - 0.5, y: view.frame.height - 100 )
         silhouetteImage.center = CGPoint(x: view.frame.width / 2, y: view.frame.height / 2 - 30)
         fruitTypeCollectionView.backgroundColor = UIColor.black.withAlphaComponent(0.0)
+    }
+    
+    func setupViewReview(){
+        viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
+        reviewLabel.topAnchor.constraint(equalTo: viewReview.topAnchor, constant: 21).isActive = true
+        reviewLabel.rightAnchor.constraint(equalTo: viewReview.rightAnchor).isActive = true
+        reviewLabel.leftAnchor.constraint(equalTo: viewReview.leftAnchor).isActive = true
+        reviewNumber.topAnchor.constraint(equalTo: viewReview.topAnchor, constant: 21).isActive = true
+        reviewNumber.rightAnchor.constraint(equalTo: viewReview.rightAnchor).isActive = true
+        reviewNumber.leftAnchor.constraint(equalTo: viewReview.leftAnchor).isActive = true
+        reviewLabel.textAlignment = .left
+        reviewLabel.numberOfLines = 2
+        reviewLabel.frame = CGRect(x: 80, y: 15, width: 80, height: 36)
+        reviewLabel.layer.masksToBounds = true
+        reviewLabel.textColor = .white
+        reviewLabel.text = "Fuji Apple"
+        reviewNumber.textAlignment = .center
+        reviewNumber.layer.masksToBounds = true
+        reviewNumber.text = "10"
     }
     
     /// Setup the Label in the middle of the silhouette
@@ -134,10 +167,7 @@ class ViewController: UIViewController {
     }
     
     func setupButton(){
-        let y = view.frame.height
-        buttonReview.frame = CGRect(x: 50, y: y - 300 , width: 96, height: 96)
-        buttonReview.setImage(NilaiSementara.gambarSS, for: .normal)
-        buttonReview.layer.cornerRadius = 20
+//        buttonReview.frame = CGRect(x: view.frame.width - 142, y: 109 , width: 142, height: 53)
         buttonReview.layer.masksToBounds = true
         tutorialButton.frame = CGRect(x: view.frame.width - 59, y: 53, width: 25 , height: 25)
     }
@@ -189,6 +219,27 @@ class ViewController: UIViewController {
         checkingLabel.textAlignment = .center
     }
     
+    func setupColor(){
+        let nilaiTotal = String(format: "%.1f", NilaiSementara.nilaiSementara)
+        reviewNumber.text = nilaiTotal
+        if NilaiSementara.nilaiSementara >= 9 && NilaiSementara.nilaiSementara <= 10{
+            buttonReview.setImage(UIImage(named: "\(results[0])"), for: .normal)
+            reviewNumber.textColor = hijau
+        }else if NilaiSementara.nilaiSementara >= 8 && NilaiSementara.nilaiSementara < 9 {
+            buttonReview.setImage(UIImage(named: "\(results[1])"), for: .normal)
+            reviewNumber.textColor = hijauTua
+        }else if NilaiSementara.nilaiSementara >= 7 && NilaiSementara.nilaiSementara < 8 {
+            buttonReview.setImage(UIImage(named: "\(results[2])"), for: .normal)
+            reviewNumber.textColor = orangeKuning
+        }else if NilaiSementara.nilaiSementara >= 5 && NilaiSementara.nilaiSementara < 7 {
+            buttonReview.setImage(UIImage(named: "\(results[3])"), for: .normal)
+            reviewNumber.textColor = orange
+        }else {
+            buttonReview.setImage(UIImage(named: "\(results[4])"), for: .normal)
+            reviewNumber.textColor = merah
+        }
+    }
+    
     func scanning(){
         scanningLabel.isHidden = true
         scanningLabel.font = UIFont.boldSystemFont(ofSize: 20)
@@ -226,14 +277,22 @@ class ViewController: UIViewController {
             scanningLabel.isHidden = true
         }
         if checkBuahCounter == 10{
-            checkingAlert()
+            isChecking = false
             checkBuahCounter = 0
+            checkingAlert()
         }
     }
     
     func checkingAlert(){
-        let alert = UIAlertController(title: "There's No Fruit Detected", message: "Rescan Fruit", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        let alert = UIAlertController(title: "There's No Fruit Detected", message: "Would you like to rescan the fruit?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addAction(UIAlertAction(title: "Retry", style: UIAlertActionStyle.default, handler: { action in
+            self.isChecking = true
+            print("Yes")
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.destructive, handler: { action in self.resetVariables()
+            self.showOutlet()
+        }))
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -280,10 +339,15 @@ class ViewController: UIViewController {
         nilaiSementara  = 5
         nilaiCounter = 0
         buahCounter = 0
+        checkBuahCounter = 0
         isChecking = false
         checkBuah = false
         hasShownResult = false
         isFirstFrame = true
+    }
+    
+    func setButtonColor(){
+        
     }
     
     @IBAction func cancelButtonAction(_ sender: Any) {
