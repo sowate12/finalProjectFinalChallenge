@@ -44,6 +44,13 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Biko_Black.otf</string>
+		<string>Biko_Bold.otf</string>
+		<string>Biko_Light-Restricted.otf</string>
+		<string>Biko_Regular.otf</string>
+	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

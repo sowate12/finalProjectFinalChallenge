@@ -507,7 +507,7 @@
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your result is:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YYd-Et-l9l">
-                                <rect key="frame" x="97.333333333333329" y="312.66666666666669" width="180.33333333333337" height="35"/>
+                                <rect key="frame" x="104.00000000000001" y="315" width="167.33333333333337" height="30"/>
                                 <fontDescription key="fontDescription" name="Biko" family="Biko" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -520,13 +520,13 @@
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="if5-cc-8DJ" userLabel="10.0 gede">
-                                <rect key="frame" x="27" y="353.66666666666669" width="175.33333333333334" height="105"/>
+                                <rect key="frame" x="34.333333333333329" y="361" width="160.66666666666669" height="90"/>
                                 <fontDescription key="fontDescription" name="Biko-Bold" family="Biko" pointSize="90"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nao-Ku-MhF">
-                                <rect key="frame" x="205.33333333333334" y="360" width="36" height="92"/>
+                                <rect key="frame" x="198" y="360" width="36" height="92"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="92" id="3KH-TP-3e1"/>
                                     <constraint firstAttribute="width" constant="36" id="pra-O6-cf3"/>
@@ -536,13 +536,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPC-5r-pWM" userLabel="10.0 kecil">
-                                <rect key="frame" x="239.33333333333334" y="387" width="97.333333333333343" height="58.333333333333314"/>
+                                <rect key="frame" x="232.00000000000003" y="391" width="89.333333333333343" height="50"/>
                                 <fontDescription key="fontDescription" name="Biko-Bold" family="Biko" pointSize="50"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Great Eye!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="grG-TO-rTf">
-                                <rect key="frame" x="117.66666666666667" y="464.66666666666669" width="139.66666666666663" height="35"/>
+                                <rect key="frame" x="118.66666666666667" y="467" width="137.66666666666663" height="30"/>
                                 <fontDescription key="fontDescription" name="Biko" family="Biko" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -584,31 +584,31 @@
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your result is:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IB3-2I-8na" userLabel="Your result is: 2">
-                                <rect key="frame" x="121.33333333333333" y="68.333333333333329" width="132.33333333333337" height="25.666666666666671"/>
+                                <rect key="frame" x="126.33333333333331" y="70" width="122.66666666666669" height="22"/>
                                 <fontDescription key="fontDescription" name="Biko" family="Biko" pointSize="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lfS-YZ-Cp7" userLabel="10.0 gede 2">
-                                <rect key="frame" x="68.333333333333329" y="102" width="136.33333333333337" height="81.666666666666686"/>
+                                <rect key="frame" x="74" y="100" width="125" height="70"/>
                                 <fontDescription key="fontDescription" name="Biko-Bold" family="Biko" pointSize="70"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTW-my-21V" userLabel="10.0 kecil 2">
-                                <rect key="frame" x="232" y="124.00000000000001" width="78" height="46.666666666666671"/>
+                                <rect key="frame" x="230.33333333333334" y="122" width="71.333333333333343" height="40"/>
                                 <fontDescription key="fontDescription" name="Biko-Bold" family="Biko" pointSize="40"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Great Eye!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j7Z-IB-yPs" userLabel="Great Eye! 2">
-                                <rect key="frame" x="136.33333333333334" y="183.66666666666666" width="102.33333333333334" height="25.666666666666657"/>
+                                <rect key="frame" x="137" y="170" width="101" height="22"/>
                                 <fontDescription key="fontDescription" name="Biko" family="Biko" pointSize="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26N-5H-VOS" userLabel="/ 2">
-                                <rect key="frame" x="206.66666666666666" y="102" width="23.333333333333343" height="81.666666666666686"/>
+                                <rect key="frame" x="201" y="100" width="27.333333333333343" height="70"/>
                                 <fontDescription key="fontDescription" name="Biko-Light" family="Biko" pointSize="70"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>

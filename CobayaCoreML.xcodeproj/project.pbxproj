@@ -17,7 +17,11 @@
 		6B9FD12C2204351500445DEC /* ApelBaru.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6B9FD12B2204351500445DEC /* ApelBaru.mlmodel */; };
 		6BDEA49B21F5AD11007909B8 /* Jeruk.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6BDEA49A21F5AD11007909B8 /* Jeruk.mlmodel */; };
 		6BDEA49D21F5AD7E007909B8 /* Resnet50.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6BDEA49C21F5AD7E007909B8 /* Resnet50.mlmodel */; };
+		7C967D902208175F0069D17A /* Biko_Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7C967D8F2208175F0069D17A /* Biko_Regular.otf */; };
 		7CFD700622075A8F00CA041D /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFD700522075A8F00CA041D /* ResultViewController.swift */; };
+		7CFD700B22080F0700CA041D /* Biko_Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7CFD700722080F0600CA041D /* Biko_Black.otf */; };
+		7CFD700C22080F0700CA041D /* Biko_Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7CFD700822080F0600CA041D /* Biko_Bold.otf */; };
+		7CFD700D22080F0700CA041D /* Biko_Light-Restricted.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7CFD700922080F0700CA041D /* Biko_Light-Restricted.otf */; };
 		991A6017213FCEC100FEAE4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991A6016213FCEC100FEAE4B /* AppDelegate.swift */; };
 		991A6019213FCEC100FEAE4B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991A6018213FCEC100FEAE4B /* ViewController.swift */; };
 		991A601C213FCEC100FEAE4B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 991A601A213FCEC100FEAE4B /* Main.storyboard */; };
@@ -42,7 +46,11 @@
 		6B9FD12B2204351500445DEC /* ApelBaru.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ApelBaru.mlmodel; sourceTree = "<group>"; };
 		6BDEA49A21F5AD11007909B8 /* Jeruk.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Jeruk.mlmodel; sourceTree = "<group>"; };
 		6BDEA49C21F5AD7E007909B8 /* Resnet50.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Resnet50.mlmodel; sourceTree = "<group>"; };
+		7C967D8F2208175F0069D17A /* Biko_Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Biko_Regular.otf; sourceTree = "<group>"; };
 		7CFD700522075A8F00CA041D /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		7CFD700722080F0600CA041D /* Biko_Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Biko_Black.otf; sourceTree = "<group>"; };
+		7CFD700822080F0600CA041D /* Biko_Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Biko_Bold.otf; sourceTree = "<group>"; };
+		7CFD700922080F0700CA041D /* Biko_Light-Restricted.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Biko_Light-Restricted.otf"; sourceTree = "<group>"; };
 		90CB01208168A185E1BC3B64 /* Pods-CobayaCoreML.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CobayaCoreML.release.xcconfig"; path = "Pods/Target Support Files/Pods-CobayaCoreML/Pods-CobayaCoreML.release.xcconfig"; sourceTree = "<group>"; };
 		991A6013213FCEC100FEAE4B /* CobayaCoreML.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CobayaCoreML.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		991A6016213FCEC100FEAE4B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +116,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		7CFD700F22080F2D00CA041D /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				7CFD700722080F0600CA041D /* Biko_Black.otf */,
+				7CFD700822080F0600CA041D /* Biko_Bold.otf */,
+				7C967D8F2208175F0069D17A /* Biko_Regular.otf */,
+				7CFD700922080F0700CA041D /* Biko_Light-Restricted.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 		991A600A213FCEC100FEAE4B = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +172,7 @@
 		E6FCE89321F9A9060019908D /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				7CFD700F22080F2D00CA041D /* Font */,
 				E6FCE89821F9AD8D0019908D /* ML Model */,
 				E6FCE89421F9A9200019908D /* ColorHelper.swift */,
 			);
@@ -233,6 +253,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CFD700B22080F0700CA041D /* Biko_Black.otf in Resources */,
+				7CFD700C22080F0700CA041D /* Biko_Bold.otf in Resources */,
+				7CFD700D22080F0700CA041D /* Biko_Light-Restricted.otf in Resources */,
+				7C967D902208175F0069D17A /* Biko_Regular.otf in Resources */,
 				991A6024213FCEC300FEAE4B /* LaunchScreen.storyboard in Resources */,
 				991A6021213FCEC300FEAE4B /* Assets.xcassets in Resources */,
 				991A601C213FCEC100FEAE4B /* Main.storyboard in Resources */,
