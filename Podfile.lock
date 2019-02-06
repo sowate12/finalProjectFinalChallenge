@@ -1,16 +1,18 @@
 PODS:
-  - CountdownView (0.1.2)
+  - NVActivityIndicatorView (4.6.1):
+    - NVActivityIndicatorView/Presenter (= 4.6.1)
+  - NVActivityIndicatorView/Presenter (4.6.1)
 
 DEPENDENCIES:
-  - CountdownView
+  - NVActivityIndicatorView
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - CountdownView
+    - NVActivityIndicatorView
 
 SPEC CHECKSUMS:
-  CountdownView: 0f0f5cb346ca5d99342703c834d89598ca1893bd
+  NVActivityIndicatorView: 4ca19fccc84595a78957336a086d00a49be6ce61
 
-PODFILE CHECKSUM: 2f26330c30f1e2f9859b79422241e6b5cc8185ed
+PODFILE CHECKSUM: 22aa6375efdd6d13fe94079c5c9ea4a6a385caec
 
 COCOAPODS: 1.5.3

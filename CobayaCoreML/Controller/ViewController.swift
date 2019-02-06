@@ -9,7 +9,8 @@
 import UIKit
 import AVKit
 import Vision
-import CountdownView
+import AVFoundation
+import NVActivityIndicatorView
 
 class ViewController: UIViewController {
 
@@ -23,26 +24,37 @@ class ViewController: UIViewController {
     var isFirstFrame : Bool = true
     var isChecking : Bool = false
     var checkBuah = false
+    var hasSpinned = false
     var timer = Timer()
     let generator = UINotificationFeedbackGenerator()
     var dummyImage : UIImageView = UIImageView()
     var namaBuah : UILabel = UILabel()
+    var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView()
+    var checkBuahCounter = 0
     var scanningText : UILabel = UILabel()
     var loadingLabel : UILabel = UILabel()
     var checkingLabel : UILabel = UILabel()
     var scanningLabel : UILabel = UILabel()
     var imageViewTransform = CGAffineTransform.identity
     let helperDelegate = AnimationHelper()
-
+    
     // MARK: IBOutlet
+    @IBOutlet weak var buttonReview: UIButton!
     @IBOutlet weak var silhouetteImage: UIImageView!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var fruitTypeCollectionView: UICollectionView!
     @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var tutorialButton: UIButton!
+    @IBOutlet weak var scanningIcon: NVActivityIndicatorView!
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(true, forKey: "OnBoardingComplete")
+        userDefaults.synchronize()
+
         fruitTypeCollectionView.delegate = self
         fruitTypeCollectionView.dataSource = self
 
@@ -52,10 +64,12 @@ class ViewController: UIViewController {
         checkingResult()
         helperDelegate.addLoading()
         setupView()
+        
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        setupButton()
         let indexPath = IndexPath(item: 2, section: 0)
         self.fruitTypeCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         self.fruitTypeCollectionView.decelerationRate = UIScrollViewDecelerationRateFast
@@ -72,6 +86,7 @@ class ViewController: UIViewController {
         gantiKeScan()
         setScanningText()
         setupCollectionView()
+        setupIcon()
         view.addSubview(fruitTypeCollectionView)
         view.addSubview(startButton)
         view.addSubview(silhouetteImage)
@@ -80,8 +95,12 @@ class ViewController: UIViewController {
         view.addSubview(checkingLabel)
         view.addSubview(scanningLabel)
         view.addSubview(scanningText)
+        view.addSubview(scanningIcon)
         view.layer.addSublayer(helperDelegate.shapeLayer)
         view.addSubview(cancelButton)
+        view.addSubview(tutorialButton)
+        view.addSubview(buttonReview)
+        view.addSubview(activityIndicator)
     }
     
     /// Setup the CollectionView
@@ -114,7 +133,25 @@ class ViewController: UIViewController {
         namaBuah.text = "\(namaNamaBuah[2])"
     }
     
-    /// Setup the Cancel button, dummy image, and white circle in the middle
+    func setupButton(){
+        let y = view.frame.height
+        buttonReview.frame = CGRect(x: 50, y: y - 300 , width: 96, height: 96)
+        buttonReview.setImage(NilaiSementara.gambarSS, for: .normal)
+        buttonReview.layer.cornerRadius = 20
+        buttonReview.layer.masksToBounds = true
+        tutorialButton.frame = CGRect(x: view.frame.width - 59, y: 53, width: 25 , height: 25)
+    }
+    
+    func setupIcon(){
+        let x = view.frame.width / 2
+        let y = view.frame.height
+        scanningIcon.frame = CGRect(x: x - 25, y: y / 2 - 25 , width: 50 , height: 50)
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.white
+    }
+    
+    /// Setup the Cancel button, dummy image, and white circle in the middle s
     func setupDummyImage(){
         let x = view.frame.width / 2
         let y = view.frame.height
@@ -132,15 +169,16 @@ class ViewController: UIViewController {
     /// Setup the text that appears when scanning
     func checking(){
         checkingLabel.isHidden = true
-        checkingLabel.text = "Checking \r\n if it is a Fruit ."
+        checkingLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        checkingLabel.text = "Detecting Fruit ."
         
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
             var string: String {
                 switch self.checkingLabel.text {
-                case "Checking \r\n if it is a Fruit .":       return "Checking \r\n if it is a Fruit .."
-                case "Checking \r\n if it is a Fruit ..":      return "Checking \r\n if it is a Fruit ..."
-                case "Checking \r\n if it is a Fruit ...":     return "Checking \r\n if it is a Fruit ."
-                default:                      return "Checking \r\n if it is a Fruit"
+                case "Detecting Fruit .":       return "Detecting Fruit .."
+                case "Detecting Fruit ..":      return "Detecting Fruit ..."
+                case "Detecting Fruit ...":     return "Detecting Fruit ."
+                default:                      return "Detecting Fruit"
                 }
             }
             self.checkingLabel.text = string
@@ -153,6 +191,7 @@ class ViewController: UIViewController {
     
     func scanning(){
         scanningLabel.isHidden = true
+        scanningLabel.font = UIFont.boldSystemFont(ofSize: 20)
         scanningLabel.text = "Scanning Fruit ."
         
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
@@ -174,15 +213,28 @@ class ViewController: UIViewController {
     
     func gantiKeScan(){
         if checkBuah == true{
-        scanningLabel.isHidden = false
-        checkingLabel.isHidden = true
+            scanningLabel.isHidden = false
+            checkingLabel.isHidden = true
+            if hasSpinned == false{
+                helperDelegate.animateCircle()
+                hasSpinned = true
+            }
         }else{
             scanningLabel.isHidden = true
         }
-        
         if scanningText.isHidden == false{
             scanningLabel.isHidden = true
         }
+        if checkBuahCounter == 10{
+            checkingAlert()
+            checkBuahCounter = 0
+        }
+    }
+    
+    func checkingAlert(){
+        let alert = UIAlertController(title: "There's No Fruit Detected", message: "Rescan Fruit", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func hideOutlet(){
@@ -191,11 +243,12 @@ class ViewController: UIViewController {
         scanningText.isHidden = true
         dummyImage.isHidden = false
         cancelButton.isHidden = false
-        
     }
     
     /// View when not scanning
     func showOutlet(){
+//        scanningIcon.stopAnimating()
+        activityIndicator.stopAnimating()
         checkingLabel.isHidden = true
         scanningLabel.isHidden = true
         dummyImage.isHidden = true
@@ -222,6 +275,7 @@ class ViewController: UIViewController {
     
     /// Reset the variables to default
     func resetVariables(){
+        hasSpinned = false
         NilaiSementara.nilaiSementara = 0
         nilaiSementara  = 5
         nilaiCounter = 0
@@ -236,6 +290,14 @@ class ViewController: UIViewController {
         helperDelegate.hapticMedium()
         resetVariables()
         showOutlet()
+    }
+    
+    @IBAction func buttonBackToReview(_ sender: Any) {
+        moveController()
+    }
+    
+    @IBAction func tutorialButtonAction(_ sender: Any) {
+        performSegue(withIdentifier: "tutorial", sender: self)
     }
     
     /// Animating the silhouette
@@ -267,6 +329,7 @@ class ViewController: UIViewController {
     
     /// Show the result if has not shown result
     @objc func showResult(){
+        setupButton()
         isFirstFrame = true
         gantiKeScan()
         
@@ -279,12 +342,18 @@ class ViewController: UIViewController {
 
             showOutlet()
             helperDelegate.hapticMedium()
-            let popUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PopUpView") as! PopUpViewController
-            self.addChildViewController(popUpVC)
-            popUpVC.view.frame = self.view.frame
-            self.view.addSubview(popUpVC.view)
-            popUpVC.didMove(toParentViewController: self)
+            moveController()
         }
+    }
+    
+    /// Move view controller
+    func moveController(){
+        let popUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ResultView") as! ResultViewController
+        self.addChildViewController(popUpVC)
+        popUpVC.view.frame = self.view.frame
+        self.view.addSubview(popUpVC.view)
+        popUpVC.didMove(toParentViewController: self)
+        
     }
 }
 
@@ -310,7 +379,14 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
         silhouetteImage.image = UIImage(named: "\(jumlahBuah[indexPath.row])Sil2")
         dummyImage.image = UIImage(named: "\(jumlahBuah[indexPath.row])Scan")
         namaBuah.text = "\(namaNamaBuah[indexPath.row])"
+        
+        cell?.layer.borderColor = UIColor.black.cgColor
+        cell?.layer.borderWidth = 1
+        cell?.layer.cornerRadius = 8
+        cell?.clipsToBounds = true
         if cell?.ditengah == true && NilaiSementara.cellDiTengah == true {
+//            scanningIcon.startAnimating()
+            activityIndicator.startAnimating()
             startScanning()
             cell?.ditengah = false
             NilaiSementara.cellDiTengah = false
@@ -375,11 +451,13 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         /// add input dan memulai capture di AV foundationnya
         guard let captureDevice = AVCaptureDevice.default(for: .video) else { return }
         guard let input = try? AVCaptureDeviceInput(device: captureDevice) else { return }
-        captureSession.addInput(input)
-        captureSession.startRunning()
         
         ///membuat layar avfoundationnya fullscreen
         let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        captureSession.sessionPreset = .hd4K3840x2160
+        captureSession.addInput(input)
+        captureSession.startRunning()
+
         view.layer.addSublayer(previewLayer)
         previewLayer.frame = self.view.layer.bounds
         previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
@@ -388,9 +466,18 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         let dataOutput = AVCaptureVideoDataOutput()
         dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
         captureSession.addOutput(dataOutput)
+        
+        
+        ///enable auto focus
+        if(captureDevice.isFocusModeSupported(.continuousAutoFocus)) {
+            try! captureDevice.lockForConfiguration()
+            captureDevice.focusMode = .continuousAutoFocus
+            captureDevice.unlockForConfiguration()
+        }
     }
     
     // MARK: Camera Output
+    
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         //coding yang dilakukan saat avfoundation memunculkan output
         if !self.isFirstFrame {return}
@@ -399,22 +486,25 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         
         guard let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
         guard let model = try? VNCoreMLModel(for: Resnet50().model) else { return }
-        guard let modelJeruk = try? VNCoreMLModel(for: Jeruk100().model) else {return}
-        guard let modelApel = try? VNCoreMLModel(for: AppleBagusAppleJelek().model) else {return}
+        guard let modelJeruk = try? VNCoreMLModel(for: Jeruk().model) else {return}
+        guard let modelApel = try? VNCoreMLModel(for: Apel1().model) else {return}
+        guard let modelTomat = try? VNCoreMLModel(for: Tomat().model) else {return}
         
         let requestResnet = VNCoreMLRequest(model: model){ (finishReq2, err) in
             guard let resultsResnet = finishReq2.results as? [VNClassificationObservation] else {return}
             guard let firstObservationResnet = resultsResnet.first else {return}
-            
-            if ((firstObservationResnet.identifier == "orange") || (firstObservationResnet.identifier == "pomegranate") || (firstObservationResnet.identifier == "Granny Smith") || (firstObservationResnet.identifier == "bell pepper")) && self.buahCounter < 3{
-                self.buahCounter += 1
-                print(firstObservationResnet.identifier, firstObservationResnet.confidence)
-                print(self.buahCounter)
-            } else if self.buahCounter >= 3 {
-                self.checkBuah = true
-                print(NilaiSementara.nilaiSementara)
-            } else {
-                print(firstObservationResnet.identifier, firstObservationResnet.confidence)
+            DispatchQueue.main.async {
+                if (((firstObservationResnet.identifier == "orange") && (self.silhouetteImage.image == UIImage(named: "jerukSil2"))) || ((self.silhouetteImage.image == UIImage(named: "apelSil2")) && (firstObservationResnet.identifier == "pomegranate") || (firstObservationResnet.identifier == "Granny Smith") || (firstObservationResnet.identifier == "bell pepper"))) && self.buahCounter < 3{
+                    self.buahCounter += 1
+                    print(firstObservationResnet.identifier, firstObservationResnet.confidence)
+                    print(self.buahCounter)
+                } else if self.buahCounter >= 3 {
+                    self.checkBuah = true
+                    print(NilaiSementara.nilaiSementara)
+                } else {
+                    print(firstObservationResnet.identifier, firstObservationResnet.confidence)
+                    self.checkBuahCounter += 1
+                }
             }
         }
         try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([requestResnet])
@@ -447,15 +537,33 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                     guard let firstObservationApel = resultApel.first else {return}
                     print(firstObservationApel.identifier, firstObservationApel.confidence)
                     
-                    if (firstObservationApel.identifier == "Warna Bagus") {
+                    if (firstObservationApel.identifier == "Apel Bagus") {
                         self.nilaiSementara += firstObservationApel.confidence
-                    }else if (firstObservationApel.identifier == "Warna Jelek"){
+                    }else if (firstObservationApel.identifier == "Apel Jelek"){
+                        self.nilaiSementara -= firstObservationApel.confidence
+                    }else if (firstObservationApel.identifier == "Random Photo"){
                         self.nilaiSementara -= firstObservationApel.confidence
                     }
                     self.nilaiCounter += 1
+                        
                 }
                 try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([requestApel])
+            }else if self.silhouetteImage.image == UIImage(named: "tomatoSil2"){
+                let requestTomat = VNCoreMLRequest(model: modelTomat){(finishedReq3, err) in
+                    guard let resultTomat = finishedReq3.results as? [VNClassificationObservation] else {return}
+                    guard let firstObservationTomat = resultTomat.first else {return}
+                    print(firstObservationTomat.identifier, firstObservationTomat.confidence)
+                    
+                    if (firstObservationTomat.identifier == "Tomat Bagus") {
+                        self.nilaiSementara += firstObservationTomat.confidence
+                    }else if (firstObservationTomat.identifier == "Tomat Jelek"){
+                        self.nilaiSementara -= firstObservationTomat.confidence
+                    }
+                    self.nilaiCounter += 1
+                }
+                try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([requestTomat])
             }
         }
     }
 }
+
