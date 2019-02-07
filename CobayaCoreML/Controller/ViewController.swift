@@ -417,6 +417,8 @@ class ViewController: UIViewController {
 
             showOutlet()
             helperDelegate.hapticMedium()
+            let nilaiTotal = String(format: "%.1f", NilaiSementara.nilaiSementara)
+            reviewNumber.text = nilaiTotal
             moveController()
         }
     }
