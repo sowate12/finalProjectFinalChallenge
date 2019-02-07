@@ -141,23 +141,23 @@ class ResultViewController: UIViewController {
 
             
             let xTopGreenView = topGreenView.frame.origin.x
-            let yTopGreenView = self.view.frame.origin.y
-            topGreenView.frame.origin = CGPoint(x: xTopGreenView, y: yTopGreenView + 50)
+            let yTopGreenView = self.view.center.y
+            topGreenView.frame.origin = CGPoint(x: xTopGreenView, y: yTopGreenView - 250 )
             topGreenView.frame.size.height = 205
             print("habis di pasang topview ==== x: \(topGreenView.frame.origin.x), y: \(topGreenView.frame.origin.y)")
             let x = viewGabungan.frame.origin.x
-            let y = self.view.frame.origin.y
-            viewGabungan.frame.origin = CGPoint(x: x, y: y + 50)
+            let y = self.view.center.y
+            viewGabungan.frame.origin = CGPoint(x: x, y: y - 250)
             bottomWhiteView.isHidden = false
             showMoreOrLessButton.isHidden = true
             showMoreOrLessButton2.isHidden = false
             let xBottomWhiteView = bottomWhiteView.frame.origin.x
-            let yBottomWhiteView = self.view.frame.origin.y
-            bottomWhiteView.frame.origin = CGPoint(x: xBottomWhiteView, y: yBottomWhiteView + 230)
+            let yBottomWhiteView = self.view.center.y
+            bottomWhiteView.frame.origin = CGPoint(x: xBottomWhiteView, y: yBottomWhiteView - 70)
             print("habis di pasang ==== x: \(bottomWhiteView.frame.origin.x), y: \(bottomWhiteView.frame.origin.y)")
             let xCloseButton = closeButton.frame.origin.x
             let yCloseButton = self.view.frame.origin.y
-            closeButton.frame.origin = CGPoint(x: xCloseButton, y: yCloseButton + 70)
+            closeButton.frame.origin = CGPoint(x: xCloseButton, y: yCloseButton + 110)
             moreDetailedIsTrue = true
             
         }
@@ -168,18 +168,18 @@ class ResultViewController: UIViewController {
         if (moreDetailedIsTrue == true){
     
             let xTopGreenView = topGreenView.frame.origin.x
-            let yTopGreenView = topGreenView.frame.origin.y
-            topGreenView.frame.origin = CGPoint(x: xTopGreenView, y: yTopGreenView+150)
+            let yTopGreenView = self.view.center.y - topGreenView.frame.height
+            topGreenView.frame.origin = CGPoint(x: xTopGreenView, y: yTopGreenView )
             topGreenView.frame.size.height = 343
             let x = viewGabungan.frame.origin.x
-            let y = viewGabungan.frame.origin.y
-            viewGabungan.frame.origin = CGPoint(x: x, y: y + 200)
+            let y = self.view.center.y - viewGabungan.frame.height
+            viewGabungan.frame.origin = CGPoint(x: x, y: y + 30)
             let xBottomWhiteView = bottomWhiteView.frame.origin.x
-            let yBottomWhiteView = bottomWhiteView.frame.origin.y
-            bottomWhiteView.frame.origin = CGPoint(x: xBottomWhiteView, y: yBottomWhiteView + 290)
+            let yBottomWhiteView = self.view.frame.origin.y
+            bottomWhiteView.frame.origin = CGPoint(x: xBottomWhiteView, y: yBottomWhiteView + 150 )
             let xCloseButton = closeButton.frame.origin.x
-            let yCloseButton = closeButton.frame.origin.y
-            closeButton.frame.origin = CGPoint(x: xCloseButton, y: yCloseButton + 150)
+            let yCloseButton = self.view.center.y - closeButton.frame.height
+            closeButton.frame.origin = CGPoint(x: xCloseButton, y: yCloseButton - 150 )
             bottomWhiteView.isHidden = true
             showMoreOrLessButton2.isHidden = true
             showMoreOrLessButton.isHidden = false
@@ -312,7 +312,7 @@ class ResultViewController: UIViewController {
         yourResultIsText.rightAnchor.constraint(equalTo: viewGabungan.rightAnchor).isActive = true
         
         //ShowMoreOrLessButton
-        showMoreOrLessButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 470).isActive = true
+        showMoreOrLessButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 110).isActive = true
         showMoreOrLessButton.heightAnchor.constraint(equalToConstant: 30 ).isActive = true
         showMoreOrLessButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 130).isActive = true
         showMoreOrLessButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -130).isActive = true
@@ -364,7 +364,7 @@ class ResultViewController: UIViewController {
         tipsLabel.leftAnchor.constraint(equalTo: bottomWhiteView.leftAnchor, constant : 5).isActive = true
         
         //ShowMoreOrLessButton2
-        showMoreOrLessButton2.topAnchor.constraint(equalTo: showMoreOrLessButton.bottomAnchor, constant : 90).isActive = true
+        showMoreOrLessButton2.topAnchor.constraint(equalTo: showMoreOrLessButton.bottomAnchor, constant : 150).isActive = true
         showMoreOrLessButton2.heightAnchor.constraint(equalToConstant: 30 ).isActive = true
         showMoreOrLessButton2.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 130).isActive = true
         showMoreOrLessButton2.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -130).isActive = true
@@ -417,21 +417,8 @@ class ResultViewController: UIViewController {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 //        screenShotMethod()
         let touch: UITouch? = touches.first
-        print("pas di touch location: \(touch?.location(in: view).y)")
-//        if touch?.view != topGreenView && touch?.view == bottomWhiteView && touch?.view != viewGabungan && touch?.view != nilaiOutlet2{
-//            UIView.animate(withDuration: 0.25, animations: {
-//                self.view.transform = CGAffineTransform(translationX: 1.3, y: 1.3)
-//                self.view.alpha = 0.0;
-//            }) { (finished : Bool) in
-//                if (finished){
-//                    self.view.removeFromSuperview()
-//                }
-//            }
-//        } else {
-//
-//        }
-
-        if touch?.view != topGreenView && (Int((touch?.location(in: bottomWhiteView).x)!) <= 16 || Int((touch?.location(in: bottomWhiteView).y)!) >= 380) && touch?.view != viewGabungan && touch?.view != nilaiOutlet2{
+        
+        if touch?.view != topGreenView && ((self.moreDetailedIsTrue == true) && (Int((touch?.location(in: bottomWhiteView).x)!) <= 16 || Int((touch?.location(in: bottomWhiteView).y)!) >= 380) && touch?.view != viewGabungan) && touch?.view != nilaiOutlet2{
             UIView.animate(withDuration: 0.25, animations: {
                 self.view.transform = CGAffineTransform(translationX: 1.3, y: 1.3)
                 self.view.alpha = 0.0;
@@ -444,5 +431,17 @@ class ResultViewController: UIViewController {
 
         }
     }
-    
 }
+
+//        if touch?.view != topGreenView && touch?.view == bottomWhiteView && touch?.view != viewGabungan && touch?.view != nilaiOutlet2{
+//            UIView.animate(withDuration: 0.25, animations: {
+//                self.view.transform = CGAffineTransform(translationX: 1.3, y: 1.3)
+//                self.view.alpha = 0.0;
+//            }) { (finished : Bool) in
+//                if (finished){
+//                    self.view.removeFromSuperview()
+//                }
+//            }
+//        } else {
+//
+//        }
