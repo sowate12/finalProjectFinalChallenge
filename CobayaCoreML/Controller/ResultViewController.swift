@@ -156,8 +156,8 @@ class ResultViewController: UIViewController {
             bottomWhiteView.frame.origin = CGPoint(x: xBottomWhiteView, y: yBottomWhiteView - 70)
             print("habis di pasang ==== x: \(bottomWhiteView.frame.origin.x), y: \(bottomWhiteView.frame.origin.y)")
             let xCloseButton = closeButton.frame.origin.x
-            let yCloseButton = self.view.frame.origin.y
-            closeButton.frame.origin = CGPoint(x: xCloseButton, y: yCloseButton + 110)
+            let yCloseButton = self.view.center.y
+            closeButton.frame.origin = CGPoint(x: xCloseButton, y: yCloseButton - 230)
             moreDetailedIsTrue = true
             
         }
