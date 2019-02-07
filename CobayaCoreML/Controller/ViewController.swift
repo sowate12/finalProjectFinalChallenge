@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     var nilaiCounter = 0
     var buahCounter = 0
     var nilaiSementara : Float = 5
-    var namaNamaBuah = ["","","Fuji Apple","Orange", "Tomato","", ""]
+    var namaNamaBuah = ["","","Fuji Apple","Mandarin Orange", "Red Beefsteak Tomato","", ""]
     var jumlahBuah = ["","","apel","jeruk","tomato","",""]
     var results = ["result1", "result2", "result3", "result4", "result5"]
     var hasShownResult = false
@@ -160,7 +160,7 @@ class ViewController: UIViewController {
     func pasangNamaBuah(){
         let x = view.frame.width / 2
         let y = view.frame.height
-        namaBuah.frame = CGRect(x: x - 50, y: y - 225, width: 100, height: 125)
+        namaBuah.frame = CGRect(x: x - 100, y: y - 225, width: 200, height: 125)
         namaBuah.textAlignment = .center
         namaBuah.layer.masksToBounds = true
         namaBuah.textColor = .white
@@ -417,8 +417,7 @@ class ViewController: UIViewController {
 
             showOutlet()
             helperDelegate.hapticMedium()
-            let nilaiTotal = String(format: "%.1f", NilaiSementara.nilaiSementara)
-            reviewNumber.text = nilaiTotal
+            setupColor()
             moveController()
         }
     }
