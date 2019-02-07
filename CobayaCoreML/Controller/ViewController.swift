@@ -140,7 +140,7 @@ class ViewController: UIViewController {
         reviewLabel.text = "Fuji Apple"
         reviewNumber.textAlignment = .center
         reviewNumber.layer.masksToBounds = true
-        reviewNumber.frame = CGRect(x: 28, y: 16, width: 20, height: 36)
+        reviewNumber.frame = CGRect(x: 22, y: 16, width: 30, height: 36)
         reviewNumber.font = UIFont(name: "Biko-Bold", size: 13)
     }
     
