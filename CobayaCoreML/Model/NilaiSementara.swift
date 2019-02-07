@@ -14,5 +14,6 @@ struct NilaiSementara {
     static var cellDiTengah : Bool = false
     static var nilaiTekstur : Float = 5
     static var gambarSS : UIImage = UIImage()
+    static var previousFruit : String = "Previous fruit"
 }
 

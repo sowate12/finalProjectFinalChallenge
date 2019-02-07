@@ -312,7 +312,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="faN-1g-cah" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1090" y="1530"/>
+            <point key="canvasLocation" x="-1052" y="1490"/>
         </scene>
         <!--Tips View Controller-->
         <scene sceneID="FXo-7r-bzP">
@@ -676,7 +676,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="buat toni 2" translatesAutoresizingMaskIntoConstraints="NO" id="pd9-GP-jqH" userLabel="happy fruiting">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="happyScanText" translatesAutoresizingMaskIntoConstraints="NO" id="pd9-GP-jqH" userLabel="happy fruiting">
                                 <rect key="frame" x="49.666666666666657" y="382" width="276" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="hKj-MF-SzV"/>
@@ -948,7 +948,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xNb-gc-Cji" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-862" y="750"/>
+            <point key="canvasLocation" x="-1030" y="750"/>
         </scene>
     </scenes>
     <resources>
@@ -960,12 +960,12 @@
         <image name="arrowUp" width="500" height="239"/>
         <image name="bg polos kotak hijau" width="500" height="500"/>
         <image name="buat toni 1" width="217" height="45"/>
-        <image name="buat toni 2" width="548" height="96"/>
         <image name="button scan apel" width="500" height="500"/>
         <image name="close white button" width="500" height="500"/>
         <image name="close white no shadow" width="500" height="500"/>
         <image name="closeWhite" width="500" height="500"/>
         <image name="closeWhiteButton" width="500" height="500"/>
+        <image name="happyScanText" width="500" height="88"/>
         <image name="ijo" width="500" height="245"/>
         <image name="lingkaran luar" width="500" height="500"/>
         <image name="main page buat onboarding  copy" width="500" height="1083"/>
@@ -978,7 +978,6 @@
         <image name="tutorial button" width="500" height="441"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="G5N-gs-A8B"/>
         <segue reference="iac-zg-NIh"/>
     </inferredMetricsTieBreakers>
 </document>
