@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     var nilaiCounter = 0
     var buahCounter = 0
     var nilaiSementara : Float = 5
-    var namaNamaBuah = ["","","Fuji Apple","Orange", "Tomato","", ""]
+    var namaNamaBuah = ["","","Fuji Apple","Mandarin Orange", "Tomato","", ""]
     var jumlahBuah = ["","","apel","jeruk","tomato","",""]
     var results = ["result1", "result2", "result3", "result4", "result5"]
     var hasShownResult = false
@@ -74,11 +74,10 @@ class ViewController: UIViewController {
         checkingResult()
         helperDelegate.addLoading()
         setupView()
-//        viewReview.isHidden = true
-//        buttonReview.isHidden = true
-//        reviewNumber.isHidden = true
-//        reviewLabel.isHidden = true
-//        tutorialButton.isHidden = true
+        viewReview.isHidden = true
+        buttonReview.isHidden = true
+        reviewNumber.isHidden = true
+        reviewLabel.isHidden = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -165,7 +164,7 @@ class ViewController: UIViewController {
     func pasangNamaBuah(){
         let x = view.frame.width / 2
         let y = view.frame.height
-        namaBuah.frame = CGRect(x: x - 50, y: y - 225, width: 100, height: 125)
+        namaBuah.frame = CGRect(x: x - 100, y: y - 225, width: 200, height: 125)
         namaBuah.textAlignment = .center
         namaBuah.layer.masksToBounds = true
         namaBuah.textColor = .white
@@ -327,12 +326,12 @@ class ViewController: UIViewController {
         scanningText.isHidden = false
         fruitTypeCollectionView.isHidden = false
         startButton.isHidden = false
+        tutorialButton.isHidden = false
         if hasScanned {
             viewReview.isHidden = false
             buttonReview.isHidden = false
             reviewNumber.isHidden = false
             reviewLabel.isHidden = false
-            tutorialButton.isHidden = false
         }
     }
     
@@ -354,7 +353,9 @@ class ViewController: UIViewController {
     /// Reset the variables to default
     func resetVariables(){
         hasSpinned = false
-        NilaiSementara.nilaiSementara = 0
+        if !hasScanned{
+            NilaiSementara.nilaiSementara = 0
+        }
         nilaiSementara  = 5
         nilaiCounter = 0
         buahCounter = 0
@@ -417,11 +418,11 @@ class ViewController: UIViewController {
         gantiKeScan()
         
         if !hasShownResult {return}
-        NilaiSementara.nilaiSementara = self.nilaiSementara
         
         if nilaiCounter == 5 {
             hasShownResult = false
             self.isChecking = false
+            NilaiSementara.nilaiSementara = self.nilaiSementara
 
             NilaiSementara.previousFruit = namaBuah.text!
             helperDelegate.hapticMedium()
