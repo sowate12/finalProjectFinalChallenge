@@ -26,6 +26,7 @@ class ViewController: UIViewController {
     var isChecking : Bool = false
     var checkBuah = false
     var hasSpinned = false
+    var hasScanned = false
     var timer = Timer()
     let generator = UINotificationFeedbackGenerator()
     var dummyImage : UIImageView = UIImageView()
@@ -73,7 +74,11 @@ class ViewController: UIViewController {
         checkingResult()
         helperDelegate.addLoading()
         setupView()
-        
+//        viewReview.isHidden = true
+//        buttonReview.isHidden = true
+//        reviewNumber.isHidden = true
+//        reviewLabel.isHidden = true
+//        tutorialButton.isHidden = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -223,6 +228,7 @@ class ViewController: UIViewController {
     func setupColor(){
         let nilaiTotal = String(format: "%.1f", NilaiSementara.nilaiSementara)
         reviewNumber.text = nilaiTotal
+        reviewLabel.text = NilaiSementara.previousFruit
         if NilaiSementara.nilaiSementara >= 9 && NilaiSementara.nilaiSementara <= 10{
             buttonReview.setImage(UIImage(named: "\(results[0])"), for: .normal)
             reviewNumber.textColor = hijau
@@ -321,11 +327,13 @@ class ViewController: UIViewController {
         scanningText.isHidden = false
         fruitTypeCollectionView.isHidden = false
         startButton.isHidden = false
-        viewReview.isHidden = false
-        buttonReview.isHidden = false
-        reviewNumber.isHidden = false
-        reviewLabel.isHidden = false
-        tutorialButton.isHidden = false
+        if hasScanned {
+            viewReview.isHidden = false
+            buttonReview.isHidden = false
+            reviewNumber.isHidden = false
+            reviewLabel.isHidden = false
+            tutorialButton.isHidden = false
+        }
     }
     
     deinit{
@@ -415,8 +423,11 @@ class ViewController: UIViewController {
             hasShownResult = false
             self.isChecking = false
 
-            showOutlet()
+            NilaiSementara.previousFruit = namaBuah.text!
             helperDelegate.hapticMedium()
+            hasScanned = true
+            setupColor()
+            showOutlet()
             moveController()
         }
     }
@@ -560,7 +571,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
             guard let resultsResnet = finishReq2.results as? [VNClassificationObservation] else {return}
             guard let firstObservationResnet = resultsResnet.first else {return}
             DispatchQueue.main.async {
-                if (((firstObservationResnet.identifier == "orange") && (self.silhouetteImage.image == UIImage(named: "jerukSil2"))) || ((self.silhouetteImage.image == UIImage(named: "apelSil2")) && (firstObservationResnet.identifier == "pomegranate") || (firstObservationResnet.identifier == "Granny Smith") || (firstObservationResnet.identifier == "bell pepper"))) && self.buahCounter < 3{
+                if (((firstObservationResnet.identifier == "orange") && (self.silhouetteImage.image == UIImage(named: "jerukSil2"))) || (((self.silhouetteImage.image == UIImage(named: "tomatoSil2")) || (self.silhouetteImage.image == UIImage(named: "apelSil2"))) && (firstObservationResnet.identifier == "pomegranate") || (firstObservationResnet.identifier == "Granny Smith") || (firstObservationResnet.identifier == "hip, rose hip, rosehip") || (firstObservationResnet.identifier == "bell pepper"))) && self.buahCounter < 3{
                     self.buahCounter += 1
                     print(firstObservationResnet.identifier, firstObservationResnet.confidence)
                     print(self.buahCounter)

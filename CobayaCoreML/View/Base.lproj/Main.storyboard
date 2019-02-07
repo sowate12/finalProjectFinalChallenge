@@ -312,7 +312,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="faN-1g-cah" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1090" y="1530"/>
+            <point key="canvasLocation" x="-1052" y="1490"/>
         </scene>
         <!--Tips View Controller-->
         <scene sceneID="FXo-7r-bzP">
@@ -948,7 +948,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xNb-gc-Cji" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-862" y="750"/>
+            <point key="canvasLocation" x="-1030" y="750"/>
         </scene>
     </scenes>
     <resources>
@@ -978,7 +978,6 @@
         <image name="tutorial button" width="500" height="441"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="G5N-gs-A8B"/>
         <segue reference="iac-zg-NIh"/>
     </inferredMetricsTieBreakers>
 </document>
