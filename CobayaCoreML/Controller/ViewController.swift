@@ -74,10 +74,10 @@ class ViewController: UIViewController {
         checkingResult()
         helperDelegate.addLoading()
         setupView()
-        viewReview.isHidden = true
-        buttonReview.isHidden = true
-        reviewNumber.isHidden = true
-        reviewLabel.isHidden = true
+//        viewReview.isHidden = true
+//        buttonReview.isHidden = true
+//        reviewNumber.isHidden = true
+//        reviewLabel.isHidden = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -101,7 +101,6 @@ class ViewController: UIViewController {
         setupIcon()
         setupViewReview()
         setupColor()
-        setupButton()
         view.addSubview(fruitTypeCollectionView)
         view.addSubview(startButton)
         view.addSubview(silhouetteImage)
@@ -129,7 +128,23 @@ class ViewController: UIViewController {
     }
     
     func setupViewReview(){
-        viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
+        if UIDevice().userInterfaceIdiom == .phone {
+            switch UIScreen.main.nativeBounds.height {
+            case 2436:
+                viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
+                tutorialButton.frame = CGRect(x: view.frame.width - 59, y: 53, width: 25 , height: 25)
+            case 2688:
+                viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
+                tutorialButton.frame = CGRect(x: view.frame.width - 59, y: 53, width: 25 , height: 25)
+            case 1792:
+                viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
+                tutorialButton.frame = CGRect(x: view.frame.width - 59, y: 53, width: 25 , height: 25)
+            default:
+                viewReview.frame = CGRect(x: view.frame.width - 150, y: 79, width: 150, height: 60)
+                tutorialButton.frame = CGRect(x: view.frame.width - 59, y: 33, width: 25 , height: 25)
+            }
+        }
+        buttonReview.layer.masksToBounds = true
         reviewLabel.topAnchor.constraint(equalTo: viewReview.topAnchor, constant: 21).isActive = true
         reviewLabel.rightAnchor.constraint(equalTo: viewReview.rightAnchor).isActive = true
         reviewLabel.leftAnchor.constraint(equalTo: viewReview.leftAnchor).isActive = true
@@ -145,7 +160,7 @@ class ViewController: UIViewController {
         reviewNumber.textAlignment = .center
         reviewNumber.layer.masksToBounds = true
         reviewNumber.frame = CGRect(x: 22, y: 16, width: 30, height: 36)
-        reviewNumber.font = UIFont(name: "Biko-Bold", size: 13)
+        reviewNumber.font = UIFont(name: "Biko-Bold", size: 17)
     }
     
     /// Setup the Label in the middle of the silhouette
@@ -169,12 +184,6 @@ class ViewController: UIViewController {
         namaBuah.layer.masksToBounds = true
         namaBuah.textColor = .white
         namaBuah.text = "\(namaNamaBuah[2])"
-    }
-    
-    func setupButton(){
-//        buttonReview.frame = CGRect(x: view.frame.width - 142, y: 109 , width: 142, height: 53)
-        buttonReview.layer.masksToBounds = true
-        tutorialButton.frame = CGRect(x: view.frame.width - 59, y: 53, width: 25 , height: 25)
     }
     
     func setupIcon(){
@@ -413,7 +422,6 @@ class ViewController: UIViewController {
     
     /// Show the result if has not shown result
     @objc func showResult(){
-        setupButton()
         isFirstFrame = true
         gantiKeScan()
         
