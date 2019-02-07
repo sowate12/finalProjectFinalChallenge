@@ -141,23 +141,23 @@ class ResultViewController: UIViewController {
 
             
             let xTopGreenView = topGreenView.frame.origin.x
-            let yTopGreenView = topGreenView.frame.origin.y
-            topGreenView.frame.origin = CGPoint(x: xTopGreenView, y: yTopGreenView-150)
+            let yTopGreenView = self.view.frame.origin.y
+            topGreenView.frame.origin = CGPoint(x: xTopGreenView, y: yTopGreenView + 50)
             topGreenView.frame.size.height = 205
             print("habis di pasang topview ==== x: \(topGreenView.frame.origin.x), y: \(topGreenView.frame.origin.y)")
             let x = viewGabungan.frame.origin.x
-            let y = viewGabungan.frame.origin.y
-            viewGabungan.frame.origin = CGPoint(x: x, y: y - 200)
+            let y = self.view.frame.origin.y
+            viewGabungan.frame.origin = CGPoint(x: x, y: y + 50)
             bottomWhiteView.isHidden = false
             showMoreOrLessButton.isHidden = true
             showMoreOrLessButton2.isHidden = false
             let xBottomWhiteView = bottomWhiteView.frame.origin.x
-            let yBottomWhiteView = bottomWhiteView.frame.origin.y
-            bottomWhiteView.frame.origin = CGPoint(x: xBottomWhiteView, y: yBottomWhiteView - 290)
+            let yBottomWhiteView = self.view.frame.origin.y
+            bottomWhiteView.frame.origin = CGPoint(x: xBottomWhiteView, y: yBottomWhiteView + 230)
             print("habis di pasang ==== x: \(bottomWhiteView.frame.origin.x), y: \(bottomWhiteView.frame.origin.y)")
             let xCloseButton = closeButton.frame.origin.x
-            let yCloseButton = closeButton.frame.origin.y
-            closeButton.frame.origin = CGPoint(x: xCloseButton, y: yCloseButton - 150)
+            let yCloseButton = self.view.frame.origin.y
+            closeButton.frame.origin = CGPoint(x: xCloseButton, y: yCloseButton + 70)
             moreDetailedIsTrue = true
             
         }
@@ -312,7 +312,7 @@ class ResultViewController: UIViewController {
         yourResultIsText.rightAnchor.constraint(equalTo: viewGabungan.rightAnchor).isActive = true
         
         //ShowMoreOrLessButton
-        showMoreOrLessButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 530).isActive = true
+        showMoreOrLessButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 470).isActive = true
         showMoreOrLessButton.heightAnchor.constraint(equalToConstant: 30 ).isActive = true
         showMoreOrLessButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 130).isActive = true
         showMoreOrLessButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -130).isActive = true
@@ -364,7 +364,7 @@ class ResultViewController: UIViewController {
         tipsLabel.leftAnchor.constraint(equalTo: bottomWhiteView.leftAnchor, constant : 5).isActive = true
         
         //ShowMoreOrLessButton2
-        showMoreOrLessButton2.topAnchor.constraint(equalTo: showMoreOrLessButton.bottomAnchor, constant : 60).isActive = true
+        showMoreOrLessButton2.topAnchor.constraint(equalTo: showMoreOrLessButton.bottomAnchor, constant : 90).isActive = true
         showMoreOrLessButton2.heightAnchor.constraint(equalToConstant: 30 ).isActive = true
         showMoreOrLessButton2.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 130).isActive = true
         showMoreOrLessButton2.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -130).isActive = true
