@@ -74,10 +74,10 @@ class ViewController: UIViewController {
         checkingResult()
         helperDelegate.addLoading()
         setupView()
-//        viewReview.isHidden = true
-//        buttonReview.isHidden = true
-//        reviewNumber.isHidden = true
-//        reviewLabel.isHidden = true
+        viewReview.isHidden = true
+        buttonReview.isHidden = true
+        reviewNumber.isHidden = true
+        reviewLabel.isHidden = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -159,7 +159,7 @@ class ViewController: UIViewController {
         reviewLabel.text = "Fuji Apple"
         reviewNumber.textAlignment = .center
         reviewNumber.layer.masksToBounds = true
-        reviewNumber.frame = CGRect(x: 22, y: 16, width: 30, height: 36)
+        reviewNumber.frame = CGRect(x: 20, y: 16, width: 35, height: 36)
         reviewNumber.font = UIFont(name: "Biko-Bold", size: 17)
     }
     
