@@ -173,7 +173,7 @@ class ResultViewController: UIViewController {
             topGreenView.frame.size.height = 343
             let x = viewGabungan.frame.origin.x
             let y = self.view.center.y - viewGabungan.frame.height
-            viewGabungan.frame.origin = CGPoint(x: x, y: y + 30)
+            viewGabungan.frame.origin = CGPoint(x: x, y: y + 10)
             let xBottomWhiteView = bottomWhiteView.frame.origin.x
             let yBottomWhiteView = self.view.frame.origin.y
             bottomWhiteView.frame.origin = CGPoint(x: xBottomWhiteView, y: yBottomWhiteView + 150 )
