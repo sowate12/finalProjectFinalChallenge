@@ -40,7 +40,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="scrollIndicatorInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="33" minimumInteritemSpacing="10" id="rua-w1-Z8z">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="25" minimumInteritemSpacing="10" id="rua-w1-Z8z">
                                     <size key="itemSize" width="55" height="55"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -76,6 +76,34 @@
                                 <rect key="frame" x="26" y="205" width="323" height="316"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5U3-SM-8nn">
+                                <rect key="frame" x="225" y="109" width="150" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d7D-kR-sw0">
+                                        <rect key="frame" x="8" y="5" width="142" height="53"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button" image="result1"/>
+                                        <connections>
+                                            <action selector="buttonBackToReview:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5eU-EF-vYI"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PE0-0G-muB">
+                                        <rect key="frame" x="92" y="21" width="33" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Biy-JU-1y2">
+                                        <rect key="frame" x="18" y="21" width="42" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CSM-nt-NlY">
                                 <rect key="frame" x="26" y="25" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -91,14 +119,6 @@
                                 <connections>
                                     <action selector="tutorialButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0OH-cx-Rtn"/>
                                     <segue destination="sjp-pV-Ueb" kind="show" identifier="tutorial" id="G5N-gs-A8B"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d7D-kR-sw0">
-                                <rect key="frame" x="164" y="566" width="30" height="38"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="buttonBackToReview:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5eU-EF-vYI"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4AW-QH-a2g" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
@@ -117,10 +137,13 @@
                         <outlet property="buttonReview" destination="d7D-kR-sw0" id="3P4-Ua-MfH"/>
                         <outlet property="cancelButton" destination="CSM-nt-NlY" id="48R-mV-UG7"/>
                         <outlet property="fruitTypeCollectionView" destination="0ze-pf-8qW" id="7Fv-Rf-1YA"/>
+                        <outlet property="reviewLabel" destination="PE0-0G-muB" id="aEP-Ro-Q2x"/>
+                        <outlet property="reviewNumber" destination="Biy-JU-1y2" id="uT9-ED-vxq"/>
                         <outlet property="scanningIcon" destination="4AW-QH-a2g" id="Xvx-DL-g9m"/>
                         <outlet property="silhouetteImage" destination="Hv5-Wp-uPg" id="v8W-1L-YyB"/>
                         <outlet property="startButton" destination="6Qy-cD-faz" id="VbI-9n-W8T"/>
                         <outlet property="tutorialButton" destination="PBF-3a-CvQ" id="eE4-Kw-za7"/>
+                        <outlet property="viewReview" destination="5U3-SM-8nn" id="FtN-R4-GyV"/>
                         <segue destination="S0h-iO-nwO" kind="show" identifier="moveController" id="z6w-7A-vV5"/>
                     </connections>
                 </viewController>
@@ -947,6 +970,7 @@
         <image name="lingkaran luar" width="500" height="500"/>
         <image name="main page buat onboarding  copy" width="500" height="1083"/>
         <image name="putih" width="500" height="596"/>
+        <image name="result1" width="500" height="187"/>
         <image name="siluet apel + shadow" width="500" height="440"/>
         <image name="small button jeruk revisi" width="500" height="500"/>
         <image name="small button tomat revisi" width="500" height="500"/>

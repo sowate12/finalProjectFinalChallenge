@@ -15,3 +15,4 @@ struct NilaiSementara {
     static var nilaiTekstur : Float = 5
     static var gambarSS : UIImage = UIImage()
 }
+
