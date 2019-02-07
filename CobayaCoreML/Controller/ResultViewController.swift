@@ -418,7 +418,7 @@ class ResultViewController: UIViewController {
 //        screenShotMethod()
         let touch: UITouch? = touches.first
         
-        if touch?.view != topGreenView && ((self.moreDetailedIsTrue == true) && (Int((touch?.location(in: bottomWhiteView).x)!) <= 16 || Int((touch?.location(in: bottomWhiteView).y)!) >= 380) && touch?.view != viewGabungan) && touch?.view != nilaiOutlet2{
+        if (self.moreDetailedIsTrue == false && touch?.view != topGreenView) || ((self.moreDetailedIsTrue == true) && (Int((touch?.location(in: bottomWhiteView).x)!) <= 16 || Int((touch?.location(in: bottomWhiteView).y)!) >= 380) && touch?.view != viewGabungan) && touch?.view != nilaiOutlet2{
             UIView.animate(withDuration: 0.25, animations: {
                 self.view.transform = CGAffineTransform(translationX: 1.3, y: 1.3)
                 self.view.alpha = 0.0;
