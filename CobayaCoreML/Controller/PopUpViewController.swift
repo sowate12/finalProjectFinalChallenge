@@ -59,19 +59,19 @@ class PopUpViewController: UIViewController {
         }
     }
 
-    @IBAction func showLessButton(_ sender: Any) {
-        viewAnimationDelegate.hapticMedium()
-        topGreenView.frame = CGRect(x: 16, y: view.frame.height / 2 - 100, width: 343, height: 343)
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
-            self.topGreenView.layoutIfNeeded()
-            self.bottomWhiteView.layoutIfNeeded()
-            self.topGreenView.center.y -= self.topGreenView.frame.height/2
-            self.bottomWhiteView.center.y -= self.bottomWhiteView.frame.height/4-60
-         }, completion: nil)
-        showMoreOutlet.isHidden = false
-        showLessOutlet.isHidden = true
-        bottomWhiteView.isHidden = true
-    }
+//    @IBAction func showLessButton(_ sender: Any) {
+//        viewAnimationDelegate.hapticMedium()
+//        topGreenView.frame = CGRect(x: 16, y: view.frame.height / 2 - 100, width: 343, height: 343)
+//        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+//            self.topGreenView.layoutIfNeeded()
+//            self.bottomWhiteView.layoutIfNeeded()
+//            self.topGreenView.center.y -= self.topGreenView.frame.height/2
+//            self.bottomWhiteView.center.y -= self.bottomWhiteView.frame.height/4-60
+//         }, completion: nil)
+//        showMoreOutlet.isHidden = false
+//        showLessOutlet.isHidden = true
+//        bottomWhiteView.isHidden = true
+//    }
     
     @IBAction func showMoreDetailButton(_ sender: Any) {
         viewAnimationDelegate.hapticMedium()
@@ -142,10 +142,11 @@ class PopUpViewController: UIViewController {
         screenShotMethod()
         let touch: UITouch? = touches.first
 
-        if touch?.view != topGreenView && touch?.view != bottomWhiteView{
+        if touch?.view != topGreenView || touch?.view != bottomWhiteView{
             UIView.animate(withDuration: 0.25, animations: {
                 self.view.transform = CGAffineTransform(translationX: 1.3, y: 1.3)
                 self.view.alpha = 0.0;
+               
             }) { (finished : Bool) in
                 if (finished){
                     self.view.removeFromSuperview()

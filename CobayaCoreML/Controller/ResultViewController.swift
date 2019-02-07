@@ -126,7 +126,7 @@ class ResultViewController: UIViewController {
     let showMoreOrLessButton2: UIButton = {
         let button = UIButton()
         
-        var image = UIImage(named: "arrowUP") as UIImage?
+        var image = UIImage(named: "arrowUp") as UIImage?
         button.setImage(image, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor.clear
@@ -138,27 +138,23 @@ class ResultViewController: UIViewController {
     
     @objc func buttonShowMore(){
         if (moreDetailedIsTrue == false) {
-            //setupLayout2()
-            
-//            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
-//                self.topGreenView.layoutIfNeeded()
-//                self.bottomWhiteView.layoutIfNeeded()
-////                self.topGreenView.center.y -= self.topGreenView.frame.height
-////                self.bottomWhiteView.center.y -= self.bottomWhiteView.frame.height
-//            }, completion: nil)
+
             
             let xTopGreenView = topGreenView.frame.origin.x
             let yTopGreenView = topGreenView.frame.origin.y
             topGreenView.frame.origin = CGPoint(x: xTopGreenView, y: yTopGreenView-150)
             topGreenView.frame.size.height = 205
+            print("habis di pasang topview ==== x: \(topGreenView.frame.origin.x), y: \(topGreenView.frame.origin.y)")
             let x = viewGabungan.frame.origin.x
             let y = viewGabungan.frame.origin.y
             viewGabungan.frame.origin = CGPoint(x: x, y: y - 200)
             bottomWhiteView.isHidden = false
+            showMoreOrLessButton.isHidden = true
             showMoreOrLessButton2.isHidden = false
             let xBottomWhiteView = bottomWhiteView.frame.origin.x
             let yBottomWhiteView = bottomWhiteView.frame.origin.y
             bottomWhiteView.frame.origin = CGPoint(x: xBottomWhiteView, y: yBottomWhiteView - 290)
+            print("habis di pasang ==== x: \(bottomWhiteView.frame.origin.x), y: \(bottomWhiteView.frame.origin.y)")
             let xCloseButton = closeButton.frame.origin.x
             let yCloseButton = closeButton.frame.origin.y
             closeButton.frame.origin = CGPoint(x: xCloseButton, y: yCloseButton - 150)
@@ -170,14 +166,7 @@ class ResultViewController: UIViewController {
     
     @objc func buttonShowLess(){
         if (moreDetailedIsTrue == true){
-            //setupLayout()
-//            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
-//                self.topGreenView.layoutIfNeeded()
-//                self.bottomWhiteView.layoutIfNeeded()
-//                //                self.topGreenView.center.y += self.topGreenView.frame.height
-//                //                self.bottomWhiteView.center.y += self.bottomWhiteView.frame.height
-//            }, completion: nil)
-            showMoreOrLessButton.imageView?.image = UIImage(named: "arrowDown")
+    
             let xTopGreenView = topGreenView.frame.origin.x
             let yTopGreenView = topGreenView.frame.origin.y
             topGreenView.frame.origin = CGPoint(x: xTopGreenView, y: yTopGreenView+150)
@@ -193,6 +182,7 @@ class ResultViewController: UIViewController {
             closeButton.frame.origin = CGPoint(x: xCloseButton, y: yCloseButton + 150)
             bottomWhiteView.isHidden = true
             showMoreOrLessButton2.isHidden = true
+            showMoreOrLessButton.isHidden = false
             moreDetailedIsTrue = false
         }
     }
@@ -262,11 +252,12 @@ class ResultViewController: UIViewController {
         
         setupLayout()
         bottomWhiteView.isHidden = true
-        //showMoreOrLessButton2.isHidden = false
+        showMoreOrLessButton2.isHidden = true
         
     }
     
     func setupView(){
+
         view.addSubview(bottomWhiteView)
         view.addSubview(topGreenView)
         view.addSubview(viewGabungan)
@@ -280,6 +271,7 @@ class ResultViewController: UIViewController {
         bottomWhiteView.addSubview(tipsLabel)
         view.addSubview(showMoreOrLessButton)
         view.addSubview(showMoreOrLessButton2)
+      
         view.addSubview(closeButton)
     }
     
@@ -325,11 +317,7 @@ class ResultViewController: UIViewController {
         showMoreOrLessButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 130).isActive = true
         showMoreOrLessButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -130).isActive = true
         
-        //ShowMoreOrLessButton2
-        showMoreOrLessButton2.topAnchor.constraint(equalTo: view.topAnchor, constant: 650).isActive = true
-        showMoreOrLessButton2.heightAnchor.constraint(equalToConstant: 30 ).isActive = true
-        showMoreOrLessButton2.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 130).isActive = true
-        showMoreOrLessButton2.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -130).isActive = true
+
         
         //NilaiOutlet2
         nilaiOutlet2.topAnchor.constraint(equalTo: yourResultIsText.topAnchor, constant: 55).isActive = true
@@ -375,6 +363,11 @@ class ResultViewController: UIViewController {
         tipsLabel.rightAnchor.constraint(equalTo: bottomWhiteView.rightAnchor, constant: -10).isActive = true
         tipsLabel.leftAnchor.constraint(equalTo: bottomWhiteView.leftAnchor, constant : 5).isActive = true
         
+        //ShowMoreOrLessButton2
+        showMoreOrLessButton2.topAnchor.constraint(equalTo: showMoreOrLessButton.bottomAnchor, constant : 60).isActive = true
+        showMoreOrLessButton2.heightAnchor.constraint(equalToConstant: 30 ).isActive = true
+        showMoreOrLessButton2.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 130).isActive = true
+        showMoreOrLessButton2.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -130).isActive = true
     }
     
     func hasilScan() {
@@ -424,8 +417,21 @@ class ResultViewController: UIViewController {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 //        screenShotMethod()
         let touch: UITouch? = touches.first
-        
-        if touch?.view != topGreenView && touch?.view != bottomWhiteView && touch?.view != viewGabungan && touch?.view != nilaiOutlet2{
+        print("pas di touch location: \(touch?.location(in: view).y)")
+//        if touch?.view != topGreenView && touch?.view == bottomWhiteView && touch?.view != viewGabungan && touch?.view != nilaiOutlet2{
+//            UIView.animate(withDuration: 0.25, animations: {
+//                self.view.transform = CGAffineTransform(translationX: 1.3, y: 1.3)
+//                self.view.alpha = 0.0;
+//            }) { (finished : Bool) in
+//                if (finished){
+//                    self.view.removeFromSuperview()
+//                }
+//            }
+//        } else {
+//
+//        }
+
+        if touch?.view != topGreenView && (Int((touch?.location(in: bottomWhiteView).x)!) <= 16 || Int((touch?.location(in: bottomWhiteView).y)!) >= 380) && touch?.view != viewGabungan && touch?.view != nilaiOutlet2{
             UIView.animate(withDuration: 0.25, animations: {
                 self.view.transform = CGAffineTransform(translationX: 1.3, y: 1.3)
                 self.view.alpha = 0.0;
@@ -435,7 +441,7 @@ class ResultViewController: UIViewController {
                 }
             }
         } else {
-            print("anjing")
+
         }
     }
     
