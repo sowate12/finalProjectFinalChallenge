@@ -145,12 +145,6 @@ class ViewController: UIViewController {
             }
         }
         buttonReview.layer.masksToBounds = true
-        reviewLabel.topAnchor.constraint(equalTo: viewReview.topAnchor, constant: 21).isActive = true
-        reviewLabel.rightAnchor.constraint(equalTo: viewReview.rightAnchor).isActive = true
-        reviewLabel.leftAnchor.constraint(equalTo: viewReview.leftAnchor).isActive = true
-        reviewNumber.topAnchor.constraint(equalTo: viewReview.topAnchor, constant: 21).isActive = true
-        reviewNumber.rightAnchor.constraint(equalTo: viewReview.rightAnchor).isActive = true
-        reviewNumber.leftAnchor.constraint(equalTo: viewReview.leftAnchor).isActive = true
         reviewLabel.textAlignment = .left
         reviewLabel.numberOfLines = 2
         reviewLabel.frame = CGRect(x: 80, y: 15, width: 80, height: 36)
@@ -168,10 +162,15 @@ class ViewController: UIViewController {
         let x = view.frame.width / 2
         let y = view.frame.height / 2
         scanningText.frame = CGRect(x: x - 75, y: y - 125, width: 150, height: 125)
-        scanningText.font = UIFont.boldSystemFont(ofSize: 20)
+        scanningText.font = UIFont.systemFont(ofSize: 20)
         scanningText.textAlignment = .center
         scanningText.layer.masksToBounds = true
         scanningText.textColor = .white
+        scanningText.layer.shadowColor = UIColor.black.cgColor
+        scanningText.layer.shadowRadius = 2.0
+        scanningText.layer.shadowOpacity = 0.5
+        scanningText.layer.shadowOffset = CGSize(width: 1, height: 2)
+        scanningText.layer.masksToBounds = false
         scanningText.text = "Ready to scan"
     }
     
@@ -181,8 +180,12 @@ class ViewController: UIViewController {
         let y = view.frame.height
         namaBuah.frame = CGRect(x: x - 100, y: y - 225, width: 200, height: 125)
         namaBuah.textAlignment = .center
-        namaBuah.layer.masksToBounds = true
         namaBuah.textColor = .white
+        namaBuah.layer.shadowColor = UIColor.black.cgColor
+        namaBuah.layer.shadowRadius = 2.0
+        namaBuah.layer.shadowOpacity = 0.5
+        namaBuah.layer.shadowOffset = CGSize(width: 1, height: 2)
+        namaBuah.layer.masksToBounds = false
         namaBuah.text = "\(namaNamaBuah[2])"
     }
     
@@ -299,6 +302,7 @@ class ViewController: UIViewController {
     }
     
     func checkingAlert(){
+        helperDelegate.hapticMedium()
         let alert = UIAlertController(title: "There's No Fruit Detected", message: "Would you like to rescan the fruit?", preferredStyle: UIAlertControllerStyle.alert)
         
         alert.addAction(UIAlertAction(title: "Retry", style: UIAlertActionStyle.default, handler: { action in
@@ -469,6 +473,8 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        helperDelegate.hapticMedium()
+        
         let cell = fruitTypeCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? BuahCell
         fruitTypeCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         silhouetteImage.image = UIImage(named: "\(jumlahBuah[indexPath.row])Sil2")
@@ -509,8 +515,7 @@ extension ViewController: UIScrollViewDelegate {
             }else{
                 print("index gajelas")
             }
-        }
-        else  {
+        }else  {
             if(savedIndex.count == 6){
                 fruitTypeCollectionView.selectItem(at: savedIndex[3], animated: true, scrollPosition: .centeredHorizontally)
                 self.collectionView(self.fruitTypeCollectionView, didSelectItemAt: savedIndex[3])
@@ -652,4 +657,3 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         }
     }
 }
-
