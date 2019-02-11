@@ -19,16 +19,14 @@ class ResultViewController: UIViewController {
     var tips : [String] = ["Check the texture of the fruit again, make sure that it's firm ",
                            "Don't forget to check the smell too.",
                            "A sweet smell from the fruit indicates it has sweet flavour",
-                           "If the fruit is starting to tender, it means it's starting to over ripe. Better eat that fast!","If the fruit smells good, time for you to grab the fruit!"]
+                           "If the fruit is starting to get tender, it means it's starting to go bad. Better eat that fast!",
+                           "If the fruit smells good, time for you to grab the fruit!"]
     var colorDescription : [String] =
         ["It doesn't looks that fresh and the texture isn't quite good",
                                        "It doesn't looks that fresh and the texture isn't quite good ",
                                        "It looks a bit fresh and the texture is quite good",
                                        "It looks quite fresh and the texture is nice",
                                        "It looks deliciously fresh and its dazzlingly clean"]
-    
-    
-    
     
     let topGreenView: UIView = {
         let imageView = UIView()
@@ -134,12 +132,9 @@ class ResultViewController: UIViewController {
         return button
     }()
     
-    
-    
     @objc func buttonShowMore(){
         if (moreDetailedIsTrue == false) {
 
-            
             let xTopGreenView = topGreenView.frame.origin.x
             let yTopGreenView = self.view.center.y
             topGreenView.frame.origin = CGPoint(x: xTopGreenView, y: yTopGreenView - 250 )
@@ -188,7 +183,6 @@ class ResultViewController: UIViewController {
             moreDetailedIsTrue = false
         }
     }
-    
     
     let closeButton: UIButton = {
         let button = UIButton()
@@ -243,7 +237,6 @@ class ResultViewController: UIViewController {
         return textView
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -258,7 +251,6 @@ class ResultViewController: UIViewController {
     }
     
     func setupView(){
-
         view.addSubview(bottomWhiteView)
         view.addSubview(topGreenView)
         view.addSubview(viewGabungan)
@@ -272,10 +264,8 @@ class ResultViewController: UIViewController {
         bottomWhiteView.addSubview(tipsLabel)
         view.addSubview(showMoreOrLessButton)
         view.addSubview(showMoreOrLessButton2)
-      
         view.addSubview(closeButton)
     }
-    
     
     //LessDetail
     func setupLayout(){
@@ -285,7 +275,6 @@ class ResultViewController: UIViewController {
         topGreenView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         topGreenView.widthAnchor.constraint(equalToConstant: 343).isActive = true
         topGreenView.heightAnchor.constraint(equalToConstant: 343).isActive = true
-        
         
         //Close Button
         closeButton.topAnchor.constraint(equalTo: topGreenView.topAnchor, constant : 25).isActive = true
@@ -317,8 +306,6 @@ class ResultViewController: UIViewController {
         showMoreOrLessButton.heightAnchor.constraint(equalToConstant: 30 ).isActive = true
         showMoreOrLessButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 130).isActive = true
         showMoreOrLessButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -130).isActive = true
-        
-
         
         //NilaiOutlet2
         nilaiOutlet2.topAnchor.constraint(equalTo: yourResultIsText.topAnchor, constant: 55).isActive = true
@@ -381,39 +368,32 @@ class ResultViewController: UIViewController {
             colorLabel.text = "Excellent!"
             descriptionLabel.text = colorDescription[4]
             tipsLabel.text = tips.randomElement()
-            
-            
         }else if NilaiSementara.nilaiSementara >= 8 && NilaiSementara.nilaiSementara < 9 {
             topGreenView.backgroundColor = hijauTua
             qualityLabel.text = "Sweet"
             colorLabel.text = "Good!"
             descriptionLabel.text = colorDescription[3]
             tipsLabel.text = tips.randomElement()
-            
         }else if NilaiSementara.nilaiSementara >= 7 && NilaiSementara.nilaiSementara < 8 {
             topGreenView.backgroundColor = orangeKuning
             qualityLabel.text = "Okay."
             colorLabel.text = "Average"
             descriptionLabel.text = colorDescription[2]
             tipsLabel.text = tips.randomElement()
-            
         }else if NilaiSementara.nilaiSementara >= 5 && NilaiSementara.nilaiSementara < 7 {
             topGreenView.backgroundColor = orange
             qualityLabel.text = "Almost There..."
             colorLabel.text = "Not Good"
             descriptionLabel.text = colorDescription[1]
             tipsLabel.text = tips.randomElement()
-            
         }else {
             topGreenView.backgroundColor = merah
             qualityLabel.text = "Meh."
             colorLabel.text = "Poor"
             descriptionLabel.text = colorDescription[0]
             tipsLabel.text = tips.randomElement()
-            
         }
     }
-    
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 //        screenShotMethod()
@@ -433,16 +413,3 @@ class ResultViewController: UIViewController {
         }
     }
 }
-
-//        if touch?.view != topGreenView && touch?.view == bottomWhiteView && touch?.view != viewGabungan && touch?.view != nilaiOutlet2{
-//            UIView.animate(withDuration: 0.25, animations: {
-//                self.view.transform = CGAffineTransform(translationX: 1.3, y: 1.3)
-//                self.view.alpha = 0.0;
-//            }) { (finished : Bool) in
-//                if (finished){
-//                    self.view.removeFromSuperview()
-//                }
-//            }
-//        } else {
-//
-//        }

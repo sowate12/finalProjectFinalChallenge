@@ -452,7 +452,6 @@ class ViewController: UIViewController {
         popUpVC.view.frame = self.view.frame
         self.view.addSubview(popUpVC.view)
         popUpVC.didMove(toParentViewController: self)
-        
     }
 }
 
@@ -566,6 +565,32 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         let dataOutput = AVCaptureVideoDataOutput()
         dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
         captureSession.addOutput(dataOutput)
+    }
+    
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touchPoint = touches.first {
+            let x = touchPoint.location(in: view).y / view.frame.height
+            let y = 1.0 - touchPoint.location(in: view).x / view.frame.width
+            let focusPoint = CGPoint(x: x, y: y)
+            
+            if let device = AVCaptureDevice.default(for: .video) {
+                do {
+                    try device.lockForConfiguration()
+                    
+                    device.focusPointOfInterest = focusPoint
+                    device.focusMode = .autoFocus
+                    device.focusMode = .continuousAutoFocus
+                    //device.focusMode = .locked
+                    device.exposurePointOfInterest = focusPoint
+                    device.exposureMode = AVCaptureDevice.ExposureMode.continuousAutoExposure
+                    device.unlockForConfiguration()
+                }
+                catch {
+                    // just ignore
+                }
+            }
+        }
     }
     
     // MARK: Camera Output
