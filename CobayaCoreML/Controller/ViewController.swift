@@ -162,7 +162,7 @@ class ViewController: UIViewController {
         let x = view.frame.width / 2
         let y = view.frame.height / 2
         scanningText.frame = CGRect(x: x - 75, y: y - 125, width: 150, height: 125)
-        scanningText.font = UIFont.systemFont(ofSize: 20)
+        scanningText.font = UIFont.boldSystemFont(ofSize: 20)
         scanningText.textAlignment = .center
         scanningText.layer.masksToBounds = true
         scanningText.textColor = .white
