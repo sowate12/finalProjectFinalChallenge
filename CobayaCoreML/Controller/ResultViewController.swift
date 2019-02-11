@@ -36,7 +36,7 @@ class ResultViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 10
-        imageView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+//        imageView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         imageView.backgroundColor = UIColor.green
         return imageView
     }()
@@ -169,15 +169,17 @@ class ResultViewController: UIViewController {
             let xCloseButton = closeButton.frame.origin.x
             let yCloseButton = self.view.center.y
             closeButton.frame.origin = CGPoint(x: xCloseButton, y: yCloseButton - 230)
+            topGreenView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
             moreDetailedIsTrue = true
             
         }
-        
     }
     
     @objc func buttonShowLess(){
         if (moreDetailedIsTrue == true){
     
+            topGreenView.layer.cornerRadius = 10
+            topGreenView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner]
             let xTopGreenView = topGreenView.frame.origin.x
             let yTopGreenView = self.view.center.y - topGreenView.frame.height
             topGreenView.frame.origin = CGPoint(x: xTopGreenView, y: yTopGreenView )
@@ -267,7 +269,6 @@ class ResultViewController: UIViewController {
         setupLayout()
         bottomWhiteView.isHidden = true
         showMoreOrLessButton2.isHidden = true
-        
     }
     
     func setupView(){
