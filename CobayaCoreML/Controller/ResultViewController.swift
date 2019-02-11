@@ -92,7 +92,7 @@ class ResultViewController: UIViewController {
     
     let sepuluhLabel: UITextView = {
         let textView = UITextView()
-        textView.text = "10"
+        textView.text = "10.0"
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.textAlignment = .center
         textView.textColor = UIColor.white
@@ -109,6 +109,17 @@ class ResultViewController: UIViewController {
         textView.textColor = UIColor.white
         textView.backgroundColor = UIColor.clear
         textView.font = UIFont(name: "Biko", size: 30)
+        return textView
+    }()
+    
+    let qualityColorLabel : UITextView = {
+        let textView = UITextView()
+        textView.text = "Color : "
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.textAlignment = .left
+        textView.textColor = UIColor.black
+        textView.backgroundColor = UIColor.clear
+        textView.font = UIFont.systemFont(ofSize: 30)
         return textView
     }()
     
@@ -219,6 +230,9 @@ class ResultViewController: UIViewController {
         textView.font = UIFont.systemFont(ofSize: 30)
         return textView
     }()
+    
+    
+    
     let descriptionLabel : UITextView = {
         let textView = UITextView()
         textView.text = "It looks a bit fresh and the texture is quite good"
@@ -266,12 +280,12 @@ class ResultViewController: UIViewController {
         viewGabungan.addSubview(garisLabel)
         viewGabungan.addSubview(sepuluhLabel)
         viewGabungan.addSubview(qualityLabel)
+        bottomWhiteView.addSubview(qualityColorLabel)
         bottomWhiteView.addSubview(colorLabel)
         bottomWhiteView.addSubview(descriptionLabel)
         bottomWhiteView.addSubview(tipsLabel)
         view.addSubview(showMoreOrLessButton)
         view.addSubview(showMoreOrLessButton2)
-      
         view.addSubview(closeButton)
     }
     
@@ -314,6 +328,7 @@ class ResultViewController: UIViewController {
         //ShowMoreOrLessButton
         showMoreOrLessButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 110).isActive = true
         showMoreOrLessButton.heightAnchor.constraint(equalToConstant: 30 ).isActive = true
+        showMoreOrLessButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
         showMoreOrLessButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 130).isActive = true
         showMoreOrLessButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -130).isActive = true
         
@@ -322,34 +337,45 @@ class ResultViewController: UIViewController {
         //NilaiOutlet2
         nilaiOutlet2.topAnchor.constraint(equalTo: yourResultIsText.topAnchor, constant: 55).isActive = true
         nilaiOutlet2.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        nilaiOutlet2.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        nilaiOutlet2.rightAnchor.constraint(equalTo:garisLabel.rightAnchor, constant: -30).isActive = true
+        nilaiOutlet2.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        nilaiOutlet2.rightAnchor.constraint(equalTo:garisLabel.leftAnchor, constant: 17 ).isActive = true
+//        nilaiOutlet2.leftAnchor.constraint(equalTo: viewGabungan.leftAnchor, constant: 20).isActive = true
         
         
         //GarisLabel
         garisLabel.topAnchor.constraint(equalTo: yourResultIsText.topAnchor, constant: 57).isActive = true
         garisLabel.heightAnchor.constraint(equalToConstant: 100).isActive = true
         garisLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        garisLabel.rightAnchor.constraint(equalTo: sepuluhLabel.rightAnchor, constant: -40).isActive = true
+        garisLabel.rightAnchor.constraint(equalTo: sepuluhLabel.leftAnchor, constant: 15).isActive = true
+//        garisLabel.leftAnchor.constraint(equalTo: nilaiOutlet2.rightAnchor, constant: -40).isActive = true
         
         //SepuluhLabel
         sepuluhLabel.topAnchor.constraint(equalTo: yourResultIsText.topAnchor, constant: 87).isActive = true
         sepuluhLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        sepuluhLabel.widthAnchor.constraint(equalToConstant: 70).isActive = true
-        sepuluhLabel.rightAnchor.constraint(equalTo: viewGabungan.rightAnchor, constant: -50).isActive = true
+        sepuluhLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        sepuluhLabel.rightAnchor.constraint(equalTo: viewGabungan.rightAnchor, constant: -33).isActive = true
+//        sepuluhLabel.leftAnchor.constraint(equalTo: garisLabel.rightAnchor, constant: -20).isActive = true
         
         //QualityLabel
         qualityLabel.topAnchor.constraint(equalTo: viewGabungan.topAnchor, constant: 155).isActive = true
-        qualityLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        qualityLabel.heightAnchor.constraint(equalToConstant:100).isActive = true
         qualityLabel.leftAnchor.constraint(equalTo: viewGabungan.leftAnchor).isActive = true
         qualityLabel.rightAnchor.constraint(equalTo: viewGabungan.rightAnchor).isActive = true
         
         //ColorLabel
         
+        //QualityLabel
+        qualityColorLabel.topAnchor.constraint(equalTo: bottomWhiteView.topAnchor, constant: 20).isActive = true
+        qualityColorLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        qualityColorLabel.leftAnchor.constraint(equalTo: bottomWhiteView.leftAnchor).isActive = true
+        qualityColorLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        
         colorLabel.topAnchor.constraint(equalTo: bottomWhiteView.topAnchor, constant: 20).isActive = true
         colorLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         colorLabel.rightAnchor.constraint(equalTo: bottomWhiteView.rightAnchor, constant: -10).isActive = true
-        colorLabel.leftAnchor.constraint(equalTo: bottomWhiteView.leftAnchor, constant : 5).isActive = true
+        colorLabel.leftAnchor.constraint(equalTo: qualityColorLabel.rightAnchor, constant : 5).isActive = true
+        
+        
         
         //DescriptionLabel
         descriptionLabel.topAnchor.constraint(equalTo: colorLabel.bottomAnchor, constant: 20).isActive = true
@@ -366,6 +392,7 @@ class ResultViewController: UIViewController {
         //ShowMoreOrLessButton2
         showMoreOrLessButton2.topAnchor.constraint(equalTo: showMoreOrLessButton.bottomAnchor, constant : 150).isActive = true
         showMoreOrLessButton2.heightAnchor.constraint(equalToConstant: 30 ).isActive = true
+        showMoreOrLessButton2.widthAnchor.constraint(equalToConstant: 100).isActive = true
         showMoreOrLessButton2.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 130).isActive = true
         showMoreOrLessButton2.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -130).isActive = true
     }
@@ -378,6 +405,7 @@ class ResultViewController: UIViewController {
             topGreenView.backgroundColor = hijau
             qualityLabel.text = "Great Eye!"
             colorLabel.text = "Excellent!"
+            colorLabel.textColor = hijau
             descriptionLabel.text = colorDescription[4]
             tipsLabel.text = tips.randomElement()
             
@@ -386,6 +414,7 @@ class ResultViewController: UIViewController {
             topGreenView.backgroundColor = hijauTua
             qualityLabel.text = "Sweet"
             colorLabel.text = "Good!"
+            colorLabel.textColor = hijauTua
             descriptionLabel.text = colorDescription[3]
             tipsLabel.text = tips.randomElement()
             
@@ -393,6 +422,7 @@ class ResultViewController: UIViewController {
             topGreenView.backgroundColor = orangeKuning
             qualityLabel.text = "Okay."
             colorLabel.text = "Average"
+            colorLabel.textColor = orangeKuning
             descriptionLabel.text = colorDescription[2]
             tipsLabel.text = tips.randomElement()
             
@@ -400,6 +430,7 @@ class ResultViewController: UIViewController {
             topGreenView.backgroundColor = orange
             qualityLabel.text = "Almost There..."
             colorLabel.text = "Not Good"
+            colorLabel.textColor = orange
             descriptionLabel.text = colorDescription[1]
             tipsLabel.text = tips.randomElement()
             
@@ -407,6 +438,7 @@ class ResultViewController: UIViewController {
             topGreenView.backgroundColor = merah
             qualityLabel.text = "Meh."
             colorLabel.text = "Poor"
+            colorLabel.textColor = merah
             descriptionLabel.text = colorDescription[0]
             tipsLabel.text = tips.randomElement()
             
