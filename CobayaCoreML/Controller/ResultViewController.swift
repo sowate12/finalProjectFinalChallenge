@@ -23,18 +23,16 @@ class ResultViewController: UIViewController {
                            "If the fruit smells good, time for you to grab the fruit!"]
     var colorDescription : [String] =
         ["It doesn't looks that fresh and the texture isn't quite good",
-                                       "It doesn't looks that fresh and the texture isn't quite good ",
-                                       "It looks a bit fresh and the texture is quite good",
-                                       "It looks quite fresh and the texture is nice",
-                                       "It looks deliciously fresh and its dazzlingly clean"]
+         "It doesn't looks that fresh and the texture isn't quite good ",
+         "It looks a bit fresh and the texture is quite good",
+         "It looks quite fresh and the texture is nice",
+         "It looks deliciously fresh and its dazzlingly clean"]
     
     let topGreenView: UIView = {
         let imageView = UIView()
-        //This code enable autolayout
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 10
-//        imageView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         imageView.backgroundColor = UIColor.green
         return imageView
     }()
@@ -45,7 +43,6 @@ class ResultViewController: UIViewController {
         imageView.backgroundColor = UIColor.white
         return imageView
     }()
-    
     
     let yourResultIsText: UITextView = {
         let textView = UITextView()
@@ -60,7 +57,6 @@ class ResultViewController: UIViewController {
     
     let viewGabungan: UIImageView = {
         let imageView = UIImageView()
-        //This code enable autolayout
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = UIColor.clear
         return imageView
@@ -166,7 +162,6 @@ class ResultViewController: UIViewController {
             closeButton.frame.origin = CGPoint(x: xCloseButton, y: yCloseButton - 230)
             topGreenView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
             moreDetailedIsTrue = true
-            
         }
     }
     
@@ -226,8 +221,6 @@ class ResultViewController: UIViewController {
         textView.font = UIFont.systemFont(ofSize: 30)
         return textView
     }()
-    
-    
     
     let descriptionLabel : UITextView = {
         let textView = UITextView()
@@ -330,7 +323,6 @@ class ResultViewController: UIViewController {
         nilaiOutlet2.rightAnchor.constraint(equalTo:garisLabel.leftAnchor, constant: 17 ).isActive = true
 //        nilaiOutlet2.leftAnchor.constraint(equalTo: viewGabungan.leftAnchor, constant: 20).isActive = true
         
-        
         //GarisLabel
         garisLabel.topAnchor.constraint(equalTo: yourResultIsText.topAnchor, constant: 57).isActive = true
         garisLabel.heightAnchor.constraint(equalToConstant: 100).isActive = true
@@ -363,8 +355,6 @@ class ResultViewController: UIViewController {
         colorLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         colorLabel.rightAnchor.constraint(equalTo: bottomWhiteView.rightAnchor, constant: -10).isActive = true
         colorLabel.leftAnchor.constraint(equalTo: qualityColorLabel.rightAnchor, constant : 5).isActive = true
-        
-        
         
         //DescriptionLabel
         descriptionLabel.topAnchor.constraint(equalTo: colorLabel.bottomAnchor, constant: 20).isActive = true
@@ -429,7 +419,6 @@ class ResultViewController: UIViewController {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        screenShotMethod()
         let touch: UITouch? = touches.first
         
         if (self.moreDetailedIsTrue == false && touch?.view != topGreenView) || ((self.moreDetailedIsTrue == true) && (Int((touch?.location(in: bottomWhiteView).x)!) <= 16 || Int((touch?.location(in: bottomWhiteView).y)!) >= 380) && touch?.view != viewGabungan) && touch?.view != nilaiOutlet2{

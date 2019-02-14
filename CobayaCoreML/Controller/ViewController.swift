@@ -379,10 +379,6 @@ class ViewController: UIViewController {
         isFirstFrame = true
     }
     
-    func setButtonColor(){
-        
-    }
-    
     @IBAction func cancelButtonAction(_ sender: Any) {
         helperDelegate.hapticMedium()
         resetVariables()
@@ -485,7 +481,6 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
         cell?.layer.cornerRadius = 8
         cell?.clipsToBounds = true
         if cell?.ditengah == true && NilaiSementara.cellDiTengah == true {
-//            scanningIcon.startAnimating()
             activityIndicator.startAnimating()
             startScanning()
             cell?.ditengah = false
@@ -566,7 +561,6 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
         captureSession.addOutput(dataOutput)
     }
-    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touchPoint = touches.first {
