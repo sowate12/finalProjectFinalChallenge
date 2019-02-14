@@ -74,6 +74,9 @@ class ViewController: UIViewController {
         checkingResult()
         helperDelegate.addLoading()
         setupView()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(recordButtonDidTap))
+        scanningText.addGestureRecognizer(tap)
+        silhouetteImage.addGestureRecognizer(tap)
         viewReview.isHidden = true
         buttonReview.isHidden = true
         reviewNumber.isHidden = true
@@ -125,6 +128,9 @@ class ViewController: UIViewController {
         fruitTypeCollectionView.center = CGPoint(x: view.frame.width / 2 - 0.5, y: view.frame.height - 100 )
         silhouetteImage.center = CGPoint(x: view.frame.width / 2, y: view.frame.height / 2 - 30)
         fruitTypeCollectionView.backgroundColor = UIColor.black.withAlphaComponent(0.0)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(recordButtonDidTap))
+        silhouetteImage.addGestureRecognizer(tap)
+        silhouetteImage.isUserInteractionEnabled = true
     }
     
     func setupViewReview(){
@@ -172,6 +178,13 @@ class ViewController: UIViewController {
         scanningText.layer.shadowOffset = CGSize(width: 1, height: 2)
         scanningText.layer.masksToBounds = false
         scanningText.text = "Ready to scan"
+        scanningText.isUserInteractionEnabled = true
+    }
+
+    @objc func recordButtonDidTap(){
+        var savedIndex = fruitTypeCollectionView.indexPathsForVisibleItems
+        savedIndex.sort()
+        self.collectionView(self.fruitTypeCollectionView, didSelectItemAt: savedIndex[2])
     }
     
     /// Setup the Label containing fruit names
@@ -634,7 +647,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                     if (firstObservation.identifier == "Jeruk Bagus"){
                         self.nilaiSementara += firstObservation.confidence
                     }else if (firstObservation.identifier == "Jeruk Jelek") {
-                        self.nilaiSementara -= firstObservation.confidence
+                        self.nilaiSementara -= (firstObservation.confidence * 0.5)
                     }
                     self.nilaiCounter += 1
                     /// lakukan scanningnya, tambah counter, scanning dilakukan tiap detik
@@ -650,9 +663,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                     if (firstObservationApel.identifier == "Apel Bagus") {
                         self.nilaiSementara += firstObservationApel.confidence
                     }else if (firstObservationApel.identifier == "Apel Jelek"){
-                        self.nilaiSementara -= firstObservationApel.confidence
-                    }else if (firstObservationApel.identifier == "Random Photo"){
-                        self.nilaiSementara -= firstObservationApel.confidence
+                        self.nilaiSementara -= (firstObservationApel.confidence * 0.5)
                     }
                     self.nilaiCounter += 1
                         
@@ -667,7 +678,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                     if (firstObservationTomat.identifier == "Tomat Bagus") {
                         self.nilaiSementara += firstObservationTomat.confidence
                     }else if (firstObservationTomat.identifier == "Tomat Jelek"){
-                        self.nilaiSementara -= firstObservationTomat.confidence
+                        self.nilaiSementara -= (firstObservationTomat.confidence * 0.5)
                     }
                     self.nilaiCounter += 1
                 }
