@@ -204,7 +204,6 @@ class TipsViewController: UIViewController {
             @IBAction func buttonLayer1(_ sender: Any) {
                 quickBrief.isHidden = true
                 tapToContinue.isHidden = true
-                skip.isHidden = true
                 buttonSkipOutlet.isHidden = true
                 
                 buttonLayer1Outlet.isEnabled = false

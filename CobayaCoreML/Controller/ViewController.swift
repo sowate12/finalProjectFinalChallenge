@@ -74,10 +74,13 @@ class ViewController: UIViewController {
         checkingResult()
         helperDelegate.addLoading()
         setupView()
-//        viewReview.isHidden = true
-//        buttonReview.isHidden = true
-//        reviewNumber.isHidden = true
-//        reviewLabel.isHidden = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(recordButtonDidTap))
+        scanningText.addGestureRecognizer(tap)
+        silhouetteImage.addGestureRecognizer(tap)
+        viewReview.isHidden = true
+        buttonReview.isHidden = true
+        reviewNumber.isHidden = true
+        reviewLabel.isHidden = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -125,6 +128,9 @@ class ViewController: UIViewController {
         fruitTypeCollectionView.center = CGPoint(x: view.frame.width / 2 - 0.5, y: view.frame.height - 100 )
         silhouetteImage.center = CGPoint(x: view.frame.width / 2, y: view.frame.height / 2 - 30)
         fruitTypeCollectionView.backgroundColor = UIColor.black.withAlphaComponent(0.0)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(recordButtonDidTap))
+        silhouetteImage.addGestureRecognizer(tap)
+        silhouetteImage.isUserInteractionEnabled = true
     }
     
     func setupViewReview(){
@@ -145,12 +151,6 @@ class ViewController: UIViewController {
             }
         }
         buttonReview.layer.masksToBounds = true
-        reviewLabel.topAnchor.constraint(equalTo: viewReview.topAnchor, constant: 21).isActive = true
-        reviewLabel.rightAnchor.constraint(equalTo: viewReview.rightAnchor).isActive = true
-        reviewLabel.leftAnchor.constraint(equalTo: viewReview.leftAnchor).isActive = true
-        reviewNumber.topAnchor.constraint(equalTo: viewReview.topAnchor, constant: 21).isActive = true
-        reviewNumber.rightAnchor.constraint(equalTo: viewReview.rightAnchor).isActive = true
-        reviewNumber.leftAnchor.constraint(equalTo: viewReview.leftAnchor).isActive = true
         reviewLabel.textAlignment = .left
         reviewLabel.numberOfLines = 2
         reviewLabel.frame = CGRect(x: 80, y: 15, width: 80, height: 36)
@@ -159,7 +159,7 @@ class ViewController: UIViewController {
         reviewLabel.text = "Fuji Apple"
         reviewNumber.textAlignment = .center
         reviewNumber.layer.masksToBounds = true
-        reviewNumber.frame = CGRect(x: 22, y: 16, width: 30, height: 36)
+        reviewNumber.frame = CGRect(x: 20, y: 16, width: 35, height: 36)
         reviewNumber.font = UIFont(name: "Biko-Bold", size: 17)
     }
     
@@ -172,7 +172,19 @@ class ViewController: UIViewController {
         scanningText.textAlignment = .center
         scanningText.layer.masksToBounds = true
         scanningText.textColor = .white
+        scanningText.layer.shadowColor = UIColor.black.cgColor
+        scanningText.layer.shadowRadius = 2.0
+        scanningText.layer.shadowOpacity = 0.5
+        scanningText.layer.shadowOffset = CGSize(width: 1, height: 2)
+        scanningText.layer.masksToBounds = false
         scanningText.text = "Ready to scan"
+        scanningText.isUserInteractionEnabled = true
+    }
+
+    @objc func recordButtonDidTap(){
+        var savedIndex = fruitTypeCollectionView.indexPathsForVisibleItems
+        savedIndex.sort()
+        self.collectionView(self.fruitTypeCollectionView, didSelectItemAt: savedIndex[2])
     }
     
     /// Setup the Label containing fruit names
@@ -181,8 +193,12 @@ class ViewController: UIViewController {
         let y = view.frame.height
         namaBuah.frame = CGRect(x: x - 100, y: y - 225, width: 200, height: 125)
         namaBuah.textAlignment = .center
-        namaBuah.layer.masksToBounds = true
         namaBuah.textColor = .white
+        namaBuah.layer.shadowColor = UIColor.black.cgColor
+        namaBuah.layer.shadowRadius = 2.0
+        namaBuah.layer.shadowOpacity = 0.5
+        namaBuah.layer.shadowOffset = CGSize(width: 1, height: 2)
+        namaBuah.layer.masksToBounds = false
         namaBuah.text = "\(namaNamaBuah[2])"
     }
     
@@ -299,6 +315,7 @@ class ViewController: UIViewController {
     }
     
     func checkingAlert(){
+        helperDelegate.hapticMedium()
         let alert = UIAlertController(title: "There's No Fruit Detected", message: "Would you like to rescan the fruit?", preferredStyle: UIAlertControllerStyle.alert)
         
         alert.addAction(UIAlertAction(title: "Retry", style: UIAlertActionStyle.default, handler: { action in
@@ -375,10 +392,6 @@ class ViewController: UIViewController {
         isFirstFrame = true
     }
     
-    func setButtonColor(){
-        
-    }
-    
     @IBAction func cancelButtonAction(_ sender: Any) {
         helperDelegate.hapticMedium()
         resetVariables()
@@ -448,7 +461,6 @@ class ViewController: UIViewController {
         popUpVC.view.frame = self.view.frame
         self.view.addSubview(popUpVC.view)
         popUpVC.didMove(toParentViewController: self)
-        
     }
 }
 
@@ -469,6 +481,8 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        helperDelegate.hapticMedium()
+        
         let cell = fruitTypeCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? BuahCell
         fruitTypeCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         silhouetteImage.image = UIImage(named: "\(jumlahBuah[indexPath.row])Sil2")
@@ -480,7 +494,6 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
         cell?.layer.cornerRadius = 8
         cell?.clipsToBounds = true
         if cell?.ditengah == true && NilaiSementara.cellDiTengah == true {
-//            scanningIcon.startAnimating()
             activityIndicator.startAnimating()
             startScanning()
             cell?.ditengah = false
@@ -509,8 +522,7 @@ extension ViewController: UIScrollViewDelegate {
             }else{
                 print("index gajelas")
             }
-        }
-        else  {
+        }else  {
             if(savedIndex.count == 6){
                 fruitTypeCollectionView.selectItem(at: savedIndex[3], animated: true, scrollPosition: .centeredHorizontally)
                 self.collectionView(self.fruitTypeCollectionView, didSelectItemAt: savedIndex[3])
@@ -563,6 +575,31 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         captureSession.addOutput(dataOutput)
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touchPoint = touches.first {
+            let x = touchPoint.location(in: view).y / view.frame.height
+            let y = 1.0 - touchPoint.location(in: view).x / view.frame.width
+            let focusPoint = CGPoint(x: x, y: y)
+            
+            if let device = AVCaptureDevice.default(for: .video) {
+                do {
+                    try device.lockForConfiguration()
+                    
+                    device.focusPointOfInterest = focusPoint
+                    device.focusMode = .autoFocus
+                    device.focusMode = .continuousAutoFocus
+                    //device.focusMode = .locked
+                    device.exposurePointOfInterest = focusPoint
+                    device.exposureMode = AVCaptureDevice.ExposureMode.continuousAutoExposure
+                    device.unlockForConfiguration()
+                }
+                catch {
+                    // just ignore
+                }
+            }
+        }
+    }
+    
     // MARK: Camera Output
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         //coding yang dilakukan saat avfoundation memunculkan output
@@ -610,7 +647,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                     if (firstObservation.identifier == "Jeruk Bagus"){
                         self.nilaiSementara += firstObservation.confidence
                     }else if (firstObservation.identifier == "Jeruk Jelek") {
-                        self.nilaiSementara -= firstObservation.confidence
+                        self.nilaiSementara -= (firstObservation.confidence * 0.5)
                     }
                     self.nilaiCounter += 1
                     /// lakukan scanningnya, tambah counter, scanning dilakukan tiap detik
@@ -626,9 +663,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                     if (firstObservationApel.identifier == "Apel Bagus") {
                         self.nilaiSementara += firstObservationApel.confidence
                     }else if (firstObservationApel.identifier == "Apel Jelek"){
-                        self.nilaiSementara -= firstObservationApel.confidence
-                    }else if (firstObservationApel.identifier == "Random Photo"){
-                        self.nilaiSementara -= firstObservationApel.confidence
+                        self.nilaiSementara -= (firstObservationApel.confidence * 0.5)
                     }
                     self.nilaiCounter += 1
                         
@@ -643,7 +678,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                     if (firstObservationTomat.identifier == "Tomat Bagus") {
                         self.nilaiSementara += firstObservationTomat.confidence
                     }else if (firstObservationTomat.identifier == "Tomat Jelek"){
-                        self.nilaiSementara -= firstObservationTomat.confidence
+                        self.nilaiSementara -= (firstObservationTomat.confidence * 0.5)
                     }
                     self.nilaiCounter += 1
                 }
@@ -652,4 +687,3 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         }
     }
 }
-
