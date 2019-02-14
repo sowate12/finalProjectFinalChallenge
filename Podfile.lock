@@ -2,17 +2,21 @@ PODS:
   - NVActivityIndicatorView (4.6.1):
     - NVActivityIndicatorView/Presenter (= 4.6.1)
   - NVActivityIndicatorView/Presenter (4.6.1)
+  - SwiftySound (1.0.0)
 
 DEPENDENCIES:
   - NVActivityIndicatorView
+  - SwiftySound
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - NVActivityIndicatorView
+    - SwiftySound
 
 SPEC CHECKSUMS:
   NVActivityIndicatorView: 4ca19fccc84595a78957336a086d00a49be6ce61
+  SwiftySound: b9c3370956fd4ed65ed79d45563070077a50a2cd
 
-PODFILE CHECKSUM: 22aa6375efdd6d13fe94079c5c9ea4a6a385caec
+PODFILE CHECKSUM: 2867a9c91a962086da4f9fc82d5fa56e30179c72
 
 COCOAPODS: 1.5.3

@@ -30,6 +30,8 @@
 		991A6021213FCEC300FEAE4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 991A6020213FCEC300FEAE4B /* Assets.xcassets */; };
 		991A6024213FCEC300FEAE4B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 991A6022213FCEC300FEAE4B /* LaunchScreen.storyboard */; };
 		B070E4FC2202E26900D8C016 /* TipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B070E4FB2202E26900D8C016 /* TipsViewController.swift */; };
+		B0A39B592215721F00B54B0E /* goodResult.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B0A39B572215721E00B54B0E /* goodResult.mp3 */; };
+		B0A39B5A2215721F00B54B0E /* badResult.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B0A39B582215721E00B54B0E /* badResult.mp3 */; };
 		B58FDEA14CFB0BC5F148C750 /* Pods_CobayaCoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0383F4B03D809BD50F19F3D5 /* Pods_CobayaCoreML.framework */; };
 		E6FCE89521F9A9200019908D /* ColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FCE89421F9A9200019908D /* ColorHelper.swift */; };
 		E6FCE89721F9A9690019908D /* AnimationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FCE89621F9A9690019908D /* AnimationHelper.swift */; };
@@ -64,6 +66,8 @@
 		991A6025213FCEC300FEAE4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9DC25B9C9EDF411828422139 /* Pods-CobayaCoreML.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CobayaCoreML.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CobayaCoreML/Pods-CobayaCoreML.debug.xcconfig"; sourceTree = "<group>"; };
 		B070E4FB2202E26900D8C016 /* TipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsViewController.swift; sourceTree = "<group>"; };
+		B0A39B572215721E00B54B0E /* goodResult.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = goodResult.mp3; path = ../Desktop/goodResult.mp3; sourceTree = "<group>"; };
+		B0A39B582215721E00B54B0E /* badResult.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = badResult.mp3; path = ../Desktop/badResult.mp3; sourceTree = "<group>"; };
 		E6FCE89421F9A9200019908D /* ColorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHelper.swift; sourceTree = "<group>"; };
 		E6FCE89621F9A9690019908D /* AnimationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,6 +136,8 @@
 		991A600A213FCEC100FEAE4B = {
 			isa = PBXGroup;
 			children = (
+				B0A39B582215721E00B54B0E /* badResult.mp3 */,
+				B0A39B572215721E00B54B0E /* goodResult.mp3 */,
 				991A6015213FCEC100FEAE4B /* CobayaCoreML */,
 				991A6014213FCEC100FEAE4B /* Products */,
 				75E56375F50D4D516340BDE8 /* Pods */,
@@ -258,8 +264,10 @@
 			files = (
 				7CFD700B22080F0700CA041D /* Biko_Black.otf in Resources */,
 				7CFD700C22080F0700CA041D /* Biko_Bold.otf in Resources */,
+				B0A39B5A2215721F00B54B0E /* badResult.mp3 in Resources */,
 				7CFD700D22080F0700CA041D /* Biko_Light-Restricted.otf in Resources */,
 				7C967D902208175F0069D17A /* Biko_Regular.otf in Resources */,
+				B0A39B592215721F00B54B0E /* goodResult.mp3 in Resources */,
 				991A6024213FCEC300FEAE4B /* LaunchScreen.storyboard in Resources */,
 				991A6021213FCEC300FEAE4B /* Assets.xcassets in Resources */,
 				991A601C213FCEC100FEAE4B /* Main.storyboard in Resources */,
@@ -277,10 +285,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CobayaCoreML/Pods-CobayaCoreML-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftySound/SwiftySound.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftySound.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -475,7 +485,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 48LV8FDMZ8;
+				DEVELOPMENT_TEAM = 56ZF7DLJQY;
 				INFOPLIST_FILE = CobayaCoreML/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -495,7 +505,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 48LV8FDMZ8;
+				DEVELOPMENT_TEAM = 56ZF7DLJQY;
 				INFOPLIST_FILE = CobayaCoreML/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (

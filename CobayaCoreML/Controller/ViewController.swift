@@ -274,15 +274,15 @@ class ViewController: UIViewController {
     func scanning(){
         scanningLabel.isHidden = true
         scanningLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        scanningLabel.text = "Scanning Fruit ."
+        scanningLabel.text = "Hold Still, Scanning the Fruit ."
         
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
             var string: String {
                 switch self.scanningLabel.text {
-                case "Scanning Fruit .":       return "Scanning Fruit .."
-                case "Scanning Fruit ..":      return "Scanning Fruit ..."
-                case "Scanning Fruit ...":     return "Scanning Fruit ."
-                default:                      return "Scanning Fruit"
+                case "Hold Still, Scanning the Fruit .":       return "Hold Still, Scanning the Fruit .."
+                case "Hold Still, Scanning the Fruit ..":      return "Hold Still, Scanning the Fruit ..."
+                case "Hold Still, Scanning the Fruit ...":     return "Hold Still, Scanning the Fruit ."
+                default:                      return "Hold Still, Scanning the Fruit"
                 }
             }
             self.scanningLabel.text = string
