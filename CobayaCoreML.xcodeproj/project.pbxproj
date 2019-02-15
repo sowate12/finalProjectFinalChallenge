@@ -13,6 +13,8 @@
 		08D7773D21EF2C640025CC0C /* AppleBagusAppleJelek.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 08D7773C21EF2C640025CC0C /* AppleBagusAppleJelek.mlmodel */; };
 		6B2D6CE921F708C000FFE806 /* NilaiSementara.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2D6CE821F708C000FFE806 /* NilaiSementara.swift */; };
 		6B3D55D221E34EF700E91E85 /* Warna.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6B3D55D121E34EF700E91E85 /* Warna.mlmodel */; };
+		6B87FF60221576CD00BF66D3 /* badResult.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B87FF5E221576CD00BF66D3 /* badResult.mp3 */; };
+		6B87FF61221576CD00BF66D3 /* goodResult.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B87FF5F221576CD00BF66D3 /* goodResult.mp3 */; };
 		6B9FD1262202E83C00445DEC /* Tomat.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6B9FD1252202E83C00445DEC /* Tomat.mlmodel */; };
 		6B9FD12A2202EB0E00445DEC /* Apel1.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6B9FD1292202EB0E00445DEC /* Apel1.mlmodel */; };
 		6B9FD12C2204351500445DEC /* ApelBaru.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6B9FD12B2204351500445DEC /* ApelBaru.mlmodel */; };
@@ -30,8 +32,6 @@
 		991A6021213FCEC300FEAE4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 991A6020213FCEC300FEAE4B /* Assets.xcassets */; };
 		991A6024213FCEC300FEAE4B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 991A6022213FCEC300FEAE4B /* LaunchScreen.storyboard */; };
 		B070E4FC2202E26900D8C016 /* TipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B070E4FB2202E26900D8C016 /* TipsViewController.swift */; };
-		B0A39B592215721F00B54B0E /* goodResult.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B0A39B572215721E00B54B0E /* goodResult.mp3 */; };
-		B0A39B5A2215721F00B54B0E /* badResult.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B0A39B582215721E00B54B0E /* badResult.mp3 */; };
 		B58FDEA14CFB0BC5F148C750 /* Pods_CobayaCoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0383F4B03D809BD50F19F3D5 /* Pods_CobayaCoreML.framework */; };
 		E6FCE89521F9A9200019908D /* ColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FCE89421F9A9200019908D /* ColorHelper.swift */; };
 		E6FCE89721F9A9690019908D /* AnimationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FCE89621F9A9690019908D /* AnimationHelper.swift */; };
@@ -45,6 +45,8 @@
 		08D7773C21EF2C640025CC0C /* AppleBagusAppleJelek.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = AppleBagusAppleJelek.mlmodel; sourceTree = "<group>"; };
 		6B2D6CE821F708C000FFE806 /* NilaiSementara.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NilaiSementara.swift; sourceTree = "<group>"; };
 		6B3D55D121E34EF700E91E85 /* Warna.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Warna.mlmodel; sourceTree = "<group>"; };
+		6B87FF5E221576CD00BF66D3 /* badResult.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = badResult.mp3; path = CobayaCoreML/badResult.mp3; sourceTree = SOURCE_ROOT; };
+		6B87FF5F221576CD00BF66D3 /* goodResult.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = goodResult.mp3; path = CobayaCoreML/goodResult.mp3; sourceTree = SOURCE_ROOT; };
 		6B9FD1252202E83C00445DEC /* Tomat.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Tomat.mlmodel; sourceTree = "<group>"; };
 		6B9FD1292202EB0E00445DEC /* Apel1.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Apel1.mlmodel; sourceTree = "<group>"; };
 		6B9FD12B2204351500445DEC /* ApelBaru.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ApelBaru.mlmodel; sourceTree = "<group>"; };
@@ -66,8 +68,6 @@
 		991A6025213FCEC300FEAE4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9DC25B9C9EDF411828422139 /* Pods-CobayaCoreML.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CobayaCoreML.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CobayaCoreML/Pods-CobayaCoreML.debug.xcconfig"; sourceTree = "<group>"; };
 		B070E4FB2202E26900D8C016 /* TipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsViewController.swift; sourceTree = "<group>"; };
-		B0A39B572215721E00B54B0E /* goodResult.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = goodResult.mp3; path = ../Desktop/goodResult.mp3; sourceTree = "<group>"; };
-		B0A39B582215721E00B54B0E /* badResult.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = badResult.mp3; path = ../Desktop/badResult.mp3; sourceTree = "<group>"; };
 		E6FCE89421F9A9200019908D /* ColorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHelper.swift; sourceTree = "<group>"; };
 		E6FCE89621F9A9690019908D /* AnimationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,6 +104,8 @@
 		08D7774121F1B5180025CC0C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6B87FF5E221576CD00BF66D3 /* badResult.mp3 */,
+				6B87FF5F221576CD00BF66D3 /* goodResult.mp3 */,
 				08745E9D220D43A80048EEAF /* TutorialViewController.swift */,
 				991A6018213FCEC100FEAE4B /* ViewController.swift */,
 				7CFD700522075A8F00CA041D /* ResultViewController.swift */,
@@ -136,8 +138,6 @@
 		991A600A213FCEC100FEAE4B = {
 			isa = PBXGroup;
 			children = (
-				B0A39B582215721E00B54B0E /* badResult.mp3 */,
-				B0A39B572215721E00B54B0E /* goodResult.mp3 */,
 				991A6015213FCEC100FEAE4B /* CobayaCoreML */,
 				991A6014213FCEC100FEAE4B /* Products */,
 				75E56375F50D4D516340BDE8 /* Pods */,
@@ -263,11 +263,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CFD700B22080F0700CA041D /* Biko_Black.otf in Resources */,
+				6B87FF60221576CD00BF66D3 /* badResult.mp3 in Resources */,
+				6B87FF61221576CD00BF66D3 /* goodResult.mp3 in Resources */,
 				7CFD700C22080F0700CA041D /* Biko_Bold.otf in Resources */,
-				B0A39B5A2215721F00B54B0E /* badResult.mp3 in Resources */,
 				7CFD700D22080F0700CA041D /* Biko_Light-Restricted.otf in Resources */,
 				7C967D902208175F0069D17A /* Biko_Regular.otf in Resources */,
-				B0A39B592215721F00B54B0E /* goodResult.mp3 in Resources */,
 				991A6024213FCEC300FEAE4B /* LaunchScreen.storyboard in Resources */,
 				991A6021213FCEC300FEAE4B /* Assets.xcassets in Resources */,
 				991A601C213FCEC100FEAE4B /* Main.storyboard in Resources */,
@@ -485,14 +485,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 56ZF7DLJQY;
+				DEVELOPMENT_TEAM = 48LV8FDMZ8;
 				INFOPLIST_FILE = CobayaCoreML/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = KeenanW.AppleAcademyIndonesia.FruitScanLite;
+				PRODUCT_BUNDLE_IDENTIFIER = santos.fruky;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -505,14 +505,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 56ZF7DLJQY;
+				DEVELOPMENT_TEAM = 48LV8FDMZ8;
 				INFOPLIST_FILE = CobayaCoreML/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = KeenanW.AppleAcademyIndonesia.FruitScanLite;
+				PRODUCT_BUNDLE_IDENTIFIER = santos.fruky;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;

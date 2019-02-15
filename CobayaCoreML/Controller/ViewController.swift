@@ -11,6 +11,7 @@ import AVKit
 import Vision
 import AVFoundation
 import NVActivityIndicatorView
+import SwiftySound
 
 class ViewController: UIViewController {
 
@@ -400,6 +401,7 @@ class ViewController: UIViewController {
     
     @IBAction func buttonBackToReview(_ sender: Any) {
         moveController()
+        Sound.enabled = false
     }
     
     @IBAction func tutorialButtonAction(_ sender: Any) {
@@ -425,6 +427,7 @@ class ViewController: UIViewController {
             self.hideOutlet()
             self.isChecking = true
             self.hasShownResult = true
+            Sound.enabled = true
             self.generator.notificationOccurred(.success)
         }
     }
