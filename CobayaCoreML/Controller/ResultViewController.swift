@@ -114,7 +114,7 @@ class ResultViewController: UIViewController {
         textView.textAlignment = .left
         textView.textColor = UIColor.black
         textView.backgroundColor = UIColor.clear
-        textView.font = UIFont.systemFont(ofSize: 30)
+        textView.font = UIFont.systemFont(ofSize: 20)
         return textView
     }()
     
@@ -219,7 +219,7 @@ class ResultViewController: UIViewController {
         textView.textAlignment = .left
         textView.textColor = UIColor.black
         textView.backgroundColor = UIColor.clear
-        textView.font = UIFont.systemFont(ofSize: 30)
+        textView.font = UIFont(name: "Biko-Bold", size: 30)
         return textView
     }()
     
@@ -238,10 +238,10 @@ class ResultViewController: UIViewController {
         let textView = UITextView()
         textView.text = "Check the texture of the fruit again, make sure that it's firm "
         textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.textAlignment = .left
+        textView.textAlignment = .center
         textView.textColor = UIColor.black
         textView.backgroundColor = UIColor.clear
-        textView.font = UIFont.systemFont(ofSize: 20)
+        textView.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.light)
         return textView
     }()
     
@@ -294,7 +294,7 @@ class ResultViewController: UIViewController {
         //Kotak Putih
         bottomWhiteView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         bottomWhiteView.widthAnchor.constraint(equalToConstant: 343).isActive = true
-        bottomWhiteView.heightAnchor.constraint(equalToConstant: 400).isActive = true
+        bottomWhiteView.heightAnchor.constraint(equalToConstant: 350).isActive = true
         bottomWhiteView.topAnchor.constraint(equalTo: topGreenView.bottomAnchor, constant : -20).isActive = true
         bottomWhiteView.layer.cornerRadius = 20
         
@@ -347,27 +347,27 @@ class ResultViewController: UIViewController {
         //ColorLabel
         
         //QualityLabel
-        qualityColorLabel.topAnchor.constraint(equalTo: bottomWhiteView.topAnchor, constant: 20).isActive = true
+        qualityColorLabel.topAnchor.constraint(equalTo: bottomWhiteView.topAnchor, constant: 55).isActive = true
         qualityColorLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        qualityColorLabel.leftAnchor.constraint(equalTo: bottomWhiteView.leftAnchor).isActive = true
+        qualityColorLabel.leftAnchor.constraint(equalTo: bottomWhiteView.leftAnchor, constant : 34).isActive = true
         qualityColorLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
         
-        colorLabel.topAnchor.constraint(equalTo: bottomWhiteView.topAnchor, constant: 20).isActive = true
+        colorLabel.topAnchor.constraint(equalTo: qualityColorLabel.topAnchor).isActive = true
         colorLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         colorLabel.rightAnchor.constraint(equalTo: bottomWhiteView.rightAnchor, constant: -10).isActive = true
-        colorLabel.leftAnchor.constraint(equalTo: qualityColorLabel.rightAnchor, constant : 5).isActive = true
+        colorLabel.leftAnchor.constraint(equalTo: qualityColorLabel.rightAnchor).isActive = true
         
         //DescriptionLabel
         descriptionLabel.topAnchor.constraint(equalTo: colorLabel.bottomAnchor, constant: 20).isActive = true
         descriptionLabel.heightAnchor.constraint(equalToConstant: 110).isActive = true
-        descriptionLabel.rightAnchor.constraint(equalTo: bottomWhiteView.rightAnchor, constant: -10).isActive = true
-        descriptionLabel.leftAnchor.constraint(equalTo: bottomWhiteView.leftAnchor, constant : 5).isActive = true
+        descriptionLabel.rightAnchor.constraint(equalTo: bottomWhiteView.rightAnchor, constant: -34).isActive = true
+        descriptionLabel.leftAnchor.constraint(equalTo: qualityColorLabel.leftAnchor).isActive = true
         
         //TipsLabel
-        tipsLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20).isActive = true
+        tipsLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor).isActive = true
         tipsLabel.heightAnchor.constraint(equalToConstant: 150).isActive = true
-        tipsLabel.rightAnchor.constraint(equalTo: bottomWhiteView.rightAnchor, constant: -10).isActive = true
-        tipsLabel.leftAnchor.constraint(equalTo: bottomWhiteView.leftAnchor, constant : 5).isActive = true
+        tipsLabel.rightAnchor.constraint(equalTo: bottomWhiteView.rightAnchor, constant: -34).isActive = true
+        tipsLabel.leftAnchor.constraint(equalTo: qualityColorLabel.leftAnchor, constant : 5).isActive = true
         
         //ShowMoreOrLessButton2
         showMoreOrLessButton2.topAnchor.constraint(equalTo: showMoreOrLessButton.bottomAnchor, constant : 150).isActive = true
