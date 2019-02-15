@@ -22,11 +22,11 @@ class ResultViewController: UIViewController {
                            "If the fruit is starting to get tender, it means it's starting to go bad. Better eat that fast!",
                            "If the fruit smells good, time for you to grab the fruit!"]
     var colorDescription : [String] =
-        ["It doesn't looks that fresh and the texture isn't quite good",
-         "It doesn't looks that fresh and the texture isn't quite good ",
-         "It looks a bit fresh and the texture is quite good",
-         "It looks quite fresh and the texture is nice",
-         "It looks deliciously fresh and its dazzlingly clean"]
+        ["It doesn't look that fresh and the texture doesn't look good",
+         "It doesn't look that fresh and the texture doesn't look good ",
+         "It looks a bit fresh and the texture looks quite good",
+         "It looks quite fresh and the texture looks nice",
+         "It looks deliciously fresh and the texture looks brilliant"]
     
     let topGreenView: UIView = {
         let imageView = UIView()

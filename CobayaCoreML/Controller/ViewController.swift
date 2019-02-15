@@ -12,7 +12,7 @@ import Vision
 import AVFoundation
 import NVActivityIndicatorView
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIGestureRecognizerDelegate {
 
     // MARK: Variables
     var nilaiCounter = 0
@@ -56,6 +56,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var reviewNumber: UILabel!
     @IBOutlet weak var reviewLabel: UILabel!
     @IBOutlet weak var viewReview: UIView!
+    @IBOutlet weak var scanView: UIView!
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -74,9 +75,6 @@ class ViewController: UIViewController {
         checkingResult()
         helperDelegate.addLoading()
         setupView()
-        let tap = UITapGestureRecognizer(target: self, action: #selector(recordButtonDidTap))
-        scanningText.addGestureRecognizer(tap)
-        silhouetteImage.addGestureRecognizer(tap)
         viewReview.isHidden = true
         buttonReview.isHidden = true
         reviewNumber.isHidden = true
@@ -99,11 +97,11 @@ class ViewController: UIViewController {
         checking()
         scanning()
         gantiKeScan()
-        setScanningText()
         setupCollectionView()
         setupIcon()
         setupViewReview()
         setupColor()
+                setScanningText()
         view.addSubview(fruitTypeCollectionView)
         view.addSubview(startButton)
         view.addSubview(silhouetteImage)
@@ -111,13 +109,14 @@ class ViewController: UIViewController {
         view.addSubview(namaBuah)
         view.addSubview(checkingLabel)
         view.addSubview(scanningLabel)
-        view.addSubview(scanningText)
         view.addSubview(scanningIcon)
         view.layer.addSublayer(helperDelegate.shapeLayer)
         view.addSubview(cancelButton)
         view.addSubview(tutorialButton)
         view.addSubview(activityIndicator)
         view.addSubview(viewReview)
+        view.addSubview(scanningText)
+        view.addSubview(scanView)
 //        view.addSubview(buttonReview)
 //        view.addSubview(reviewNumber)
 //        view.addSubview(reviewLabel)
@@ -177,14 +176,17 @@ class ViewController: UIViewController {
         scanningText.layer.shadowOpacity = 0.5
         scanningText.layer.shadowOffset = CGSize(width: 1, height: 2)
         scanningText.layer.masksToBounds = false
-        scanningText.text = "Ready to scan"
-        scanningText.isUserInteractionEnabled = true
+        scanningText.numberOfLines = 2
+        scanningText.text = "Tap the fruit to scan"
+        scanView.frame = CGRect(x: x - 120, y: y - 200, width: 240, height: 400)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(recordButtonDidTap))
+        scanView.addGestureRecognizer(tap)
+        scanView.isUserInteractionEnabled = true
     }
 
-    @objc func recordButtonDidTap(){
-        var savedIndex = fruitTypeCollectionView.indexPathsForVisibleItems
-        savedIndex.sort()
-        self.collectionView(self.fruitTypeCollectionView, didSelectItemAt: savedIndex[2])
+    @objc func recordButtonDidTap(_ sender: UITapGestureRecognizer){
+        activityIndicator.startAnimating()
+        startScanning()
     }
     
     /// Setup the Label containing fruit names
@@ -561,7 +563,6 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         
         ///membuat layar avfoundationnya fullscreen
         let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        captureSession.sessionPreset = .hd4K3840x2160
         captureSession.addInput(input)
         captureSession.startRunning()
 
