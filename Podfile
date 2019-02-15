@@ -7,5 +7,6 @@ target 'CobayaCoreML' do
 
   # Pods for CobayaCoreML
 pod 'NVActivityIndicatorView'
+pod 'SwiftySound'
 
 end

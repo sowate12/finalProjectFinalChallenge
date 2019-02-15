@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftySound
 
 class ResultViewController: UIViewController {
 
@@ -19,24 +20,20 @@ class ResultViewController: UIViewController {
     var tips : [String] = ["Check the texture of the fruit again, make sure that it's firm ",
                            "Don't forget to check the smell too.",
                            "A sweet smell from the fruit indicates it has sweet flavour",
-                           "If the fruit is starting to tender, it means it's starting to over ripe. Better eat that fast!","If the fruit smells good, time for you to grab the fruit!"]
+                           "If the fruit is starting to get tender, it means it's starting to go bad. Better eat that fast!",
+                           "If the fruit smells good, time for you to grab the fruit!"]
     var colorDescription : [String] =
-        ["It doesn't looks that fresh and the texture isn't quite good",
-                                       "It doesn't looks that fresh and the texture isn't quite good ",
-                                       "It looks a bit fresh and the texture is quite good",
-                                       "It looks quite fresh and the texture is nice",
-                                       "It looks deliciously fresh and its dazzlingly clean"]
-    
-    
-    
+        ["It doesn't look that fresh and the texture doesn't look good",
+         "It doesn't look that fresh and the texture doesn't look good ",
+         "It looks a bit fresh and the texture looks quite good",
+         "It looks quite fresh and the texture looks nice",
+         "It looks deliciously fresh and the texture looks brilliant"]
     
     let topGreenView: UIView = {
         let imageView = UIView()
-        //This code enable autolayout
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 10
-//        imageView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         imageView.backgroundColor = UIColor.green
         return imageView
     }()
@@ -47,7 +44,6 @@ class ResultViewController: UIViewController {
         imageView.backgroundColor = UIColor.white
         return imageView
     }()
-    
     
     let yourResultIsText: UITextView = {
         let textView = UITextView()
@@ -62,7 +58,6 @@ class ResultViewController: UIViewController {
     
     let viewGabungan: UIImageView = {
         let imageView = UIImageView()
-        //This code enable autolayout
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = UIColor.clear
         return imageView
@@ -145,12 +140,9 @@ class ResultViewController: UIViewController {
         return button
     }()
     
-    
-    
     @objc func buttonShowMore(){
         if (moreDetailedIsTrue == false) {
 
-            
             let xTopGreenView = topGreenView.frame.origin.x
             let yTopGreenView = self.view.center.y
             topGreenView.frame.origin = CGPoint(x: xTopGreenView, y: yTopGreenView - 250 )
@@ -171,7 +163,6 @@ class ResultViewController: UIViewController {
             closeButton.frame.origin = CGPoint(x: xCloseButton, y: yCloseButton - 230)
             topGreenView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
             moreDetailedIsTrue = true
-            
         }
     }
     
@@ -199,7 +190,6 @@ class ResultViewController: UIViewController {
             moreDetailedIsTrue = false
         }
     }
-    
     
     let closeButton: UIButton = {
         let button = UIButton()
@@ -233,8 +223,6 @@ class ResultViewController: UIViewController {
         return textView
     }()
     
-    
-    
     let descriptionLabel : UITextView = {
         let textView = UITextView()
         textView.text = "It looks a bit fresh and the texture is quite good"
@@ -257,7 +245,6 @@ class ResultViewController: UIViewController {
         return textView
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -272,7 +259,6 @@ class ResultViewController: UIViewController {
     }
     
     func setupView(){
-
         view.addSubview(bottomWhiteView)
         view.addSubview(topGreenView)
         view.addSubview(viewGabungan)
@@ -290,7 +276,6 @@ class ResultViewController: UIViewController {
         view.addSubview(closeButton)
     }
     
-    
     //LessDetail
     func setupLayout(){
         //Kotak Hijau
@@ -299,7 +284,6 @@ class ResultViewController: UIViewController {
         topGreenView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         topGreenView.widthAnchor.constraint(equalToConstant: 343).isActive = true
         topGreenView.heightAnchor.constraint(equalToConstant: 343).isActive = true
-        
         
         //Close Button
         closeButton.topAnchor.constraint(equalTo: topGreenView.topAnchor, constant : 25).isActive = true
@@ -333,15 +317,12 @@ class ResultViewController: UIViewController {
         showMoreOrLessButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 130).isActive = true
         showMoreOrLessButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -130).isActive = true
         
-
-        
         //NilaiOutlet2
         nilaiOutlet2.topAnchor.constraint(equalTo: yourResultIsText.topAnchor, constant: 55).isActive = true
         nilaiOutlet2.heightAnchor.constraint(equalToConstant: 100).isActive = true
         nilaiOutlet2.widthAnchor.constraint(equalToConstant: 200).isActive = true
         nilaiOutlet2.rightAnchor.constraint(equalTo:garisLabel.leftAnchor, constant: 17 ).isActive = true
 //        nilaiOutlet2.leftAnchor.constraint(equalTo: viewGabungan.leftAnchor, constant: 20).isActive = true
-        
         
         //GarisLabel
         garisLabel.topAnchor.constraint(equalTo: yourResultIsText.topAnchor, constant: 57).isActive = true
@@ -376,8 +357,6 @@ class ResultViewController: UIViewController {
         colorLabel.rightAnchor.constraint(equalTo: bottomWhiteView.rightAnchor, constant: -10).isActive = true
         colorLabel.leftAnchor.constraint(equalTo: qualityColorLabel.rightAnchor).isActive = true
         
-        
-        
         //DescriptionLabel
         descriptionLabel.topAnchor.constraint(equalTo: colorLabel.bottomAnchor, constant: 20).isActive = true
         descriptionLabel.heightAnchor.constraint(equalToConstant: 110).isActive = true
@@ -409,8 +388,7 @@ class ResultViewController: UIViewController {
             colorLabel.textColor = hijau
             descriptionLabel.text = colorDescription[4]
             tipsLabel.text = tips.randomElement()
-            
-            
+            Sound.play(file: "goodResult.mp3")
         }else if NilaiSementara.nilaiSementara >= 8 && NilaiSementara.nilaiSementara < 9 {
             topGreenView.backgroundColor = hijauTua
             qualityLabel.text = "Sweet"
@@ -418,7 +396,7 @@ class ResultViewController: UIViewController {
             colorLabel.textColor = hijauTua
             descriptionLabel.text = colorDescription[3]
             tipsLabel.text = tips.randomElement()
-            
+            Sound.play(file: "goodResult.mp3")
         }else if NilaiSementara.nilaiSementara >= 7 && NilaiSementara.nilaiSementara < 8 {
             topGreenView.backgroundColor = orangeKuning
             qualityLabel.text = "Okay."
@@ -426,7 +404,7 @@ class ResultViewController: UIViewController {
             colorLabel.textColor = orangeKuning
             descriptionLabel.text = colorDescription[2]
             tipsLabel.text = tips.randomElement()
-            
+            Sound.play(file: "goodResult.mp3")
         }else if NilaiSementara.nilaiSementara >= 5 && NilaiSementara.nilaiSementara < 7 {
             topGreenView.backgroundColor = orange
             qualityLabel.text = "Almost There..."
@@ -434,7 +412,7 @@ class ResultViewController: UIViewController {
             colorLabel.textColor = orange
             descriptionLabel.text = colorDescription[1]
             tipsLabel.text = tips.randomElement()
-            
+            Sound.play(file: "badResult.mp3")
         }else {
             topGreenView.backgroundColor = merah
             qualityLabel.text = "Meh."
@@ -442,13 +420,11 @@ class ResultViewController: UIViewController {
             colorLabel.textColor = merah
             descriptionLabel.text = colorDescription[0]
             tipsLabel.text = tips.randomElement()
-            
+            Sound.play(file: "badResult.mp3")
         }
     }
     
-    
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        screenShotMethod()
         let touch: UITouch? = touches.first
         
         if (self.moreDetailedIsTrue == false && touch?.view != topGreenView) || ((self.moreDetailedIsTrue == true) && (Int((touch?.location(in: bottomWhiteView).x)!) <= 16 || Int((touch?.location(in: bottomWhiteView).y)!) >= 380) && touch?.view != viewGabungan) && touch?.view != nilaiOutlet2{
@@ -465,16 +441,3 @@ class ResultViewController: UIViewController {
         }
     }
 }
-
-//        if touch?.view != topGreenView && touch?.view == bottomWhiteView && touch?.view != viewGabungan && touch?.view != nilaiOutlet2{
-//            UIView.animate(withDuration: 0.25, animations: {
-//                self.view.transform = CGAffineTransform(translationX: 1.3, y: 1.3)
-//                self.view.alpha = 0.0;
-//            }) { (finished : Bool) in
-//                if (finished){
-//                    self.view.removeFromSuperview()
-//                }
-//            }
-//        } else {
-//
-//        }

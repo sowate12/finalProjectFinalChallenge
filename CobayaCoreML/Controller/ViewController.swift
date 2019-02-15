@@ -11,14 +11,15 @@ import AVKit
 import Vision
 import AVFoundation
 import NVActivityIndicatorView
+import SwiftySound
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIGestureRecognizerDelegate {
 
     // MARK: Variables
     var nilaiCounter = 0
     var buahCounter = 0
     var nilaiSementara : Float = 5
-    var namaNamaBuah = ["","","Fuji Apple","Mandarin Orange", "Tomato","", ""]
+    var namaNamaBuah = ["","","Fuji Apple","Mandarin Orange", "Tomato","",""]
     var jumlahBuah = ["","","apel","jeruk","tomato","",""]
     var results = ["result1", "result2", "result3", "result4", "result5"]
     var hasShownResult = false
@@ -56,6 +57,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var reviewNumber: UILabel!
     @IBOutlet weak var reviewLabel: UILabel!
     @IBOutlet weak var viewReview: UIView!
+    @IBOutlet weak var scanView: UIView!
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -74,17 +76,13 @@ class ViewController: UIViewController {
         checkingResult()
         helperDelegate.addLoading()
         setupView()
-        viewReview.isHidden = true
-        buttonReview.isHidden = true
-        reviewNumber.isHidden = true
-        reviewLabel.isHidden = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let indexPath = IndexPath(item: 2, section: 0)
         self.fruitTypeCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-        self.fruitTypeCollectionView.decelerationRate = UIScrollViewDecelerationRateFast
+        self.fruitTypeCollectionView.decelerationRate = UIScrollViewDecelerationRateNormal
         animateSilhouette()
     }
 
@@ -96,11 +94,11 @@ class ViewController: UIViewController {
         checking()
         scanning()
         gantiKeScan()
-        setScanningText()
         setupCollectionView()
         setupIcon()
         setupViewReview()
         setupColor()
+                setScanningText()
         view.addSubview(fruitTypeCollectionView)
         view.addSubview(startButton)
         view.addSubview(silhouetteImage)
@@ -108,13 +106,14 @@ class ViewController: UIViewController {
         view.addSubview(namaBuah)
         view.addSubview(checkingLabel)
         view.addSubview(scanningLabel)
-        view.addSubview(scanningText)
         view.addSubview(scanningIcon)
         view.layer.addSublayer(helperDelegate.shapeLayer)
         view.addSubview(cancelButton)
         view.addSubview(tutorialButton)
         view.addSubview(activityIndicator)
         view.addSubview(viewReview)
+        view.addSubview(scanningText)
+        view.addSubview(scanView)
 //        view.addSubview(buttonReview)
 //        view.addSubview(reviewNumber)
 //        view.addSubview(reviewLabel)
@@ -125,6 +124,9 @@ class ViewController: UIViewController {
         fruitTypeCollectionView.center = CGPoint(x: view.frame.width / 2 - 0.5, y: view.frame.height - 100 )
         silhouetteImage.center = CGPoint(x: view.frame.width / 2, y: view.frame.height / 2 - 30)
         fruitTypeCollectionView.backgroundColor = UIColor.black.withAlphaComponent(0.0)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(recordButtonDidTap))
+        silhouetteImage.addGestureRecognizer(tap)
+        silhouetteImage.isUserInteractionEnabled = true
     }
     
     func setupViewReview(){
@@ -171,7 +173,17 @@ class ViewController: UIViewController {
         scanningText.layer.shadowOpacity = 0.5
         scanningText.layer.shadowOffset = CGSize(width: 1, height: 2)
         scanningText.layer.masksToBounds = false
-        scanningText.text = "Ready to scan"
+        scanningText.numberOfLines = 2
+        scanningText.text = "Tap the fruit to scan"
+        scanView.frame = CGRect(x: x - 120, y: y - 200, width: 240, height: 400)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(recordButtonDidTap))
+        scanView.addGestureRecognizer(tap)
+        scanView.isUserInteractionEnabled = true
+    }
+
+    @objc func recordButtonDidTap(_ sender: UITapGestureRecognizer){
+        activityIndicator.startAnimating()
+        startScanning()
     }
     
     /// Setup the Label containing fruit names
@@ -261,15 +273,15 @@ class ViewController: UIViewController {
     func scanning(){
         scanningLabel.isHidden = true
         scanningLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        scanningLabel.text = "Scanning Fruit ."
+        scanningLabel.text = "Hold Still, Scanning the Fruit ."
         
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
             var string: String {
                 switch self.scanningLabel.text {
-                case "Scanning Fruit .":       return "Scanning Fruit .."
-                case "Scanning Fruit ..":      return "Scanning Fruit ..."
-                case "Scanning Fruit ...":     return "Scanning Fruit ."
-                default:                      return "Scanning Fruit"
+                case "Hold Still, Scanning the Fruit .":       return "Hold Still, Scanning the Fruit .."
+                case "Hold Still, Scanning the Fruit ..":      return "Hold Still, Scanning the Fruit ..."
+                case "Hold Still, Scanning the Fruit ...":     return "Hold Still, Scanning the Fruit ."
+                default:                      return "Hold Still, Scanning the Fruit"
                 }
             }
             self.scanningLabel.text = string
@@ -379,10 +391,6 @@ class ViewController: UIViewController {
         isFirstFrame = true
     }
     
-    func setButtonColor(){
-        
-    }
-    
     @IBAction func cancelButtonAction(_ sender: Any) {
         helperDelegate.hapticMedium()
         resetVariables()
@@ -391,6 +399,7 @@ class ViewController: UIViewController {
     
     @IBAction func buttonBackToReview(_ sender: Any) {
         moveController()
+        Sound.enabled = false
     }
     
     @IBAction func tutorialButtonAction(_ sender: Any) {
@@ -416,6 +425,7 @@ class ViewController: UIViewController {
             self.hideOutlet()
             self.isChecking = true
             self.hasShownResult = true
+            Sound.enabled = true
             self.generator.notificationOccurred(.success)
         }
     }
@@ -452,7 +462,6 @@ class ViewController: UIViewController {
         popUpVC.view.frame = self.view.frame
         self.view.addSubview(popUpVC.view)
         popUpVC.didMove(toParentViewController: self)
-        
     }
 }
 
@@ -464,7 +473,7 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = fruitTypeCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? BuahCell
-        if (indexPath.row == 0 || indexPath.row == 5 || indexPath.row == 1 || indexPath.row == 6){
+        if (indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 5 || indexPath.row == 6){
             cell?.isUserInteractionEnabled = false
         }
         cell?.imageBuah.image = UIImage(named: "\(jumlahBuah[indexPath.row])Inactive")
@@ -486,7 +495,6 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
         cell?.layer.cornerRadius = 8
         cell?.clipsToBounds = true
         if cell?.ditengah == true && NilaiSementara.cellDiTengah == true {
-//            scanningIcon.startAnimating()
             activityIndicator.startAnimating()
             startScanning()
             cell?.ditengah = false
@@ -554,7 +562,6 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         
         ///membuat layar avfoundationnya fullscreen
         let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        captureSession.sessionPreset = .hd4K3840x2160
         captureSession.addInput(input)
         captureSession.startRunning()
 
@@ -566,6 +573,31 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         let dataOutput = AVCaptureVideoDataOutput()
         dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
         captureSession.addOutput(dataOutput)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touchPoint = touches.first {
+            let x = touchPoint.location(in: view).y / view.frame.height
+            let y = 1.0 - touchPoint.location(in: view).x / view.frame.width
+            let focusPoint = CGPoint(x: x, y: y)
+            
+            if let device = AVCaptureDevice.default(for: .video) {
+                do {
+                    try device.lockForConfiguration()
+                    
+                    device.focusPointOfInterest = focusPoint
+                    device.focusMode = .autoFocus
+                    device.focusMode = .continuousAutoFocus
+                    //device.focusMode = .locked
+                    device.exposurePointOfInterest = focusPoint
+                    device.exposureMode = AVCaptureDevice.ExposureMode.continuousAutoExposure
+                    device.unlockForConfiguration()
+                }
+                catch {
+                    // just ignore
+                }
+            }
+        }
     }
     
     // MARK: Camera Output
@@ -604,9 +636,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         // MARK: modelnya
         DispatchQueue.main.async {
             if self.silhouetteImage.image == UIImage(named: "jerukSil2"){
-                let request = VNCoreMLRequest(model: modelJeruk)
-                {(finishedReq, err) in
-                    
+                let request = VNCoreMLRequest(model: modelJeruk){(finishedReq, err) in
                     guard let results = finishedReq.results as? [VNClassificationObservation] else {return}
                     guard let firstObservation = results.first else { return}
                     print(firstObservation.identifier,firstObservation.confidence)
@@ -615,7 +645,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                     if (firstObservation.identifier == "Jeruk Bagus"){
                         self.nilaiSementara += firstObservation.confidence
                     }else if (firstObservation.identifier == "Jeruk Jelek") {
-                        self.nilaiSementara -= firstObservation.confidence
+                        self.nilaiSementara -= (firstObservation.confidence * 0.5)
                     }
                     self.nilaiCounter += 1
                     /// lakukan scanningnya, tambah counter, scanning dilakukan tiap detik
@@ -631,9 +661,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                     if (firstObservationApel.identifier == "Apel Bagus") {
                         self.nilaiSementara += firstObservationApel.confidence
                     }else if (firstObservationApel.identifier == "Apel Jelek"){
-                        self.nilaiSementara -= firstObservationApel.confidence
-                    }else if (firstObservationApel.identifier == "Random Photo"){
-                        self.nilaiSementara -= firstObservationApel.confidence
+                        self.nilaiSementara -= (firstObservationApel.confidence * 0.5)
                     }
                     self.nilaiCounter += 1
                         
@@ -648,7 +676,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                     if (firstObservationTomat.identifier == "Tomat Bagus") {
                         self.nilaiSementara += firstObservationTomat.confidence
                     }else if (firstObservationTomat.identifier == "Tomat Jelek"){
-                        self.nilaiSementara -= firstObservationTomat.confidence
+                        self.nilaiSementara -= (firstObservationTomat.confidence * 0.5)
                     }
                     self.nilaiCounter += 1
                 }
