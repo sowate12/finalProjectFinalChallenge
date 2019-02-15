@@ -12,6 +12,8 @@
 		08D7773D21EF2C640025CC0C /* AppleBagusAppleJelek.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 08D7773C21EF2C640025CC0C /* AppleBagusAppleJelek.mlmodel */; };
 		6B2D6CE921F708C000FFE806 /* NilaiSementara.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2D6CE821F708C000FFE806 /* NilaiSementara.swift */; };
 		6B3D55D221E34EF700E91E85 /* Warna.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6B3D55D121E34EF700E91E85 /* Warna.mlmodel */; };
+		6B87FF60221576CD00BF66D3 /* badResult.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B87FF5E221576CD00BF66D3 /* badResult.mp3 */; };
+		6B87FF61221576CD00BF66D3 /* goodResult.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B87FF5F221576CD00BF66D3 /* goodResult.mp3 */; };
 		6B9FD1262202E83C00445DEC /* Tomat.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6B9FD1252202E83C00445DEC /* Tomat.mlmodel */; };
 		6B9FD12A2202EB0E00445DEC /* Apel1.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6B9FD1292202EB0E00445DEC /* Apel1.mlmodel */; };
 		6B9FD12C2204351500445DEC /* ApelBaru.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6B9FD12B2204351500445DEC /* ApelBaru.mlmodel */; };
@@ -41,6 +43,8 @@
 		08D7773C21EF2C640025CC0C /* AppleBagusAppleJelek.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = AppleBagusAppleJelek.mlmodel; sourceTree = "<group>"; };
 		6B2D6CE821F708C000FFE806 /* NilaiSementara.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NilaiSementara.swift; sourceTree = "<group>"; };
 		6B3D55D121E34EF700E91E85 /* Warna.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Warna.mlmodel; sourceTree = "<group>"; };
+		6B87FF5E221576CD00BF66D3 /* badResult.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = badResult.mp3; path = CobayaCoreML/badResult.mp3; sourceTree = SOURCE_ROOT; };
+		6B87FF5F221576CD00BF66D3 /* goodResult.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = goodResult.mp3; path = CobayaCoreML/goodResult.mp3; sourceTree = SOURCE_ROOT; };
 		6B9FD1252202E83C00445DEC /* Tomat.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Tomat.mlmodel; sourceTree = "<group>"; };
 		6B9FD1292202EB0E00445DEC /* Apel1.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Apel1.mlmodel; sourceTree = "<group>"; };
 		6B9FD12B2204351500445DEC /* ApelBaru.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ApelBaru.mlmodel; sourceTree = "<group>"; };
@@ -98,6 +102,8 @@
 		08D7774121F1B5180025CC0C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6B87FF5E221576CD00BF66D3 /* badResult.mp3 */,
+				6B87FF5F221576CD00BF66D3 /* goodResult.mp3 */,
 				08745E9D220D43A80048EEAF /* TutorialViewController.swift */,
 				991A6018213FCEC100FEAE4B /* ViewController.swift */,
 				7CFD700522075A8F00CA041D /* ResultViewController.swift */,
@@ -254,6 +260,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CFD700B22080F0700CA041D /* Biko_Black.otf in Resources */,
+				6B87FF60221576CD00BF66D3 /* badResult.mp3 in Resources */,
+				6B87FF61221576CD00BF66D3 /* goodResult.mp3 in Resources */,
 				7CFD700C22080F0700CA041D /* Biko_Bold.otf in Resources */,
 				7CFD700D22080F0700CA041D /* Biko_Light-Restricted.otf in Resources */,
 				7C967D902208175F0069D17A /* Biko_Regular.otf in Resources */,
@@ -274,10 +282,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CobayaCoreML/Pods-CobayaCoreML-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftySound/SwiftySound.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftySound.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -471,14 +481,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6QYD6FW9B4;
+				DEVELOPMENT_TEAM = 48LV8FDMZ8;
 				INFOPLIST_FILE = CobayaCoreML/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = KeenanW.AppleAcademyIndonesia.FruitScanLite;
+				PRODUCT_BUNDLE_IDENTIFIER = santos.fruky;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -491,14 +501,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6QYD6FW9B4;
+				DEVELOPMENT_TEAM = 48LV8FDMZ8;
 				INFOPLIST_FILE = CobayaCoreML/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = KeenanW.AppleAcademyIndonesia.FruitScanLite;
+				PRODUCT_BUNDLE_IDENTIFIER = santos.fruky;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
