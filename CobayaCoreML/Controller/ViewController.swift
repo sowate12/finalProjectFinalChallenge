@@ -19,7 +19,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     var nilaiCounter = 0
     var buahCounter = 0
     var nilaiSementara : Float = 5
-    var namaNamaBuah = ["","","Fuji Apple","Mandarin Orange", "Tomato","", ""]
+    var namaNamaBuah = ["","","Fuji Apple","Mandarin Orange", "Tomato","",""]
     var jumlahBuah = ["","","apel","jeruk","tomato","",""]
     var results = ["result1", "result2", "result3", "result4", "result5"]
     var hasShownResult = false
@@ -76,17 +76,13 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         checkingResult()
         helperDelegate.addLoading()
         setupView()
-        viewReview.isHidden = true
-        buttonReview.isHidden = true
-        reviewNumber.isHidden = true
-        reviewLabel.isHidden = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let indexPath = IndexPath(item: 2, section: 0)
         self.fruitTypeCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-        self.fruitTypeCollectionView.decelerationRate = UIScrollViewDecelerationRateFast
+        self.fruitTypeCollectionView.decelerationRate = UIScrollViewDecelerationRateNormal
         animateSilhouette()
     }
 
@@ -477,7 +473,7 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = fruitTypeCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? BuahCell
-        if (indexPath.row == 0 || indexPath.row == 5 || indexPath.row == 1 || indexPath.row == 6){
+        if (indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 5 || indexPath.row == 6){
             cell?.isUserInteractionEnabled = false
         }
         cell?.imageBuah.image = UIImage(named: "\(jumlahBuah[indexPath.row])Inactive")
@@ -640,9 +636,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         // MARK: modelnya
         DispatchQueue.main.async {
             if self.silhouetteImage.image == UIImage(named: "jerukSil2"){
-                let request = VNCoreMLRequest(model: modelJeruk)
-                {(finishedReq, err) in
-                    
+                let request = VNCoreMLRequest(model: modelJeruk){(finishedReq, err) in
                     guard let results = finishedReq.results as? [VNClassificationObservation] else {return}
                     guard let firstObservation = results.first else { return}
                     print(firstObservation.identifier,firstObservation.confidence)
