@@ -205,6 +205,7 @@ class TipsViewController: UIViewController {
                 quickBrief.isHidden = true
                 tapToContinue.isHidden = true
                 buttonSkipOutlet.isHidden = true
+                skip.isHidden = true
                 
                 buttonLayer1Outlet.isEnabled = false
                 siluet2.isHidden = false
