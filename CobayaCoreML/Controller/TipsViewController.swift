@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import StoreKit
 
 class TipsViewController: UIViewController {
 
@@ -92,6 +93,7 @@ class TipsViewController: UIViewController {
             
             @IBAction func buttonLayer9(_ sender: Any) {
                 buttonLayer9Outlet.isEnabled = false
+                SKStoreReviewController.requestReview()
             }
             
             @IBAction func buttonLayer8(_ sender: Any) {
