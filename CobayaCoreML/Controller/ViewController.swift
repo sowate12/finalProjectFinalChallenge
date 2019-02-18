@@ -22,6 +22,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     var namaNamaBuah = ["","","Fuji Apple","Mandarin Orange", "Tomato","",""]
     var jumlahBuah = ["","","apel","jeruk","tomato","",""]
     var results = ["result1", "result2", "result3", "result4", "result5"]
+    var backgroundWarna = ["","","viginetteApel","viginetteJeruk","viginetteTomato","",""]
     var hasShownResult = false
     var isFirstFrame : Bool = true
     var isChecking : Bool = false
@@ -58,6 +59,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var reviewLabel: UILabel!
     @IBOutlet weak var viewReview: UIView!
     @IBOutlet weak var scanView: UIView!
+    @IBOutlet weak var backgroundViginette: UIImageView!
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -489,7 +491,7 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
         silhouetteImage.image = UIImage(named: "\(jumlahBuah[indexPath.row])Sil2")
         dummyImage.image = UIImage(named: "\(jumlahBuah[indexPath.row])Scan")
         namaBuah.text = "\(namaNamaBuah[indexPath.row])"
-        
+        backgroundViginette.image = UIImage(named: "\(backgroundWarna[indexPath.row])")
         cell?.layer.borderColor = UIColor.black.cgColor
         cell?.layer.borderWidth = 1
         cell?.layer.cornerRadius = 8
