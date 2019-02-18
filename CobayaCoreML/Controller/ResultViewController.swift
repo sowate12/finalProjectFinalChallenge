@@ -294,7 +294,7 @@ class ResultViewController: UIViewController {
         //Kotak Putih
         bottomWhiteView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         bottomWhiteView.widthAnchor.constraint(equalToConstant: 343).isActive = true
-        bottomWhiteView.heightAnchor.constraint(equalToConstant: 350).isActive = true
+        bottomWhiteView.heightAnchor.constraint(equalToConstant: 400).isActive = true
         bottomWhiteView.topAnchor.constraint(equalTo: topGreenView.bottomAnchor, constant : -20).isActive = true
         bottomWhiteView.layer.cornerRadius = 20
         
