@@ -76,6 +76,12 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         checkingResult()
         helperDelegate.addLoading()
         setupView()
+        if NilaiSementara.nilaiSementara == 0 {
+            viewReview.isHidden = true
+            buttonReview.isHidden = true
+            reviewNumber.isHidden = true
+            reviewLabel.isHidden = true
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -98,7 +104,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         setupIcon()
         setupViewReview()
         setupColor()
-                setScanningText()
+        setScanningText()
         view.addSubview(fruitTypeCollectionView)
         view.addSubview(startButton)
         view.addSubview(silhouetteImage)
@@ -288,7 +294,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         }
         scanningLabel.textColor = .white
         scanningLabel.numberOfLines = 2
-        scanningLabel.frame = CGRect(x: view.frame.width / 2 - 65, y: view.frame.height / 2 - 125, width: 130, height: 100)
+        scanningLabel.frame = CGRect(x: view.frame.width / 2 - 100, y: view.frame.height / 2 - 125, width: 200, height: 100)
         scanningLabel.textAlignment = .center
     }
     
@@ -617,7 +623,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
             guard let resultsResnet = finishReq2.results as? [VNClassificationObservation] else {return}
             guard let firstObservationResnet = resultsResnet.first else {return}
             DispatchQueue.main.async {
-                if (((firstObservationResnet.identifier == "orange") && (self.silhouetteImage.image == UIImage(named: "jerukSil2"))) || (((self.silhouetteImage.image == UIImage(named: "tomatoSil2")) || (self.silhouetteImage.image == UIImage(named: "apelSil2"))) && (firstObservationResnet.identifier == "pomegranate") || (firstObservationResnet.identifier == "Granny Smith") || (firstObservationResnet.identifier == "hip, rose hip, rosehip") || (firstObservationResnet.identifier == "bell pepper"))) && self.buahCounter < 3{
+                if ((firstObservationResnet.identifier == "orange") && (self.silhouetteImage.image == UIImage(named: "jerukSil2"))) || (((self.silhouetteImage.image == UIImage(named: "tomatoSil2")) || (self.silhouetteImage.image == UIImage(named: "apelSil2"))) && ((firstObservationResnet.identifier == "pomegranate") || (firstObservationResnet.identifier == "Granny Smith") || (firstObservationResnet.identifier == "hip, rose hip, rosehip") || (firstObservationResnet.identifier == "bell pepper"))) && self.buahCounter < 3{
                     self.buahCounter += 1
                     print(firstObservationResnet.identifier, firstObservationResnet.confidence)
                     print(self.buahCounter)
