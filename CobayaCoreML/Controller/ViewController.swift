@@ -39,13 +39,14 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     var loadingLabel : UILabel = UILabel()
     var checkingLabel : UILabel = UILabel()
     var scanningLabel : UILabel = UILabel()
+    var backgroundViginette: UIImageView = UIImageView()
     var imageViewTransform = CGAffineTransform.identity
     let helperDelegate = AnimationHelper()
-    let hijau = UIColor(rgb: 0x3D8238)
-    let hijauTua = UIColor(rgb: 0x718821)
-    let orangeKuning = UIColor(rgb: 0xF0A616)
-    let orange = UIColor(rgb: 0xE5711C)
-    let merah = UIColor(rgb: 0xD42024)
+    let hijau = UIColor(displayP3Red: 61/255, green: 130/255, blue: 56/255, alpha: 1)
+    let hijauTua = UIColor(displayP3Red: 113/255, green: 136/255, blue: 33/255, alpha: 1)
+    let orangeKuning = UIColor(displayP3Red: 240/255, green: 166/255, blue: 22/255, alpha: 1)
+    let orange = UIColor(displayP3Red: 229/255, green: 113/255, blue: 28/255, alpha: 1)
+    let merah = UIColor(displayP3Red: 212/255, green: 32/255, blue: 36/255, alpha: 1)
     
     // MARK: IBOutlet
     @IBOutlet weak var buttonReview: UIButton!
@@ -59,7 +60,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var reviewLabel: UILabel!
     @IBOutlet weak var viewReview: UIView!
     @IBOutlet weak var scanView: UIView!
-    @IBOutlet weak var backgroundViginette: UIImageView!
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -100,7 +100,9 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         setupIcon()
         setupViewReview()
         setupColor()
-                setScanningText()
+        setScanningText()
+        setBackground()
+        view.addSubview(backgroundViginette)
         view.addSubview(fruitTypeCollectionView)
         view.addSubview(startButton)
         view.addSubview(silhouetteImage)
@@ -201,6 +203,18 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         namaBuah.layer.shadowOffset = CGSize(width: 1, height: 2)
         namaBuah.layer.masksToBounds = false
         namaBuah.text = "\(namaNamaBuah[2])"
+    }
+    
+    func setBackground(){
+        backgroundViginette.frame = CGRect(x: 0, y: view.frame.height - 204, width: view.frame.width, height: 204)
+        backgroundViginette.image = UIImage(named: "\(backgroundWarna[2])")
+        UIView.animate(withDuration: 0, animations: {
+            self.backgroundViginette.alpha = 1
+        }) { (true) in
+            UIView.animate(withDuration: 5, animations: {
+                self.backgroundViginette.alpha = 0
+            })
+        }
     }
     
     func setupIcon(){
@@ -492,6 +506,15 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
         dummyImage.image = UIImage(named: "\(jumlahBuah[indexPath.row])Scan")
         namaBuah.text = "\(namaNamaBuah[indexPath.row])"
         backgroundViginette.image = UIImage(named: "\(backgroundWarna[indexPath.row])")
+        UIView.animate(withDuration: 0, animations: {
+            self.backgroundViginette.alpha = 1
+            }) { (true) in
+            UIView.animate(withDuration: 5, animations: {
+                self.backgroundViginette.alpha = 0
+                })
+            }
+
+        
         cell?.layer.borderColor = UIColor.black.cgColor
         cell?.layer.borderWidth = 1
         cell?.layer.cornerRadius = 8
@@ -634,7 +657,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         }
         try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([requestResnet])
         
-        if !self.checkBuah{return }
+        if !self.checkBuah{return}
         // MARK: modelnya
         DispatchQueue.main.async {
             if self.silhouetteImage.image == UIImage(named: "jerukSil2"){
@@ -642,6 +665,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                     guard let results = finishedReq.results as? [VNClassificationObservation] else {return}
                     guard let firstObservation = results.first else { return}
                     print(firstObservation.identifier,firstObservation.confidence)
+                    
                     
                     //setelah membuat property resultnya, lakukan scanning
                     if (firstObservation.identifier == "Jeruk Bagus"){
@@ -660,6 +684,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                     guard let firstObservationApel = resultApel.first else {return}
                     print(firstObservationApel.identifier, firstObservationApel.confidence)
                     
+                    
                     if (firstObservationApel.identifier == "Apel Bagus") {
                         self.nilaiSementara += firstObservationApel.confidence
                     }else if (firstObservationApel.identifier == "Apel Jelek"){
@@ -674,6 +699,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                     guard let resultTomat = finishedReq3.results as? [VNClassificationObservation] else {return}
                     guard let firstObservationTomat = resultTomat.first else {return}
                     print(firstObservationTomat.identifier, firstObservationTomat.confidence)
+                    
                     
                     if (firstObservationTomat.identifier == "Tomat Bagus") {
                         self.nilaiSementara += firstObservationTomat.confidence
