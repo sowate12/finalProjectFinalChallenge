@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import StoreKit
 
 class TipsViewController: UIViewController {
 
@@ -93,7 +92,7 @@ class TipsViewController: UIViewController {
             
             @IBAction func buttonLayer9(_ sender: Any) {
                 buttonLayer9Outlet.isEnabled = false
-                SKStoreReviewController.requestReview()
+                performSegue(withIdentifier: "skip", sender: self)
             }
             
             @IBAction func buttonLayer8(_ sender: Any) {
@@ -206,7 +205,7 @@ class TipsViewController: UIViewController {
             @IBAction func buttonLayer1(_ sender: Any) {
                 quickBrief.isHidden = true
                 tapToContinue.isHidden = true
-                buttonSkipOutlet.isHidden = true
+//                buttonSkipOutlet.isHidden = true
                 
                 buttonLayer1Outlet.isEnabled = false
                 siluet2.isHidden = false
