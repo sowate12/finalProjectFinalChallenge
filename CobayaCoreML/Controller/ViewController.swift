@@ -13,15 +13,16 @@ import AVFoundation
 import NVActivityIndicatorView
 import SwiftySound
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIGestureRecognizerDelegate {
 
     // MARK: Variables
     var nilaiCounter = 0
     var buahCounter = 0
     var nilaiSementara : Float = 5
-    var namaNamaBuah = ["","","Fuji Apple","Mandarin Orange", "Tomato","", ""]
+    var namaNamaBuah = ["","","Fuji Apple","Mandarin Orange", "Tomato","",""]
     var jumlahBuah = ["","","apel","jeruk","tomato","",""]
     var results = ["result1", "result2", "result3", "result4", "result5"]
+    var backgroundWarna = ["","","viginetteApel","viginetteJeruk","viginetteTomato","",""]
     var hasShownResult = false
     var isFirstFrame : Bool = true
     var isChecking : Bool = false
@@ -57,6 +58,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var reviewNumber: UILabel!
     @IBOutlet weak var reviewLabel: UILabel!
     @IBOutlet weak var viewReview: UIView!
+    @IBOutlet weak var scanView: UIView!
+    @IBOutlet weak var backgroundViginette: UIImageView!
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -75,20 +78,13 @@ class ViewController: UIViewController {
         checkingResult()
         helperDelegate.addLoading()
         setupView()
-        let tap = UITapGestureRecognizer(target: self, action: #selector(recordButtonDidTap))
-        scanningText.addGestureRecognizer(tap)
-        silhouetteImage.addGestureRecognizer(tap)
-        viewReview.isHidden = true
-        buttonReview.isHidden = true
-        reviewNumber.isHidden = true
-        reviewLabel.isHidden = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let indexPath = IndexPath(item: 2, section: 0)
         self.fruitTypeCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-        self.fruitTypeCollectionView.decelerationRate = UIScrollViewDecelerationRateFast
+        self.fruitTypeCollectionView.decelerationRate = UIScrollViewDecelerationRateNormal
         animateSilhouette()
     }
 
@@ -100,11 +96,11 @@ class ViewController: UIViewController {
         checking()
         scanning()
         gantiKeScan()
-        setScanningText()
         setupCollectionView()
         setupIcon()
         setupViewReview()
         setupColor()
+                setScanningText()
         view.addSubview(fruitTypeCollectionView)
         view.addSubview(startButton)
         view.addSubview(silhouetteImage)
@@ -112,13 +108,14 @@ class ViewController: UIViewController {
         view.addSubview(namaBuah)
         view.addSubview(checkingLabel)
         view.addSubview(scanningLabel)
-        view.addSubview(scanningText)
         view.addSubview(scanningIcon)
         view.layer.addSublayer(helperDelegate.shapeLayer)
         view.addSubview(cancelButton)
         view.addSubview(tutorialButton)
         view.addSubview(activityIndicator)
         view.addSubview(viewReview)
+        view.addSubview(scanningText)
+        view.addSubview(scanView)
 //        view.addSubview(buttonReview)
 //        view.addSubview(reviewNumber)
 //        view.addSubview(reviewLabel)
@@ -178,14 +175,17 @@ class ViewController: UIViewController {
         scanningText.layer.shadowOpacity = 0.5
         scanningText.layer.shadowOffset = CGSize(width: 1, height: 2)
         scanningText.layer.masksToBounds = false
-        scanningText.text = "Ready to scan"
-        scanningText.isUserInteractionEnabled = true
+        scanningText.numberOfLines = 2
+        scanningText.text = "Tap the fruit to scan"
+        scanView.frame = CGRect(x: x - 120, y: y - 200, width: 240, height: 400)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(recordButtonDidTap))
+        scanView.addGestureRecognizer(tap)
+        scanView.isUserInteractionEnabled = true
     }
 
-    @objc func recordButtonDidTap(){
-        var savedIndex = fruitTypeCollectionView.indexPathsForVisibleItems
-        savedIndex.sort()
-        self.collectionView(self.fruitTypeCollectionView, didSelectItemAt: savedIndex[2])
+    @objc func recordButtonDidTap(_ sender: UITapGestureRecognizer){
+        activityIndicator.startAnimating()
+        startScanning()
     }
     
     /// Setup the Label containing fruit names
@@ -475,7 +475,7 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = fruitTypeCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? BuahCell
-        if (indexPath.row == 0 || indexPath.row == 5 || indexPath.row == 1 || indexPath.row == 6){
+        if (indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 5 || indexPath.row == 6){
             cell?.isUserInteractionEnabled = false
         }
         cell?.imageBuah.image = UIImage(named: "\(jumlahBuah[indexPath.row])Inactive")
@@ -491,7 +491,7 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
         silhouetteImage.image = UIImage(named: "\(jumlahBuah[indexPath.row])Sil2")
         dummyImage.image = UIImage(named: "\(jumlahBuah[indexPath.row])Scan")
         namaBuah.text = "\(namaNamaBuah[indexPath.row])"
-        
+        backgroundViginette.image = UIImage(named: "\(backgroundWarna[indexPath.row])")
         cell?.layer.borderColor = UIColor.black.cgColor
         cell?.layer.borderWidth = 1
         cell?.layer.cornerRadius = 8
@@ -564,7 +564,6 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         
         ///membuat layar avfoundationnya fullscreen
         let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        captureSession.sessionPreset = .hd4K3840x2160
         captureSession.addInput(input)
         captureSession.startRunning()
 
@@ -639,9 +638,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         // MARK: modelnya
         DispatchQueue.main.async {
             if self.silhouetteImage.image == UIImage(named: "jerukSil2"){
-                let request = VNCoreMLRequest(model: modelJeruk)
-                {(finishedReq, err) in
-                    
+                let request = VNCoreMLRequest(model: modelJeruk){(finishedReq, err) in
                     guard let results = finishedReq.results as? [VNClassificationObservation] else {return}
                     guard let firstObservation = results.first else { return}
                     print(firstObservation.identifier,firstObservation.confidence)
