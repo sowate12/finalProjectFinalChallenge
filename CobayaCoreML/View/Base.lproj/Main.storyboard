@@ -133,11 +133,16 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="ballPulseSync"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Ou-sn-00m">
+                                <rect key="frame" x="0.0" y="684" width="375" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="backgroundViginette" destination="4Ou-sn-00m" id="yz0-2h-e1Z"/>
                         <outlet property="buttonReview" destination="d7D-kR-sw0" id="3P4-Ua-MfH"/>
                         <outlet property="cancelButton" destination="CSM-nt-NlY" id="48R-mV-UG7"/>
                         <outlet property="fruitTypeCollectionView" destination="0ze-pf-8qW" id="7Fv-Rf-1YA"/>
