@@ -176,7 +176,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         scanningText.layer.shadowOffset = CGSize(width: 1, height: 2)
         scanningText.layer.masksToBounds = false
         scanningText.numberOfLines = 2
-        scanningText.text = "Tap the fruit to scan"
+        scanningText.text = NSLocalizedString("Tap the fruit to scan", comment: "Scanning Text")
         scanView.frame = CGRect(x: x - 120, y: y - 200, width: 240, height: 400)
         let tap = UITapGestureRecognizer(target: self, action: #selector(recordButtonDidTap))
         scanView.addGestureRecognizer(tap)

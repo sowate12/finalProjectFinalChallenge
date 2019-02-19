@@ -1,0 +1,114 @@
+
+/* Class = "UILabel"; text = "A result pop-up will appear if the scanning is over"; ObjectID = "0Yg-QJ-yKX"; */
+"0Yg-QJ-yKX.text" = "A result pop-up will appear if the scanning is over";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "21R-PC-HKt"; */
+"21R-PC-HKt.text" = "Label";
+
+/* Class = "UILabel"; text = "/"; ObjectID = "26N-5H-VOS"; */
+"26N-5H-VOS.text" = "/";
+
+/* Class = "UILabel"; text = "Good!"; ObjectID = "3e4-99-keE"; */
+"3e4-99-keE.text" = "Good!";
+
+/* Class = "UILabel"; text = "Great Eye!"; ObjectID = "8iM-xX-pSf"; */
+"8iM-xX-pSf.text" = "Great Eye!";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Biy-JU-1y2"; */
+"Biy-JU-1y2.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "CSM-nt-NlY"; */
+"CSM-nt-NlY.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "This is suggested area for scanning the fruit"; ObjectID = "DNJ-Q8-UNq"; */
+"DNJ-Q8-UNq.text" = "This is suggested area for scanning the fruit";
+
+/* Class = "UILabel"; text = "The apple looks deliciously fresh and it's dazzlingly clean"; ObjectID = "DZu-Ch-ceU"; */
+"DZu-Ch-ceU.text" = "The apple looks deliciously fresh and it's dazzlingly clean";
+
+/* Class = "UILabel"; text = "Your result is:"; ObjectID = "IB3-2I-8na"; */
+"IB3-2I-8na.text" = "Your result is:";
+
+/* Class = "UILabel"; text = "Texture :"; ObjectID = "JXt-64-k8q"; */
+"JXt-64-k8q.text" = "Texture :";
+
+/* Class = "UILabel"; text = "/"; ObjectID = "Nao-Ku-MhF"; */
+"Nao-Ku-MhF.text" = "/";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "PBF-3a-CvQ"; */
+"PBF-3a-CvQ.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "PE0-0G-muB"; */
+"PE0-0G-muB.text" = "Label";
+
+/* Class = "UILabel"; text = "Press the button to start scanning"; ObjectID = "Qrc-V5-T2h"; */
+"Qrc-V5-T2h.text" = "Press the button to start scanning";
+
+/* Class = "UILabel"; text = "4.5 /"; ObjectID = "SXS-ov-XVI"; */
+"SXS-ov-XVI.text" = "4.5 /";
+
+/* Class = "UILabel"; text = "10.0"; ObjectID = "TTW-my-21V"; */
+"TTW-my-21V.text" = "10.0";
+
+/* Class = "UILabel"; text = "Color:"; ObjectID = "VwS-4G-wIC"; */
+"VwS-4G-wIC.text" = "Color:";
+
+/* Class = "UILabel"; text = "Your result is :"; ObjectID = "Y9K-2U-fxi"; */
+"Y9K-2U-fxi.text" = "Your result is :";
+
+/* Class = "UILabel"; text = "Your result is:"; ObjectID = "YYd-Et-l9l"; */
+"YYd-Et-l9l.text" = "Your result is:";
+
+/* Class = "UILabel"; text = "10.0"; ObjectID = "aPC-5r-pWM"; */
+"aPC-5r-pWM.text" = "10.0";
+
+/* Class = "UILabel"; text = "Press this button for quick brief"; ObjectID = "bBg-cu-eOH"; */
+"bBg-cu-eOH.text" = "Press this button for quick brief";
+
+/* Class = "UILabel"; text = "Swipe to choose the fruit"; ObjectID = "c0I-W2-Igb"; */
+"c0I-W2-Igb.text" = "Swipe to choose the fruit";
+
+/* Class = "UILabel"; text = "10.0"; ObjectID = "czo-Py-fGz"; */
+"czo-Py-fGz.text" = "10.0";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "d7D-kR-sw0"; */
+"d7D-kR-sw0.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "If you see this button that means you can cancel the scanning"; ObjectID = "dRO-3k-jIf"; */
+"dRO-3k-jIf.text" = "If you see this button that means you can cancel the scanning";
+
+/* Class = "UILabel"; text = "Excellent!"; ObjectID = "eUB-Lr-X9r"; */
+"eUB-Lr-X9r.text" = "Excellent!";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "gns-Y5-gdJ"; */
+"gns-Y5-gdJ.text" = "Label";
+
+/* Class = "UILabel"; text = "Great Eye!"; ObjectID = "grG-TO-rTf"; */
+"grG-TO-rTf.text" = "Great Eye!";
+
+/* Class = "UILabel"; text = "Color    :"; ObjectID = "hla-mz-Wdq"; */
+"hla-mz-Wdq.text" = "Color    :";
+
+/* Class = "UILabel"; text = "You can expand it to know the fruit's details!"; ObjectID = "iRU-de-32c"; */
+"iRU-de-32c.text" = "You can expand it to know the fruit's details!";
+
+/* Class = "UILabel"; text = "10.0"; ObjectID = "if5-cc-8DJ"; */
+"if5-cc-8DJ.text" = "10.0";
+
+/* Class = "UILabel"; text = "Great Eye!"; ObjectID = "j7Z-IB-yPs"; */
+"j7Z-IB-yPs.text" = "Great Eye!";
+
+/* Class = "UILabel"; text = "10.0"; ObjectID = "lfS-YZ-Cp7"; */
+"lfS-YZ-Cp7.text" = "10.0";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "o1Z-kG-bvg"; */
+"o1Z-kG-bvg.text" = "Label";
+
+/* Class = "UILabel"; text = "Texture:"; ObjectID = "p0u-zO-mkZ"; */
+"p0u-zO-mkZ.text" = "Texture:";
+
+/* Class = "UILabel"; text = "Tap to continue"; ObjectID = "v7i-LD-e6B"; */
+"v7i-LD-e6B.text" = "Tap to continue";
+
+/* Class = "UILabel"; text = "And this button for knowing more about developers!"; ObjectID = "z5g-iE-rTa"; */
+"z5g-iE-rTa.text" = "And this button for knowing more about developers!";
