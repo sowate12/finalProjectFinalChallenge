@@ -211,6 +211,18 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         namaBuah.text = "\(namaNamaBuah[2])"
     }
     
+    func setBackground(){
+        backgroundViginette.frame = CGRect(x: 0, y: view.frame.height - 204, width: view.frame.width, height: 204)
+        backgroundViginette.image = UIImage(named: "\(backgroundWarna[2])")
+        UIView.animate(withDuration: 0, animations: {
+            self.backgroundViginette.alpha = 1
+        }) { (true) in
+            UIView.animate(withDuration: 5, animations: {
+                self.backgroundViginette.alpha = 0
+            })
+        }
+    }
+    
     func setupIcon(){
         let x = view.frame.width / 2
         let y = view.frame.height
@@ -490,19 +502,6 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
         cell?.imageBuahSelected.image = UIImage(named: "\(jumlahBuah[indexPath.row])Selected")
         return cell!
     }
-    
-    func setBackground(){
-        backgroundViginette.frame = CGRect(x: 0, y: view.frame.height - 204, width: view.frame.width, height: 204)
-        backgroundViginette.image = UIImage(named: "\(backgroundWarna[2])")
-        UIView.animate(withDuration: 0, animations: {
-            self.backgroundViginette.alpha = 1
-        }) { (true) in
-            UIView.animate(withDuration: 5, animations: {
-                self.backgroundViginette.alpha = 0
-            })
-        }
-    }
-
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         helperDelegate.hapticMedium()
