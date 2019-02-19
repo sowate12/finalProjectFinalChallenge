@@ -29,6 +29,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     var checkBuah = false
     var hasSpinned = false
     var hasScanned = false
+    var hasLoaded = false
     var timer = Timer()
     let generator = UINotificationFeedbackGenerator()
     var dummyImage : UIImageView = UIImageView()
@@ -78,6 +79,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         checkingResult()
         helperDelegate.addLoading()
         setupView()
+        hasLoaded = true
         if NilaiSementara.nilaiSementara == 0 {
             viewReview.isHidden = true
             buttonReview.isHidden = true
@@ -362,7 +364,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         fruitTypeCollectionView.isHidden = false
         startButton.isHidden = false
         tutorialButton.isHidden = false
-        if hasScanned {
+        if NilaiSementara.nilaiSementara != 0 {
             viewReview.isHidden = false
             buttonReview.isHidden = false
             reviewNumber.isHidden = false
@@ -389,7 +391,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     func resetVariables(){
         hasSpinned = false
         if !hasScanned{
-            NilaiSementara.nilaiSementara = 0
+            nilaiSementara = 0
         }
         helperDelegate.shapeLayer.removeFromSuperlayer()
         nilaiSementara  = 5
@@ -496,13 +498,9 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
     func setBackground(){
         backgroundViginette.frame = CGRect(x: 0, y: view.frame.height - 204, width: view.frame.width, height: 204)
         backgroundViginette.image = UIImage(named: "\(backgroundWarna[2])")
-        UIView.animate(withDuration: 0, animations: {
-            self.backgroundViginette.alpha = 1
-        }) { (true) in
             UIView.animate(withDuration: 5, animations: {
                 self.backgroundViginette.alpha = 0
             })
-        }
     }
 
 
@@ -651,7 +649,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
             guard let resultsResnet = finishReq2.results as? [VNClassificationObservation] else {return}
             guard let firstObservationResnet = resultsResnet.first else {return}
             DispatchQueue.main.async {
-                if ((firstObservationResnet.identifier == "orange") && (self.silhouetteImage.image == UIImage(named: "jerukSil2"))) || (((self.silhouetteImage.image == UIImage(named: "tomatoSil2")) || (self.silhouetteImage.image == UIImage(named: "apelSil2"))) && ((firstObservationResnet.identifier == "pomegranate") || (firstObservationResnet.identifier == "Granny Smith") || (firstObservationResnet.identifier == "hip, rose hip, rosehip") || (firstObservationResnet.identifier == "bell pepper"))) && self.buahCounter < 3{
+                if (((firstObservationResnet.identifier == "orange") && (self.silhouetteImage.image == UIImage(named: "jerukSil2"))) || (((self.silhouetteImage.image == UIImage(named: "tomatoSil2")) || (self.silhouetteImage.image == UIImage(named: "apelSil2"))) && ((firstObservationResnet.identifier == "pomegranate") || (firstObservationResnet.identifier == "Granny Smith") || (firstObservationResnet.identifier == "hip, rose hip, rosehip") || (firstObservationResnet.identifier == "bell pepper")))) && self.buahCounter < 3{
                     self.buahCounter += 1
                     print(firstObservationResnet.identifier, firstObservationResnet.confidence)
                     print(self.buahCounter)
@@ -682,7 +680,6 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                         self.nilaiSementara -= (firstObservation.confidence * 0.5)
                     }
                     self.nilaiCounter += 1
-                    /// lakukan scanningnya, tambah counter, scanning dilakukan tiap detik
                 }
                 try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
                 
