@@ -185,7 +185,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         scanningText.layer.shadowOffset = CGSize(width: 1, height: 2)
         scanningText.layer.masksToBounds = false
         scanningText.numberOfLines = 2
-        scanningText.text = NSLocalizedString("Tap the fruit to scan", comment: "Scanning Text")
+        scanningText.text = NSLocalizedString("Tap the fruit to scan", comment: "")
         scanView.frame = CGRect(x: x - 120, y: y - 200, width: 240, height: 400)
         let tap = UITapGestureRecognizer(target: self, action: #selector(recordButtonDidTap))
         scanView.addGestureRecognizer(tap)
@@ -238,23 +238,24 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     
     /// Setup the text that appears when scanning
     func checking(){
+        var labelChecking = NSLocalizedString("Detecting Fruit", comment: "")
         checkingLabel.isHidden = true
         checkingLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        checkingLabel.text = "Detecting Fruit ."
+        checkingLabel.text = NSLocalizedString("\(labelChecking).", comment: "")
         
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
             var string: String {
                 switch self.checkingLabel.text {
-                case "Detecting Fruit .":       return "Detecting Fruit .."
-                case "Detecting Fruit ..":      return "Detecting Fruit ..."
-                case "Detecting Fruit ...":     return "Detecting Fruit ."
-                default:                      return "Detecting Fruit"
+                case "\(labelChecking).":       return "\(labelChecking).."
+                case "\(labelChecking)..":      return "\(labelChecking)..."
+                case "\(labelChecking)...":     return "\(labelChecking)."
+                default:                      return "\(labelChecking)"
                 }
             }
             self.checkingLabel.text = string
         }
         checkingLabel.textColor = .white
-        checkingLabel.frame = CGRect(x: view.frame.width / 2 - 65, y: view.frame.height / 2 - 125, width: 130, height: 100)
+        checkingLabel.frame = CGRect(x: view.frame.width / 2 - 65, y: view.frame.height / 2 - 110, width: 130, height: 100)
         checkingLabel.numberOfLines = 2
         checkingLabel.textAlignment = .center
     }
@@ -282,24 +283,25 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func scanning(){
+        var labelScanning = NSLocalizedString("Hold Still, Scanning the Fruit", comment: "")
         scanningLabel.isHidden = true
         scanningLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        scanningLabel.text = "Hold Still, Scanning the Fruit ."
+        scanningLabel.text = NSLocalizedString("\(labelScanning).", comment: "")
         
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
             var string: String {
                 switch self.scanningLabel.text {
-                case "Hold Still, Scanning the Fruit .":       return "Hold Still, Scanning the Fruit .."
-                case "Hold Still, Scanning the Fruit ..":      return "Hold Still, Scanning the Fruit ..."
-                case "Hold Still, Scanning the Fruit ...":     return "Hold Still, Scanning the Fruit ."
-                default:                      return "Hold Still, Scanning the Fruit"
+                case "\(labelScanning).":       return "\(labelScanning).."
+                case "\(labelScanning)..":      return "\(labelScanning)..."
+                case "\(labelScanning)...":     return "\(labelScanning)."
+                default:                      return "\(labelScanning)"
                 }
             }
             self.scanningLabel.text = string
         }
         scanningLabel.textColor = .white
         scanningLabel.numberOfLines = 2
-        scanningLabel.frame = CGRect(x: view.frame.width / 2 - 100, y: view.frame.height / 2 - 125, width: 200, height: 100)
+        scanningLabel.frame = CGRect(x: view.frame.width / 2 - 65, y: view.frame.height / 2 - 110, width: 130, height: 100)
         scanningLabel.textAlignment = .center
     }
     
@@ -326,13 +328,12 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func checkingAlert(){
         helperDelegate.hapticMedium()
-        let alert = UIAlertController(title: "There's No Fruit Detected", message: "Would you like to rescan the fruit?", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: NSLocalizedString("There's No Fruit Detected", comment: ""), message: NSLocalizedString("Would you like to rescan the fruit?", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
         
-        alert.addAction(UIAlertAction(title: "Retry", style: UIAlertActionStyle.default, handler: { action in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Retry", comment: ""), style: UIAlertActionStyle.default, handler: { action in
             self.isChecking = true
-            print("Yes")
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.destructive, handler: { action in self.resetVariables()
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.destructive, handler: { action in self.resetVariables()
             self.showOutlet()
         }))
         self.present(alert, animated: true, completion: nil)

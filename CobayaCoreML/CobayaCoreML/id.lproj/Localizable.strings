@@ -1,0 +1,15 @@
+/* 
+  English.strings
+  CobayaCoreML
+
+  Created by Steven on 18/02/19.
+  Copyright © 2019 Keenan Warouw. All rights reserved.
+*/
+"Tap the fruit to scan" = "Ketuk Buah untuk Memindai";
+"Your result is: " = "Hasil anda adalah: ";
+"Detecting Fruit" = "Mendeteksi Buah";
+"Hold Still, Scanning the Fruit" = "Tahan Posisi, Mendeteksi Buah";
+"There's No Fruit Detected" = "Tidak ada Buah Terdeteksi";
+"Would you like to rescan the fruit?" = "Apakah anda mau memindai ulang buahnya?";
+"Retry" = "Coba Lagi";
+"Cancel" = "Batal";

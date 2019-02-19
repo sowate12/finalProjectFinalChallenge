@@ -47,7 +47,7 @@ class ResultViewController: UIViewController {
     
     let yourResultIsText: UITextView = {
         let textView = UITextView()
-        textView.text = "Your result is: "
+        textView.text = NSLocalizedString("Your result is: ", comment: "")
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.textAlignment = .center
         textView.textColor = UIColor.white

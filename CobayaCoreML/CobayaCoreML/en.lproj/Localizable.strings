@@ -1,0 +1,15 @@
+/* 
+  English.strings
+  CobayaCoreML
+
+  Created by Steven on 18/02/19.
+  Copyright © 2019 Keenan Warouw. All rights reserved.
+*/
+"Tap the fruit to scan" = "Tap the fruit to scan";
+"Your result is: " = "Your result is: ";
+"Detecting Fruit" = "Detecting Fruit";
+"Hold Still, Scanning the Fruit" = "Hold Still, Scanning the Fruit";
+"There's No Fruit Detected" = "There's No Fruit Detected";
+"Would you like to rescan the fruit?" = "Would you like to rescan the fruit?";
+"Retry" = "Retry";
+"Cancel" = "Cancel";
