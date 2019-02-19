@@ -33,6 +33,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     let generator = UINotificationFeedbackGenerator()
     var dummyImage : UIImageView = UIImageView()
     var namaBuah : UILabel = UILabel()
+    var backgroundViginette: UIImageView = UIImageView()
     var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView()
     var checkBuahCounter = 0
     var scanningText : UILabel = UILabel()
@@ -59,7 +60,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var reviewLabel: UILabel!
     @IBOutlet weak var viewReview: UIView!
     @IBOutlet weak var scanView: UIView!
-    @IBOutlet weak var backgroundViginette: UIImageView!
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -107,6 +107,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         setupViewReview()
         setupColor()
         setScanningText()
+        setBackground()
+        view.addSubview(backgroundViginette)
         view.addSubview(fruitTypeCollectionView)
         view.addSubview(startButton)
         view.addSubview(silhouetteImage)
@@ -488,6 +490,19 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
         cell?.imageBuahSelected.image = UIImage(named: "\(jumlahBuah[indexPath.row])Selected")
         return cell!
     }
+    
+    func setBackground(){
+        backgroundViginette.frame = CGRect(x: 0, y: view.frame.height - 204, width: view.frame.width, height: 204)
+        backgroundViginette.image = UIImage(named: "\(backgroundWarna[2])")
+        UIView.animate(withDuration: 0, animations: {
+            self.backgroundViginette.alpha = 1
+        }) { (true) in
+            UIView.animate(withDuration: 5, animations: {
+                self.backgroundViginette.alpha = 0
+            })
+        }
+    }
+
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         helperDelegate.hapticMedium()
@@ -498,6 +513,14 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
         dummyImage.image = UIImage(named: "\(jumlahBuah[indexPath.row])Scan")
         namaBuah.text = "\(namaNamaBuah[indexPath.row])"
         backgroundViginette.image = UIImage(named: "\(backgroundWarna[indexPath.row])")
+        UIView.animate(withDuration: 0, animations: {
+            self.backgroundViginette.alpha = 1
+        }) { (true) in
+            UIView.animate(withDuration: 5, animations: {
+                self.backgroundViginette.alpha = 0
+            })
+        }
+
         cell?.layer.borderColor = UIColor.black.cgColor
         cell?.layer.borderWidth = 1
         cell?.layer.cornerRadius = 8

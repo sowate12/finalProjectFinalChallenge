@@ -234,11 +234,22 @@ class ResultViewController: UIViewController {
         return textView
     }()
     
+    let keteranganTips : UITextView = {
+        let textView = UITextView()
+        textView.text = "Tips"
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.textAlignment = .left
+        textView.textColor = UIColor.black
+        textView.backgroundColor = UIColor.clear
+        textView.font = UIFont.systemFont(ofSize: 15)
+        return textView
+    }()
+    
     let tipsLabel : UITextView = {
         let textView = UITextView()
         textView.text = "Check the texture of the fruit again, make sure that it's firm "
         textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.textAlignment = .center
+        textView.textAlignment = .left
         textView.textColor = UIColor.black
         textView.backgroundColor = UIColor.clear
         textView.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.light)
@@ -271,6 +282,7 @@ class ResultViewController: UIViewController {
         bottomWhiteView.addSubview(colorLabel)
         bottomWhiteView.addSubview(descriptionLabel)
         bottomWhiteView.addSubview(tipsLabel)
+        bottomWhiteView.addSubview(keteranganTips)
         view.addSubview(showMoreOrLessButton)
         view.addSubview(showMoreOrLessButton2)
         view.addSubview(closeButton)
@@ -355,10 +367,10 @@ class ResultViewController: UIViewController {
         colorLabel.topAnchor.constraint(equalTo: qualityColorLabel.topAnchor).isActive = true
         colorLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         colorLabel.rightAnchor.constraint(equalTo: bottomWhiteView.rightAnchor, constant: -10).isActive = true
-        colorLabel.leftAnchor.constraint(equalTo: qualityColorLabel.rightAnchor).isActive = true
+        colorLabel.leftAnchor.constraint(equalTo: qualityColorLabel.rightAnchor, constant : -30).isActive = true
         
         //DescriptionLabel
-        descriptionLabel.topAnchor.constraint(equalTo: colorLabel.bottomAnchor, constant: 20).isActive = true
+        descriptionLabel.topAnchor.constraint(equalTo: colorLabel.bottomAnchor).isActive = true
         descriptionLabel.heightAnchor.constraint(equalToConstant: 110).isActive = true
         descriptionLabel.rightAnchor.constraint(equalTo: bottomWhiteView.rightAnchor, constant: -34).isActive = true
         descriptionLabel.leftAnchor.constraint(equalTo: qualityColorLabel.leftAnchor).isActive = true
@@ -369,8 +381,17 @@ class ResultViewController: UIViewController {
         tipsLabel.rightAnchor.constraint(equalTo: bottomWhiteView.rightAnchor, constant: -34).isActive = true
         tipsLabel.leftAnchor.constraint(equalTo: qualityColorLabel.leftAnchor, constant : 5).isActive = true
         
+        //KeteranganTips
+        keteranganTips.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant : -25).isActive = true
+        //keteranganTips.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        keteranganTips.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        //keteranganTips.centerXAnchor.constraint(equalTo: bottomWhiteView.centerXAnchor).isActive = true
+        keteranganTips.rightAnchor.constraint(equalTo: bottomWhiteView.rightAnchor, constant: -34).isActive = true
+        keteranganTips.leftAnchor.constraint(equalTo: qualityColorLabel.leftAnchor, constant : 5).isActive = true
+
+        
         //ShowMoreOrLessButton2
-        showMoreOrLessButton2.topAnchor.constraint(equalTo: showMoreOrLessButton.bottomAnchor, constant : 150).isActive = true
+        showMoreOrLessButton2.topAnchor.constraint(equalTo: showMoreOrLessButton.bottomAnchor, constant : 100).isActive = true
         showMoreOrLessButton2.heightAnchor.constraint(equalToConstant: 30 ).isActive = true
         showMoreOrLessButton2.widthAnchor.constraint(equalToConstant: 100).isActive = true
         showMoreOrLessButton2.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 130).isActive = true
