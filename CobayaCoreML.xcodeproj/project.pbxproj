@@ -177,10 +177,10 @@
 		E6FCE89321F9A9060019908D /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				E6FCE89621F9A9690019908D /* AnimationHelper.swift */,
 				7CFD700F22080F2D00CA041D /* Font */,
 				E6FCE89821F9AD8D0019908D /* ML Model */,
 				E6FCE89421F9A9200019908D /* ColorHelper.swift */,
+				E6FCE89621F9A9690019908D /* AnimationHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";

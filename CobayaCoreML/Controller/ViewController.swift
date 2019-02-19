@@ -92,6 +92,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         self.fruitTypeCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         self.fruitTypeCollectionView.decelerationRate = UIScrollViewDecelerationRateNormal
         animateSilhouette()
+        setBackground()
     }
 
     // MARK: Setup the View
@@ -117,7 +118,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         view.addSubview(checkingLabel)
         view.addSubview(scanningLabel)
         view.addSubview(scanningIcon)
-        view.layer.addSublayer(helperDelegate.shapeLayer)
         view.addSubview(cancelButton)
         view.addSubview(tutorialButton)
         view.addSubview(activityIndicator)
@@ -403,6 +403,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         if !hasScanned{
             NilaiSementara.nilaiSementara = 0
         }
+        helperDelegate.shapeLayer.removeFromSuperlayer()
         nilaiSementara  = 5
         nilaiCounter = 0
         buahCounter = 0
@@ -462,6 +463,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         gantiKeScan()
         
         if !hasShownResult {return}
+        view.layer.addSublayer(helperDelegate.shapeLayer)
         
         if nilaiCounter == 5 {
             hasShownResult = false
@@ -512,14 +514,7 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
         dummyImage.image = UIImage(named: "\(jumlahBuah[indexPath.row])Scan")
         namaBuah.text = "\(namaNamaBuah[indexPath.row])"
         backgroundViginette.image = UIImage(named: "\(backgroundWarna[indexPath.row])")
-        UIView.animate(withDuration: 0, animations: {
-            self.backgroundViginette.alpha = 1
-        }) { (true) in
-            UIView.animate(withDuration: 5, animations: {
-                self.backgroundViginette.alpha = 0
-            })
-        }
-
+        
         cell?.layer.borderColor = UIColor.black.cgColor
         cell?.layer.borderWidth = 1
         cell?.layer.cornerRadius = 8
@@ -529,6 +524,14 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
             startScanning()
             cell?.ditengah = false
             NilaiSementara.cellDiTengah = false
+        } else {
+            UIView.animate(withDuration: 0, animations: {
+                self.backgroundViginette.alpha = 1
+            }) { (true) in
+                UIView.animate(withDuration: 5, animations: {
+                    self.backgroundViginette.alpha = 0
+                })
+            }
         }
     }
 }
