@@ -133,11 +133,20 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="ballPulseSync"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MpF-Wj-pYc" userLabel="Flash Button">
+                                <rect key="frame" x="277" y="44" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="icon shadow 6"/>
+                                <connections>
+                                    <action selector="actionTorchClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QVd-Ro-caa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="actionTorch" destination="MpF-Wj-pYc" id="VvE-1W-XWe"/>
                         <outlet property="buttonReview" destination="d7D-kR-sw0" id="3P4-Ua-MfH"/>
                         <outlet property="cancelButton" destination="CSM-nt-NlY" id="48R-mV-UG7"/>
                         <outlet property="fruitTypeCollectionView" destination="0ze-pf-8qW" id="7Fv-Rf-1YA"/>
@@ -971,6 +980,7 @@
         <image name="closeWhite" width="500" height="500"/>
         <image name="closeWhiteButton" width="500" height="500"/>
         <image name="happyScanText" width="500" height="88"/>
+        <image name="icon shadow 6" width="66" height="119"/>
         <image name="ijo" width="500" height="245"/>
         <image name="lingkaran luar" width="500" height="500"/>
         <image name="main page buat onboarding  copy" width="500" height="1083"/>
