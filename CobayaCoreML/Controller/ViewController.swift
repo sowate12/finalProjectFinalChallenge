@@ -62,30 +62,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var reviewLabel: UILabel!
     @IBOutlet weak var viewReview: UIView!
     @IBOutlet weak var scanView: UIView!
-    
-    //flashlight
-    
     @IBOutlet weak var actionTorch: UIButton!
-    
-    @IBAction func actionTorchClick(_ sender: Any) {
-        guard let device = AVCaptureDevice.default(for: AVMediaType.video) else { return }
-        if device.hasTorch {
-            isTorch = !isTorch
-            do {
-                try device.lockForConfiguration()
-                if isTorch == true {
-                    device.torchMode = .on
-                } else {
-                    device.torchMode = .off
-                }
-                device.unlockForConfiguration()
-            } catch {
-                print("Torch is not working.")
-            }
-        } else {
-            print("Torch not compatible with device.")
-        }
-    }
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -173,34 +150,19 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
             case 2436:
                 viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
                 tutorialButton.frame = CGRect(x: view.frame.width - 59, y: 53, width: 25 , height: 25)
+                actionTorch.frame = CGRect(x: view.frame.width - 100, y: 53, width: 15 , height: 25)
             case 2688:
                 viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
                 tutorialButton.frame = CGRect(x: view.frame.width - 59, y: 53, width: 25 , height: 25)
+                actionTorch.frame = CGRect(x: view.frame.width - 100, y: 53, width: 15 , height: 25)
             case 1792:
                 viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
                 tutorialButton.frame = CGRect(x: view.frame.width - 59, y: 53, width: 25 , height: 25)
+                actionTorch.frame = CGRect(x: view.frame.width - 100, y: 53, width: 15 , height: 25)
             default:
                 viewReview.frame = CGRect(x: view.frame.width - 150, y: 79, width: 150, height: 60)
                 tutorialButton.frame = CGRect(x: view.frame.width - 59, y: 33, width: 25 , height: 25)
-            }
-            
-            //flashlight
-             if UIDevice().userInterfaceIdiom == .phone {
-                 switch UIScreen.main.nativeBounds.height {
-            case 2436:
-                viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
-                actionTorch.frame = CGRect(x: view.frame.width - 100, y: 53, width: 15 , height: 25)
-            case 2688:
-                viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
-                actionTorch.frame = CGRect(x: view.frame.width - 100, y: 53, width: 15 , height: 25)
-            case 1792:
-                viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
-                actionTorch.frame = CGRect(x: view.frame.width - 100, y: 53, width: 15 , height: 25)
-            default:
-                viewReview.frame = CGRect(x: view.frame.width - 150, y: 79, width: 150, height: 60)
                 actionTorch.frame = CGRect(x: view.frame.width - 100, y: 33, width: 15 , height: 25)
-            }
-            
             }
         }
         buttonReview.layer.masksToBounds = true
@@ -462,6 +424,27 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBAction func tutorialButtonAction(_ sender: Any) {
         performSegue(withIdentifier: "tutorial", sender: self)
+    }
+    
+    /// Flashlight
+    @IBAction func actionTorchClick(_ sender: Any) {
+        guard let device = AVCaptureDevice.default(for: AVMediaType.video) else { return }
+        if device.hasTorch {
+            isTorch = !isTorch
+            do {
+                try device.lockForConfiguration()
+                if isTorch == true {
+                    device.torchMode = .on
+                } else {
+                    device.torchMode = .off
+                }
+                device.unlockForConfiguration()
+            } catch {
+                print("Torch is not working.")
+            }
+        } else {
+            print("Torch not compatible with device.")
+        }
     }
     
     /// Animating the silhouette
