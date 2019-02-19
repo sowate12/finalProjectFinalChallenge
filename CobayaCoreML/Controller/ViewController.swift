@@ -33,6 +33,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     let generator = UINotificationFeedbackGenerator()
     var dummyImage : UIImageView = UIImageView()
     var namaBuah : UILabel = UILabel()
+    var backgroundViginette: UIImageView = UIImageView()
     var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView()
     var checkBuahCounter = 0
     var scanningText : UILabel = UILabel()
@@ -59,7 +60,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var reviewLabel: UILabel!
     @IBOutlet weak var viewReview: UIView!
     @IBOutlet weak var scanView: UIView!
-    @IBOutlet weak var backgroundViginette: UIImageView!
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -78,6 +78,12 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         checkingResult()
         helperDelegate.addLoading()
         setupView()
+        if NilaiSementara.nilaiSementara == 0 {
+            viewReview.isHidden = true
+            buttonReview.isHidden = true
+            reviewNumber.isHidden = true
+            reviewLabel.isHidden = true
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -86,6 +92,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         self.fruitTypeCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         self.fruitTypeCollectionView.decelerationRate = UIScrollViewDecelerationRateNormal
         animateSilhouette()
+        setBackground()
     }
 
     // MARK: Setup the View
@@ -100,7 +107,9 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         setupIcon()
         setupViewReview()
         setupColor()
-                setScanningText()
+        setScanningText()
+        setBackground()
+        view.addSubview(backgroundViginette)
         view.addSubview(fruitTypeCollectionView)
         view.addSubview(startButton)
         view.addSubview(silhouetteImage)
@@ -290,7 +299,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         }
         scanningLabel.textColor = .white
         scanningLabel.numberOfLines = 2
-        scanningLabel.frame = CGRect(x: view.frame.width / 2 - 65, y: view.frame.height / 2 - 125, width: 130, height: 100)
+        scanningLabel.frame = CGRect(x: view.frame.width / 2 - 100, y: view.frame.height / 2 - 125, width: 200, height: 100)
         scanningLabel.textAlignment = .center
     }
     
@@ -482,6 +491,19 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
         cell?.imageBuahSelected.image = UIImage(named: "\(jumlahBuah[indexPath.row])Selected")
         return cell!
     }
+    
+    func setBackground(){
+        backgroundViginette.frame = CGRect(x: 0, y: view.frame.height - 204, width: view.frame.width, height: 204)
+        backgroundViginette.image = UIImage(named: "\(backgroundWarna[2])")
+        UIView.animate(withDuration: 0, animations: {
+            self.backgroundViginette.alpha = 1
+        }) { (true) in
+            UIView.animate(withDuration: 5, animations: {
+                self.backgroundViginette.alpha = 0
+            })
+        }
+    }
+
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         helperDelegate.hapticMedium()
@@ -492,6 +514,7 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
         dummyImage.image = UIImage(named: "\(jumlahBuah[indexPath.row])Scan")
         namaBuah.text = "\(namaNamaBuah[indexPath.row])"
         backgroundViginette.image = UIImage(named: "\(backgroundWarna[indexPath.row])")
+        
         cell?.layer.borderColor = UIColor.black.cgColor
         cell?.layer.borderWidth = 1
         cell?.layer.cornerRadius = 8
@@ -501,6 +524,14 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
             startScanning()
             cell?.ditengah = false
             NilaiSementara.cellDiTengah = false
+        } else {
+            UIView.animate(withDuration: 0, animations: {
+                self.backgroundViginette.alpha = 1
+            }) { (true) in
+                UIView.animate(withDuration: 5, animations: {
+                    self.backgroundViginette.alpha = 0
+                })
+            }
         }
     }
 }
@@ -619,7 +650,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
             guard let resultsResnet = finishReq2.results as? [VNClassificationObservation] else {return}
             guard let firstObservationResnet = resultsResnet.first else {return}
             DispatchQueue.main.async {
-                if (((firstObservationResnet.identifier == "orange") && (self.silhouetteImage.image == UIImage(named: "jerukSil2"))) || (((self.silhouetteImage.image == UIImage(named: "tomatoSil2")) || (self.silhouetteImage.image == UIImage(named: "apelSil2"))) && (firstObservationResnet.identifier == "pomegranate") || (firstObservationResnet.identifier == "Granny Smith") || (firstObservationResnet.identifier == "hip, rose hip, rosehip") || (firstObservationResnet.identifier == "bell pepper"))) && self.buahCounter < 3{
+                if ((firstObservationResnet.identifier == "orange") && (self.silhouetteImage.image == UIImage(named: "jerukSil2"))) || (((self.silhouetteImage.image == UIImage(named: "tomatoSil2")) || (self.silhouetteImage.image == UIImage(named: "apelSil2"))) && ((firstObservationResnet.identifier == "pomegranate") || (firstObservationResnet.identifier == "Granny Smith") || (firstObservationResnet.identifier == "hip, rose hip, rosehip") || (firstObservationResnet.identifier == "bell pepper"))) && self.buahCounter < 3{
                     self.buahCounter += 1
                     print(firstObservationResnet.identifier, firstObservationResnet.confidence)
                     print(self.buahCounter)
