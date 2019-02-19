@@ -118,7 +118,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         view.addSubview(checkingLabel)
         view.addSubview(scanningLabel)
         view.addSubview(scanningIcon)
-        view.layer.addSublayer(helperDelegate.shapeLayer)
         view.addSubview(cancelButton)
         view.addSubview(tutorialButton)
         view.addSubview(activityIndicator)
@@ -392,6 +391,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         if !hasScanned{
             NilaiSementara.nilaiSementara = 0
         }
+        helperDelegate.shapeLayer.removeFromSuperlayer()
         nilaiSementara  = 5
         nilaiCounter = 0
         buahCounter = 0
@@ -451,6 +451,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         gantiKeScan()
         
         if !hasShownResult {return}
+        view.layer.addSublayer(helperDelegate.shapeLayer)
         
         if nilaiCounter == 5 {
             hasShownResult = false
