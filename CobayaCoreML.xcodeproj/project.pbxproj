@@ -44,8 +44,8 @@
 		08D7773C21EF2C640025CC0C /* AppleBagusAppleJelek.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = AppleBagusAppleJelek.mlmodel; sourceTree = "<group>"; };
 		6B2D6CE821F708C000FFE806 /* NilaiSementara.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NilaiSementara.swift; sourceTree = "<group>"; };
 		6B3D55D121E34EF700E91E85 /* Warna.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Warna.mlmodel; sourceTree = "<group>"; };
-		6B87FF5E221576CD00BF66D3 /* badResult.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = badResult.mp3; path = CobayaCoreML/badResult.mp3; sourceTree = SOURCE_ROOT; };
-		6B87FF5F221576CD00BF66D3 /* goodResult.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = goodResult.mp3; path = CobayaCoreML/goodResult.mp3; sourceTree = SOURCE_ROOT; };
+		6B87FF5E221576CD00BF66D3 /* badResult.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = badResult.mp3; path = CobayaCoreML/Helper/badResult.mp3; sourceTree = SOURCE_ROOT; };
+		6B87FF5F221576CD00BF66D3 /* goodResult.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = goodResult.mp3; path = CobayaCoreML/Helper/goodResult.mp3; sourceTree = SOURCE_ROOT; };
 		6B9FD1252202E83C00445DEC /* Tomat.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Tomat.mlmodel; sourceTree = "<group>"; };
 		6B9FD1292202EB0E00445DEC /* Apel1.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Apel1.mlmodel; sourceTree = "<group>"; };
 		6B9FD12B2204351500445DEC /* ApelBaru.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ApelBaru.mlmodel; sourceTree = "<group>"; };
@@ -105,8 +105,6 @@
 		08D7774121F1B5180025CC0C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				6B87FF5E221576CD00BF66D3 /* badResult.mp3 */,
-				6B87FF5F221576CD00BF66D3 /* goodResult.mp3 */,
 				B0A39B87221BFE1A00B54B0E /* Localizable.strings */,
 				08745E9D220D43A80048EEAF /* TutorialViewController.swift */,
 				991A6018213FCEC100FEAE4B /* ViewController.swift */,
@@ -181,6 +179,8 @@
 		E6FCE89321F9A9060019908D /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				6B87FF5E221576CD00BF66D3 /* badResult.mp3 */,
+				6B87FF5F221576CD00BF66D3 /* goodResult.mp3 */,
 				7CFD700F22080F2D00CA041D /* Font */,
 				E6FCE89821F9AD8D0019908D /* ML Model */,
 				E6FCE89421F9A9200019908D /* ColorHelper.swift */,
@@ -496,7 +496,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 56ZF7DLJQY;
+				DEVELOPMENT_TEAM = 6QYD6FW9B4;
 				INFOPLIST_FILE = CobayaCoreML/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -516,7 +516,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 56ZF7DLJQY;
+				DEVELOPMENT_TEAM = 6QYD6FW9B4;
 				INFOPLIST_FILE = CobayaCoreML/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
