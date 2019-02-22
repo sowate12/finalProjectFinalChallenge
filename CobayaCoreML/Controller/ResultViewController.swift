@@ -17,17 +17,10 @@ class ResultViewController: UIViewController {
     let orangeKuning = UIColor(displayP3Red: 240/255, green: 166/255, blue: 22/255, alpha: 1)
     let orange = UIColor(displayP3Red: 229/255, green: 113/255, blue: 28/255, alpha: 1)
     let merah = UIColor(displayP3Red: 212/255, green: 32/255, blue: 36/255, alpha: 1)
-    var tips : [String] = ["Check the texture of the fruit again, make sure that it's firm ",
-                           "Don't forget to check the smell too.",
-                           "A sweet smell from the fruit indicates it has sweet flavour",
-                           "If the fruit is starting to get tender, it means it's starting to go bad. Better eat that fast!",
-                           "If the fruit smells good, time for you to grab the fruit!"]
+    var tips : [String] = [NSLocalizedString("Check the texture of the fruit again, make sure that it's firm ", comment: ""),NSLocalizedString("Don't forget to check the smell too.", comment: ""),NSLocalizedString("A sweet smell from the fruit indicates it has sweet flavour", comment: ""),NSLocalizedString("A sweet smell from the fruit indicates it has sweet flavour", comment: ""),NSLocalizedString("If the fruit is starting to get tender, it means it's starting to go bad. Better eat that fast!", comment: ""),NSLocalizedString("If the fruit smells good, time for you to grab the fruit!", comment: "")]
     var colorDescription : [String] =
-        ["We detect that the fruit color is dull, try to choose another apple ",
-         "We detect that the fruit color is a bit dull, try to choose another apple",
-         "We detect that the fruit is a bit fresh and the color is fine",
-         "We detect that the fruit is fresh and color are good",
-         "We detect that the fruit is in prime condition, ripe and the color looks good."]
+        [NSLocalizedString("We detect that the fruit color is dull, try to choose another apple ", comment: ""),NSLocalizedString("We detect that the fruit color is a bit dull, try to choose another apple", comment: ""),NSLocalizedString("We detect that the fruit is a bit fresh and the color is fine", comment: ""),NSLocalizedString("We detect that the fruit is fresh and color are good", comment: ""),NSLocalizedString("We detect that the fruit is in prime condition, ripe and the color looks good.", comment: "")
+         ]
     
     let topGreenView: UIView = {
         let imageView = UIView()
@@ -47,7 +40,7 @@ class ResultViewController: UIViewController {
     
     let yourResultIsText: UITextView = {
         let textView = UITextView()
-        textView.text = "Nilai sisi buah ini: "
+        textView.text = NSLocalizedString("The result of this fruit side: ", comment: "")
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.textAlignment = .center
         textView.textColor = UIColor.white
@@ -98,7 +91,7 @@ class ResultViewController: UIViewController {
     
     let qualityLabel: UITextView = {
         let textView = UITextView()
-        textView.text = "Great Eye!"
+        textView.text = NSLocalizedString("Great Eye!", comment: "")
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.textAlignment = .center
         textView.textColor = UIColor.white
@@ -109,7 +102,7 @@ class ResultViewController: UIViewController {
     
     let qualityColorLabel : UITextView = {
         let textView = UITextView()
-        textView.text = "Color : "
+        textView.text = NSLocalizedString("Color : ", comment: "")
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.textAlignment = .left
         textView.textColor = UIColor.black
@@ -214,7 +207,7 @@ class ResultViewController: UIViewController {
     
     let colorLabel : UITextView = {
         let textView = UITextView()
-        textView.text = "Color      : Average"
+        textView.text = NSLocalizedString("Color      : Average", comment: "")
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.textAlignment = .left
         textView.textColor = UIColor.black
@@ -225,7 +218,7 @@ class ResultViewController: UIViewController {
     
     let descriptionLabel : UITextView = {
         let textView = UITextView()
-        textView.text = "It looks a bit fresh and the texture is quite good"
+        textView.text = NSLocalizedString("It looks a bit fresh and the texture is quite good", comment: "")
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.textAlignment = .left
         textView.textColor = UIColor.black
@@ -236,7 +229,7 @@ class ResultViewController: UIViewController {
     
     let keteranganTips : UITextView = {
         let textView = UITextView()
-        textView.text = "Tips"
+        textView.text = NSLocalizedString("Tips", comment: "")
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.textAlignment = .left
         textView.textColor = UIColor.black
@@ -247,7 +240,7 @@ class ResultViewController: UIViewController {
     
     let tipsLabel : UITextView = {
         let textView = UITextView()
-        textView.text = "Check the texture of the fruit again, make sure that it's firm "
+        textView.text = NSLocalizedString("Check the texture of the fruit again, make sure that it's firm ", comment: "")
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.textAlignment = .left
         textView.textColor = UIColor.black
@@ -404,40 +397,40 @@ class ResultViewController: UIViewController {
         
         if NilaiSementara.nilaiSementara >= 9 && NilaiSementara.nilaiSementara <= 10{
             topGreenView.backgroundColor = hijau
-            qualityLabel.text = "Great Eye!"
-            colorLabel.text = "Excellent!"
+            qualityLabel.text = NSLocalizedString("Great Eye!", comment: "")
+            colorLabel.text = NSLocalizedString("Excellent!", comment: "")
             colorLabel.textColor = hijau
             descriptionLabel.text = colorDescription[4]
             tipsLabel.text = tips.randomElement()
             Sound.play(file: "goodResult.mp3")
         }else if NilaiSementara.nilaiSementara >= 8 && NilaiSementara.nilaiSementara < 9 {
             topGreenView.backgroundColor = hijauTua
-            qualityLabel.text = "Sweet"
-            colorLabel.text = "Good!"
+            qualityLabel.text = NSLocalizedString("Sweet", comment: "")
+            colorLabel.text = NSLocalizedString("Good!", comment: "")
             colorLabel.textColor = hijauTua
             descriptionLabel.text = colorDescription[3]
             tipsLabel.text = tips.randomElement()
             Sound.play(file: "goodResult.mp3")
         }else if NilaiSementara.nilaiSementara >= 7 && NilaiSementara.nilaiSementara < 8 {
             topGreenView.backgroundColor = orangeKuning
-            qualityLabel.text = "Okay."
-            colorLabel.text = "Average"
+            qualityLabel.text = NSLocalizedString("Okay.", comment: "")
+            colorLabel.text = NSLocalizedString("Average", comment: "")
             colorLabel.textColor = orangeKuning
             descriptionLabel.text = colorDescription[2]
             tipsLabel.text = tips.randomElement()
             Sound.play(file: "goodResult.mp3")
         }else if NilaiSementara.nilaiSementara >= 5 && NilaiSementara.nilaiSementara < 7 {
             topGreenView.backgroundColor = orange
-            qualityLabel.text = "Almost There..."
-            colorLabel.text = "Not Good"
+            qualityLabel.text = NSLocalizedString("Almost There...", comment: "")
+            colorLabel.text = NSLocalizedString("Not Good", comment: "")
             colorLabel.textColor = orange
             descriptionLabel.text = colorDescription[1]
             tipsLabel.text = tips.randomElement()
             Sound.play(file: "badResult.mp3")
         }else {
             topGreenView.backgroundColor = merah
-            qualityLabel.text = "Meh."
-            colorLabel.text = "Poor"
+            qualityLabel.text = NSLocalizedString("Meh.", comment: "")
+            colorLabel.text = NSLocalizedString("Poor", comment: "")
             colorLabel.textColor = merah
             descriptionLabel.text = colorDescription[0]
             tipsLabel.text = tips.randomElement()
