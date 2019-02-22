@@ -23,11 +23,11 @@ class ResultViewController: UIViewController {
                            "If the fruit is starting to get tender, it means it's starting to go bad. Better eat that fast!",
                            "If the fruit smells good, time for you to grab the fruit!"]
     var colorDescription : [String] =
-        ["It doesn't look that fresh and the texture doesn't look good",
-         "It doesn't look that fresh and the texture doesn't look good ",
-         "It looks a bit fresh and the texture looks quite good",
-         "It looks quite fresh and the texture looks nice",
-         "It looks deliciously fresh and the texture looks brilliant"]
+        ["We detect that the fruit color is dull, try to choose another apple ",
+         "We detect that the fruit color is a bit dull, try to choose another apple",
+         "We detect that the fruit is a bit fresh and the color is fine",
+         "We detect that the fruit is fresh and color are good",
+         "We detect that the fruit is in prime condition, ripe and the color looks good."]
     
     let topGreenView: UIView = {
         let imageView = UIView()
@@ -47,7 +47,7 @@ class ResultViewController: UIViewController {
     
     let yourResultIsText: UITextView = {
         let textView = UITextView()
-        textView.text = "Your result is: "
+        textView.text = "Nilai sisi buah ini: "
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.textAlignment = .center
         textView.textColor = UIColor.white
@@ -306,7 +306,7 @@ class ResultViewController: UIViewController {
         //Kotak Putih
         bottomWhiteView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         bottomWhiteView.widthAnchor.constraint(equalToConstant: 343).isActive = true
-        bottomWhiteView.heightAnchor.constraint(equalToConstant: 400).isActive = true
+        bottomWhiteView.heightAnchor.constraint(equalToConstant: 350).isActive = true
         bottomWhiteView.topAnchor.constraint(equalTo: topGreenView.bottomAnchor, constant : -20).isActive = true
         bottomWhiteView.layer.cornerRadius = 20
         
