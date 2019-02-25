@@ -19,7 +19,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     var nilaiCounter = 0
     var buahCounter = 0
     var nilaiSementara : Float = 5
-    var namaNamaBuah = ["","","Fuji Apple","Mandarin Orange", "Tomato","",""]
+    var namaNamaBuah = ["","",NSLocalizedString("Fuji Apple", comment: ""),NSLocalizedString("Mandarin Orange", comment: ""), NSLocalizedString("Tomato", comment: ""),"",""]
     var jumlahBuah = ["","","apel","jeruk","tomato","",""]
     var results = ["result1", "result2", "result3", "result4", "result5"]
     var backgroundWarna = ["","","viginetteApel","viginetteJeruk","viginetteTomato","",""]
@@ -29,6 +29,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     var checkBuah = false
     var hasSpinned = false
     var hasScanned = false
+    var hasLoaded = false
     var timer = Timer()
     let generator = UINotificationFeedbackGenerator()
     var dummyImage : UIImageView = UIImageView()
@@ -47,6 +48,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     let orangeKuning = UIColor(rgb: 0xF0A616)
     let orange = UIColor(rgb: 0xE5711C)
     let merah = UIColor(rgb: 0xD42024)
+    var isTorch = false
     
     // MARK: IBOutlet
     @IBOutlet weak var buttonReview: UIButton!
@@ -60,6 +62,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var reviewLabel: UILabel!
     @IBOutlet weak var viewReview: UIView!
     @IBOutlet weak var scanView: UIView!
+    @IBOutlet weak var actionTorch: UIButton!
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -78,6 +81,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         checkingResult()
         helperDelegate.addLoading()
         setupView()
+        hasLoaded = true
         if NilaiSementara.nilaiSementara == 0 {
             viewReview.isHidden = true
             buttonReview.isHidden = true
@@ -124,6 +128,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         view.addSubview(viewReview)
         view.addSubview(scanningText)
         view.addSubview(scanView)
+        view.addSubview(actionTorch)
 //        view.addSubview(buttonReview)
 //        view.addSubview(reviewNumber)
 //        view.addSubview(reviewLabel)
@@ -145,15 +150,19 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
             case 2436:
                 viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
                 tutorialButton.frame = CGRect(x: view.frame.width - 59, y: 53, width: 25 , height: 25)
+                actionTorch.frame = CGRect(x: view.frame.width - 100, y: 53, width: 15 , height: 25)
             case 2688:
                 viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
                 tutorialButton.frame = CGRect(x: view.frame.width - 59, y: 53, width: 25 , height: 25)
+                actionTorch.frame = CGRect(x: view.frame.width - 100, y: 53, width: 15 , height: 25)
             case 1792:
                 viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
                 tutorialButton.frame = CGRect(x: view.frame.width - 59, y: 53, width: 25 , height: 25)
+                actionTorch.frame = CGRect(x: view.frame.width - 100, y: 53, width: 15 , height: 25)
             default:
                 viewReview.frame = CGRect(x: view.frame.width - 150, y: 79, width: 150, height: 60)
                 tutorialButton.frame = CGRect(x: view.frame.width - 59, y: 33, width: 25 , height: 25)
+                actionTorch.frame = CGRect(x: view.frame.width - 100, y: 33, width: 15 , height: 25)
             }
         }
         buttonReview.layer.masksToBounds = true
@@ -184,7 +193,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         scanningText.layer.shadowOffset = CGSize(width: 1, height: 2)
         scanningText.layer.masksToBounds = false
         scanningText.numberOfLines = 2
-        scanningText.text = "Tap the fruit to scan"
+        scanningText.text = NSLocalizedString("Tap the fruit to scan", comment: "")
         scanView.frame = CGRect(x: x - 120, y: y - 200, width: 240, height: 400)
         let tap = UITapGestureRecognizer(target: self, action: #selector(recordButtonDidTap))
         scanView.addGestureRecognizer(tap)
@@ -209,18 +218,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         namaBuah.layer.shadowOffset = CGSize(width: 1, height: 2)
         namaBuah.layer.masksToBounds = false
         namaBuah.text = "\(namaNamaBuah[2])"
-    }
-    
-    func setBackground(){
-        backgroundViginette.frame = CGRect(x: 0, y: view.frame.height - 204, width: view.frame.width, height: 204)
-        backgroundViginette.image = UIImage(named: "\(backgroundWarna[2])")
-        UIView.animate(withDuration: 0, animations: {
-            self.backgroundViginette.alpha = 1
-        }) { (true) in
-            UIView.animate(withDuration: 5, animations: {
-                self.backgroundViginette.alpha = 0
-            })
-        }
     }
     
     func setupIcon(){
@@ -249,23 +246,24 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     
     /// Setup the text that appears when scanning
     func checking(){
+        var labelChecking = NSLocalizedString("Detecting Fruit", comment: "")
         checkingLabel.isHidden = true
         checkingLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        checkingLabel.text = "Detecting Fruit ."
+        checkingLabel.text = NSLocalizedString("\(labelChecking).", comment: "")
         
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
             var string: String {
                 switch self.checkingLabel.text {
-                case "Detecting Fruit .":       return "Detecting Fruit .."
-                case "Detecting Fruit ..":      return "Detecting Fruit ..."
-                case "Detecting Fruit ...":     return "Detecting Fruit ."
-                default:                      return "Detecting Fruit"
+                case "\(labelChecking).":       return "\(labelChecking).."
+                case "\(labelChecking)..":      return "\(labelChecking)..."
+                case "\(labelChecking)...":     return "\(labelChecking)."
+                default:                      return "\(labelChecking)"
                 }
             }
             self.checkingLabel.text = string
         }
         checkingLabel.textColor = .white
-        checkingLabel.frame = CGRect(x: view.frame.width / 2 - 65, y: view.frame.height / 2 - 125, width: 130, height: 100)
+        checkingLabel.frame = CGRect(x: view.frame.width / 2 - 65, y: view.frame.height / 2 - 110, width: 130, height: 100)
         checkingLabel.numberOfLines = 2
         checkingLabel.textAlignment = .center
     }
@@ -293,24 +291,25 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func scanning(){
+        var labelScanning = NSLocalizedString("Hold Still, Scanning the Fruit", comment: "")
         scanningLabel.isHidden = true
         scanningLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        scanningLabel.text = "Hold Still, Scanning the Fruit ."
+        scanningLabel.text = NSLocalizedString("\(labelScanning).", comment: "")
         
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
             var string: String {
                 switch self.scanningLabel.text {
-                case "Hold Still, Scanning the Fruit .":       return "Hold Still, Scanning the Fruit .."
-                case "Hold Still, Scanning the Fruit ..":      return "Hold Still, Scanning the Fruit ..."
-                case "Hold Still, Scanning the Fruit ...":     return "Hold Still, Scanning the Fruit ."
-                default:                      return "Hold Still, Scanning the Fruit"
+                case "\(labelScanning).":       return "\(labelScanning).."
+                case "\(labelScanning)..":      return "\(labelScanning)..."
+                case "\(labelScanning)...":     return "\(labelScanning)."
+                default:                      return "\(labelScanning)"
                 }
             }
             self.scanningLabel.text = string
         }
         scanningLabel.textColor = .white
         scanningLabel.numberOfLines = 2
-        scanningLabel.frame = CGRect(x: view.frame.width / 2 - 100, y: view.frame.height / 2 - 125, width: 200, height: 100)
+        scanningLabel.frame = CGRect(x: view.frame.width / 2 - 65, y: view.frame.height / 2 - 110, width: 130, height: 100)
         scanningLabel.textAlignment = .center
     }
     
@@ -337,13 +336,12 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func checkingAlert(){
         helperDelegate.hapticMedium()
-        let alert = UIAlertController(title: "There's No Fruit Detected", message: "Would you like to rescan the fruit?", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: NSLocalizedString("There's No Fruit Detected", comment: ""), message: NSLocalizedString("Would you like to rescan the fruit?", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
         
-        alert.addAction(UIAlertAction(title: "Retry", style: UIAlertActionStyle.default, handler: { action in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Retry", comment: ""), style: UIAlertActionStyle.default, handler: { action in
             self.isChecking = true
-            print("Yes")
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.destructive, handler: { action in self.resetVariables()
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.destructive, handler: { action in self.resetVariables()
             self.showOutlet()
         }))
         self.present(alert, animated: true, completion: nil)
@@ -374,7 +372,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         fruitTypeCollectionView.isHidden = false
         startButton.isHidden = false
         tutorialButton.isHidden = false
-        if hasScanned {
+        if NilaiSementara.nilaiSementara != 0 {
             viewReview.isHidden = false
             buttonReview.isHidden = false
             reviewNumber.isHidden = false
@@ -401,7 +399,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     func resetVariables(){
         hasSpinned = false
         if !hasScanned{
-            NilaiSementara.nilaiSementara = 0
+            nilaiSementara = 0
         }
         helperDelegate.shapeLayer.removeFromSuperlayer()
         nilaiSementara  = 5
@@ -427,6 +425,27 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBAction func tutorialButtonAction(_ sender: Any) {
         performSegue(withIdentifier: "tutorial", sender: self)
+    }
+    
+    /// Flashlight
+    @IBAction func actionTorchClick(_ sender: Any) {
+        guard let device = AVCaptureDevice.default(for: AVMediaType.video) else { return }
+        if device.hasTorch {
+            isTorch = !isTorch
+            do {
+                try device.lockForConfiguration()
+                if isTorch == true {
+                    device.torchMode = .on
+                } else {
+                    device.torchMode = .off
+                }
+                device.unlockForConfiguration()
+            } catch {
+                print("Torch is not working.")
+            }
+        } else {
+            print("Torch not compatible with device.")
+        }
     }
     
     /// Animating the silhouette
@@ -504,6 +523,15 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
         cell?.imageBuahSelected.image = UIImage(named: "\(jumlahBuah[indexPath.row])Selected")
         return cell!
     }
+    
+    func setBackground(){
+        backgroundViginette.frame = CGRect(x: 0, y: view.frame.height - 204, width: view.frame.width, height: 204)
+        backgroundViginette.image = UIImage(named: "\(backgroundWarna[2])")
+            UIView.animate(withDuration: 5, animations: {
+                self.backgroundViginette.alpha = 0
+            })
+    }
+
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         helperDelegate.hapticMedium()
@@ -650,7 +678,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
             guard let resultsResnet = finishReq2.results as? [VNClassificationObservation] else {return}
             guard let firstObservationResnet = resultsResnet.first else {return}
             DispatchQueue.main.async {
-                if ((firstObservationResnet.identifier == "orange") && (self.silhouetteImage.image == UIImage(named: "jerukSil2"))) || (((self.silhouetteImage.image == UIImage(named: "tomatoSil2")) || (self.silhouetteImage.image == UIImage(named: "apelSil2"))) && ((firstObservationResnet.identifier == "pomegranate") || (firstObservationResnet.identifier == "Granny Smith") || (firstObservationResnet.identifier == "hip, rose hip, rosehip") || (firstObservationResnet.identifier == "bell pepper"))) && self.buahCounter < 3{
+                if (((firstObservationResnet.identifier == "orange") && (self.silhouetteImage.image == UIImage(named: "jerukSil2"))) || (((self.silhouetteImage.image == UIImage(named: "tomatoSil2")) || (self.silhouetteImage.image == UIImage(named: "apelSil2"))) && ((firstObservationResnet.identifier == "pomegranate") || (firstObservationResnet.identifier == "Granny Smith") || (firstObservationResnet.identifier == "hip, rose hip, rosehip") || (firstObservationResnet.identifier == "bell pepper")))) && self.buahCounter < 3{
                     self.buahCounter += 1
                     print(firstObservationResnet.identifier, firstObservationResnet.confidence)
                     print(self.buahCounter)
@@ -681,7 +709,6 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                         self.nilaiSementara -= (firstObservation.confidence * 0.5)
                     }
                     self.nilaiCounter += 1
-                    /// lakukan scanningnya, tambah counter, scanning dilakukan tiap detik
                 }
                 try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
                 
