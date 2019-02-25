@@ -171,22 +171,25 @@ class ResultViewController: UIViewController {
     
             topGreenView.layer.cornerRadius = 10
             topGreenView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner]
-            let xTopGreenView = topGreenView.frame.origin.x
-            let yTopGreenView = self.view.center.y - topGreenView.frame.height
-            topGreenView.frame.origin = CGPoint(x: xTopGreenView, y: yTopGreenView )
             topGreenView.frame.size.height = 343
+            let xTopGreenView = topGreenView.frame.origin.x
+            let yTopGreenView = self.view.center.y - topGreenView.frame.height/2
+            topGreenView.frame.origin = CGPoint(x: xTopGreenView, y: yTopGreenView )
             let x = viewGabungan.frame.origin.x
-            let y = self.view.center.y - viewGabungan.frame.height
-            viewGabungan.frame.origin = CGPoint(x: x, y: y + 10)
+            let y = self.view.center.y - viewGabungan.frame.height/2
+            viewGabungan.frame.origin = CGPoint(x: x, y: y - 35)
             let xBottomWhiteView = bottomWhiteView.frame.origin.x
             let yBottomWhiteView = self.view.frame.origin.y
             bottomWhiteView.frame.origin = CGPoint(x: xBottomWhiteView, y: yBottomWhiteView + 150 )
             let xCloseButton = closeButton.frame.origin.x
             let yCloseButton = self.view.center.y - closeButton.frame.height
-            closeButton.frame.origin = CGPoint(x: xCloseButton, y: yCloseButton - 150 )
+            closeButton.frame.origin = CGPoint(x: xCloseButton, y: yCloseButton - 120 )
             bottomWhiteView.isHidden = true
             showMoreOrLessButton2.isHidden = true
             showMoreOrLessButton.isHidden = false
+//            let xShowMoreOrLessButton = showMoreOrLessButton.frame.origin.x
+//            let yShowMoreOrLessButton = showMoreOrLessButton.frame.origin.y
+//            showMoreOrLessButton.frame.origin = CGPoint(x: xShowMoreOrLessButton, y: yShowMoreOrLessButton)
             moreDetailedIsTrue = false
         }
     }
@@ -307,6 +310,7 @@ class ResultViewController: UIViewController {
         bottomWhiteView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         bottomWhiteView.widthAnchor.constraint(equalToConstant: 343).isActive = true
         bottomWhiteView.heightAnchor.constraint(equalToConstant: 350).isActive = true
+        //bottomWhiteView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         bottomWhiteView.topAnchor.constraint(equalTo: topGreenView.bottomAnchor, constant : -20).isActive = true
         bottomWhiteView.layer.cornerRadius = 20
         
@@ -323,7 +327,7 @@ class ResultViewController: UIViewController {
         yourResultIsText.rightAnchor.constraint(equalTo: viewGabungan.rightAnchor).isActive = true
         
         //ShowMoreOrLessButton
-        showMoreOrLessButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 110).isActive = true
+        showMoreOrLessButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 130).isActive = true
         showMoreOrLessButton.heightAnchor.constraint(equalToConstant: 30 ).isActive = true
         showMoreOrLessButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
         showMoreOrLessButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 130).isActive = true
@@ -391,7 +395,7 @@ class ResultViewController: UIViewController {
 
         
         //ShowMoreOrLessButton2
-        showMoreOrLessButton2.topAnchor.constraint(equalTo: showMoreOrLessButton.bottomAnchor, constant : 100).isActive = true
+        showMoreOrLessButton2.topAnchor.constraint(equalTo: showMoreOrLessButton.bottomAnchor, constant : 90).isActive = true
         showMoreOrLessButton2.heightAnchor.constraint(equalToConstant: 30 ).isActive = true
         showMoreOrLessButton2.widthAnchor.constraint(equalToConstant: 100).isActive = true
         showMoreOrLessButton2.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 130).isActive = true
