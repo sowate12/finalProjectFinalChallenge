@@ -19,7 +19,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     var nilaiCounter = 0
     var buahCounter = 0
     var nilaiSementara : Float = 5
-    var namaNamaBuah = ["","",NSLocalizedString("Fuji Apple", comment: ""),NSLocalizedString("Mandarin Orange", comment: ""), NSLocalizedString("Tomato", comment: ""),"",""]
+    var namaNamaBuah = ["","",NSLocalizedString("Fuji Apple", comment: ""),NSLocalizedString("Mandarin Orange", comment: ""), NSLocalizedString("Tomato", comment: "<#T##String#>"),"",""]
     var jumlahBuah = ["","","apel","jeruk","tomato","",""]
     var results = ["result1", "result2", "result3", "result4", "result5"]
     var backgroundWarna = ["","","viginetteApel","viginetteJeruk","viginetteTomato","",""]
@@ -149,20 +149,20 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
             switch UIScreen.main.nativeBounds.height {
             case 2436:
                 viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
-                tutorialButton.frame = CGRect(x: view.frame.width - 59, y: 53, width: 25 , height: 25)
-                actionTorch.frame = CGRect(x: view.frame.width - 100, y: 53, width: 15 , height: 25)
+                tutorialButton.frame = CGRect(x: view.frame.width - 100, y: 53, width: 25 , height: 25)
+                actionTorch.frame = CGRect(x: view.frame.width - 59, y: 53, width: 15 , height: 25)
             case 2688:
                 viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
-                tutorialButton.frame = CGRect(x: view.frame.width - 59, y: 53, width: 25 , height: 25)
-                actionTorch.frame = CGRect(x: view.frame.width - 100, y: 53, width: 15 , height: 25)
+                tutorialButton.frame = CGRect(x: view.frame.width - 100, y: 53, width: 25 , height: 25)
+                actionTorch.frame = CGRect(x: view.frame.width - 59, y: 53, width: 15 , height: 25)
             case 1792:
                 viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
-                tutorialButton.frame = CGRect(x: view.frame.width - 59, y: 53, width: 25 , height: 25)
-                actionTorch.frame = CGRect(x: view.frame.width - 100, y: 53, width: 15 , height: 25)
+                tutorialButton.frame = CGRect(x: view.frame.width - 100, y: 53, width: 25 , height: 25)
+                actionTorch.frame = CGRect(x: view.frame.width - 59, y: 53, width: 15 , height: 25)
             default:
                 viewReview.frame = CGRect(x: view.frame.width - 150, y: 79, width: 150, height: 60)
-                tutorialButton.frame = CGRect(x: view.frame.width - 59, y: 33, width: 25 , height: 25)
-                actionTorch.frame = CGRect(x: view.frame.width - 100, y: 33, width: 15 , height: 25)
+                tutorialButton.frame = CGRect(x: view.frame.width - 100, y: 33, width: 25 , height: 25)
+                actionTorch.frame = CGRect(x: view.frame.width - 59, y: 33, width: 15 , height: 25)
             }
         }
         buttonReview.layer.masksToBounds = true
@@ -527,7 +527,7 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
     func setBackground(){
         backgroundViginette.frame = CGRect(x: 0, y: view.frame.height - 204, width: view.frame.width, height: 204)
         backgroundViginette.image = UIImage(named: "\(backgroundWarna[2])")
-            UIView.animate(withDuration: 5, animations: {
+            UIView.animate(withDuration: 30, animations: {
                 self.backgroundViginette.alpha = 0
             })
     }

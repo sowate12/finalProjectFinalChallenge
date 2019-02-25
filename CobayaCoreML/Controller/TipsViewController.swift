@@ -87,7 +87,7 @@ class TipsViewController: UIViewController {
             }
             
             @IBAction func skipButton(_ sender: Any) {
-                performSegue(withIdentifier: "skip", sender: self)
+                self.dismiss(animated: true, completion: nil)
             }
             
             @IBAction func buttonLayer9(_ sender: Any) {
