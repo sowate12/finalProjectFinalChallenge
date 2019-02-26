@@ -15,5 +15,6 @@ struct NilaiSementara {
     static var nilaiTekstur : Float = 5
     static var gambarSS : UIImage = UIImage()
     static var previousFruit : String = "Previous fruit"
+    static var currentFruit : String = ""
 }
 
