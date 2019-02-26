@@ -87,11 +87,11 @@ class TipsViewController: UIViewController {
             }
             
             @IBAction func skipButton(_ sender: Any) {
-                performSegue(withIdentifier: "skip", sender: self)
+                self.dismiss(animated: true, completion: nil)
             }
             
             @IBAction func buttonLayer9(_ sender: Any) {
-                buttonLayer9Outlet.isEnabled = false
+                self.dismiss(animated: true, completion: nil)
             }
             
             @IBAction func buttonLayer8(_ sender: Any) {
@@ -205,7 +205,6 @@ class TipsViewController: UIViewController {
                 quickBrief.isHidden = true
                 tapToContinue.isHidden = true
                 buttonSkipOutlet.isHidden = true
-                skip.isHidden = true
                 
                 buttonLayer1Outlet.isEnabled = false
                 siluet2.isHidden = false

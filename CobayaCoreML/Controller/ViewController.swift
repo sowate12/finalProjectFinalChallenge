@@ -10,8 +10,6 @@ import UIKit
 import AVKit
 import Vision
 import AVFoundation
-import NVActivityIndicatorView
-import SwiftySound
 
 class ViewController: UIViewController, UIGestureRecognizerDelegate {
 
@@ -57,7 +55,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var fruitTypeCollectionView: UICollectionView!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var tutorialButton: UIButton!
-    @IBOutlet weak var scanningIcon: NVActivityIndicatorView!
     @IBOutlet weak var reviewNumber: UILabel!
     @IBOutlet weak var reviewLabel: UILabel!
     @IBOutlet weak var viewReview: UIView!
@@ -71,17 +68,32 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         let userDefaults = UserDefaults.standard
         userDefaults.set(true, forKey: "OnBoardingComplete")
         userDefaults.synchronize()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.didEnterBackground), name: .UIApplicationDidEnterBackground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.willEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
 
         fruitTypeCollectionView.delegate = self
         fruitTypeCollectionView.dataSource = self
-
-        NotificationCenter.default.addObserver(self, selector: #selector(self.didEnterBackground), name: .UIApplicationDidEnterBackground, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.willEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let indexPath = IndexPath(item: 2, section: 0)
+        self.fruitTypeCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+        self.fruitTypeCollectionView.decelerationRate = UIScrollViewDecelerationRateNormal
+        
+        silhouetteImage.transform = imageViewTransform
+        silhouetteImage.alpha = 1.0
+        scanningText.alpha = 1.0
+        setupView()
+        animateSilhouette()
+        setBackground()
+        soundPlay()
+
         checkingResult()
         helperDelegate.addLoading()
-        setupView()
-        hasLoaded = true
+
         if NilaiSementara.nilaiSementara == 0 {
             viewReview.isHidden = true
             buttonReview.isHidden = true
@@ -89,14 +101,25 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
             reviewLabel.isHidden = true
         }
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        let indexPath = IndexPath(item: 2, section: 0)
-        self.fruitTypeCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-        self.fruitTypeCollectionView.decelerationRate = UIScrollViewDecelerationRateNormal
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        imageViewTransform = silhouetteImage.layer.presentation()?.affineTransform() ?? .identity
+    }
+    
+    
+    deinit{
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func didEnterBackground(){
+        imageViewTransform = silhouetteImage.layer.presentation()?.affineTransform() ?? .identity
+    }
+    
+    @objc func willEnterForeground(){
+        silhouetteImage.transform = imageViewTransform
+        silhouetteImage.alpha = 1.0
+        scanningText.alpha = 1.0
         animateSilhouette()
-        setBackground()
     }
 
     // MARK: Setup the View
@@ -121,7 +144,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         view.addSubview(namaBuah)
         view.addSubview(checkingLabel)
         view.addSubview(scanningLabel)
-        view.addSubview(scanningIcon)
         view.addSubview(cancelButton)
         view.addSubview(tutorialButton)
         view.addSubview(activityIndicator)
@@ -221,9 +243,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func setupIcon(){
-        let x = view.frame.width / 2
-        let y = view.frame.height
-        scanningIcon.frame = CGRect(x: x - 25, y: y / 2 - 25 , width: 50 , height: 50)
         activityIndicator.center = self.view.center
         activityIndicator.hidesWhenStopped = true
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.white
@@ -263,7 +282,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
             self.checkingLabel.text = string
         }
         checkingLabel.textColor = .white
-        checkingLabel.frame = CGRect(x: view.frame.width / 2 - 65, y: view.frame.height / 2 - 110, width: 130, height: 100)
+        checkingLabel.frame = CGRect(x: view.frame.width / 2 - 100, y: view.frame.height / 2 - 110, width: 200, height: 100)
         checkingLabel.numberOfLines = 2
         checkingLabel.textAlignment = .center
     }
@@ -309,7 +328,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         }
         scanningLabel.textColor = .white
         scanningLabel.numberOfLines = 2
-        scanningLabel.frame = CGRect(x: view.frame.width / 2 - 65, y: view.frame.height / 2 - 110, width: 130, height: 100)
+        scanningLabel.frame = CGRect(x: view.frame.width / 2 - 85, y: view.frame.height / 2 - 110, width: 170, height: 100)
         scanningLabel.textAlignment = .center
     }
     
@@ -358,6 +377,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         reviewNumber.isHidden = true
         reviewLabel.isHidden = true
         tutorialButton.isHidden = true
+        scanView.isUserInteractionEnabled = false
     }
     
     /// View when not scanning
@@ -372,27 +392,13 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         fruitTypeCollectionView.isHidden = false
         startButton.isHidden = false
         tutorialButton.isHidden = false
+        scanView.isUserInteractionEnabled = true
         if NilaiSementara.nilaiSementara != 0 {
             viewReview.isHidden = false
             buttonReview.isHidden = false
             reviewNumber.isHidden = false
             reviewLabel.isHidden = false
         }
-    }
-    
-    deinit{
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    @objc func didEnterBackground(){
-        imageViewTransform = silhouetteImage.layer.presentation()?.affineTransform() ?? .identity
-    }
-    
-    @objc func willEnterForeground(){
-        silhouetteImage.transform = imageViewTransform
-        silhouetteImage.alpha = 1.0
-        scanningText.alpha = 1.0
-        animateSilhouette()
     }
     
     /// Reset the variables to default
@@ -420,7 +426,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBAction func buttonBackToReview(_ sender: Any) {
         moveController()
-        Sound.enabled = false
     }
     
     @IBAction func tutorialButtonAction(_ sender: Any) {
@@ -467,7 +472,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
             self.hideOutlet()
             self.isChecking = true
             self.hasShownResult = true
-            Sound.enabled = true
             self.generator.notificationOccurred(.success)
         }
     }
@@ -491,6 +495,11 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
 
             NilaiSementara.previousFruit = namaBuah.text!
             helperDelegate.hapticMedium()
+            if nilaiSementara >= 5{
+                NilaiSementara.goodResult.play()
+            } else {
+                NilaiSementara.badResult.play()
+            }
             hasScanned = true
             setupColor()
             showOutlet()
@@ -505,6 +514,24 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         popUpVC.view.frame = self.view.frame
         self.view.addSubview(popUpVC.view)
         popUpVC.didMove(toParentViewController: self)
+    }
+    
+    func soundPlay(){
+        do{
+            NilaiSementara.goodResult = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "goodResult", ofType: "mp3")!))
+            NilaiSementara.goodResult.prepareToPlay()
+        }
+        catch{
+            print(error)
+        }
+        
+        do{
+            NilaiSementara.badResult = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "badResult", ofType: "mp3")!))
+            NilaiSementara.badResult.prepareToPlay()
+        }
+        catch{
+            print(error)
+        }
     }
 }
 
@@ -527,7 +554,7 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
     func setBackground(){
         backgroundViginette.frame = CGRect(x: 0, y: view.frame.height - 204, width: view.frame.width, height: 204)
         backgroundViginette.image = UIImage(named: "\(backgroundWarna[2])")
-            UIView.animate(withDuration: 5, animations: {
+            UIView.animate(withDuration: 2, animations: {
                 self.backgroundViginette.alpha = 0
             })
     }
@@ -556,7 +583,7 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
             UIView.animate(withDuration: 0, animations: {
                 self.backgroundViginette.alpha = 1
             }) { (true) in
-                UIView.animate(withDuration: 5, animations: {
+                UIView.animate(withDuration: 2, animations: {
                     self.backgroundViginette.alpha = 0
                 })
             }
