@@ -18,5 +18,6 @@ struct NilaiSementara {
     static var previousFruit : String = "Previous fruit"
     static var goodResult = AVAudioPlayer()
     static var badResult = AVAudioPlayer()
+    static var currentFruit : String = ""
 }
 
