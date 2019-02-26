@@ -17,7 +17,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     var nilaiCounter = 0
     var buahCounter = 0
     var nilaiSementara : Float = 5
-    var namaNamaBuah = ["","",NSLocalizedString("Fuji Apple", comment: ""),"Mandarin Orange", "Tomato","",""]
+    var namaNamaBuah = ["","",NSLocalizedString("Fuji Apple", comment: ""),NSLocalizedString("Mandarin Orange", comment: ""), NSLocalizedString("Tomato", comment: ""),"",""]
     var jumlahBuah = ["","","apel","jeruk","tomato","",""]
     var results = ["result1", "result2", "result3", "result4", "result5"]
     var backgroundWarna = ["","","viginetteApel","viginetteJeruk","viginetteTomato","",""]
