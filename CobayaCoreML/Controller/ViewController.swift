@@ -71,6 +71,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         let userDefaults = UserDefaults.standard
         userDefaults.set(true, forKey: "OnBoardingComplete")
         userDefaults.synchronize()
+        voiceO()
 
         fruitTypeCollectionView.delegate = self
         fruitTypeCollectionView.dataSource = self
@@ -132,6 +133,27 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
 //        view.addSubview(buttonReview)
 //        view.addSubview(reviewNumber)
 //        view.addSubview(reviewLabel)
+    }
+    // For Voice Over
+    func voiceO() {
+        if UIAccessibility.isVoiceOverRunning{
+        
+        }
+        actionTorch.isAccessibilityElement = true
+        actionTorch.accessibilityValue = "Flashlight"
+        actionTorch.accessibilityHint = "For turn on or turn off the flash light"
+    
+        tutorialButton.isAccessibilityElement = true
+        tutorialButton.accessibilityValue = "Tutorial"
+        tutorialButton.accessibilityHint = "For see how the app work"
+        
+        cancelButton.isAccessibilityElement = true
+        cancelButton.accessibilityHint = "For Cancel scan"
+        
+        scanningIcon.isAccessibilityElement = true
+        startButton.isAccessibilityElement = true
+        fruitTypeCollectionView.isAccessibilityElement = true
+    
     }
     
     /// Setup the CollectionView
@@ -505,6 +527,13 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         popUpVC.view.frame = self.view.frame
         self.view.addSubview(popUpVC.view)
         popUpVC.didMove(toParentViewController: self)
+        
+        actionTorch.isAccessibilityElement = false
+        tutorialButton.isAccessibilityElement = false
+        cancelButton.isAccessibilityElement = false
+        scanningIcon.isAccessibilityElement = false
+        startButton.isAccessibilityElement = false
+        fruitTypeCollectionView.isAccessibilityElement = false
     }
 }
 
@@ -606,6 +635,8 @@ extension ViewController: UIScrollViewDelegate {
         helperDelegate.hapticMedium()
         if let savedIndex = fruitTypeCollectionView.indexPathsForSelectedItems {
             fruitTypeCollectionView.deselectItem(at: savedIndex[0], animated: true)
+        } else {
+            return
         }
         namaBuah.isHidden = true
     }
