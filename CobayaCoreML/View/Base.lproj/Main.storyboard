@@ -125,14 +125,6 @@
                                     <segue destination="sjp-pV-Ueb" kind="show" identifier="tutorial" id="G5N-gs-A8B"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4AW-QH-a2g" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
-                                <rect key="frame" x="67" y="299" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="ballPulseSync"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MpF-Wj-pYc" userLabel="Flash Button">
                                 <rect key="frame" x="277" y="44" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -153,7 +145,6 @@
                         <outlet property="reviewLabel" destination="PE0-0G-muB" id="aEP-Ro-Q2x"/>
                         <outlet property="reviewNumber" destination="Biy-JU-1y2" id="uT9-ED-vxq"/>
                         <outlet property="scanView" destination="Ftd-FY-x1V" id="2ue-bf-AHq"/>
-                        <outlet property="scanningIcon" destination="4AW-QH-a2g" id="Xvx-DL-g9m"/>
                         <outlet property="silhouetteImage" destination="Hv5-Wp-uPg" id="v8W-1L-YyB"/>
                         <outlet property="startButton" destination="6Qy-cD-faz" id="VbI-9n-W8T"/>
                         <outlet property="tutorialButton" destination="PBF-3a-CvQ" id="eE4-Kw-za7"/>
@@ -765,7 +756,6 @@
                                 </constraints>
                                 <connections>
                                     <action selector="skipButton:" destination="sjp-pV-Ueb" eventType="touchUpInside" id="FA4-fI-jTz"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="skip" id="iac-zg-NIh"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -992,7 +982,4 @@
         <image name="tutorial" width="500" height="441"/>
         <image name="tutorial button" width="500" height="441"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="Wgp-d4-4q3"/>
-    </inferredMetricsTieBreakers>
 </document>
