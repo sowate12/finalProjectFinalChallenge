@@ -10,6 +10,7 @@
 		08745E9E220D43A80048EEAF /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08745E9D220D43A80048EEAF /* TutorialViewController.swift */; };
 		08D1753E21E5F57300ABF40A /* BuahCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D1753D21E5F57300ABF40A /* BuahCell.swift */; };
 		08D7773D21EF2C640025CC0C /* AppleBagusAppleJelek.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 08D7773C21EF2C640025CC0C /* AppleBagusAppleJelek.mlmodel */; };
+		08EA9D37221D4BAC0076AA35 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 08EA9D35221D4BAC0076AA35 /* Localizable.strings */; };
 		6B2D6CE921F708C000FFE806 /* NilaiSementara.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2D6CE821F708C000FFE806 /* NilaiSementara.swift */; };
 		6B3D55D221E34EF700E91E85 /* Warna.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6B3D55D121E34EF700E91E85 /* Warna.mlmodel */; };
 		6B87FF60221576CD00BF66D3 /* badResult.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B87FF5E221576CD00BF66D3 /* badResult.mp3 */; };
@@ -31,21 +32,20 @@
 		991A6021213FCEC300FEAE4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 991A6020213FCEC300FEAE4B /* Assets.xcassets */; };
 		991A6024213FCEC300FEAE4B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 991A6022213FCEC300FEAE4B /* LaunchScreen.storyboard */; };
 		B070E4FC2202E26900D8C016 /* TipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B070E4FB2202E26900D8C016 /* TipsViewController.swift */; };
-		B0A39B8A221BFE1A00B54B0E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B0A39B87221BFE1A00B54B0E /* Localizable.strings */; };
-		B58FDEA14CFB0BC5F148C750 /* Pods_CobayaCoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0383F4B03D809BD50F19F3D5 /* Pods_CobayaCoreML.framework */; };
 		E6FCE89521F9A9200019908D /* ColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FCE89421F9A9200019908D /* ColorHelper.swift */; };
 		E6FCE89721F9A9690019908D /* AnimationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FCE89621F9A9690019908D /* AnimationHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0383F4B03D809BD50F19F3D5 /* Pods_CobayaCoreML.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CobayaCoreML.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08745E9D220D43A80048EEAF /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		08D1753D21E5F57300ABF40A /* BuahCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuahCell.swift; sourceTree = "<group>"; };
 		08D7773C21EF2C640025CC0C /* AppleBagusAppleJelek.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = AppleBagusAppleJelek.mlmodel; sourceTree = "<group>"; };
+		08EA9D36221D4BAC0076AA35 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = CobayaCoreML/Helper/CobayaCoreML/CobayaCoreML/en.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		08EA9D38221D4BB40076AA35 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = CobayaCoreML/Helper/CobayaCoreML/CobayaCoreML/id.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		6B2D6CE821F708C000FFE806 /* NilaiSementara.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NilaiSementara.swift; sourceTree = "<group>"; };
 		6B3D55D121E34EF700E91E85 /* Warna.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Warna.mlmodel; sourceTree = "<group>"; };
-		6B87FF5E221576CD00BF66D3 /* badResult.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = badResult.mp3; path = CobayaCoreML/badResult.mp3; sourceTree = SOURCE_ROOT; };
-		6B87FF5F221576CD00BF66D3 /* goodResult.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = goodResult.mp3; path = CobayaCoreML/goodResult.mp3; sourceTree = SOURCE_ROOT; };
+		6B87FF5E221576CD00BF66D3 /* badResult.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = badResult.mp3; path = CobayaCoreML/Helper/badResult.mp3; sourceTree = SOURCE_ROOT; };
+		6B87FF5F221576CD00BF66D3 /* goodResult.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = goodResult.mp3; path = CobayaCoreML/Helper/goodResult.mp3; sourceTree = SOURCE_ROOT; };
 		6B9FD1252202E83C00445DEC /* Tomat.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Tomat.mlmodel; sourceTree = "<group>"; };
 		6B9FD1292202EB0E00445DEC /* Apel1.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Apel1.mlmodel; sourceTree = "<group>"; };
 		6B9FD12B2204351500445DEC /* ApelBaru.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ApelBaru.mlmodel; sourceTree = "<group>"; };
@@ -67,8 +67,6 @@
 		991A6025213FCEC300FEAE4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9DC25B9C9EDF411828422139 /* Pods-CobayaCoreML.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CobayaCoreML.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CobayaCoreML/Pods-CobayaCoreML.debug.xcconfig"; sourceTree = "<group>"; };
 		B070E4FB2202E26900D8C016 /* TipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsViewController.swift; sourceTree = "<group>"; };
-		B0A39B88221BFE1A00B54B0E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = CobayaCoreML/CobayaCoreML/en.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
-		B0A39B8B221BFE2E00B54B0E /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = CobayaCoreML/CobayaCoreML/id.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		E6FCE89421F9A9200019908D /* ColorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHelper.swift; sourceTree = "<group>"; };
 		E6FCE89621F9A9690019908D /* AnimationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,7 +76,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B58FDEA14CFB0BC5F148C750 /* Pods_CobayaCoreML.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,9 +102,7 @@
 		08D7774121F1B5180025CC0C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				6B87FF5E221576CD00BF66D3 /* badResult.mp3 */,
-				6B87FF5F221576CD00BF66D3 /* goodResult.mp3 */,
-				B0A39B87221BFE1A00B54B0E /* Localizable.strings */,
+				08EA9D35221D4BAC0076AA35 /* Localizable.strings */,
 				08745E9D220D43A80048EEAF /* TutorialViewController.swift */,
 				991A6018213FCEC100FEAE4B /* ViewController.swift */,
 				7CFD700522075A8F00CA041D /* ResultViewController.swift */,
@@ -173,7 +168,6 @@
 		C2B2B14F5A3732FA04CBF1B3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0383F4B03D809BD50F19F3D5 /* Pods_CobayaCoreML.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -181,6 +175,8 @@
 		E6FCE89321F9A9060019908D /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				6B87FF5E221576CD00BF66D3 /* badResult.mp3 */,
+				6B87FF5F221576CD00BF66D3 /* goodResult.mp3 */,
 				7CFD700F22080F2D00CA041D /* Font */,
 				E6FCE89821F9AD8D0019908D /* ML Model */,
 				E6FCE89421F9A9200019908D /* ColorHelper.swift */,
@@ -214,7 +210,6 @@
 				991A600F213FCEC100FEAE4B /* Sources */,
 				991A6010213FCEC100FEAE4B /* Frameworks */,
 				991A6011213FCEC100FEAE4B /* Resources */,
-				60A8E136066481C8724C5020 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -266,10 +261,10 @@
 			files = (
 				7CFD700B22080F0700CA041D /* Biko_Black.otf in Resources */,
 				6B87FF60221576CD00BF66D3 /* badResult.mp3 in Resources */,
-				B0A39B8A221BFE1A00B54B0E /* Localizable.strings in Resources */,
 				6B87FF61221576CD00BF66D3 /* goodResult.mp3 in Resources */,
 				7CFD700C22080F0700CA041D /* Biko_Bold.otf in Resources */,
 				7CFD700D22080F0700CA041D /* Biko_Light-Restricted.otf in Resources */,
+				08EA9D37221D4BAC0076AA35 /* Localizable.strings in Resources */,
 				7C967D902208175F0069D17A /* Biko_Regular.otf in Resources */,
 				991A6024213FCEC300FEAE4B /* LaunchScreen.storyboard in Resources */,
 				991A6021213FCEC300FEAE4B /* Assets.xcassets in Resources */,
@@ -280,26 +275,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		60A8E136066481C8724C5020 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-CobayaCoreML/Pods-CobayaCoreML-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftySound/SwiftySound.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftySound.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CobayaCoreML/Pods-CobayaCoreML-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		AAA2D9B195FEA5B8E1A0C64A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -348,6 +323,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		08EA9D35221D4BAC0076AA35 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				08EA9D36221D4BAC0076AA35 /* en */,
+				08EA9D38221D4BB40076AA35 /* id */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		991A601A213FCEC100FEAE4B /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -362,15 +346,6 @@
 				991A6023213FCEC300FEAE4B /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		B0A39B87221BFE1A00B54B0E /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B0A39B88221BFE1A00B54B0E /* en */,
-				B0A39B8B221BFE2E00B54B0E /* id */,
-			);
-			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -496,14 +471,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 56ZF7DLJQY;
+				DEVELOPMENT_TEAM = 6QYD6FW9B4;
 				INFOPLIST_FILE = CobayaCoreML/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.stevennn96.FrutScan;
+				PRODUCT_BUNDLE_IDENTIFIER = KeenanW.AppleAcademyIndonesia.FruitScanLite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -516,14 +491,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 56ZF7DLJQY;
+				DEVELOPMENT_TEAM = 6QYD6FW9B4;
 				INFOPLIST_FILE = CobayaCoreML/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.stevennn96.FrutScan;
+				PRODUCT_BUNDLE_IDENTIFIER = KeenanW.AppleAcademyIndonesia.FruitScanLite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;

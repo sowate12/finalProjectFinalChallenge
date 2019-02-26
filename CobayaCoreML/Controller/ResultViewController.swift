@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftySound
 
 class ResultViewController: UIViewController {
 
@@ -406,7 +405,6 @@ class ResultViewController: UIViewController {
             colorLabel.textColor = hijau
             descriptionLabel.text = colorDescription[4]
             tipsLabel.text = tips.randomElement()
-            Sound.play(file: "goodResult.mp3")
         }else if NilaiSementara.nilaiSementara >= 8 && NilaiSementara.nilaiSementara < 9 {
             topGreenView.backgroundColor = hijauTua
             qualityLabel.text = NSLocalizedString("Sweet", comment: "")
@@ -414,7 +412,6 @@ class ResultViewController: UIViewController {
             colorLabel.textColor = hijauTua
             descriptionLabel.text = colorDescription[3]
             tipsLabel.text = tips.randomElement()
-            Sound.play(file: "goodResult.mp3")
         }else if NilaiSementara.nilaiSementara >= 7 && NilaiSementara.nilaiSementara < 8 {
             topGreenView.backgroundColor = orangeKuning
             qualityLabel.text = NSLocalizedString("Okay.", comment: "")
@@ -422,7 +419,6 @@ class ResultViewController: UIViewController {
             colorLabel.textColor = orangeKuning
             descriptionLabel.text = colorDescription[2]
             tipsLabel.text = tips.randomElement()
-            Sound.play(file: "goodResult.mp3")
         }else if NilaiSementara.nilaiSementara >= 5 && NilaiSementara.nilaiSementara < 7 {
             topGreenView.backgroundColor = orange
             qualityLabel.text = NSLocalizedString("Almost There...", comment: "")
@@ -430,7 +426,6 @@ class ResultViewController: UIViewController {
             colorLabel.textColor = orange
             descriptionLabel.text = colorDescription[1]
             tipsLabel.text = tips.randomElement()
-            Sound.play(file: "badResult.mp3")
         }else {
             topGreenView.backgroundColor = merah
             qualityLabel.text = NSLocalizedString("Meh.", comment: "")
@@ -438,7 +433,6 @@ class ResultViewController: UIViewController {
             colorLabel.textColor = merah
             descriptionLabel.text = colorDescription[0]
             tipsLabel.text = tips.randomElement()
-            Sound.play(file: "badResult.mp3")
         }
     }
     
