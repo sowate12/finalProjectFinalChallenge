@@ -17,7 +17,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     var nilaiCounter = 0
     var buahCounter = 0
     var nilaiSementara : Float = 5
-    var namaNamaBuah = ["","",NSLocalizedString("Fuji Apple", comment: ""),NSLocalizedString("Mandarin Orange", comment: ""), NSLocalizedString("Tomato", comment: ""),"",""]
+    var namaNamaBuah = ["","",NSLocalizedString("Fuji Apple", comment: ""),NSLocalizedString("Mandarin Orange", comment: ""), NSLocalizedString("Tomato", comment: "<#T##String#>"),"",""]
     var jumlahBuah = ["","","apel","jeruk","tomato","",""]
     var results = ["result1", "result2", "result3", "result4", "result5"]
     var backgroundWarna = ["","","viginetteApel","viginetteJeruk","viginetteTomato","",""]
@@ -41,11 +41,11 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     var scanningLabel : UILabel = UILabel()
     var imageViewTransform = CGAffineTransform.identity
     let helperDelegate = AnimationHelper()
-    let hijau = UIColor(rgb: 0x3D8238)
-    let hijauTua = UIColor(rgb: 0x718821)
-    let orangeKuning = UIColor(rgb: 0xF0A616)
-    let orange = UIColor(rgb: 0xE5711C)
-    let merah = UIColor(rgb: 0xD42024)
+    let hijau = UIColor(displayP3Red: 61/255, green: 130/255, blue: 56/255, alpha: 1)
+    let hijauTua = UIColor(displayP3Red: 113/255, green: 136/255, blue: 33/255, alpha: 1)
+    let orangeKuning = UIColor(displayP3Red: 240/255, green: 166/255, blue: 22/255, alpha: 1)
+    let orange = UIColor(displayP3Red: 229/255, green: 113/255, blue: 28/255, alpha: 1)
+    let merah = UIColor(displayP3Red: 212/255, green: 32/255, blue: 36/255, alpha: 1)
     var isTorch = false
     
     // MARK: IBOutlet
@@ -155,6 +155,22 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
 //        view.addSubview(reviewNumber)
 //        view.addSubview(reviewLabel)
     }
+    // For Voice Over
+    @objc func voiceO() {
+        if NilaiSementara.voiceoverstatus == true{
+            actionTorch.isAccessibilityElement = true
+            tutorialButton.isAccessibilityElement = true
+            cancelButton.isAccessibilityElement = true
+            startButton.isAccessibilityElement = true
+            fruitTypeCollectionView.isAccessibilityElement = true
+        }
+        actionTorch.accessibilityValue = "Flashlight"
+        actionTorch.accessibilityHint = "For turn on or turn off the flash light"
+        tutorialButton.accessibilityValue = "Tutorial"
+        tutorialButton.accessibilityHint = "For see how the app work"
+        cancelButton.accessibilityHint = "For Cancel scan"
+        
+    }
     
     /// Setup the CollectionView
     func setupCollectionView(){
@@ -171,20 +187,20 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
             switch UIScreen.main.nativeBounds.height {
             case 2436:
                 viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
-                tutorialButton.frame = CGRect(x: view.frame.width - 59, y: 53, width: 25 , height: 25)
-                actionTorch.frame = CGRect(x: view.frame.width - 100, y: 53, width: 15 , height: 25)
+                tutorialButton.frame = CGRect(x: view.frame.width - 100, y: 53, width: 30 , height: 30)
+                actionTorch.frame = CGRect(x: view.frame.width - 59, y: 53, width: 30 , height: 30)
             case 2688:
                 viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
-                tutorialButton.frame = CGRect(x: view.frame.width - 59, y: 53, width: 25 , height: 25)
-                actionTorch.frame = CGRect(x: view.frame.width - 100, y: 53, width: 15 , height: 25)
+                tutorialButton.frame = CGRect(x: view.frame.width - 100, y: 53, width: 30 , height: 30)
+                actionTorch.frame = CGRect(x: view.frame.width - 59, y: 53, width: 30 , height: 30)
             case 1792:
                 viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
-                tutorialButton.frame = CGRect(x: view.frame.width - 59, y: 53, width: 25 , height: 25)
-                actionTorch.frame = CGRect(x: view.frame.width - 100, y: 53, width: 15 , height: 25)
+                tutorialButton.frame = CGRect(x: view.frame.width - 100, y: 53, width: 30 , height: 30)
+                actionTorch.frame = CGRect(x: view.frame.width - 59, y: 53, width: 30 , height: 30)
             default:
                 viewReview.frame = CGRect(x: view.frame.width - 150, y: 79, width: 150, height: 60)
-                tutorialButton.frame = CGRect(x: view.frame.width - 59, y: 33, width: 25 , height: 25)
-                actionTorch.frame = CGRect(x: view.frame.width - 100, y: 33, width: 15 , height: 25)
+                tutorialButton.frame = CGRect(x: view.frame.width - 100, y: 33, width: 30 , height: 30)
+                actionTorch.frame = CGRect(x: view.frame.width - 59, y: 33, width: 30 , height: 30)
             }
         }
         buttonReview.layer.masksToBounds = true
@@ -478,6 +494,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func checkingResult(){
         self.timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(showResult), userInfo: nil, repeats: true)
+        self.timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(voiceO), userInfo: nil, repeats: true)
     }
     
     /// Show the result if has not shown result
@@ -503,6 +520,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
             hasScanned = true
             setupColor()
             showOutlet()
+            NilaiSementara.currentFruit = namaBuah.text!
             moveController()
         }
     }
@@ -514,6 +532,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         popUpVC.view.frame = self.view.frame
         self.view.addSubview(popUpVC.view)
         popUpVC.didMove(toParentViewController: self)
+        
+       NilaiSementara.voiceoverstatus = false
     }
     
     func soundPlay(){
@@ -547,6 +567,9 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
             cell?.isUserInteractionEnabled = false
         }
         cell?.imageBuah.image = UIImage(named: "\(jumlahBuah[indexPath.row])Inactive")
+//        if jumlahBuah[indexPath.row] != "" {
+//            cell?.imageBuahSelected.image = UIImage(named: "\(jumlahBuah[indexPath.row])Selected")
+//        }
         cell?.imageBuahSelected.image = UIImage(named: "\(jumlahBuah[indexPath.row])Selected")
         return cell!
     }
@@ -569,7 +592,6 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
         dummyImage.image = UIImage(named: "\(jumlahBuah[indexPath.row])Scan")
         namaBuah.text = "\(namaNamaBuah[indexPath.row])"
         backgroundViginette.image = UIImage(named: "\(backgroundWarna[indexPath.row])")
-        
         cell?.layer.borderColor = UIColor.black.cgColor
         cell?.layer.borderWidth = 1
         cell?.layer.cornerRadius = 8
@@ -589,6 +611,7 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
             }
         }
     }
+    
 }
 
 // MARK: Scroll View
@@ -633,6 +656,8 @@ extension ViewController: UIScrollViewDelegate {
         helperDelegate.hapticMedium()
         if let savedIndex = fruitTypeCollectionView.indexPathsForSelectedItems {
             fruitTypeCollectionView.deselectItem(at: savedIndex[0], animated: true)
+        } else {
+            return
         }
         namaBuah.isHidden = true
     }
@@ -696,7 +721,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         if !self.isChecking {return}
         
         guard let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
-        guard let model = try? VNCoreMLModel(for: Resnet50().model) else { return }
+        guard let model = try? VNCoreMLModel(for: MobileNet().model) else { return }
         guard let modelJeruk = try? VNCoreMLModel(for: Jeruk().model) else {return}
         guard let modelApel = try? VNCoreMLModel(for: Apel1().model) else {return}
         guard let modelTomat = try? VNCoreMLModel(for: Tomat().model) else {return}
@@ -705,7 +730,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
             guard let resultsResnet = finishReq2.results as? [VNClassificationObservation] else {return}
             guard let firstObservationResnet = resultsResnet.first else {return}
             DispatchQueue.main.async {
-                if (((firstObservationResnet.identifier == "orange") && (self.silhouetteImage.image == UIImage(named: "jerukSil2"))) || (((self.silhouetteImage.image == UIImage(named: "tomatoSil2")) || (self.silhouetteImage.image == UIImage(named: "apelSil2"))) && ((firstObservationResnet.identifier == "pomegranate") || (firstObservationResnet.identifier == "Granny Smith") || (firstObservationResnet.identifier == "hip, rose hip, rosehip") || (firstObservationResnet.identifier == "bell pepper")))) && self.buahCounter < 3{
+                if (((firstObservationResnet.identifier == "orange" || firstObservationResnet.identifier == "lemon") && (self.silhouetteImage.image == UIImage(named: "jerukSil2"))) || (((self.silhouetteImage.image == UIImage(named: "tomatoSil2")) || (self.silhouetteImage.image == UIImage(named: "apelSil2"))) && ((firstObservationResnet.identifier == "pomegranate") || (firstObservationResnet.identifier == "Granny Smith") || (firstObservationResnet.identifier == "hip, rose hip, rosehip") || (firstObservationResnet.identifier == "bell pepper")))) && self.buahCounter < 3{
                     self.buahCounter += 1
                     print(firstObservationResnet.identifier, firstObservationResnet.confidence)
                     print(self.buahCounter)
