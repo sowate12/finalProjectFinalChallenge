@@ -7,19 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		085AB88222268DA4009C8CB4 /* MobileNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 085AB88122268DA4009C8CB4 /* MobileNet.mlmodel */; };
 		08745E9E220D43A80048EEAF /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08745E9D220D43A80048EEAF /* TutorialViewController.swift */; };
 		08D1753E21E5F57300ABF40A /* BuahCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D1753D21E5F57300ABF40A /* BuahCell.swift */; };
-		08D7773D21EF2C640025CC0C /* AppleBagusAppleJelek.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 08D7773C21EF2C640025CC0C /* AppleBagusAppleJelek.mlmodel */; };
 		08EA9D37221D4BAC0076AA35 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 08EA9D35221D4BAC0076AA35 /* Localizable.strings */; };
 		6B2D6CE921F708C000FFE806 /* NilaiSementara.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2D6CE821F708C000FFE806 /* NilaiSementara.swift */; };
-		6B3D55D221E34EF700E91E85 /* Warna.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6B3D55D121E34EF700E91E85 /* Warna.mlmodel */; };
 		6B87FF60221576CD00BF66D3 /* badResult.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B87FF5E221576CD00BF66D3 /* badResult.mp3 */; };
 		6B87FF61221576CD00BF66D3 /* goodResult.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B87FF5F221576CD00BF66D3 /* goodResult.mp3 */; };
 		6B9FD1262202E83C00445DEC /* Tomat.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6B9FD1252202E83C00445DEC /* Tomat.mlmodel */; };
 		6B9FD12A2202EB0E00445DEC /* Apel1.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6B9FD1292202EB0E00445DEC /* Apel1.mlmodel */; };
 		6B9FD12C2204351500445DEC /* ApelBaru.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6B9FD12B2204351500445DEC /* ApelBaru.mlmodel */; };
 		6BDEA49B21F5AD11007909B8 /* Jeruk.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6BDEA49A21F5AD11007909B8 /* Jeruk.mlmodel */; };
-		6BDEA49D21F5AD7E007909B8 /* Resnet50.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6BDEA49C21F5AD7E007909B8 /* Resnet50.mlmodel */; };
 		7C967D902208175F0069D17A /* Biko_Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7C967D8F2208175F0069D17A /* Biko_Regular.otf */; };
 		7CFD700622075A8F00CA041D /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFD700522075A8F00CA041D /* ResultViewController.swift */; };
 		7CFD700B22080F0700CA041D /* Biko_Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7CFD700722080F0600CA041D /* Biko_Black.otf */; };
@@ -36,20 +34,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		085AB88122268DA4009C8CB4 /* MobileNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNet.mlmodel; sourceTree = "<group>"; };
 		08745E9D220D43A80048EEAF /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		08D1753D21E5F57300ABF40A /* BuahCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuahCell.swift; sourceTree = "<group>"; };
-		08D7773C21EF2C640025CC0C /* AppleBagusAppleJelek.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = AppleBagusAppleJelek.mlmodel; sourceTree = "<group>"; };
 		08EA9D36221D4BAC0076AA35 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = CobayaCoreML/Helper/CobayaCoreML/CobayaCoreML/en.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		08EA9D38221D4BB40076AA35 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = CobayaCoreML/Helper/CobayaCoreML/CobayaCoreML/id.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		6B2D6CE821F708C000FFE806 /* NilaiSementara.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NilaiSementara.swift; sourceTree = "<group>"; };
-		6B3D55D121E34EF700E91E85 /* Warna.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Warna.mlmodel; sourceTree = "<group>"; };
 		6B87FF5E221576CD00BF66D3 /* badResult.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = badResult.mp3; path = CobayaCoreML/Helper/badResult.mp3; sourceTree = SOURCE_ROOT; };
 		6B87FF5F221576CD00BF66D3 /* goodResult.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = goodResult.mp3; path = CobayaCoreML/Helper/goodResult.mp3; sourceTree = SOURCE_ROOT; };
 		6B9FD1252202E83C00445DEC /* Tomat.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Tomat.mlmodel; sourceTree = "<group>"; };
 		6B9FD1292202EB0E00445DEC /* Apel1.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Apel1.mlmodel; sourceTree = "<group>"; };
 		6B9FD12B2204351500445DEC /* ApelBaru.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ApelBaru.mlmodel; sourceTree = "<group>"; };
 		6BDEA49A21F5AD11007909B8 /* Jeruk.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Jeruk.mlmodel; sourceTree = "<group>"; };
-		6BDEA49C21F5AD7E007909B8 /* Resnet50.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Resnet50.mlmodel; sourceTree = "<group>"; };
 		7C967D8F2208175F0069D17A /* Biko_Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Biko_Regular.otf; sourceTree = "<group>"; };
 		7CFD700522075A8F00CA041D /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		7CFD700722080F0600CA041D /* Biko_Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Biko_Black.otf; sourceTree = "<group>"; };
@@ -187,11 +183,9 @@
 			children = (
 				6B9FD1292202EB0E00445DEC /* Apel1.mlmodel */,
 				6B9FD12B2204351500445DEC /* ApelBaru.mlmodel */,
+				085AB88122268DA4009C8CB4 /* MobileNet.mlmodel */,
 				6BDEA49A21F5AD11007909B8 /* Jeruk.mlmodel */,
 				6B9FD1252202E83C00445DEC /* Tomat.mlmodel */,
-				08D7773C21EF2C640025CC0C /* AppleBagusAppleJelek.mlmodel */,
-				6B3D55D121E34EF700E91E85 /* Warna.mlmodel */,
-				6BDEA49C21F5AD7E007909B8 /* Resnet50.mlmodel */,
 			);
 			path = "ML Model";
 			sourceTree = "<group>";
@@ -299,20 +293,18 @@
 			files = (
 				6B9FD12A2202EB0E00445DEC /* Apel1.mlmodel in Sources */,
 				991A6019213FCEC100FEAE4B /* ViewController.swift in Sources */,
-				6B3D55D221E34EF700E91E85 /* Warna.mlmodel in Sources */,
 				6B9FD12C2204351500445DEC /* ApelBaru.mlmodel in Sources */,
 				B070E4FC2202E26900D8C016 /* TipsViewController.swift in Sources */,
 				E6FCE89721F9A9690019908D /* AnimationHelper.swift in Sources */,
 				6BDEA49B21F5AD11007909B8 /* Jeruk.mlmodel in Sources */,
 				991A601F213FCEC100FEAE4B /* CobayaCoreML.xcdatamodeld in Sources */,
+				085AB88222268DA4009C8CB4 /* MobileNet.mlmodel in Sources */,
 				6B9FD1262202E83C00445DEC /* Tomat.mlmodel in Sources */,
 				08745E9E220D43A80048EEAF /* TutorialViewController.swift in Sources */,
 				991A6017213FCEC100FEAE4B /* AppDelegate.swift in Sources */,
 				6B2D6CE921F708C000FFE806 /* NilaiSementara.swift in Sources */,
 				7CFD700622075A8F00CA041D /* ResultViewController.swift in Sources */,
 				08D1753E21E5F57300ABF40A /* BuahCell.swift in Sources */,
-				6BDEA49D21F5AD7E007909B8 /* Resnet50.mlmodel in Sources */,
-				08D7773D21EF2C640025CC0C /* AppleBagusAppleJelek.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,7 +459,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 38FBS5765W;
+				DEVELOPMENT_TEAM = 6QYD6FW9B4;
 				INFOPLIST_FILE = CobayaCoreML/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -487,7 +479,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 38FBS5765W;
+				DEVELOPMENT_TEAM = 6QYD6FW9B4;
 				INFOPLIST_FILE = CobayaCoreML/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
