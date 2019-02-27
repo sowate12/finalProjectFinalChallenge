@@ -19,5 +19,6 @@ struct NilaiSementara {
     static var goodResult = AVAudioPlayer()
     static var badResult = AVAudioPlayer()
     static var currentFruit : String = ""
+    static var voiceoverstatus = false
 }
 
