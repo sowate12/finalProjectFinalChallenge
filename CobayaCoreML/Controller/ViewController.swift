@@ -156,25 +156,20 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
 //        view.addSubview(reviewLabel)
     }
     // For Voice Over
-    func voiceO() {
-        if UIAccessibility.isVoiceOverRunning{
-        
+    @objc func voiceO() {
+        if NilaiSementara.voiceoverstatus == true{
+            actionTorch.isAccessibilityElement = true
+            tutorialButton.isAccessibilityElement = true
+            cancelButton.isAccessibilityElement = true
+            startButton.isAccessibilityElement = true
+            fruitTypeCollectionView.isAccessibilityElement = true
         }
-        actionTorch.isAccessibilityElement = true
         actionTorch.accessibilityValue = "Flashlight"
         actionTorch.accessibilityHint = "For turn on or turn off the flash light"
-    
-        tutorialButton.isAccessibilityElement = true
         tutorialButton.accessibilityValue = "Tutorial"
         tutorialButton.accessibilityHint = "For see how the app work"
-        
-        cancelButton.isAccessibilityElement = true
         cancelButton.accessibilityHint = "For Cancel scan"
         
-        scanningIcon.isAccessibilityElement = true
-        startButton.isAccessibilityElement = true
-        fruitTypeCollectionView.isAccessibilityElement = true
-    
     }
     
     /// Setup the CollectionView
@@ -499,6 +494,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func checkingResult(){
         self.timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(showResult), userInfo: nil, repeats: true)
+        self.timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(voiceO), userInfo: nil, repeats: true)
     }
     
     /// Show the result if has not shown result
@@ -536,12 +532,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         self.view.addSubview(popUpVC.view)
         popUpVC.didMove(toParentViewController: self)
         
-        actionTorch.isAccessibilityElement = false
-        tutorialButton.isAccessibilityElement = false
-        cancelButton.isAccessibilityElement = false
-        scanningIcon.isAccessibilityElement = false
-        startButton.isAccessibilityElement = false
-        fruitTypeCollectionView.isAccessibilityElement = false
+       NilaiSementara.voiceoverstatus = false
     }
     
     func soundPlay(){
@@ -575,6 +566,9 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
             cell?.isUserInteractionEnabled = false
         }
         cell?.imageBuah.image = UIImage(named: "\(jumlahBuah[indexPath.row])Inactive")
+//        if jumlahBuah[indexPath.row] != "" {
+//            cell?.imageBuahSelected.image = UIImage(named: "\(jumlahBuah[indexPath.row])Selected")
+//        }
         cell?.imageBuahSelected.image = UIImage(named: "\(jumlahBuah[indexPath.row])Selected")
         return cell!
     }
@@ -726,7 +720,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         if !self.isChecking {return}
         
         guard let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
-        guard let model = try? VNCoreMLModel(for: Resnet50().model) else { return }
+        guard let model = try? VNCoreMLModel(for: MobileNet().model) else { return }
         guard let modelJeruk = try? VNCoreMLModel(for: Jeruk().model) else {return}
         guard let modelApel = try? VNCoreMLModel(for: Apel1().model) else {return}
         guard let modelTomat = try? VNCoreMLModel(for: Tomat().model) else {return}
@@ -735,7 +729,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
             guard let resultsResnet = finishReq2.results as? [VNClassificationObservation] else {return}
             guard let firstObservationResnet = resultsResnet.first else {return}
             DispatchQueue.main.async {
-                if (((firstObservationResnet.identifier == "orange") && (self.silhouetteImage.image == UIImage(named: "jerukSil2"))) || (((self.silhouetteImage.image == UIImage(named: "tomatoSil2")) || (self.silhouetteImage.image == UIImage(named: "apelSil2"))) && ((firstObservationResnet.identifier == "pomegranate") || (firstObservationResnet.identifier == "Granny Smith") || (firstObservationResnet.identifier == "hip, rose hip, rosehip") || (firstObservationResnet.identifier == "bell pepper")))) && self.buahCounter < 3{
+                if (((firstObservationResnet.identifier == "orange" || firstObservationResnet.identifier == "lemon") && (self.silhouetteImage.image == UIImage(named: "jerukSil2"))) || (((self.silhouetteImage.image == UIImage(named: "tomatoSil2")) || (self.silhouetteImage.image == UIImage(named: "apelSil2"))) && ((firstObservationResnet.identifier == "pomegranate") || (firstObservationResnet.identifier == "Granny Smith") || (firstObservationResnet.identifier == "hip, rose hip, rosehip") || (firstObservationResnet.identifier == "bell pepper")))) && self.buahCounter < 3{
                     self.buahCounter += 1
                     print(firstObservationResnet.identifier, firstObservationResnet.confidence)
                     print(self.buahCounter)

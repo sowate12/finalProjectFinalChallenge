@@ -193,6 +193,7 @@ class ResultViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor.clear
         button.addTarget(self, action: #selector(buttonDismiss), for: .touchUpInside)
+        NilaiSementara.voiceoverstatus = true
         return button
     }()
     
