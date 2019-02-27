@@ -172,6 +172,25 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         
     }
     
+    //For siri
+    func usesiri(){
+        let activity = NSUserActivity(activityType: "Scan Apple")
+        activity.title = "Lets Scan Apple"
+        activity.isEligibleForSearch = true
+        if #available(iOS 12.0, *) {
+            activity.isEligibleForPrediction = true
+        } else {
+            // Fallback on earlier versions
+        }
+        activity.userInfo = ["siri":"shortcut"]
+        if #available(iOS 12.0, *) {
+            activity.persistentIdentifier = NSUserActivityPersistentIdentifier ("siri")
+        } else {
+            // Fallback on earlier versions
+        }
+        self.userActivity = activity
+    }
+    
     /// Setup the CollectionView
     func setupCollectionView(){
         fruitTypeCollectionView.center = CGPoint(x: view.frame.width / 2 - 0.5, y: view.frame.height - 100 )
