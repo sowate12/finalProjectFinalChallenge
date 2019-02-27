@@ -187,7 +187,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
             switch UIScreen.main.nativeBounds.height {
             case 2436:
                 viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
-                tutorialButton.frame = CGRect(x: view.frame.width - 100, y: 53, width: 30 , height: 30)
+                tutorialButton.frame = CGRect(x: view.frame.width + 100, y: 53, width: 30 , height: 30)
                 actionTorch.frame = CGRect(x: view.frame.width - 59, y: 53, width: 30 , height: 30)
             case 2688:
                 viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
@@ -344,7 +344,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         }
         scanningLabel.textColor = .white
         scanningLabel.numberOfLines = 2
-        scanningLabel.frame = CGRect(x: view.frame.width / 2 - 85, y: view.frame.height / 2 - 110, width: 170, height: 100)
+        scanningLabel.frame = CGRect(x: view.frame.width / 2 - 100, y: view.frame.height / 2 - 110, width: 200, height: 100)
         scanningLabel.textAlignment = .center
     }
     
@@ -373,12 +373,13 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         helperDelegate.hapticMedium()
         let alert = UIAlertController(title: NSLocalizedString("There's No Fruit Detected", comment: ""), message: NSLocalizedString("Would you like to rescan the fruit?", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Retry", comment: ""), style: UIAlertActionStyle.default, handler: { action in
-            self.isChecking = true
-        }))
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: UIAlertActionStyle.destructive, handler: { action in self.resetVariables()
             self.showOutlet()
         }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Retry", comment: ""), style: UIAlertActionStyle.default, handler: { action in
+            self.isChecking = true
+        }))
+        
         self.present(alert, animated: true, completion: nil)
     }
     
