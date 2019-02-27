@@ -13,6 +13,7 @@ class TipsViewController: UIViewController {
             @IBOutlet weak var buttonLayer9Outlet: UIButton!
             @IBOutlet weak var buttonLayer8Outlet: UIButton!
             @IBOutlet weak var buttonLayer7Outlet: UIButton!
+            @IBOutlet weak var buttonFlashlight: UIButton!
             @IBOutlet weak var buttonLayer6Outlet: UIButton!
             @IBOutlet weak var buttonLayer5Outlet: UIButton!
             @IBOutlet weak var buttonLayer4Outlet: UIButton!
@@ -42,12 +43,19 @@ class TipsViewController: UIViewController {
             //halaman 5
             @IBOutlet weak var silang: UIImageView!
             @IBOutlet weak var ifYouSeeThisButton: UILabel!
+            @IBOutlet weak var historyResult: UIImageView!
+    
             
             //halaman 6
             @IBOutlet weak var pressThisButtonForQuickBrief: UILabel!
             @IBOutlet weak var tutorialButtonAtas: UIImageView!
-            
+    
             //halaman 7
+            @IBOutlet weak var flashlightButtonAtas: UIImageView!
+            @IBOutlet weak var andThisButtonForFlashlight: UILabel!
+    
+            
+            //halaman 8
             @IBOutlet weak var bgPolosKotakHijau: UIImageView!
             @IBOutlet weak var yourResultIs: UILabel!
             @IBOutlet weak var silangBgIjo: UIImageView!
@@ -58,7 +66,7 @@ class TipsViewController: UIViewController {
             @IBOutlet weak var arrowDown: UIImageView!
             @IBOutlet weak var aResultPopUp: UILabel!
             
-            //halaman 8
+            //halaman 9
             @IBOutlet weak var ijo: UIImageView!
             @IBOutlet weak var putih: UIImageView!
             @IBOutlet weak var silang2: UIImageView!
@@ -75,7 +83,7 @@ class TipsViewController: UIViewController {
             @IBOutlet weak var youCanExpand: UILabel!
             @IBOutlet weak var greatEye2: UILabel!
             
-            //halaman 9
+            //halaman 10
             @IBOutlet weak var happyFruiting: UIImageView!
             
             override func viewDidLoad() {
@@ -146,10 +154,13 @@ class TipsViewController: UIViewController {
                 greatEye2.isHidden = false
                 buttonLayer7Outlet.isEnabled = false
             }
-            
+    
+    
+    
+    
             @IBAction func buttonLayer6(_ sender: Any) {
-                pressThisButtonForQuickBrief.isHidden = true
-                tutorialButtonAtas.isHidden = true
+                flashlightButtonAtas.isHidden = true
+                andThisButtonForFlashlight.isHidden = true
                 
                 bgPolosKotakHijau.isHidden = false
                 yourResultIs.isHidden = false
@@ -160,12 +171,23 @@ class TipsViewController: UIViewController {
                 greatEye.isHidden = false
                 arrowDown.isHidden = false
                 aResultPopUp.isHidden = false
+                
                 buttonLayer6Outlet.isEnabled = false
+            }
+    
+            @IBAction func buttonFlashlight(_ sender: Any) {
+                pressThisButtonForQuickBrief.isHidden = true
+                tutorialButtonAtas.isHidden = true
+                
+                flashlightButtonAtas.isHidden = false
+                andThisButtonForFlashlight.isHidden = false
+                buttonFlashlight.isEnabled = false
             }
             
             @IBAction func buttonLayer5(_ sender: Any) {
-                silang.isHidden = true
+//              silang.isHidden = true
                 ifYouSeeThisButton.isHidden = true
+                historyResult.isHidden = true
                 
                 pressThisButtonForQuickBrief.isHidden = false
                 tutorialButtonAtas.isHidden = false
@@ -176,8 +198,10 @@ class TipsViewController: UIViewController {
                 apelAtas.isHidden = true
                 pressTheButtonToStartScanning.isHidden = true
                 
-                silang.isHidden = false
+//                silang.isHidden = false
                 ifYouSeeThisButton.isHidden = false
+                historyResult.isHidden = false
+                
                 buttonLayer4Outlet.isEnabled = false
             }
             
