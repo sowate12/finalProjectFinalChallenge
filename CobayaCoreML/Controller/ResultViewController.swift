@@ -119,11 +119,22 @@ class ResultViewController: UIViewController {
         return textView
     }()
     
+    let gambarMoreOrLessButton: UIView = {
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "arrowDown"))
+        
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    let gambarMoreOrLessButton2: UIView = {
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "arrowUp"))
+        
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     let showMoreOrLessButton: UIButton = {
         let button = UIButton()
-
-        var image = UIImage(named: "arrowDown") as UIImage?
-        button.setImage(image, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor.clear
         button.addTarget(self, action: #selector(buttonShowMore), for: .touchUpInside)
@@ -132,9 +143,6 @@ class ResultViewController: UIViewController {
     
     let showMoreOrLessButton2: UIButton = {
         let button = UIButton()
-        
-        var image = UIImage(named: "arrowUp") as UIImage?
-        button.setImage(image, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor.clear
         button.addTarget(self, action: #selector(buttonShowLess), for: .touchUpInside)
@@ -155,6 +163,8 @@ class ResultViewController: UIViewController {
             bottomWhiteView.isHidden = false
             showMoreOrLessButton.isHidden = true
             showMoreOrLessButton2.isHidden = false
+            gambarMoreOrLessButton.isHidden = true
+            gambarMoreOrLessButton2.isHidden = false
             let xBottomWhiteView = bottomWhiteView.frame.origin.x
             let yBottomWhiteView = self.view.center.y
             bottomWhiteView.frame.origin = CGPoint(x: xBottomWhiteView, y: yBottomWhiteView - 70)
@@ -188,6 +198,8 @@ class ResultViewController: UIViewController {
             bottomWhiteView.isHidden = true
             showMoreOrLessButton2.isHidden = true
             showMoreOrLessButton.isHidden = false
+            gambarMoreOrLessButton2.isHidden = true
+            gambarMoreOrLessButton.isHidden = false
             moreDetailedIsTrue = false
         }
     }
@@ -264,16 +276,45 @@ class ResultViewController: UIViewController {
         
         hasilScan()
         setupView()
+        animateMoreButton()
+        animateLessButton()
         
         setupLayout()
         bottomWhiteView.isHidden = true
+        gambarMoreOrLessButton2.isHidden = true
         showMoreOrLessButton2.isHidden = true
     }
+    
+    
+    func animateMoreButton(){
+        UIButton.animate(withDuration: 1, animations:{
+            
+            self.gambarMoreOrLessButton.frame.origin.y -= 10
+        }){_ in
+            UIButton.animateKeyframes(withDuration: 1, delay: 0.25, options: [.autoreverse, .repeat], animations: {
+                self.gambarMoreOrLessButton.frame.origin.y += 10
+            })
+        }
+    }
+    
+    func animateLessButton(){
+        UIButton.animate(withDuration: 1, animations:{
+            
+            self.gambarMoreOrLessButton2.frame.origin.y -= 10
+        }){_ in
+            UIButton.animateKeyframes(withDuration: 1, delay: 0.25, options: [.autoreverse, .repeat], animations: {
+                self.gambarMoreOrLessButton2.frame.origin.y += 10
+            })
+        }
+    }
+
     
     func setupView(){
         view.addSubview(bottomWhiteView)
         view.addSubview(topGreenView)
         view.addSubview(viewGabungan)
+        view.addSubview(gambarMoreOrLessButton)
+        view.addSubview(gambarMoreOrLessButton2)
         viewGabungan.addSubview(yourResultIsText)
         viewGabungan.addSubview(nilaiOutlet2)
         viewGabungan.addSubview(garisLabel)
@@ -328,8 +369,13 @@ class ResultViewController: UIViewController {
         showMoreOrLessButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 130).isActive = true
         showMoreOrLessButton.heightAnchor.constraint(equalToConstant: 30 ).isActive = true
         showMoreOrLessButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        showMoreOrLessButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 130).isActive = true
-        showMoreOrLessButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -130).isActive = true
+        showMoreOrLessButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        //GambarMoreButton
+        gambarMoreOrLessButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 130).isActive = true
+        gambarMoreOrLessButton.heightAnchor.constraint(equalToConstant: 25 ).isActive = true
+        gambarMoreOrLessButton.widthAnchor.constraint(equalToConstant: 65).isActive = true
+        gambarMoreOrLessButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         //NilaiOutlet2
         nilaiOutlet2.topAnchor.constraint(equalTo: yourResultIsText.topAnchor, constant: 55).isActive = true
@@ -393,11 +439,17 @@ class ResultViewController: UIViewController {
 
         
         //ShowMoreOrLessButton2
-        showMoreOrLessButton2.topAnchor.constraint(equalTo: showMoreOrLessButton.bottomAnchor, constant : 90).isActive = true
+        showMoreOrLessButton2.topAnchor.constraint(equalTo: showMoreOrLessButton.bottomAnchor, constant : 85).isActive = true
         showMoreOrLessButton2.heightAnchor.constraint(equalToConstant: 30 ).isActive = true
         showMoreOrLessButton2.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        showMoreOrLessButton2.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 130).isActive = true
-        showMoreOrLessButton2.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -130).isActive = true
+        showMoreOrLessButton2.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+
+        
+        //GambarLessButton
+        gambarMoreOrLessButton2.topAnchor.constraint(equalTo: showMoreOrLessButton.bottomAnchor, constant : 85).isActive = true
+        gambarMoreOrLessButton2.heightAnchor.constraint(equalToConstant: 25 ).isActive = true
+        gambarMoreOrLessButton2.widthAnchor.constraint(equalToConstant: 65).isActive = true
+        gambarMoreOrLessButton2.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
     
     func hasilScan() {
