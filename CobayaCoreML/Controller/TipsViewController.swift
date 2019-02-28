@@ -24,7 +24,6 @@ class TipsViewController: UIViewController {
     
             //halaman 1
             @IBOutlet weak var quickBrief: UIImageView!
-            @IBOutlet weak var skip: UIImageView!
             @IBOutlet weak var tapToContinue: UILabel!
             
             //halaman 2
@@ -77,8 +76,8 @@ class TipsViewController: UIViewController {
             @IBOutlet weak var color: UILabel!
             @IBOutlet weak var excellent: UILabel!
             @IBOutlet weak var texture: UILabel!
-            @IBOutlet weak var good: UILabel!
-            @IBOutlet weak var theAppleDeiliciously: UILabel!
+            @IBOutlet weak var tipsExpand: UILabel!
+            @IBOutlet weak var tipsDescription: UILabel!
             @IBOutlet weak var arrowUp: UIImageView!
             @IBOutlet weak var youCanExpand: UILabel!
             @IBOutlet weak var greatEye2: UILabel!
@@ -90,7 +89,7 @@ class TipsViewController: UIViewController {
                 super.viewDidLoad()
                 quickBrief.isHidden = false
                 tapToContinue.isHidden = false
-                skip.isHidden = false
+                buttonSkipOutlet.isHidden = false
                 // Do any additional setup after loading the view.
             }
             
@@ -113,8 +112,8 @@ class TipsViewController: UIViewController {
                 color.isHidden = true
                 excellent.isHidden = true
                 texture.isHidden = true
-                good.isHidden = true
-                theAppleDeiliciously.isHidden = true
+                tipsExpand.isHidden = true
+                tipsDescription.isHidden = true
                 arrowUp.isHidden = true
                 youCanExpand.isHidden = true
                 greatEye2.isHidden = true
@@ -147,8 +146,8 @@ class TipsViewController: UIViewController {
                 color.isHidden = false
                 excellent.isHidden = false
                 texture.isHidden = false
-                good.isHidden = false
-                theAppleDeiliciously.isHidden = false
+                tipsExpand.isHidden = false
+                tipsDescription.isHidden = false
                 arrowUp.isHidden = false
                 youCanExpand.isHidden = false
                 greatEye2.isHidden = false
