@@ -12,8 +12,6 @@
 		08D1753E21E5F57300ABF40A /* BuahCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D1753D21E5F57300ABF40A /* BuahCell.swift */; };
 		08EA9D37221D4BAC0076AA35 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 08EA9D35221D4BAC0076AA35 /* Localizable.strings */; };
 		6B2D6CE921F708C000FFE806 /* NilaiSementara.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2D6CE821F708C000FFE806 /* NilaiSementara.swift */; };
-		6B87FF60221576CD00BF66D3 /* badResult.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B87FF5E221576CD00BF66D3 /* badResult.mp3 */; };
-		6B87FF61221576CD00BF66D3 /* goodResult.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B87FF5F221576CD00BF66D3 /* goodResult.mp3 */; };
 		6B9FD1262202E83C00445DEC /* Tomat.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6B9FD1252202E83C00445DEC /* Tomat.mlmodel */; };
 		6B9FD12A2202EB0E00445DEC /* Apel1.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6B9FD1292202EB0E00445DEC /* Apel1.mlmodel */; };
 		6B9FD12C2204351500445DEC /* ApelBaru.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 6B9FD12B2204351500445DEC /* ApelBaru.mlmodel */; };
@@ -30,6 +28,8 @@
 		991A6021213FCEC300FEAE4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 991A6020213FCEC300FEAE4B /* Assets.xcassets */; };
 		991A6024213FCEC300FEAE4B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 991A6022213FCEC300FEAE4B /* LaunchScreen.storyboard */; };
 		B070E4FC2202E26900D8C016 /* TipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B070E4FB2202E26900D8C016 /* TipsViewController.swift */; };
+		B0AF79042227CA3000603DAC /* goodResult.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B0AF79022227CA3000603DAC /* goodResult.mp3 */; };
+		B0AF79052227CA3000603DAC /* badResult.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B0AF79032227CA3000603DAC /* badResult.mp3 */; };
 		E6FCE89721F9A9690019908D /* AnimationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FCE89621F9A9690019908D /* AnimationHelper.swift */; };
 /* End PBXBuildFile section */
 
@@ -40,8 +40,6 @@
 		08EA9D36221D4BAC0076AA35 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = CobayaCoreML/Helper/CobayaCoreML/CobayaCoreML/en.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		08EA9D38221D4BB40076AA35 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = CobayaCoreML/Helper/CobayaCoreML/CobayaCoreML/id.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		6B2D6CE821F708C000FFE806 /* NilaiSementara.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NilaiSementara.swift; sourceTree = "<group>"; };
-		6B87FF5E221576CD00BF66D3 /* badResult.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = badResult.mp3; path = CobayaCoreML/Helper/badResult.mp3; sourceTree = SOURCE_ROOT; };
-		6B87FF5F221576CD00BF66D3 /* goodResult.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = goodResult.mp3; path = CobayaCoreML/Helper/goodResult.mp3; sourceTree = SOURCE_ROOT; };
 		6B9FD1252202E83C00445DEC /* Tomat.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Tomat.mlmodel; sourceTree = "<group>"; };
 		6B9FD1292202EB0E00445DEC /* Apel1.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Apel1.mlmodel; sourceTree = "<group>"; };
 		6B9FD12B2204351500445DEC /* ApelBaru.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ApelBaru.mlmodel; sourceTree = "<group>"; };
@@ -52,7 +50,7 @@
 		7CFD700822080F0600CA041D /* Biko_Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Biko_Bold.otf; sourceTree = "<group>"; };
 		7CFD700922080F0700CA041D /* Biko_Light-Restricted.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Biko_Light-Restricted.otf"; sourceTree = "<group>"; };
 		90CB01208168A185E1BC3B64 /* Pods-CobayaCoreML.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CobayaCoreML.release.xcconfig"; path = "Pods/Target Support Files/Pods-CobayaCoreML/Pods-CobayaCoreML.release.xcconfig"; sourceTree = "<group>"; };
-		991A6013213FCEC100FEAE4B /* CobayaCoreML.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CobayaCoreML.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		991A6013213FCEC100FEAE4B /* FruitScan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FruitScan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		991A6016213FCEC100FEAE4B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		991A6018213FCEC100FEAE4B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		991A601B213FCEC100FEAE4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -62,6 +60,8 @@
 		991A6025213FCEC300FEAE4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9DC25B9C9EDF411828422139 /* Pods-CobayaCoreML.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CobayaCoreML.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CobayaCoreML/Pods-CobayaCoreML.debug.xcconfig"; sourceTree = "<group>"; };
 		B070E4FB2202E26900D8C016 /* TipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsViewController.swift; sourceTree = "<group>"; };
+		B0AF79022227CA3000603DAC /* goodResult.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = goodResult.mp3; sourceTree = SOURCE_ROOT; };
+		B0AF79032227CA3000603DAC /* badResult.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = badResult.mp3; sourceTree = SOURCE_ROOT; };
 		E6FCE89621F9A9690019908D /* AnimationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -128,7 +128,7 @@
 		991A600A213FCEC100FEAE4B = {
 			isa = PBXGroup;
 			children = (
-				991A6015213FCEC100FEAE4B /* CobayaCoreML */,
+				991A6015213FCEC100FEAE4B /* FruitScan */,
 				991A6014213FCEC100FEAE4B /* Products */,
 				75E56375F50D4D516340BDE8 /* Pods */,
 				C2B2B14F5A3732FA04CBF1B3 /* Frameworks */,
@@ -138,14 +138,16 @@
 		991A6014213FCEC100FEAE4B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				991A6013213FCEC100FEAE4B /* CobayaCoreML.app */,
+				991A6013213FCEC100FEAE4B /* FruitScan.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		991A6015213FCEC100FEAE4B /* CobayaCoreML */ = {
+		991A6015213FCEC100FEAE4B /* FruitScan */ = {
 			isa = PBXGroup;
 			children = (
+				B0AF79032227CA3000603DAC /* badResult.mp3 */,
+				B0AF79022227CA3000603DAC /* goodResult.mp3 */,
 				E6FCE89321F9A9060019908D /* Helper */,
 				08D7773E21F1B4F50025CC0C /* Model */,
 				08D7773F21F1B5040025CC0C /* View */,
@@ -156,7 +158,7 @@
 				991A6025213FCEC300FEAE4B /* Info.plist */,
 				991A601D213FCEC100FEAE4B /* CobayaCoreML.xcdatamodeld */,
 			);
-			path = CobayaCoreML;
+			path = FruitScan;
 			sourceTree = "<group>";
 		};
 		C2B2B14F5A3732FA04CBF1B3 /* Frameworks */ = {
@@ -169,8 +171,6 @@
 		E6FCE89321F9A9060019908D /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				6B87FF5E221576CD00BF66D3 /* badResult.mp3 */,
-				6B87FF5F221576CD00BF66D3 /* goodResult.mp3 */,
 				7CFD700F22080F2D00CA041D /* Font */,
 				E6FCE89821F9AD8D0019908D /* ML Model */,
 				E6FCE89621F9A9690019908D /* AnimationHelper.swift */,
@@ -193,9 +193,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		991A6012213FCEC100FEAE4B /* CobayaCoreML */ = {
+		991A6012213FCEC100FEAE4B /* FruitScan */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 991A6028213FCEC300FEAE4B /* Build configuration list for PBXNativeTarget "CobayaCoreML" */;
+			buildConfigurationList = 991A6028213FCEC300FEAE4B /* Build configuration list for PBXNativeTarget "FruitScan" */;
 			buildPhases = (
 				AAA2D9B195FEA5B8E1A0C64A /* [CP] Check Pods Manifest.lock */,
 				991A600F213FCEC100FEAE4B /* Sources */,
@@ -206,9 +206,9 @@
 			);
 			dependencies = (
 			);
-			name = CobayaCoreML;
+			name = FruitScan;
 			productName = CobayaCoreML;
-			productReference = 991A6013213FCEC100FEAE4B /* CobayaCoreML.app */;
+			productReference = 991A6013213FCEC100FEAE4B /* FruitScan.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -226,7 +226,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 991A600E213FCEC100FEAE4B /* Build configuration list for PBXProject "CobayaCoreML" */;
+			buildConfigurationList = 991A600E213FCEC100FEAE4B /* Build configuration list for PBXProject "FruitScan" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -240,7 +240,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				991A6012213FCEC100FEAE4B /* CobayaCoreML */,
+				991A6012213FCEC100FEAE4B /* FruitScan */,
 			);
 		};
 /* End PBXProject section */
@@ -251,15 +251,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CFD700B22080F0700CA041D /* Biko_Black.otf in Resources */,
-				6B87FF60221576CD00BF66D3 /* badResult.mp3 in Resources */,
-				6B87FF61221576CD00BF66D3 /* goodResult.mp3 in Resources */,
 				7CFD700C22080F0700CA041D /* Biko_Bold.otf in Resources */,
+				B0AF79042227CA3000603DAC /* goodResult.mp3 in Resources */,
 				7CFD700D22080F0700CA041D /* Biko_Light-Restricted.otf in Resources */,
 				08EA9D37221D4BAC0076AA35 /* Localizable.strings in Resources */,
 				7C967D902208175F0069D17A /* Biko_Regular.otf in Resources */,
 				991A6024213FCEC300FEAE4B /* LaunchScreen.storyboard in Resources */,
 				991A6021213FCEC300FEAE4B /* Assets.xcassets in Resources */,
 				991A601C213FCEC100FEAE4B /* Main.storyboard in Resources */,
+				B0AF79052227CA3000603DAC /* badResult.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,7 +496,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		991A600E213FCEC100FEAE4B /* Build configuration list for PBXProject "CobayaCoreML" */ = {
+		991A600E213FCEC100FEAE4B /* Build configuration list for PBXProject "FruitScan" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				991A6026213FCEC300FEAE4B /* Debug */,
@@ -505,7 +505,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		991A6028213FCEC300FEAE4B /* Build configuration list for PBXNativeTarget "CobayaCoreML" */ = {
+		991A6028213FCEC300FEAE4B /* Build configuration list for PBXNativeTarget "FruitScan" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				991A6029213FCEC300FEAE4B /* Debug */,
