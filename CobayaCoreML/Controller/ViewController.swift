@@ -68,6 +68,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         let userDefaults = UserDefaults.standard
         userDefaults.set(true, forKey: "OnBoardingComplete")
         userDefaults.synchronize()
+        usesiri()
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.didEnterBackground), name: .UIApplicationDidEnterBackground, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.willEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
@@ -93,13 +94,13 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
 
         checkingResult()
         helperDelegate.addLoading()
-
-        if NilaiSementara.nilaiSementara == 0 {
-            viewReview.isHidden = true
-            buttonReview.isHidden = true
-            reviewNumber.isHidden = true
-            reviewLabel.isHidden = true
-        }
+//
+//        if NilaiSementara.nilaiSementara == 0 {
+//            viewReview.isHidden = true
+//            buttonReview.isHidden = true
+//            reviewNumber.isHidden = true
+//            reviewLabel.isHidden = true
+//        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -206,7 +207,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
             switch UIScreen.main.nativeBounds.height {
             case 2436:
                 viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
-                tutorialButton.frame = CGRect(x: view.frame.width + 100, y: 53, width: 30 , height: 30)
+                tutorialButton.frame = CGRect(x: view.frame.width - 100, y: 53, width: 30 , height: 30)
                 actionTorch.frame = CGRect(x: view.frame.width - 59, y: 53, width: 30 , height: 30)
             case 2688:
                 viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
