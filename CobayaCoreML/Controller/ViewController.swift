@@ -206,7 +206,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
             switch UIScreen.main.nativeBounds.height {
             case 2436:
                 viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
-                tutorialButton.frame = CGRect(x: view.frame.width + 100, y: 53, width: 30 , height: 30)
+                tutorialButton.frame = CGRect(x: view.frame.width - 100, y: 53, width: 30 , height: 30)
                 actionTorch.frame = CGRect(x: view.frame.width - 59, y: 53, width: 30 , height: 30)
             case 2688:
                 viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
