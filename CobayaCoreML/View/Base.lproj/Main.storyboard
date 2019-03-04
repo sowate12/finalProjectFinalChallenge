@@ -119,7 +119,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PBF-3a-CvQ" userLabel="Tutorial Button">
                                 <rect key="frame" x="277" y="44" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="tutorial 2"/>
+                                <state key="normal" title="Button" image="tutorial 2-1"/>
                                 <connections>
                                     <action selector="tutorialButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0OH-cx-Rtn"/>
                                     <segue destination="sjp-pV-Ueb" kind="show" identifier="tutorial" id="G5N-gs-A8B"/>
@@ -128,7 +128,7 @@
                             <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MpF-Wj-pYc" userLabel="Flash Button">
                                 <rect key="frame" x="319" y="44" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="icon shadow 6"/>
+                                <state key="normal" title="Button" image="antiflash"/>
                                 <connections>
                                     <action selector="actionTorchClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QVd-Ro-caa"/>
                                 </connections>
@@ -977,11 +977,12 @@
     </scenes>
     <resources>
         <image name="Skip button 20px sf pro light" width="500" height="150"/>
+        <image name="antiflash" width="500" height="500"/>
         <image name="apelSil2" width="500" height="497"/>
         <image name="arrow down" width="500" height="217"/>
         <image name="arrow up" width="500" height="239"/>
-        <image name="arrowDown" width="500" height="217"/>
-        <image name="arrowUp" width="500" height="239"/>
+        <image name="arrowDown" width="500" height="189"/>
+        <image name="arrowUp" width="500" height="189"/>
         <image name="bg polos kotak hijau" width="500" height="500"/>
         <image name="buat toni 1" width="217" height="45"/>
         <image name="button scan apel" width="500" height="500"/>
@@ -1001,5 +1002,6 @@
         <image name="small button jeruk revisi" width="500" height="500"/>
         <image name="small button tomat revisi" width="500" height="500"/>
         <image name="tutorial 2" width="500" height="500"/>
+        <image name="tutorial 2-1" width="500" height="500"/>
     </resources>
 </document>
