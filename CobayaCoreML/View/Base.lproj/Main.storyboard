@@ -29,6 +29,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="apelSil2" translatesAutoresizingMaskIntoConstraints="NO" id="Hv5-Wp-uPg">
+                                <rect key="frame" x="17" y="248" width="341" height="316"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ftd-FY-x1V">
                                 <rect key="frame" x="66" y="299" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -76,10 +80,6 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="apelSil2" translatesAutoresizingMaskIntoConstraints="NO" id="Hv5-Wp-uPg">
-                                <rect key="frame" x="26" y="205" width="323" height="316"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5U3-SM-8nn">
                                 <rect key="frame" x="225" y="109" width="150" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -120,14 +120,13 @@
                                 <rect key="frame" x="277" y="44" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="tutorial 2-1"/>
-                                <state key="normal" title="Button" image="tutorial 2"/>
                                 <connections>
                                     <action selector="tutorialButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0OH-cx-Rtn"/>
                                     <segue destination="sjp-pV-Ueb" kind="show" identifier="tutorial" id="G5N-gs-A8B"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MpF-Wj-pYc" userLabel="Flash Button">
-                                <rect key="frame" x="319" y="44" width="16" height="30"/>
+                                <rect key="frame" x="319" y="44" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="antiflash"/>
                                 <connections>
@@ -560,7 +559,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow down" translatesAutoresizingMaskIntoConstraints="NO" id="vz2-06-GV3">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowDown" translatesAutoresizingMaskIntoConstraints="NO" id="vz2-06-GV3">
                                 <rect key="frame" x="158.33333333333334" y="539.33333333333337" width="58.333333333333343" height="18.333333333333371"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="18.329999999999998" id="e2E-7T-fju"/>
@@ -672,7 +671,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow up" translatesAutoresizingMaskIntoConstraints="NO" id="b8G-Sn-zHH">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowUp" translatesAutoresizingMaskIntoConstraints="NO" id="b8G-Sn-zHH">
                                 <rect key="frame" x="158.66666666666666" y="617" width="58" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="18" id="7AS-JI-hCJ"/>
@@ -977,9 +976,8 @@
     </scenes>
     <resources>
         <image name="Skip button new" width="500" height="179"/>
+        <image name="antiflash" width="500" height="500"/>
         <image name="apelSil2" width="500" height="497"/>
-        <image name="arrow down" width="500" height="217"/>
-        <image name="arrow up" width="500" height="239"/>
         <image name="arrowDown" width="500" height="189"/>
         <image name="arrowUp" width="500" height="189"/>
         <image name="bg polos kotak hijau" width="500" height="500"/>
