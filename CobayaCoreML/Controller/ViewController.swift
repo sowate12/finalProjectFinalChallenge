@@ -21,6 +21,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     var jumlahBuah = ["","","apel","jeruk","tomato","",""]
     var results = ["result1", "result2", "result3", "result4", "result5"]
     var backgroundWarna = ["","","viginetteApel","viginetteJeruk","viginetteTomato","",""]
+    var gambarImage = ["animateHowTo0","animateHowTo1","animateHowTo2","animateHowTo3","animateHowTo4"]
     var hasShownResult = false
     var isFirstFrame : Bool = true
     var isChecking : Bool = false
@@ -39,6 +40,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     var loadingLabel : UILabel = UILabel()
     var checkingLabel : UILabel = UILabel()
     var scanningLabel : UILabel = UILabel()
+    var imageGIF : UIImageView = UIImageView()
     var imageViewTransform = CGAffineTransform.identity
     let helperDelegate = AnimationHelper()
     let hijau = UIColor(displayP3Red: 61/255, green: 130/255, blue: 56/255, alpha: 1)
@@ -68,13 +70,13 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         let userDefaults = UserDefaults.standard
         userDefaults.set(true, forKey: "OnBoardingComplete")
         userDefaults.synchronize()
+        usesiri()
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.didEnterBackground), name: .UIApplicationDidEnterBackground, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.willEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
 
         fruitTypeCollectionView.delegate = self
         fruitTypeCollectionView.dataSource = self
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -136,6 +138,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         setupColor()
         setScanningText()
         setBackground()
+        animateImage()
         view.addSubview(backgroundViginette)
         view.addSubview(fruitTypeCollectionView)
         view.addSubview(startButton)
@@ -151,6 +154,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         view.addSubview(scanningText)
         view.addSubview(scanView)
         view.addSubview(actionTorch)
+        view.addSubview(imageGIF)
 //        view.addSubview(buttonReview)
 //        view.addSubview(reviewNumber)
 //        view.addSubview(reviewLabel)
@@ -207,19 +211,19 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
             case 2436:
                 viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
                 tutorialButton.frame = CGRect(x: view.frame.width - 100, y: 53, width: 30 , height: 30)
-                actionTorch.frame = CGRect(x: view.frame.width - 59, y: 53, width: 30 , height: 30)
+                actionTorch.frame = CGRect(x: view.frame.width - 59, y: 53, width: 16 , height: 30)
             case 2688:
                 viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
                 tutorialButton.frame = CGRect(x: view.frame.width - 100, y: 53, width: 30 , height: 30)
-                actionTorch.frame = CGRect(x: view.frame.width - 59, y: 53, width: 30 , height: 30)
+                actionTorch.frame = CGRect(x: view.frame.width - 59, y: 53, width: 16 , height: 30)
             case 1792:
                 viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
                 tutorialButton.frame = CGRect(x: view.frame.width - 100, y: 53, width: 30 , height: 30)
-                actionTorch.frame = CGRect(x: view.frame.width - 59, y: 53, width: 30 , height: 30)
+                actionTorch.frame = CGRect(x: view.frame.width - 59, y: 53, width: 16 , height: 30)
             default:
                 viewReview.frame = CGRect(x: view.frame.width - 150, y: 79, width: 150, height: 60)
                 tutorialButton.frame = CGRect(x: view.frame.width - 100, y: 33, width: 30 , height: 30)
-                actionTorch.frame = CGRect(x: view.frame.width - 59, y: 33, width: 30 , height: 30)
+                actionTorch.frame = CGRect(x: view.frame.width - 59, y: 33, width: 16 , height: 30)
             }
         }
         buttonReview.layer.masksToBounds = true
@@ -239,8 +243,9 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     func setScanningText(){
         let x = view.frame.width / 2
         let y = view.frame.height / 2
-        scanningText.frame = CGRect(x: x - 75, y: y - 125, width: 150, height: 125)
-        scanningText.font = UIFont.boldSystemFont(ofSize: 20)
+        scanningText.frame = CGRect(x: x - 75, y: y - 10
+            , width: 150, height: 125)
+        scanningText.font = UIFont.boldSystemFont(ofSize: 14)
         scanningText.textAlignment = .center
         scanningText.layer.masksToBounds = true
         scanningText.textColor = .white
@@ -275,6 +280,26 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         namaBuah.layer.shadowOffset = CGSize(width: 1, height: 2)
         namaBuah.layer.masksToBounds = false
         namaBuah.text = "\(namaNamaBuah[2])"
+    }
+    
+    func animateImage(){
+        let x = view.frame.width / 2
+        let y = view.frame.height
+        imageGIF.frame = CGRect(x: x - 95, y: y / 2 - 165 , width: 190 , height: 190)
+        imageGIF.image = UIImage(named: "\(gambarImage[0])")
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
+            var image: UIImage {
+                switch self.imageGIF.image {
+                case UIImage(named: "\(self.gambarImage[0])"):       return UIImage(named: "\(self.gambarImage[1])")!
+                case UIImage(named: "\(self.gambarImage[1])"):      return UIImage(named: "\(self.gambarImage[2])")!
+                case UIImage(named: "\(self.gambarImage[2])"):     return UIImage(named: "\(self.gambarImage[3])")!
+                case UIImage(named: "\(self.gambarImage[3])"):     return UIImage(named: "\(self.gambarImage[4])")!
+                case UIImage(named: "\(self.gambarImage[4])"):     return UIImage(named: "\(self.gambarImage[0])")!
+                default:                      return UIImage(named: "\(self.gambarImage[0])")!
+                }
+            }
+            self.imageGIF.image = image
+        }
     }
     
     func setupIcon(){
@@ -413,6 +438,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         reviewNumber.isHidden = true
         reviewLabel.isHidden = true
         tutorialButton.isHidden = true
+        imageGIF.isHidden = true
         scanView.isUserInteractionEnabled = false
     }
     
@@ -429,6 +455,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         startButton.isHidden = false
         tutorialButton.isHidden = false
         scanView.isUserInteractionEnabled = true
+        imageGIF.isHidden = false
         if NilaiSementara.nilaiSementara != 0 {
             viewReview.isHidden = false
             buttonReview.isHidden = false
@@ -464,6 +491,15 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         moveController()
     }
     
+    
+    func setBackground(){
+        backgroundViginette.frame = CGRect(x: 0, y: view.frame.height - 204, width: view.frame.width, height: 204)
+        backgroundViginette.image = UIImage(named: "\(backgroundWarna[2])")
+        UIView.animate(withDuration: 2, animations: {
+            self.backgroundViginette.alpha = 0
+        })
+    }
+    
     @IBAction func tutorialButtonAction(_ sender: Any) {
         performSegue(withIdentifier: "tutorial", sender: self)
     }
@@ -477,8 +513,10 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
                 try device.lockForConfiguration()
                 if isTorch == true {
                     device.torchMode = .on
+                    actionTorch.setImage(UIImage(named: "flashOn"), for: .normal)
                 } else {
                     device.torchMode = .off
+                    actionTorch.setImage(UIImage(named: "antiflash"), for: .normal)
                 }
                 device.unlockForConfiguration()
             } catch {
@@ -593,15 +631,6 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
         cell?.imageBuahSelected.image = UIImage(named: "\(jumlahBuah[indexPath.row])Selected")
         return cell!
     }
-    
-    func setBackground(){
-        backgroundViginette.frame = CGRect(x: 0, y: view.frame.height - 204, width: view.frame.width, height: 204)
-        backgroundViginette.image = UIImage(named: "\(backgroundWarna[2])")
-            UIView.animate(withDuration: 2, animations: {
-                self.backgroundViginette.alpha = 0
-            })
-    }
-
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         helperDelegate.hapticMedium()
@@ -636,6 +665,7 @@ extension ViewController : UICollectionViewDataSource,UICollectionViewDelegate {
 
 // MARK: Scroll View
 extension ViewController: UIScrollViewDelegate {
+    
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         scanningText.isHidden = false
         namaBuah.isHidden = false
@@ -706,31 +736,6 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         let dataOutput = AVCaptureVideoDataOutput()
         dataOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "videoQueue"))
         captureSession.addOutput(dataOutput)
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touchPoint = touches.first {
-            let x = touchPoint.location(in: view).y / view.frame.height
-            let y = 1.0 - touchPoint.location(in: view).x / view.frame.width
-            let focusPoint = CGPoint(x: x, y: y)
-            
-            if let device = AVCaptureDevice.default(for: .video) {
-                do {
-                    try device.lockForConfiguration()
-                    
-                    device.focusPointOfInterest = focusPoint
-                    device.focusMode = .autoFocus
-                    device.focusMode = .continuousAutoFocus
-                    //device.focusMode = .locked
-                    device.exposurePointOfInterest = focusPoint
-                    device.exposureMode = AVCaptureDevice.ExposureMode.continuousAutoExposure
-                    device.unlockForConfiguration()
-                }
-                catch {
-                    // just ignore
-                }
-            }
-        }
     }
     
     // MARK: Camera Output
@@ -813,6 +818,31 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                     self.nilaiCounter += 1
                 }
                 try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([requestTomat])
+            }
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touchPoint = touches.first {
+            let x = touchPoint.location(in: view).y / view.frame.height
+            let y = 1.0 - touchPoint.location(in: view).x / view.frame.width
+            let focusPoint = CGPoint(x: x, y: y)
+            
+            if let device = AVCaptureDevice.default(for: .video) {
+                do {
+                    try device.lockForConfiguration()
+                    
+                    device.focusPointOfInterest = focusPoint
+                    device.focusMode = .autoFocus
+                    device.focusMode = .continuousAutoFocus
+                    //device.focusMode = .locked
+                    device.exposurePointOfInterest = focusPoint
+                    device.exposureMode = AVCaptureDevice.ExposureMode.continuousAutoExposure
+                    device.unlockForConfiguration()
+                }
+                catch {
+                    // just ignore
+                }
             }
         }
     }
