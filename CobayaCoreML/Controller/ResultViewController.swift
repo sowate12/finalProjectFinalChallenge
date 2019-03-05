@@ -464,7 +464,7 @@ class ResultViewController: UIViewController {
         
         if NilaiSementara.nilaiSementara >= 9 && NilaiSementara.nilaiSementara <= 10{
             topGreenView.backgroundColor = hijau
-            qualityLabel.text = NSLocalizedString("We evaluate this fruit as brilliant", comment: "")
+            qualityLabel.text = NSLocalizedString("Great Eye!", comment: "")
             colorLabel.text = NSLocalizedString("Excellent!", comment: "")
             colorLabel.textColor = hijau
             descriptionLabel.text = fruitDescription[4]
@@ -479,7 +479,7 @@ class ResultViewController: UIViewController {
             
         }else if NilaiSementara.nilaiSementara >= 8 && NilaiSementara.nilaiSementara < 9 {
             topGreenView.backgroundColor = hijauTua
-            qualityLabel.text = NSLocalizedString("We evaluate this fruit as good", comment: "")
+            qualityLabel.text = NSLocalizedString("Sweet", comment: "")
             colorLabel.text = NSLocalizedString("Good!", comment: "")
             colorLabel.textColor = hijauTua
             descriptionLabel.text = fruitDescription[3]
@@ -487,7 +487,7 @@ class ResultViewController: UIViewController {
             
         }else if NilaiSementara.nilaiSementara >= 7 && NilaiSementara.nilaiSementara < 8 {
             topGreenView.backgroundColor = orangeKuning
-            qualityLabel.text = NSLocalizedString("We evaluate this fruit as average", comment: "")
+            qualityLabel.text = NSLocalizedString("Okay", comment: "")
             colorLabel.text = NSLocalizedString("Average", comment: "")
             colorLabel.textColor = orangeKuning
             descriptionLabel.text = fruitDescription[2]
@@ -495,14 +495,14 @@ class ResultViewController: UIViewController {
             
         }else if NilaiSementara.nilaiSementara >= 5 && NilaiSementara.nilaiSementara < 7 {
             topGreenView.backgroundColor = orange
-            qualityLabel.text = NSLocalizedString("We evaluate this fruit as poor", comment: "")
+            qualityLabel.text = NSLocalizedString("Almost There...", comment: "")
             colorLabel.text = NSLocalizedString("Not Good", comment: "")
             colorLabel.textColor = orange
             descriptionLabel.text = fruitDescription[1]
             tipsLabel.text = tips.randomElement()
         }else {
             topGreenView.backgroundColor = merah
-            qualityLabel.text = NSLocalizedString("We evaluate this fruit as very poor", comment: "")
+            qualityLabel.text = NSLocalizedString("Meh.", comment: "")
             colorLabel.text = NSLocalizedString("Poor", comment: "")
             colorLabel.textColor = merah
             descriptionLabel.text = fruitDescription[0]
