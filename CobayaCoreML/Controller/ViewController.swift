@@ -30,6 +30,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     var hasScanned = false
     var hasLoaded = false
     var timer = Timer()
+    var timer1 = Timer()
     let generator = UINotificationFeedbackGenerator()
     var dummyImage : UIImageView = UIImageView()
     var namaBuah : UILabel = UILabel()
@@ -42,6 +43,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     var scanningLabel : UILabel = UILabel()
     var imageGIF : UIImageView = UIImageView()
     var imageViewTransform = CGAffineTransform.identity
+    var silhouetteTransform = CGAffineTransform.identity
     let helperDelegate = AnimationHelper()
     let hijau = UIColor(displayP3Red: 61/255, green: 130/255, blue: 56/255, alpha: 1)
     let hijauTua = UIColor(displayP3Red: 113/255, green: 136/255, blue: 33/255, alpha: 1)
@@ -77,6 +79,9 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
 
         fruitTypeCollectionView.delegate = self
         fruitTypeCollectionView.dataSource = self
+        
+        setupView()
+        checkingResult()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,12 +93,12 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         silhouetteImage.transform = imageViewTransform
         silhouetteImage.alpha = 1.0
         scanningText.alpha = 1.0
-        setupView()
+        
         animateSilhouette()
+        animateImage()
         setBackground()
         soundPlay()
 
-        checkingResult()
         helperDelegate.addLoading()
 
         if NilaiSementara.nilaiSementara == 0 {
@@ -106,6 +111,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         imageViewTransform = silhouetteImage.layer.presentation()?.affineTransform() ?? .identity
+        self.timer.invalidate()
+        timer1.invalidate()
     }
     
     
@@ -115,6 +122,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @objc func didEnterBackground(){
         imageViewTransform = silhouetteImage.layer.presentation()?.affineTransform() ?? .identity
+        timer.invalidate()
+        timer1.invalidate()
     }
     
     @objc func willEnterForeground(){
@@ -122,6 +131,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         silhouetteImage.alpha = 1.0
         scanningText.alpha = 1.0
         animateSilhouette()
+        animateImage()
     }
 
     // MARK: Setup the View
@@ -138,7 +148,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         setupColor()
         setScanningText()
         setBackground()
-        animateImage()
         view.addSubview(backgroundViginette)
         view.addSubview(fruitTypeCollectionView)
         view.addSubview(startButton)
@@ -211,19 +220,19 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
             case 2436:
                 viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
                 tutorialButton.frame = CGRect(x: view.frame.width - 100, y: 53, width: 30 , height: 30)
-                actionTorch.frame = CGRect(x: view.frame.width - 59, y: 53, width: 16 , height: 30)
+                actionTorch.frame = CGRect(x: view.frame.width - 59, y: 53, width: 30 , height: 30)
             case 2688:
                 viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
                 tutorialButton.frame = CGRect(x: view.frame.width - 100, y: 53, width: 30 , height: 30)
-                actionTorch.frame = CGRect(x: view.frame.width - 59, y: 53, width: 16 , height: 30)
+                actionTorch.frame = CGRect(x: view.frame.width - 59, y: 53, width: 30 , height: 30)
             case 1792:
                 viewReview.frame = CGRect(x: view.frame.width - 150, y: 109, width: 150, height: 60)
                 tutorialButton.frame = CGRect(x: view.frame.width - 100, y: 53, width: 30 , height: 30)
-                actionTorch.frame = CGRect(x: view.frame.width - 59, y: 53, width: 16 , height: 30)
+                actionTorch.frame = CGRect(x: view.frame.width - 59, y: 53, width: 30 , height: 30)
             default:
                 viewReview.frame = CGRect(x: view.frame.width - 150, y: 79, width: 150, height: 60)
                 tutorialButton.frame = CGRect(x: view.frame.width - 100, y: 33, width: 30 , height: 30)
-                actionTorch.frame = CGRect(x: view.frame.width - 59, y: 33, width: 16 , height: 30)
+                actionTorch.frame = CGRect(x: view.frame.width - 59, y: 33, width: 30 , height: 30)
             }
         }
         buttonReview.layer.masksToBounds = true
@@ -287,18 +296,21 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         let y = view.frame.height
         imageGIF.frame = CGRect(x: x - 95, y: y / 2 - 165 , width: 190 , height: 190)
         imageGIF.image = UIImage(named: "\(gambarImage[0])")
-        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
-            var image: UIImage {
-                switch self.imageGIF.image {
-                case UIImage(named: "\(self.gambarImage[0])"):       return UIImage(named: "\(self.gambarImage[1])")!
-                case UIImage(named: "\(self.gambarImage[1])"):      return UIImage(named: "\(self.gambarImage[2])")!
-                case UIImage(named: "\(self.gambarImage[2])"):     return UIImage(named: "\(self.gambarImage[3])")!
-                case UIImage(named: "\(self.gambarImage[3])"):     return UIImage(named: "\(self.gambarImage[4])")!
-                case UIImage(named: "\(self.gambarImage[4])"):     return UIImage(named: "\(self.gambarImage[0])")!
-                default:                      return UIImage(named: "\(self.gambarImage[0])")!
+        DispatchQueue.main.async {
+            self.timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
+                var image: UIImage {
+                    switch self.imageGIF.image {
+                    case UIImage(named: "\(self.gambarImage[0])"):       return UIImage(named: "\(self.gambarImage[1])")!
+                    case UIImage(named: "\(self.gambarImage[1])"):      return UIImage(named: "\(self.gambarImage[2])")!
+                    case UIImage(named: "\(self.gambarImage[2])"):     return UIImage(named: "\(self.gambarImage[3])")!
+                    case UIImage(named: "\(self.gambarImage[3])"):     return UIImage(named: "\(self.gambarImage[4])")!
+                    case UIImage(named: "\(self.gambarImage[4])"):     return UIImage(named: "\(self.gambarImage[0])")!
+                    default:
+                        return UIImage(named: "\(self.gambarImage[0])")!
+                    }
                 }
+                self.imageGIF.image = image
             }
-            self.imageGIF.image = image
         }
     }
     
@@ -329,17 +341,18 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         checkingLabel.isHidden = true
         checkingLabel.font = UIFont.boldSystemFont(ofSize: 20)
         checkingLabel.text = NSLocalizedString("\(labelChecking).", comment: "")
-        
-        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
-            var string: String {
-                switch self.checkingLabel.text {
-                case "\(labelChecking).":       return "\(labelChecking).."
-                case "\(labelChecking)..":      return "\(labelChecking)..."
-                case "\(labelChecking)...":     return "\(labelChecking)."
-                default:                      return "\(labelChecking)"
+        DispatchQueue.main.async {
+            self.timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
+                var string: String {
+                    switch self.checkingLabel.text {
+                    case "\(labelChecking).":       return "\(labelChecking).."
+                    case "\(labelChecking)..":      return "\(labelChecking)..."
+                    case "\(labelChecking)...":     return "\(labelChecking)."
+                    default:                      return "\(labelChecking)"
+                    }
                 }
+                self.checkingLabel.text = string
             }
-            self.checkingLabel.text = string
         }
         checkingLabel.textColor = .white
         checkingLabel.frame = CGRect(x: view.frame.width / 2 - 100, y: view.frame.height / 2 - 110, width: 200, height: 100)
@@ -375,16 +388,18 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         scanningLabel.font = UIFont.boldSystemFont(ofSize: 20)
         scanningLabel.text = NSLocalizedString("\(labelScanning).", comment: "")
         
-        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
-            var string: String {
-                switch self.scanningLabel.text {
-                case "\(labelScanning).":       return "\(labelScanning).."
-                case "\(labelScanning)..":      return "\(labelScanning)..."
-                case "\(labelScanning)...":     return "\(labelScanning)."
-                default:                      return "\(labelScanning)"
+        DispatchQueue.main.async {
+            self.timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { (timer) in
+                var string: String {
+                    switch self.scanningLabel.text {
+                    case "\(labelScanning).":       return "\(labelScanning).."
+                    case "\(labelScanning)..":      return "\(labelScanning)..."
+                    case "\(labelScanning)...":     return "\(labelScanning)."
+                    default:                      return "\(labelScanning)"
+                    }
                 }
+                self.scanningLabel.text = string
             }
-            self.scanningLabel.text = string
         }
         scanningLabel.textColor = .white
         scanningLabel.numberOfLines = 2
@@ -502,6 +517,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBAction func tutorialButtonAction(_ sender: Any) {
         performSegue(withIdentifier: "tutorial", sender: self)
+        timer.invalidate()
+        timer1.invalidate()
     }
     
     /// Flashlight
@@ -551,8 +568,10 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func checkingResult(){
-        self.timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(showResult), userInfo: nil, repeats: true)
-        self.timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(voiceO), userInfo: nil, repeats: true)
+        DispatchQueue.main.async {
+            self.timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.showResult), userInfo: nil, repeats: true)
+            self.timer1 = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.voiceO), userInfo: nil, repeats: true)
+        }
     }
     
     /// Show the result if has not shown result
@@ -586,6 +605,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     /// Move view controller
     func moveController(){
         let popUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ResultView") as! ResultViewController
+        timer.invalidate()
+        timer1.invalidate()
         self.addChildViewController(popUpVC)
         popUpVC.view.frame = self.view.frame
         self.view.addSubview(popUpVC.view)
