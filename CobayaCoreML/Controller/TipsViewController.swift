@@ -104,7 +104,7 @@ class TipsViewController: UIViewController {
             @IBAction func buttonLayer8(_ sender: Any) {
                 ijo.isHidden = true
                 putih.isHidden = true
-                silang2.isHidden = true
+//                silang2.isHidden = true
                 yourResultIs2.isHidden = true
                 sepuluhGede2.isHidden = true
                 atau2.isHidden = true
@@ -128,7 +128,7 @@ class TipsViewController: UIViewController {
             @IBAction func buttonLayer7(_ sender: Any) {
                 bgPolosKotakHijau.isHidden = true
                 yourResultIs.isHidden = true
-                silangBgIjo.isHidden = true
+//                silangBgIjo.isHidden = true
                 sepuluhGede.isHidden = true
                 atau.isHidden = true
                 sepuluhKecil.isHidden = true
@@ -138,7 +138,7 @@ class TipsViewController: UIViewController {
                 
                 ijo.isHidden = false
                 putih.isHidden = false
-                silang2.isHidden = false
+//                silang2.isHidden = false
                 yourResultIs2.isHidden = false
                 sepuluhGede2.isHidden = false
                 atau2.isHidden = false
@@ -163,7 +163,7 @@ class TipsViewController: UIViewController {
                 
                 bgPolosKotakHijau.isHidden = false
                 yourResultIs.isHidden = false
-                silangBgIjo.isHidden = false
+//                silangBgIjo.isHidden = false
                 sepuluhGede.isHidden = false
                 atau.isHidden = false
                 sepuluhKecil.isHidden = false
@@ -227,7 +227,7 @@ class TipsViewController: UIViewController {
             @IBAction func buttonLayer1(_ sender: Any) {
                 quickBrief.isHidden = true
                 tapToContinue.isHidden = true
-                buttonSkipOutlet.isHidden = true
+//                buttonSkipOutlet.isHidden = true
                 
                 buttonLayer1Outlet.isEnabled = false
                 siluet2.isHidden = false
