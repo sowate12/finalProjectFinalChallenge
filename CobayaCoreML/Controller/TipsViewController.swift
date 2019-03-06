@@ -94,11 +94,22 @@ class TipsViewController: UIViewController {
             }
             
             @IBAction func skipButton(_ sender: Any) {
-                self.dismiss(animated: true, completion: nil)
+                
+                let userDefaults = UserDefaults.standard
+                if userDefaults.bool(forKey: "OnBoardingComplete") {
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    performSegue(withIdentifier: "toMain", sender: self)
+                }
             }
             
             @IBAction func buttonLayer9(_ sender: Any) {
-                self.dismiss(animated: true, completion: nil)
+                let userDefaults = UserDefaults.standard
+                if userDefaults.bool(forKey: "OnBoardingComplete") {
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    performSegue(withIdentifier: "toMain", sender: self)
+                }
             }
             
             @IBAction func buttonLayer8(_ sender: Any) {

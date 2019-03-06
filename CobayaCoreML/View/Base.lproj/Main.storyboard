@@ -532,7 +532,7 @@
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="if5-cc-8DJ" userLabel="10.0 gede">
-                                <rect key="frame" x="34" y="361" width="161" height="90"/>
+                                <rect key="frame" x="34.333333333333329" y="361" width="160.66666666666669" height="90"/>
                                 <fontDescription key="fontDescription" name="Biko-Bold" family="Biko" pointSize="90"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -548,13 +548,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPC-5r-pWM" userLabel="10.0 kecil">
-                                <rect key="frame" x="232" y="391" width="89" height="50"/>
+                                <rect key="frame" x="232.00000000000003" y="391" width="89.333333333333343" height="50"/>
                                 <fontDescription key="fontDescription" name="Biko-Bold" family="Biko" pointSize="50"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Great Eye!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="grG-TO-rTf">
-                                <rect key="frame" x="118.66666666666669" y="467" width="138" height="30"/>
+                                <rect key="frame" x="118.66666666666667" y="467" width="137.66666666666663" height="30"/>
                                 <fontDescription key="fontDescription" name="Biko" family="Biko" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -608,7 +608,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTW-my-21V" userLabel="10.0 kecil 2">
-                                <rect key="frame" x="230.66666666666663" y="166" width="71" height="40"/>
+                                <rect key="frame" x="230.33333333333334" y="166" width="71.333333333333343" height="40"/>
                                 <fontDescription key="fontDescription" name="Biko-Bold" family="Biko" pointSize="40"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -620,7 +620,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26N-5H-VOS" userLabel="/ 2">
-                                <rect key="frame" x="201" y="144" width="27.666666666666657" height="70"/>
+                                <rect key="frame" x="201" y="144" width="27.333333333333343" height="70"/>
                                 <fontDescription key="fontDescription" name="Biko-Light" family="Biko" pointSize="70"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -699,7 +699,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <connections>
                                     <action selector="buttonLayer9:" destination="sjp-pV-Ueb" eventType="touchUpInside" id="pgS-96-Emh"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="Wgp-d4-4q3"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zsC-SG-IZ7" userLabel="Button Layer 8">
@@ -967,6 +966,7 @@
                         <outlet property="youCanExpand" destination="iRU-de-32c" id="HmM-lT-WhQ"/>
                         <outlet property="yourResultIs" destination="YYd-Et-l9l" id="hzK-6d-ewV"/>
                         <outlet property="yourResultIs2" destination="IB3-2I-8na" id="8Wm-7b-gp5"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="toMain" id="3Pe-Mj-FdQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xNb-gc-Cji" userLabel="First Responder" sceneMemberID="firstResponder"/>
