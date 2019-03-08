@@ -18,8 +18,9 @@ class ResultViewController: UIViewController {
     let orange = UIColor(displayP3Red: 229/255, green: 113/255, blue: 28/255, alpha: 1)
     let merah = UIColor(displayP3Red: 212/255, green: 32/255, blue: 36/255, alpha: 1)
     var tips : [String] = [NSLocalizedString("Check the texture of the fruit again, make sure that it's firm ", comment: ""),NSLocalizedString("Don't forget to check the smell too.", comment: ""),NSLocalizedString("A sweet smell from the fruit indicates it has sweet flavour", comment: ""),NSLocalizedString("A sweet smell from the fruit indicates it has sweet flavour", comment: ""),NSLocalizedString("If the fruit is starting to get tender, it means it's starting to go bad. Better eat that fast!", comment: ""),NSLocalizedString("If the fruit smells good, time for you to grab the fruit!", comment: "")]
+    
     var appleDescription : [String] =
-        [NSLocalizedString("We detect that the fruit color is dull, try to choose another apple ", comment: ""),NSLocalizedString("We detect that the fruit color is a bit dull, try to choose another apple", comment: ""),NSLocalizedString("We detect that the fruit is a bit fresh and the color is fine", comment: ""),NSLocalizedString("We detect that the fruit is fresh and color are good", comment: ""),NSLocalizedString("We detect that the fruit is in prime condition, ripe and the color looks good.", comment: "")
+        [NSLocalizedString("We detect that this apple's color is dull, try to choose another apple ", comment: ""),NSLocalizedString("We detect that this apple's color is a bit dull, try to choose another apple", comment: ""),NSLocalizedString("We detect that this apple looks fresh enough and the color is fine", comment: ""),NSLocalizedString("We detect that the apple is fresh and color is good", comment: ""),NSLocalizedString("We detect that the apple is in prime condition, ripe and the color looks good.", comment: "")
          ]
     var orangeDescription : [String] =
         [NSLocalizedString("We detect that the fruit color is dull, try to choose another orange ", comment: ""),NSLocalizedString("We detect that the fruit color is a bit dull, try to choose another orange", comment: ""),NSLocalizedString("We detect that the fruit is a bit fresh and the color is fine", comment: ""),NSLocalizedString("We detect that the fruit is fresh and color are good", comment: ""),NSLocalizedString("We detect that the fruit is in prime condition, ripe and the color looks good.", comment: "")
@@ -28,7 +29,6 @@ class ResultViewController: UIViewController {
     var tomatoDescription : [String] =
         [NSLocalizedString("We detect that the fruit color is dull, try to choose another tomato ", comment: ""),NSLocalizedString("We detect that the fruit color is a bit dull, try to choose another tomato", comment: ""),NSLocalizedString("We detect that the fruit is a bit fresh and the color is fine", comment: ""),NSLocalizedString("We detect that the fruit is fresh and color are good", comment: ""),NSLocalizedString("We detect that the fruit is in prime condition, ripe and the color looks good.", comment: "")
     ]
-
     
     let topGreenView: UIView = {
         let imageView = UIView()
@@ -117,7 +117,7 @@ class ResultViewController: UIViewController {
         textView.textAlignment = .center
         textView.textColor = UIColor.white
         textView.backgroundColor = UIColor.clear
-        textView.font = UIFont(name: "Biko", size: 30)
+        textView.font = UIFont(name: "Biko", size: 22)
         return textView
     }()
     
@@ -448,13 +448,13 @@ class ResultViewController: UIViewController {
         descriptionLabel.leftAnchor.constraint(equalTo: qualityColorLabel.leftAnchor).isActive = true
         
         //TipsLabel
-        tipsLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor).isActive = true
+        tipsLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant : 15).isActive = true
         tipsLabel.heightAnchor.constraint(equalToConstant: 150).isActive = true
         tipsLabel.rightAnchor.constraint(equalTo: bottomWhiteView.rightAnchor, constant: -34).isActive = true
         tipsLabel.leftAnchor.constraint(equalTo: qualityColorLabel.leftAnchor, constant : 5).isActive = true
         
         //KeteranganTips
-        keteranganTips.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant : -25).isActive = true
+        keteranganTips.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant : -5).isActive = true
         //keteranganTips.widthAnchor.constraint(equalToConstant: 150).isActive = true
         keteranganTips.heightAnchor.constraint(equalToConstant: 40).isActive = true
         //keteranganTips.centerXAnchor.constraint(equalTo: bottomWhiteView.centerXAnchor).isActive = true
@@ -479,71 +479,56 @@ class ResultViewController: UIViewController {
     func hasilScan() {
         let nilaiTotal = String(format: "%.1f", NilaiSementara.nilaiSementara)
         self.nilaiOutlet2.text = "\(nilaiTotal)"
+        let fruitName = NilaiSementara.currentFruit
+        
+        var fruitDescription : [String] =
+            [NSLocalizedString("We detect that this \(fruitName)'s color looks dull, try to choose another \(fruitName) ", comment: ""),NSLocalizedString("We detect that this \(fruitName) color looks a bit dull, try to choose another \(fruitName)", comment: ""),NSLocalizedString("We detect that this \(fruitName) looks fresh enough and the color looks fine", comment: ""),NSLocalizedString("We detect that this \(fruitName) looks fresh and the color looks good", comment: ""),NSLocalizedString("We detect that this \(fruitName) looks like it's in prime condition, ripe and the color looks great.", comment: "")
+        ]
         
         if NilaiSementara.nilaiSementara >= 9 && NilaiSementara.nilaiSementara <= 10{
             topGreenView.backgroundColor = hijau
-            qualityLabel.text = NSLocalizedString("Great Eye!", comment: "")
+            qualityLabel.text = NSLocalizedString("We evaluate this fruit as brilliant", comment: "")
             colorLabel.text = NSLocalizedString("Excellent!", comment: "")
             colorLabel.textColor = hijau
-            if  NilaiSementara.currentFruit == "Fuji Apple" {
-               descriptionLabel.text = appleDescription[4]
-            } else if  NilaiSementara.currentFruit == "Mandarin Orange" {
-                descriptionLabel.text = orangeDescription[4]
-            } else {
-                descriptionLabel.text = tomatoDescription[4]
-            }
+            descriptionLabel.text = fruitDescription[4]
+//            if  NilaiSementara.currentFruit == "Fuji Apple" {
+//               descriptionLabel.text = appleDescription[4]
+//            } else if  NilaiSementara.currentFruit == "Mandarin Orange" {
+//                descriptionLabel.text = orangeDescription[4]
+//            } else {
+//                descriptionLabel.text = tomatoDescription[4]
+//            }
             tipsLabel.text = tips.randomElement()
+            
         }else if NilaiSementara.nilaiSementara >= 8 && NilaiSementara.nilaiSementara < 9 {
             topGreenView.backgroundColor = hijauTua
-            qualityLabel.text = NSLocalizedString("Sweet", comment: "")
+            qualityLabel.text = NSLocalizedString("We evaluate this fruit as good", comment: "")
             colorLabel.text = NSLocalizedString("Good!", comment: "")
             colorLabel.textColor = hijauTua
-            if  NilaiSementara.currentFruit == "Fuji Apple" {
-                descriptionLabel.text = appleDescription[3]
-            } else if NilaiSementara.currentFruit == "Mandarin Orange" {
-                descriptionLabel.text = orangeDescription[3]
-            } else {
-                descriptionLabel.text = tomatoDescription[3]
-            }
+            descriptionLabel.text = fruitDescription[3]
             tipsLabel.text = tips.randomElement()
+            
         }else if NilaiSementara.nilaiSementara >= 7 && NilaiSementara.nilaiSementara < 8 {
             topGreenView.backgroundColor = orangeKuning
-            qualityLabel.text = NSLocalizedString("Okay.", comment: "")
+            qualityLabel.text = NSLocalizedString("We evaluate this fruit as average", comment: "")
             colorLabel.text = NSLocalizedString("Average", comment: "")
             colorLabel.textColor = orangeKuning
-            if  NilaiSementara.currentFruit == "Fuji Apple" {
-                descriptionLabel.text = appleDescription[2]
-            } else if  NilaiSementara.currentFruit == "Mandarin Orange" {
-                descriptionLabel.text = orangeDescription[2]
-            } else {
-                descriptionLabel.text = tomatoDescription[2]
-            }
+            descriptionLabel.text = fruitDescription[2]
             tipsLabel.text = tips.randomElement()
+            
         }else if NilaiSementara.nilaiSementara >= 5 && NilaiSementara.nilaiSementara < 7 {
             topGreenView.backgroundColor = orange
-            qualityLabel.text = NSLocalizedString("Almost There...", comment: "")
+            qualityLabel.text = NSLocalizedString("We evaluate this fruit as poor", comment: "")
             colorLabel.text = NSLocalizedString("Not Good", comment: "")
             colorLabel.textColor = orange
-            if  NilaiSementara.currentFruit == "Fuji Apple" {
-                descriptionLabel.text = appleDescription[1]
-            } else if  NilaiSementara.currentFruit == "Mandarin Orange" {
-                descriptionLabel.text = orangeDescription[1]
-            } else {
-                descriptionLabel.text = tomatoDescription[1]
-            }
+            descriptionLabel.text = fruitDescription[1]
             tipsLabel.text = tips.randomElement()
         }else {
             topGreenView.backgroundColor = merah
-            qualityLabel.text = NSLocalizedString("Meh.", comment: "")
+            qualityLabel.text = NSLocalizedString("We evaluate this fruit as very poor", comment: "")
             colorLabel.text = NSLocalizedString("Poor", comment: "")
             colorLabel.textColor = merah
-            if NilaiSementara.currentFruit == "Fuji Apple" {
-                descriptionLabel.text = appleDescription[0]
-            } else if NilaiSementara.currentFruit == "Mandarin Orange" {
-                descriptionLabel.text = orangeDescription[0]
-            } else {
-                descriptionLabel.text = tomatoDescription[0]
-            }
+            descriptionLabel.text = fruitDescription[0]
             tipsLabel.text = tips.randomElement()
         }
     }

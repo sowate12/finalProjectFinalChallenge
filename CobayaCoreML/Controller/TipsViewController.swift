@@ -24,7 +24,6 @@ class TipsViewController: UIViewController {
     
             //halaman 1
             @IBOutlet weak var quickBrief: UIImageView!
-            @IBOutlet weak var skip: UIImageView!
             @IBOutlet weak var tapToContinue: UILabel!
             
             //halaman 2
@@ -77,8 +76,8 @@ class TipsViewController: UIViewController {
             @IBOutlet weak var color: UILabel!
             @IBOutlet weak var excellent: UILabel!
             @IBOutlet weak var texture: UILabel!
-            @IBOutlet weak var good: UILabel!
-            @IBOutlet weak var theAppleDeiliciously: UILabel!
+            @IBOutlet weak var tipsExpand: UILabel!
+            @IBOutlet weak var tipsDescription: UILabel!
             @IBOutlet weak var arrowUp: UIImageView!
             @IBOutlet weak var youCanExpand: UILabel!
             @IBOutlet weak var greatEye2: UILabel!
@@ -90,22 +89,33 @@ class TipsViewController: UIViewController {
                 super.viewDidLoad()
                 quickBrief.isHidden = false
                 tapToContinue.isHidden = false
-                skip.isHidden = false
+                buttonSkipOutlet.isHidden = false
                 // Do any additional setup after loading the view.
             }
             
             @IBAction func skipButton(_ sender: Any) {
-                self.dismiss(animated: true, completion: nil)
+                
+                let userDefaults = UserDefaults.standard
+                if userDefaults.bool(forKey: "OnBoardingComplete") {
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    performSegue(withIdentifier: "toMain", sender: self)
+                }
             }
             
             @IBAction func buttonLayer9(_ sender: Any) {
-                self.dismiss(animated: true, completion: nil)
+                let userDefaults = UserDefaults.standard
+                if userDefaults.bool(forKey: "OnBoardingComplete") {
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    performSegue(withIdentifier: "toMain", sender: self)
+                }
             }
             
             @IBAction func buttonLayer8(_ sender: Any) {
                 ijo.isHidden = true
                 putih.isHidden = true
-                silang2.isHidden = true
+//                silang2.isHidden = true
                 yourResultIs2.isHidden = true
                 sepuluhGede2.isHidden = true
                 atau2.isHidden = true
@@ -113,8 +123,8 @@ class TipsViewController: UIViewController {
                 color.isHidden = true
                 excellent.isHidden = true
                 texture.isHidden = true
-                good.isHidden = true
-                theAppleDeiliciously.isHidden = true
+                tipsExpand.isHidden = true
+                tipsDescription.isHidden = true
                 arrowUp.isHidden = true
                 youCanExpand.isHidden = true
                 greatEye2.isHidden = true
@@ -129,7 +139,7 @@ class TipsViewController: UIViewController {
             @IBAction func buttonLayer7(_ sender: Any) {
                 bgPolosKotakHijau.isHidden = true
                 yourResultIs.isHidden = true
-                silangBgIjo.isHidden = true
+//                silangBgIjo.isHidden = true
                 sepuluhGede.isHidden = true
                 atau.isHidden = true
                 sepuluhKecil.isHidden = true
@@ -139,7 +149,7 @@ class TipsViewController: UIViewController {
                 
                 ijo.isHidden = false
                 putih.isHidden = false
-                silang2.isHidden = false
+//                silang2.isHidden = false
                 yourResultIs2.isHidden = false
                 sepuluhGede2.isHidden = false
                 atau2.isHidden = false
@@ -147,8 +157,8 @@ class TipsViewController: UIViewController {
                 color.isHidden = false
                 excellent.isHidden = false
                 texture.isHidden = false
-                good.isHidden = false
-                theAppleDeiliciously.isHidden = false
+                tipsExpand.isHidden = false
+                tipsDescription.isHidden = false
                 arrowUp.isHidden = false
                 youCanExpand.isHidden = false
                 greatEye2.isHidden = false
@@ -164,7 +174,7 @@ class TipsViewController: UIViewController {
                 
                 bgPolosKotakHijau.isHidden = false
                 yourResultIs.isHidden = false
-                silangBgIjo.isHidden = false
+//                silangBgIjo.isHidden = false
                 sepuluhGede.isHidden = false
                 atau.isHidden = false
                 sepuluhKecil.isHidden = false
@@ -228,7 +238,7 @@ class TipsViewController: UIViewController {
             @IBAction func buttonLayer1(_ sender: Any) {
                 quickBrief.isHidden = true
                 tapToContinue.isHidden = true
-                buttonSkipOutlet.isHidden = true
+//                buttonSkipOutlet.isHidden = true
                 
                 buttonLayer1Outlet.isEnabled = false
                 siluet2.isHidden = false
