@@ -605,8 +605,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     /// Move view controller
     func moveController(){
         let popUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ResultView") as! ResultViewController
-        timer.invalidate()
-        timer1.invalidate()
         self.addChildViewController(popUpVC)
         popUpVC.view.frame = self.view.frame
         self.view.addSubview(popUpVC.view)
