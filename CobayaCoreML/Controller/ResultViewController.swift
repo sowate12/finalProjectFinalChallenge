@@ -57,6 +57,19 @@ class ResultViewController: UIViewController {
         return textView
     }()
     
+    let disclaimer: UITextView = {
+        let textView = UITextView()
+        textView.text = "*it’ll be more accurate when the fruit is within the silhouette"
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.textAlignment = .left
+        textView.textColor = UIColor.gray
+        textView.backgroundColor = UIColor.clear
+        textView.font = UIFont.systemFont(ofSize: 8)
+        return textView
+    }()
+    
+    
+    
     let viewGabungan: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -173,6 +186,7 @@ class ResultViewController: UIViewController {
             let yCloseButton = self.view.center.y
             closeButton.frame.origin = CGPoint(x: xCloseButton, y: yCloseButton - 230)
             topGreenView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+            disclaimer.isHidden = true
             moreDetailedIsTrue = true
         }
     }
@@ -201,6 +215,7 @@ class ResultViewController: UIViewController {
             gambarMoreOrLessButton2.isHidden = true
             gambarMoreOrLessButton.isHidden = false
             moreDetailedIsTrue = false
+            disclaimer.isHidden = false
         }
     }
     
@@ -329,6 +344,7 @@ class ResultViewController: UIViewController {
         view.addSubview(showMoreOrLessButton)
         view.addSubview(showMoreOrLessButton2)
         view.addSubview(closeButton)
+        view.addSubview(disclaimer)
     }
     
     //LessDetail
@@ -339,6 +355,13 @@ class ResultViewController: UIViewController {
         topGreenView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         topGreenView.widthAnchor.constraint(equalToConstant: 343).isActive = true
         topGreenView.heightAnchor.constraint(equalToConstant: 343).isActive = true
+        
+        //Disclaimer
+        disclaimer.topAnchor.constraint(equalTo: topGreenView.bottomAnchor).isActive = true
+        disclaimer.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        disclaimer.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        disclaimer.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        
         
         //Close Button
         closeButton.topAnchor.constraint(equalTo: topGreenView.topAnchor, constant : 25).isActive = true
