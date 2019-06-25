@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		085AB88222268DA4009C8CB4 /* MobileNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 085AB88122268DA4009C8CB4 /* MobileNet.mlmodel */; };
+		086E137422C07C1700D14FD4 /* AchievementCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E137322C07C1700D14FD4 /* AchievementCollectionViewCell.swift */; };
+		086E137622C0808F00D14FD4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E137522C0808F00D14FD4 /* Extensions.swift */; };
+		086E137822C0809700D14FD4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E137722C0809700D14FD4 /* Colors.swift */; };
+		086E137A22C0A64A00D14FD4 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086E137922C0A64A00D14FD4 /* Helpers.swift */; };
+		0870593622AE00F000ECE291 /* AchievementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0870593522AE00F000ECE291 /* AchievementViewController.swift */; };
+		0870593822AE00FB00ECE291 /* VoucherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0870593722AE00FB00ECE291 /* VoucherViewController.swift */; };
 		08D1753E21E5F57300ABF40A /* BuahCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D1753D21E5F57300ABF40A /* BuahCell.swift */; };
 		08EA9D37221D4BAC0076AA35 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 08EA9D35221D4BAC0076AA35 /* Localizable.strings */; };
 		6B2D6CE921F708C000FFE806 /* NilaiSementara.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2D6CE821F708C000FFE806 /* NilaiSementara.swift */; };
@@ -34,6 +40,12 @@
 
 /* Begin PBXFileReference section */
 		085AB88122268DA4009C8CB4 /* MobileNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNet.mlmodel; sourceTree = "<group>"; };
+		086E137322C07C1700D14FD4 /* AchievementCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementCollectionViewCell.swift; sourceTree = "<group>"; };
+		086E137522C0808F00D14FD4 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		086E137722C0809700D14FD4 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		086E137922C0A64A00D14FD4 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		0870593522AE00F000ECE291 /* AchievementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementViewController.swift; sourceTree = "<group>"; };
+		0870593722AE00FB00ECE291 /* VoucherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoucherViewController.swift; sourceTree = "<group>"; };
 		08D1753D21E5F57300ABF40A /* BuahCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuahCell.swift; sourceTree = "<group>"; };
 		08EA9D36221D4BAC0076AA35 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = CobayaCoreML/Helper/CobayaCoreML/CobayaCoreML/en.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		08EA9D38221D4BB40076AA35 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = CobayaCoreML/Helper/CobayaCoreML/CobayaCoreML/id.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
@@ -85,6 +97,7 @@
 		08D7773F21F1B5040025CC0C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				086E137322C07C1700D14FD4 /* AchievementCollectionViewCell.swift */,
 				08D1753D21E5F57300ABF40A /* BuahCell.swift */,
 				991A601A213FCEC100FEAE4B /* Main.storyboard */,
 			);
@@ -98,6 +111,8 @@
 				991A6018213FCEC100FEAE4B /* ViewController.swift */,
 				7CFD700522075A8F00CA041D /* ResultViewController.swift */,
 				B070E4FB2202E26900D8C016 /* TipsViewController.swift */,
+				0870593522AE00F000ECE291 /* AchievementViewController.swift */,
+				0870593722AE00FB00ECE291 /* VoucherViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -171,6 +186,9 @@
 				7CFD700F22080F2D00CA041D /* Font */,
 				E6FCE89821F9AD8D0019908D /* ML Model */,
 				E6FCE89621F9A9690019908D /* AnimationHelper.swift */,
+				086E137522C0808F00D14FD4 /* Extensions.swift */,
+				086E137922C0A64A00D14FD4 /* Helpers.swift */,
+				086E137722C0809700D14FD4 /* Colors.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -289,10 +307,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B9FD12A2202EB0E00445DEC /* Apel1.mlmodel in Sources */,
+				086E137A22C0A64A00D14FD4 /* Helpers.swift in Sources */,
+				086E137822C0809700D14FD4 /* Colors.swift in Sources */,
 				991A6019213FCEC100FEAE4B /* ViewController.swift in Sources */,
 				6B9FD12C2204351500445DEC /* ApelBaru.mlmodel in Sources */,
 				B070E4FC2202E26900D8C016 /* TipsViewController.swift in Sources */,
+				0870593622AE00F000ECE291 /* AchievementViewController.swift in Sources */,
 				E6FCE89721F9A9690019908D /* AnimationHelper.swift in Sources */,
+				0870593822AE00FB00ECE291 /* VoucherViewController.swift in Sources */,
 				6BDEA49B21F5AD11007909B8 /* Jeruk.mlmodel in Sources */,
 				991A601F213FCEC100FEAE4B /* CobayaCoreML.xcdatamodeld in Sources */,
 				085AB88222268DA4009C8CB4 /* MobileNet.mlmodel in Sources */,
@@ -300,6 +322,8 @@
 				991A6017213FCEC100FEAE4B /* AppDelegate.swift in Sources */,
 				6B2D6CE921F708C000FFE806 /* NilaiSementara.swift in Sources */,
 				7CFD700622075A8F00CA041D /* ResultViewController.swift in Sources */,
+				086E137622C0808F00D14FD4 /* Extensions.swift in Sources */,
+				086E137422C07C1700D14FD4 /* AchievementCollectionViewCell.swift in Sources */,
 				08D1753E21E5F57300ABF40A /* BuahCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

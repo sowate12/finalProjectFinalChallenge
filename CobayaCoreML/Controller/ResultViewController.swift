@@ -187,6 +187,7 @@ class ResultViewController: UIViewController {
             closeButton.frame.origin = CGPoint(x: xCloseButton, y: yCloseButton - 230)
             topGreenView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
             disclaimer.isHidden = true
+            disclaimer.isUserInteractionEnabled = false
             moreDetailedIsTrue = true
         }
     }
@@ -477,6 +478,9 @@ class ResultViewController: UIViewController {
     }
     
     func hasilScan() {
+        if NilaiSementara.nilaiSementara <= 5{
+            NilaiSementara.nilaiSementara = 5
+        }
         let nilaiTotal = String(format: "%.1f", NilaiSementara.nilaiSementara)
         self.nilaiOutlet2.text = "\(nilaiTotal)"
         let fruitName = NilaiSementara.currentFruit

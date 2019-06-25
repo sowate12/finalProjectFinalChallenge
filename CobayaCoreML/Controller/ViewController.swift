@@ -53,6 +53,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     var isTorch = false
     
     // MARK: IBOutlet
+    @IBOutlet weak var achButton: UIButton!
     @IBOutlet weak var buttonReview: UIButton!
     @IBOutlet weak var silhouetteImage: UIImageView!
     @IBOutlet weak var cancelButton: UIButton!
@@ -89,6 +90,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         let indexPath = IndexPath(item: 2, section: 0)
         self.fruitTypeCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         self.fruitTypeCollectionView.decelerationRate = UIScrollViewDecelerationRateNormal
+        
+        
         
         silhouetteImage.transform = imageViewTransform
         silhouetteImage.alpha = 1.0
@@ -150,6 +153,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         setBackground()
         view.addSubview(backgroundViginette)
         view.addSubview(fruitTypeCollectionView)
+        view.addSubview(achButton)
         view.addSubview(startButton)
         view.addSubview(silhouetteImage)
         view.addSubview(dummyImage)
@@ -361,6 +365,9 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func setupColor(){
+        if NilaiSementara.nilaiSementara <= 5{
+            NilaiSementara.nilaiSementara = 5
+        }
         let nilaiTotal = String(format: "%.1f", NilaiSementara.nilaiSementara)
         reviewNumber.text = nilaiTotal
         reviewLabel.text = NilaiSementara.previousFruit
@@ -449,6 +456,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         dummyImage.isHidden = false
         cancelButton.isHidden = false
         viewReview.isHidden = true
+        achButton.isHidden = true
         buttonReview.isHidden = true
         reviewNumber.isHidden = true
         reviewLabel.isHidden = true
@@ -467,6 +475,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         cancelButton.isHidden = true
         scanningText.isHidden = false
         fruitTypeCollectionView.isHidden = false
+        achButton.isHidden = false
         startButton.isHidden = false
         tutorialButton.isHidden = false
         scanView.isUserInteractionEnabled = true
@@ -630,6 +639,11 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
             print(error)
         }
     }
+    
+    @IBAction func achAction(_ sender: Any) {
+        performSegue(withIdentifier: "toAch", sender: self)
+    }
+    
 }
 
 // MARK: Collection View
