@@ -539,7 +539,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
                 try device.lockForConfiguration()
                 if isTorch == true {
                     device.torchMode = .on
-                    actionTorch.setImage(UIImage(named: "flashOn"), for: .normal)
+                    actionTorch.setImage(UIImage(named: "icon shadow 6"), for: .normal)
                 } else {
                     device.torchMode = .off
                     actionTorch.setImage(UIImage(named: "antiflash"), for: .normal)

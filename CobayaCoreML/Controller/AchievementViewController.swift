@@ -27,7 +27,7 @@ class AchievementViewController: UIViewController {
         "Fruit Scientist",
         "Lucky Scanner",
         "Still Learning"]
-    var statuses = [true,false,true,false,true,false,true,false,true,false,true,false]
+    var statuses = [true,true,true,true,true,true,true,true,true,true,true,true]
     var descs = ["Reward for scanning an apple a day for a week!",
         "Reward for scanning the first time!",
         "Reward for scanning 100 times!",

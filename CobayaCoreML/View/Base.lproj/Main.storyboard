@@ -381,18 +381,24 @@
                                     <action selector="cancelButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e9i-PC-WD8"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PBF-3a-CvQ" userLabel="Tutorial Button">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PBF-3a-CvQ" userLabel="Tutorial Button">
                                 <rect key="frame" x="277" y="44" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="7Bi-2G-wAi"/>
+                                    <constraint firstAttribute="height" constant="30" id="M69-y7-CEf"/>
+                                </constraints>
                                 <state key="normal" title="Button" image="tutorial 2-1"/>
                                 <connections>
                                     <action selector="tutorialButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0OH-cx-Rtn"/>
                                     <segue destination="sjp-pV-Ueb" kind="show" identifier="tutorial" id="G5N-gs-A8B"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MpF-Wj-pYc" userLabel="Flash Button">
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MpF-Wj-pYc" userLabel="Flash Button">
                                 <rect key="frame" x="319" y="44" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="7gM-gG-gRd"/>
+                                    <constraint firstAttribute="height" constant="30" id="yr5-s9-VAl"/>
+                                </constraints>
                                 <state key="normal" title="Button" image="antiflash"/>
                                 <connections>
                                     <action selector="actionTorchClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QVd-Ro-caa"/>
@@ -412,8 +418,12 @@
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
+                            <constraint firstItem="MpF-Wj-pYc" firstAttribute="leading" secondItem="PBF-3a-CvQ" secondAttribute="trailing" constant="12" id="DIH-Wl-sHF"/>
+                            <constraint firstItem="PBF-3a-CvQ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Drs-9B-1co"/>
                             <constraint firstItem="MCs-t4-uWW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="EZa-Gi-ehh"/>
+                            <constraint firstItem="MpF-Wj-pYc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="SCp-jz-kqT"/>
                             <constraint firstItem="MCs-t4-uWW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="26" id="dpz-3u-OoF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MpF-Wj-pYc" secondAttribute="trailing" constant="26" id="jk8-r9-WhY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

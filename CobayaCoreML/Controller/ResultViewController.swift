@@ -495,13 +495,6 @@ class ResultViewController: UIViewController {
             colorLabel.text = NSLocalizedString("Excellent!", comment: "")
             colorLabel.textColor = hijau
             descriptionLabel.text = fruitDescription[4]
-//            if  NilaiSementara.currentFruit == "Fuji Apple" {
-//               descriptionLabel.text = appleDescription[4]
-//            } else if  NilaiSementara.currentFruit == "Mandarin Orange" {
-//                descriptionLabel.text = orangeDescription[4]
-//            } else {
-//                descriptionLabel.text = tomatoDescription[4]
-//            }
             tipsLabel.text = tips.randomElement()
             
         }else if NilaiSementara.nilaiSementara >= 8 && NilaiSementara.nilaiSementara < 9 {
