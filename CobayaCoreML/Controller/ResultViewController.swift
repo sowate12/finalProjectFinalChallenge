@@ -358,6 +358,7 @@ class ResultViewController: UIViewController {
         topGreenView.heightAnchor.constraint(equalToConstant: 343).isActive = true
         
         //Disclaimer
+        disclaimer.isUserInteractionEnabled = false
         disclaimer.topAnchor.constraint(equalTo: topGreenView.bottomAnchor).isActive = true
         disclaimer.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
         disclaimer.heightAnchor.constraint(equalToConstant: 20).isActive = true

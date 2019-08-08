@@ -91,8 +91,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         self.fruitTypeCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         self.fruitTypeCollectionView.decelerationRate = UIScrollViewDecelerationRateNormal
         
-        
-        
         silhouetteImage.transform = imageViewTransform
         silhouetteImage.alpha = 1.0
         scanningText.alpha = 1.0
@@ -539,7 +537,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
                 try device.lockForConfiguration()
                 if isTorch == true {
                     device.torchMode = .on
-                    actionTorch.setImage(UIImage(named: "icon shadow 6"), for: .normal)
+                    actionTorch.setImage(UIImage(named: "flashOn"), for: .normal)
                 } else {
                     device.torchMode = .off
                     actionTorch.setImage(UIImage(named: "antiflash"), for: .normal)
@@ -564,9 +562,27 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
+    func addProgress(){
+        let ud = UserDefaults.standard
+        var progress = ud.integer(forKey: "progress1")
+        if progress < 100 {
+            progress += 1
+            ud.set(progress, forKey: "progress1")
+            
+        }else if progress == 100{
+            let alert = UIAlertController(title: NSLocalizedString("You've Unlocked an Achievement!", comment: ""), message: NSLocalizedString("", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+            
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: UIAlertActionStyle.default))
+            self.present(alert, animated: true, completion: nil)
+        }else {
+            
+        }
+    }
+    
     /// Startup the scan
     func startScanning(){
         DispatchQueue.main.async {
+            self.addProgress()
             self.checkingLabel.isHidden = false
             self.resetVariables()
             self.hideOutlet()

@@ -21,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let userDefaults = UserDefaults.standard
         if userDefaults.bool(forKey: "OnBoardingComplete") {
             initialViewController = storyBoard.instantiateViewController(withIdentifier: "MainApp")
+        }else {
+            userDefaults.set(95, forKey: "progress1")
         }
         window?.rootViewController = initialViewController
         window?.makeKeyAndVisible()
